@@ -69,7 +69,7 @@
 					</a>
 					<ul>
 						<li>
-							<a href="#">
+							<a href="{{route('kategoripasien.index')}}">
 								<span class="title">Data Kategori Pasien</span>
 							</a>
 						</li>

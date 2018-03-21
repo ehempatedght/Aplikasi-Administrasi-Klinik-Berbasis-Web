@@ -172,7 +172,7 @@
 							<div class="col-md-12">
 								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Status Pernikahan</label>
 								<div class="col-sm-2">
-									<select name="status_pernikaan" class="selectboxit">
+									<select name="status_pernikahan" class="selectboxit">
 										<option {{old('status_pernikahan', $pasien->status_pernikahan)=="Belum Menikah"? 'selected':''}} value="Belum Menikah">Belum Menikah</option>
 										<option {{old('status_pernikahan', $pasien->status_pernikahan)=="Menikah"? 'selected':''}} value="Menikah">Menikah</option>
 										<option {{old('status_pernikahan', $pasien->status_pernikahan)=="Janda"? 'selected':''}} value="Janda">Janda</option>

@@ -49,6 +49,13 @@ Route::group(['middleware'=> ['auth','role:admin']], function() {
 		Route::post('/update/{id}', ['as'=>'poli.update','uses'=>'masterdata\PoliController@doUpdate']);
 		Route::post('/hapus/{id}',['as'=>'poli.hapus','uses'=>'masterdata\PoliController@doDelete']);
 	});
+	//Kategori Pasien
+	Route::group(['prefix'=>'kategoripasien'], function() {
+		Route::get('/', ['as'=>'kategoripasien.index','uses'=>'masterdata\KategoripasienController@getIndex']);
+		Route::post('/insert', ['as'=>'kategoripasien.insert','uses'=>'masterdata\KategoripasienController@doInsert']);
+		Route::post('/update/{id}', ['as'=>'kategoripasien.update','uses'=>'masterdata\KategoripasienController@doUpdate']);
+		Route::post('/delete/{id}', ['as'=>'kategoripasien.delete','uses'=>'masterdata\KategoripasienController@doDelete']);
+	});
 	//Pasien
 	Route::group(['prefix'=>'pasien'], function() {
 		Route::get('/', ['as'=>'pasien.index','uses'=>'masterdata\PasienController@getIndex']);
