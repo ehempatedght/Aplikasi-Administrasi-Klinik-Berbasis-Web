@@ -74,7 +74,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="{{route('kelurahan.index')}}">
 								<span class="title">Data Kelurahan</span>
 							</a>
 						</li>

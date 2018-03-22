@@ -104,7 +104,7 @@
 									<select name="id_kota" class="selectboxit" disabled="">
 										<option selected="selected" disabled value="Pilih">Pilih Kota</option>
 											@foreach ($kotas as $kota)
-												<option value="{{$kota->id_kota}}" @if($pasien->kota_id == $kota->id_kota) selected @endif>{{$kota->nama_kota}}</option>
+												<option value="{{$kota->id}}" @if($pasien->kota_id == $kota->id_kota) selected @endif>{{$kota->nama_kota}}</option>
 											@endforeach
 									</select>
 								</div>
@@ -125,7 +125,7 @@
 									<select name="id_kec" class="selectboxit" disabled="">
 										<option selected="selected" disabled value="Pilih">Pilih Kecamatan</option>
 											@foreach ($kecamatans as $kecamatan)
-												<option value="{{$kecamatan->id_kec}}" @if($pasien->kec_id == $kecamatan->id_kec) selected @endif>{{$kecamatan->nama_kecamatan}}</option>
+												<option value="{{$kecamatan->id}}" @if($pasien->kec_id == $kecamatan->id_kec) selected @endif>{{$kecamatan->nama_kecamatan}}</option>
 											@endforeach
 									</select>
 								</div>
@@ -146,7 +146,7 @@
 									<select name="id_kel" class="selectboxit" disabled="">
 										<option selected="selected" disabled value="Pilih">Pilih Kelurahan</option>
 											@foreach ($kelurahans as $kelurahan)
-												<option value="{{$kelurahan->id_kel}}" @if($pasien->kel_id == $kelurahan->id_kel) selected @endif>{{$kelurahan->nama_kelurahan}}</option>
+												<option value="{{$kelurahan->id}}" @if($pasien->kel_id == $kelurahan->id_kel) selected @endif>{{$kelurahan->nama_kelurahan}}</option>
 											@endforeach
 									</select>
 								</div>
@@ -297,7 +297,7 @@
 									<select name="id_kota" class="selectboxit">
 										<option selected="selected" disabled value="Pilih">Pilih Kota</option>
 											@foreach ($kotas as $kota)
-												<option value="{{$kota->id_kota}}">{{$kota->nama_kota}}</option>
+												<option value="{{$kota->id}}">{{$kota->nama_kota}}</option>
 											@endforeach
 									</select>
 								</div>
@@ -341,7 +341,7 @@
 									<select name="id_kec" class="selectboxit">
 										<option selected="selected" disabled value="Pilih">Pilih Kecamatan</option>
 											@foreach ($kecamatans as $kecamatan)
-												<option value="{{$kecamatan->id_kec}}">{{$kecamatan->nama_kecamatan}}</option>
+												<option value="{{$kecamatan->id}}">{{$kecamatan->nama_kecamatan}}</option>
 											@endforeach
 									</select>
 								</div>

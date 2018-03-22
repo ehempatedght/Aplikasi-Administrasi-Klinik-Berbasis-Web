@@ -71,6 +71,20 @@ Route::group(['middleware'=> ['auth','role:admin']], function() {
 		Route::post('/tambahkelurahan', ['as'=>'pasien.kelurahan','uses'=>'masterdata\PasienController@inputKelurahanPasien']);
 	});
 
+	//kelurahan
+	Route::group(['prefix'=>'kelurahan'], function() {
+		Route::get('/', ['as'=>'kelurahan.index','uses'=>'masterdata\KelurahanController@getIndex']);
+		Route::post('/insert', ['as'=>'kelurahan.insert','uses'=>'masterdata\KelurahanController@doAdd']);
+		Route::get('/create', ['as'=>'kelurahan.create','uses'=>'masterdata\KelurahanController@getCreate']);
+		Route::get('/edit/{id}', ['as'=>'kelurahan.edit','uses'=>'masterdata\KelurahanController@getEdit']);
+		Route::post('/update/{id}', ['as'=>'kelurahan.update','uses'=>'masterdata\KelurahanController@doUpdate']);
+		Route::post('/delete/{id}', ['as'=>'kelurahan.delete','uses'=>'masterdata\KelurahanController@doDelete']);
+		Route::post('/inputkota', ['as'=>'kelurahan.kota','uses'=>'masterdata\KelurahanController@inputKota']);
+		Route::post('/inputkecamatan', ['as'=>'kelurahan.kecamatan','uses'=>'masterdata\KelurahanController@inputKecamatan']);
+		Route::post('/deletekota/{id}', ['as'=>'kelurahan.deletekota','uses'=>'masterdata\KelurahanController@deleteKota']);
+		Route::post('/deletekec/{id}', ['as'=>'kelurahan.deletekec','uses'=>'masterdata\KelurahanController@deleteKecamatan']);
+	});
+	
 	//Pemeriksaan
 	// Route::group(['prefix' => 'pemeriksaan'], function () {
 	// 	Route::get('/', ['as'=>'pemeriksaan.index','uses'=>'masterdata\PemeriksaanController@getIndex']);

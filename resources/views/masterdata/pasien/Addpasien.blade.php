@@ -106,7 +106,7 @@
 									<select name="id_kota" class="selectboxit">
 										<option selected="selected" disabled value="Pilih">Pilih Kota</option>
 											@foreach ($kotas as $kota)
-												<option value="{{$kota->id_kota}}">{{$kota->nama_kota}}</option>
+												<option value="{{$kota->id}}">{{$kota->nama_kota}}</option>
 											@endforeach
 									</select>
 								</div>
@@ -127,7 +127,7 @@
 									<select name="id_kec" class="selectboxit">
 										<option selected="selected" disabled value="Pilih">Pilih Kecamatan</option>
 											@foreach ($kecamatans as $kecamatan)
-												<option value="{{$kecamatan->id_kec}}">{{$kecamatan->nama_kecamatan}}</option>
+												<option value="{{$kecamatan->id}}">{{$kecamatan->nama_kecamatan.' | '.$kecamatan->kota->nama_kota}}</option>
 											@endforeach
 									</select>
 								</div>
@@ -148,7 +148,7 @@
 									<select name="id_kel" class="selectboxit">
 										<option selected="selected" disabled value="Pilih">Pilih Kelurahan</option>
 											@foreach ($kelurahans as $kelurahan)
-												<option value="{{$kelurahan->id_kel}}">{{$kelurahan->nama_kelurahan}}</option>
+												<option value="{{$kelurahan->id}}">{{$kelurahan->nama_kelurahan.' | '.$kelurahan->kecamatan->nama_kecamatan}}</option>
 											@endforeach
 									</select>
 								</div>
@@ -307,10 +307,10 @@
 								@csrf
 								<div class="form-group">
 									<label for="field-1" class="control-label">Kota</label>
-									<select name="id_kota" class="selectboxit">
+									<select name="id_kota" class="selectboxit" required="">
 										<option selected="selected" disabled value="Pilih">Pilih Kota</option>
 											@foreach ($kotas as $kota)
-												<option value="{{$kota->id_kota}}">{{$kota->nama_kota}}</option>
+												<option value="{{$kota->id}}">{{$kota->nama_kota}}</option>
 											@endforeach
 									</select>
 								</div>
@@ -351,10 +351,10 @@
 								@csrf
 								<div class="form-group">
 									<label for="field-1" class="control-label">Kecamatan</label>
-									<select name="id_kec" class="selectboxit">
+									<select name="id_kec" class="selectboxit" required="">
 										<option selected="selected" disabled value="Pilih">Pilih Kecamatan</option>
 											@foreach ($kecamatans as $kecamatan)
-												<option value="{{$kecamatan->id_kec}}">{{$kecamatan->nama_kecamatan}}</option>
+												<option value="{{$kecamatan->id}}">{{$kecamatan->nama_kecamatan}}</option>
 											@endforeach
 									</select>
 								</div>
