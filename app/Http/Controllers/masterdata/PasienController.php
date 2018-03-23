@@ -23,6 +23,7 @@ class PasienController extends Controller
     	$kotas = Kota::all();
     	$kelurahans = Kelurahan::all();
     	$kecamatans = Kecamatan::all();
+        $no_rekamMedis = $this->no_rekamMedis();
     	return view('masterdata.pasien.Addpasien', get_defined_vars());
     }
 
@@ -32,6 +33,7 @@ class PasienController extends Controller
     		'kategoripasien_id' => 'required|integer',
     		'jenis_kelamin' => 'required',
     		'alamat' => 'required',
+            'no_rm' => 'required',
     		'id_kota' => 'required|integer',
     		'id_kec' => 'required|integer',
     		'id_kel' => 'required|integer',
@@ -44,6 +46,7 @@ class PasienController extends Controller
 
     	$data = $request->all();
         $namaPasien = $data['nama_pasien'];
+        $no_rm = $data['no_rm'];
         $IDkategoriPasien = $data['kategoripasien_id'];
         $goldar = $data['golongan_darah'];
         $gender = $data['jenis_kelamin'];
@@ -60,6 +63,7 @@ class PasienController extends Controller
         $tgl_lahir = date('Y-m-d', strtotime($data['TanggalLahir']));
 
     	$pasien = Pasien::create([
+            'no_urut' => $no_rm,
     		'nama_pasien' => $namaPasien,
     		'kategoripasien_id' => $IDkategoriPasien,
     		'golongan_darah' => $goldar,
@@ -88,6 +92,7 @@ class PasienController extends Controller
     	$kotas = Kota::all();
     	$kelurahans = Kelurahan::all();
     	$kecamatans = Kecamatan::all();
+        $no_rekamMedis = $this->no_rekamMedis();
     	return view('masterdata.pasien.Showpasien', get_defined_vars());
     }
 
@@ -97,6 +102,7 @@ class PasienController extends Controller
     	$kotas = Kota::all();
     	$kelurahans = Kelurahan::all();
     	$kecamatans = Kecamatan::all();
+        $no_rekamMedis = $this->no_rekamMedis();
     	return view('masterdata.pasien.Editpasien', get_defined_vars());
     }
 
@@ -154,6 +160,26 @@ class PasienController extends Controller
     	])) {
     		return redirect()->route('pasien.index', $pasien->id_pasien)->with('message','Pasien berhasil diubah!');
     	}
+    }
+
+    public function no_rekamMedis() {
+        $panjang = 2;
+        $no_rm = Pasien::whereRaw('id = (select max(id) from pasien )')->first();
+        if (empty($no_rm)) {
+            $angka = 0;
+        } else {
+            $angka = substr($no_rm->id, 0);
+        }
+        $angka++;
+        $angka = strval($angka);
+        $tmp = "";
+        for ($i=1; $i<=($panjang-strlen($angka)); $i++) { 
+            $tmp = $tmp."rm00";
+        }
+
+        $hasil = $tmp.$angka;
+        // dd($hasil);
+        return $hasil;
     }
 
     public function inputKategoriPasien(Request $request) {

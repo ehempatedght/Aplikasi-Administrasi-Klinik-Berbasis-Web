@@ -45,7 +45,11 @@
 				@foreach($pasiens as $pasien)
 				<tr>
 					<th>{{$no++}}</th>
-					<th>{{$pasien->kategoripasien->nama_kategori}}</th>
+					<th>
+						<center>
+							<span class="label label-primary">{{strtoupper($pasien->kategoripasien->nama_kategori)}}</span>
+						</center>
+					</th>
 					<th>{{$pasien->nama_pasien}}</th>
 					<th>{{$pasien->alamat}}</th>
 					<th>
@@ -60,10 +64,10 @@
 										<i class="entypo-eye"></i>
 										Lihat
 									</a>
-									<button type="submit" class="btn btn-sm btn-danger btn-icon icon-left" onclick="return confirm('ANDA YAKIN AKAN MENGHAPUS PASIEN INI?')">
-					                    <i class="entypo-trash"> </i>
-					                    Hapus
-                  					</button>
+									<a href="javascript:;" onclick="jQuery('#modal-8{{$pasien->id}}').modal('show', {backdrop: 'static'});" class="btn btn-sm btn-danger btn-icon icon-left">
+										<i class="entypo-trash"></i>
+										Hapus
+								</a>
 							</form>
 						</div>
 					</th>
@@ -71,6 +75,37 @@
 				@endforeach
 			</tbody>
 		</table>
+
+		@foreach($pasiens as $pasien)
+			<div class="modal fade" id="modal-8{{$pasien->id}}">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title">Anda Yakin Akan Menghapus Pasien {{$pasien->nama_pasien}} ?</h4>
+						</div>
+						
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12">
+									<form action="{{route('pasien.hapus', ['id' => $pasien->id])}}" method="post">
+								        {{ csrf_field() }}
+										<div class="form-group">
+											<button type="submit" name="simpan" id="simpan" class="btn btn-danger btn-block">
+											<i class="entypo-trash"></i>
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+						</div>
+					</div>
+				</div>
+			</div>
+		@endforeach
 	</div>
 </div>
 <script>

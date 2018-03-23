@@ -33,6 +33,12 @@
 				<form role="form" class="form-horizontal" action="{{ route('pasien.insert') }}" method="post">
 					{{ csrf_field() }}
 					<div class="form-group">
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;No RM</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" name="no_rm" value="{{strtoupper($no_rekamMedis)}}" readonly="" required>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama Pasien</label>
 						<div class="col-sm-5">
 							<input type="text" class="form-control" name="nama_pasien" placeholder="nama pasien" required>

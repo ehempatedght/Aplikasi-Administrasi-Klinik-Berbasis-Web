@@ -33,6 +33,12 @@
 				<form role="form" class="form-horizontal" action="{{ route('pasien.update', $pasien->id) }}" method="post">
 					{{ csrf_field() }}
 					<div class="form-group">
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;No RM</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" name="no_rm" value="{{strtoupper($pasien->no_urut)}}" readonly="" required>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama Pasien</label>
 						<div class="col-sm-5">
 							<input type="text" class="form-control" name="nama_pasien" placeholder="nama pasien" value="{{$pasien->nama_pasien}}" required>
@@ -104,7 +110,7 @@
 									<select name="id_kota" class="selectboxit">
 										<option selected="selected" disabled value="Pilih">Pilih Kota</option>
 											@foreach ($kotas as $kota)
-												<option value="{{$kota->id}}" @if($pasien->kota_id == $kota->id_kota) selected @endif>{{$kota->nama_kota}}</option>
+												<option value="{{$kota->id}}" @if($pasien->kota_id == $kota->id) selected @endif>{{$kota->nama_kota}}</option>
 											@endforeach
 									</select>
 								</div>
@@ -125,7 +131,7 @@
 									<select name="id_kec" class="selectboxit">
 										<option selected="selected" disabled value="Pilih">Pilih Kecamatan</option>
 											@foreach ($kecamatans as $kecamatan)
-												<option value="{{$kecamatan->id}}" @if($pasien->kec_id == $kecamatan->id_kec) selected @endif>{{$kecamatan->nama_kecamatan.' | '.$kecamatan->kota->nama_kota}}</option>
+												<option value="{{$kecamatan->id}}" @if($pasien->kec_id == $kecamatan->id) selected @endif>{{$kecamatan->nama_kecamatan.' | '.$kecamatan->kota->nama_kota}}</option>
 											@endforeach
 									</select>
 								</div>
@@ -146,7 +152,7 @@
 									<select name="id_kel" class="selectboxit">
 										<option selected="selected" disabled value="Pilih">Pilih Kelurahan</option>
 											@foreach ($kelurahans as $kelurahan)
-												<option value="{{$kelurahan->id}}" @if($pasien->kel_id == $kelurahan->id_kel) selected @endif>{{$kelurahan->nama_kelurahan.' | '.$kelurahan->kecamatan->nama_kecamatan}}</option>
+												<option value="{{$kelurahan->id}}" @if($pasien->kel_id == $kelurahan->id) selected @endif>{{$kelurahan->nama_kelurahan.' | '.$kelurahan->kecamatan->nama_kecamatan}}</option>
 											@endforeach
 									</select>
 								</div>

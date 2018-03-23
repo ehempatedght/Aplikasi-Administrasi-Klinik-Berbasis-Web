@@ -47,14 +47,14 @@
 					<td>{{$no++}}</td>
 					<td>
 						<center>
-							<span class="label label-primary">{{$petugas->category->nama_kategori}}</span>
+							<span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span>
 						</center>
 					</td>
 					<td>{{$petugas->nama}}</td>
 					<td width="30%">{{$petugas->spesialisasi}}</td>
 					<td>
 						<div align="center">
-							<form action="{{ route('petugas.hapus', ['id'=>$petugas->id]) }}" method="POST">
+							<form action="#" method="POST">
 								{{csrf_field()}}
 								<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('petugas.ubah', $petugas->id)}}">
 									<i class="entypo-pencil"></i>Ubah
@@ -62,10 +62,10 @@
 								<a class="btn btn-primary btn-sm btn-icon icon-left" href="{{route('petugas.show', $petugas->id)}}">
 									<i class="entypo-eye"></i>Lihat
 								</a>
-								<button type="submit" class="btn btn-sm btn-danger btn-icon icon-left" onclick="return confirm('ANDA YAKIN AKAN MENGHAPUS PETUGAS MEDIS INI?')">
-						            <i class="entypo-trash"> </i>
-						                    Hapus
-	                  			</button>
+								<a href="javascript:;" onclick="jQuery('#modal-8{{$petugas->id}}').modal('show', {backdrop: 'static'});" class="btn btn-sm btn-danger btn-icon icon-left">
+										<i class="entypo-trash"></i>
+										Hapus
+									</a>
 							</form>
 						</div>
 					</td>
@@ -73,6 +73,36 @@
 				@endforeach
 			</tbody>
 		</table>
+		@foreach($petugass as $petugas)
+			<div class="modal fade" id="modal-8{{$petugas->id}}">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title">Anda Yakin Akan Menghapus Petugas Medis {{$petugas->nama}} ?</h4>
+						</div>
+						
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12">
+									<form action="{{ route('petugas.hapus', ['id'=>$petugas->id]) }}" method="POST">
+								        {{ csrf_field() }}
+										<div class="form-group">
+											<button type="submit" name="simpan" id="simpan" class="btn btn-danger btn-block">
+											<i class="entypo-trash"></i>
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+						</div>
+					</div>
+				</div>
+			</div>
+		@endforeach
 	</div>
 </div>
 @endsection
