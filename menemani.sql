@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 20 Mar 2018 pada 12.35
+-- Generation Time: 23 Mar 2018 pada 15.35
 -- Versi Server: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -111,11 +111,9 @@ CREATE TABLE `kategoripasien` (
 --
 
 INSERT INTO `kategoripasien` (`id`, `nama_kategori`, `created_at`, `updated_at`) VALUES
-(1, 'Umum', '2018-03-20 05:26:18', '2018-03-20 05:26:18'),
-(2, 'Disabilitas', '2018-03-20 05:29:20', '2018-03-20 05:29:20'),
-(3, 'Khusus', '2018-03-20 06:22:06', '2018-03-20 06:22:06'),
-(4, 'UGD', '2018-03-20 06:37:01', '2018-03-20 06:37:01'),
-(5, 'Anak', '2018-03-20 08:58:27', '2018-03-20 08:58:27');
+(1, 'Umum', '2018-03-20 05:26:18', '2018-03-20 16:07:02'),
+(7, 'UGD', '2018-03-20 16:07:35', '2018-03-20 16:07:35'),
+(8, 'Test', '2018-03-21 14:52:43', '2018-03-21 14:52:43');
 
 -- --------------------------------------------------------
 
@@ -124,7 +122,7 @@ INSERT INTO `kategoripasien` (`id`, `nama_kategori`, `created_at`, `updated_at`)
 --
 
 CREATE TABLE `kecamatan` (
-  `id_kec` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `nama_kecamatan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kota_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -135,11 +133,10 @@ CREATE TABLE `kecamatan` (
 -- Dumping data untuk tabel `kecamatan`
 --
 
-INSERT INTO `kecamatan` (`id_kec`, `nama_kecamatan`, `kota_id`, `created_at`, `updated_at`) VALUES
-(1, 'Cimanggis', 2, '2018-03-20 06:18:23', '2018-03-20 06:18:23'),
-(2, 'Beji', 2, '2018-03-20 06:18:40', '2018-03-20 06:18:40'),
-(3, 'Cilodong', 2, '2018-03-20 06:21:04', '2018-03-20 06:21:04'),
-(4, 'Setu', 3, '2018-03-20 06:56:13', '2018-03-20 06:56:13');
+INSERT INTO `kecamatan` (`id`, `nama_kecamatan`, `kota_id`, `created_at`, `updated_at`) VALUES
+(1, 'Pondok Cina', 1, '2018-03-22 14:21:50', '2018-03-22 14:21:50'),
+(2, 'Lubang Buaya', 2, '2018-03-22 14:22:54', '2018-03-22 14:22:54'),
+(4, 'Kecamatan 1', 6, '2018-03-22 17:19:48', '2018-03-22 17:19:48');
 
 -- --------------------------------------------------------
 
@@ -148,7 +145,7 @@ INSERT INTO `kecamatan` (`id_kec`, `nama_kecamatan`, `kota_id`, `created_at`, `u
 --
 
 CREATE TABLE `kelurahan` (
-  `id_kel` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `nama_kelurahan` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kec_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -159,10 +156,9 @@ CREATE TABLE `kelurahan` (
 -- Dumping data untuk tabel `kelurahan`
 --
 
-INSERT INTO `kelurahan` (`id_kel`, `nama_kelurahan`, `kec_id`, `created_at`, `updated_at`) VALUES
-(1, 'Beji Timur', 2, '2018-03-20 06:35:59', '2018-03-20 06:35:59'),
-(2, 'Kemiri Muka', 2, '2018-03-20 06:36:20', '2018-03-20 06:36:20'),
-(3, 'Aren Jaya', 4, '2018-03-20 06:56:56', '2018-03-20 06:56:56');
+INSERT INTO `kelurahan` (`id`, `nama_kelurahan`, `kec_id`, `created_at`, `updated_at`) VALUES
+(2, 'Cijengkol', 2, '2018-03-22 14:23:09', '2018-03-22 17:58:30'),
+(6, 'POCIN', 1, '2018-03-22 18:17:44', '2018-03-22 18:17:44');
 
 -- --------------------------------------------------------
 
@@ -171,7 +167,7 @@ INSERT INTO `kelurahan` (`id_kel`, `nama_kelurahan`, `kec_id`, `created_at`, `up
 --
 
 CREATE TABLE `kota` (
-  `id_kota` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `nama_kota` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -181,10 +177,11 @@ CREATE TABLE `kota` (
 -- Dumping data untuk tabel `kota`
 --
 
-INSERT INTO `kota` (`id_kota`, `nama_kota`, `created_at`, `updated_at`) VALUES
-(1, 'Jakarta', '2018-03-20 05:42:22', '2018-03-20 05:42:22'),
-(2, 'Depok', '2018-03-20 05:43:23', '2018-03-20 05:43:23'),
-(3, 'Bekasi', '2018-03-20 06:21:23', '2018-03-20 06:21:23');
+INSERT INTO `kota` (`id`, `nama_kota`, `created_at`, `updated_at`) VALUES
+(1, 'Depok', '2018-03-22 14:21:11', '2018-03-22 14:21:11'),
+(2, 'Bekasi', '2018-03-22 14:22:34', '2018-03-22 14:22:34'),
+(6, 'Tanggerang', '2018-03-22 17:10:55', '2018-03-22 17:10:55'),
+(7, 'Jakarta', '2018-03-22 17:25:57', '2018-03-22 17:25:57');
 
 -- --------------------------------------------------------
 
@@ -214,7 +211,11 @@ CREATE TABLE `laravel_logger_activity` (
 
 INSERT INTO `laravel_logger_activity` (`id`, `description`, `userType`, `userId`, `route`, `ipAddress`, `userAgent`, `locale`, `referer`, `methodType`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-03-19 15:48:33', '2018-03-19 15:48:33', NULL),
-(2, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-03-20 03:07:21', '2018-03-20 03:07:21', NULL);
+(2, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-03-20 03:07:21', '2018-03-20 03:07:21', NULL),
+(3, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-03-20 14:27:52', '2018-03-20 14:27:52', NULL),
+(4, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-03-21 14:13:43', '2018-03-21 14:13:43', NULL),
+(5, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-03-22 14:06:26', '2018-03-22 14:06:26', NULL),
+(6, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-03-23 13:39:43', '2018-03-23 13:39:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -260,7 +261,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `pasien` (
   `id` int(10) UNSIGNED NOT NULL,
-  `no_urut` int(11) DEFAULT NULL,
+  `no_urut` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nama_pasien` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kategoripasien_id` int(11) NOT NULL,
   `golongan_darah` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -285,8 +286,7 @@ CREATE TABLE `pasien` (
 --
 
 INSERT INTO `pasien` (`id`, `no_urut`, `nama_pasien`, `kategoripasien_id`, `golongan_darah`, `jenis_kelamin`, `alamat`, `kota_id`, `kec_id`, `kel_id`, `kontak`, `pekerjaan`, `status_pernikahan`, `no_kk`, `namaIbuKandung`, `namaAyahKandung`, `TanggalLahir`, `created_at`, `updated_at`) VALUES
-(2, NULL, 'Juan delima', 1, 'A+', 'Laki-laki', 'perum graha mustika media', 3, 4, 3, '(0019) 1929-3939', 'Mahasiswa', 'Belum Menikah', '220001019182', 'Roos', 'Jov', '1997-06-06', '2018-03-20 08:54:29', '2018-03-20 10:00:40'),
-(4, NULL, 'Bastian Cle', 1, 'A', 'Laki-laki', 'Perum Villa Novo, Jl.siliwangi', 2, 3, 2, '(0018) 2827-6253', 'Belum Punya', 'Belum Menikah', '11929928272', 'Roosye Lidyana', 'Joventius', '2012-10-25', '2018-03-20 10:31:38', '2018-03-20 10:31:38');
+(1, 'rm001', 'Juan Valerian Delima', 1, 'A', 'Laki-laki', 'Perum GMM Blok F8/27', 2, 2, 2, '(0812) 3626-4027', 'IT Consultant', 'Menikah', '11999288171662', 'Roosye Lidyana', 'Joventius', '1996-06-06', '2018-03-23 13:50:25', '2018-03-23 13:50:25');
 
 -- --------------------------------------------------------
 
@@ -524,19 +524,19 @@ ALTER TABLE `kategoripasien`
 -- Indexes for table `kecamatan`
 --
 ALTER TABLE `kecamatan`
-  ADD PRIMARY KEY (`id_kec`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `kelurahan`
 --
 ALTER TABLE `kelurahan`
-  ADD PRIMARY KEY (`id_kel`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `kota`
 --
 ALTER TABLE `kota`
-  ADD PRIMARY KEY (`id_kota`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `laravel_logger_activity`
@@ -640,37 +640,37 @@ ALTER TABLE `days`
 -- AUTO_INCREMENT for table `day_petugas`
 --
 ALTER TABLE `day_petugas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `kategoripasien`
 --
 ALTER TABLE `kategoripasien`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `kecamatan`
 --
 ALTER TABLE `kecamatan`
-  MODIFY `id_kec` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `kelurahan`
 --
 ALTER TABLE `kelurahan`
-  MODIFY `id_kel` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `kota`
 --
 ALTER TABLE `kota`
-  MODIFY `id_kota` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `laravel_logger_activity`
 --
 ALTER TABLE `laravel_logger_activity`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -682,7 +682,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -706,7 +706,7 @@ ALTER TABLE `permission_user`
 -- AUTO_INCREMENT for table `petugas`
 --
 ALTER TABLE `petugas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `poli`

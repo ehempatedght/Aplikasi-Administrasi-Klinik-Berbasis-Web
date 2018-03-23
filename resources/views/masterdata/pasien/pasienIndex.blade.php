@@ -67,7 +67,7 @@
 									<a href="javascript:;" onclick="jQuery('#modal-8{{$pasien->id}}').modal('show', {backdrop: 'static'});" class="btn btn-sm btn-danger btn-icon icon-left">
 										<i class="entypo-trash"></i>
 										Hapus
-								</a>
+									</a>
 							</form>
 						</div>
 					</th>
