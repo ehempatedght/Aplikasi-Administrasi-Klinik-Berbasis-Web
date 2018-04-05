@@ -72,12 +72,12 @@
 		@role('admin')
 			@include('includes.menu_admin')
 		@endrole
-		@role('staff')
+		{{-- @role('staff')
 			@include('includes.menu_staff')
-		@endrole
-		@role('keuangan')
+		@endrole --}}
+		{{-- @role('keuangan')
 			@include('includes.menu_keuangan')
-		@endrole
+		@endrole --}}
 		<div class="main-content" id="app">
 			@yield('main')
 		</div>

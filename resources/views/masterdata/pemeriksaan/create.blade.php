@@ -78,7 +78,7 @@
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jasa Dokter Utama</label>
 						<div class="row">
 							<div class="col-md-1">
-								<input type="text" required="required" class="form-control numbers" id="jasa_dokter_persen" placeholder="0%" name="jasa_dokter_persen" value="{{ old('jasa_dokter_persen') }}"/>
+								<input type="text" required="required" class="form-control" id="jasa_dokter_persen" placeholder="0%" name="jasa_dokter_persen" value="{{ old('jasa_dokter_persen') }}"/>
 							</div>
 							<div class="col-md-3">
 								<input type="text" required="required numbers" class="form-control numbers" id="jasa_dokter_utama" name="jasa_dokter_utama" placeholder="Rp. 0,00" value="{{ old('jasa_dokter_utama') }}" readonly="" />
@@ -90,7 +90,7 @@
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jasa Asisten</label>
 						<div class="row">
 							<div class="col-md-1">
-								<input type="text" required="required" class="form-control numbers" id="jasa_asisten_persen" placeholder="0%" name="jasa_asisten_persen" value="{{ old('jasa_asisten_persen') }}"/>
+								<input type="text" required="required" class="form-control" id="jasa_asisten_persen" placeholder="0%" name="jasa_asisten_persen" value="{{ old('jasa_asisten_persen') }}"/>
 							</div>
 							<div class="col-md-3">
 								<input type="text" required="required numbers" class="form-control numbers" id="jasa_asisten" name="jasa_asisten" placeholder="Rp. 0,00" value="{{ old('jasa_asisten') }}" readonly="" />
@@ -102,7 +102,7 @@
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jasa Perawat 1</label>
 						<div class="row">
 							<div class="col-md-1">
-								<input type="text" required="required" class="form-control numbers" id="jasa_perawat1_persen" placeholder="0%" name="jasa_perawat1_persen" value="{{ old('jasa_perawat1_persen') }}"/>
+								<input type="text" required="required" class="form-control" id="jasa_perawat1_persen" placeholder="0%" name="jasa_perawat1_persen" value="{{ old('jasa_perawat1_persen') }}"/>
 							</div>
 							<div class="col-md-3">
 								<input type="text" required="required numbers" class="form-control numbers" id="jasa_perawat1" name="jasa_perawat1" placeholder="Rp. 0,00" value="{{ old('jasa_perawat1') }}" readonly="" />
@@ -114,7 +114,7 @@
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jasa Perawat 2</label>
 						<div class="row">
 							<div class="col-md-1">
-								<input type="text" required="required" class="form-control numbers" id="jasa_perawat2_persen" placeholder="0%" name="jasa_perawat2_persen" value="{{ old('jasa_perawat2_persen') }}"/>
+								<input type="text" required="required" class="form-control" id="jasa_perawat2_persen" placeholder="0%" name="jasa_perawat2_persen" value="{{ old('jasa_perawat2_persen') }}"/>
 							</div>
 							<div class="col-md-3">
 								<input type="text" required="required numbers" class="form-control numbers" id="jasa_perawat2" name="jasa_perawat2" placeholder="Rp. 0,00" value="{{ old('jasa_perawat2') }}" readonly="" />
@@ -126,7 +126,7 @@
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Klinik</label>
 						<div class="row">
 							<div class="col-md-1">
-								<input type="text" required="required" class="form-control numbers" id="klinik_persen" placeholder="0%" name="klinik_persen" value="{{ old('klinik_persen') }}"/>
+								<input type="text" required="required" class="form-control numbers" id="klinik_persen" placeholder="0%" name="klinik_persen" value={{ old('klinik_persen') }}>
 							</div>
 							<div class="col-md-3">
 								<input type="text" required="required numbers" class="form-control numbers" id="klinik" name="klinik" placeholder="Rp. 0,00" value="{{ old('klinik') }}" readonly="" />
@@ -152,6 +152,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$(".numbers").number(true,0);
+		$("#klinik_persen").val(100);
 	});
 
 	$("#diskon_persen").keyup(function () {
@@ -170,44 +171,95 @@
 		}
 	});
 
-	$("#jasa_dokter_persen").keyup(function () {
-		var tarif = parseFloat($("#tarif").val());
-		var total_ = parseFloat($("#total").val());
-		var klinik = parseFloat($("#klinik").val());
-		var jasa_dokter_persen = parseInt($("#jasa_dokter_persen").val());
-		var klinik_persen = parseInt($("#klinik_persen").val());
-		var dokkli = klinik_persen - jasa_dokter_persen;
-		var _klinik = klinik - ((jasa_dokter_persen/100) * klinik);
-		var bondok = klinik - _klinik;
-		$("#klinik_persen").val(dokkli);
-		$("#jasa_dokter_utama").val(bondok);
-		$("#klinik").val(_klinik);
+	$("#jasa_dokter_persen").each(function () {
+		$(this).keyup(function () {
+			var total = parseFloat($("#total").val());
+			var klinik = total;
+			var jasa_dokter_persen = parseFloat($("#jasa_dokter_persen").val());
+			var klinik_persen = 100;
+			var sisa_klinik_persen =  klinik_persen - jasa_dokter_persen;
+			var diskon = klinik - ((jasa_dokter_persen/100)*klinik);
+			var sisa = klinik - diskon;
+			if (!isNaN(sisa_klinik_persen)) {
+				klinik_persen -= jasa_dokter_persen;
+			}
+			$("#jasa_dokter_utama").val(sisa);
+			$("#klinik").val(diskon);
+			$("#klinik_persen").val(klinik_persen);
+			// $("#klinik_persen").val(sisa_klinik_persen);
+			 if ($("#jasa_dokter_persen").val() == 100) {
+			 	$("#jasa_dokter_utama").val(klinik);
+			 } 
+			 if ($(this).val().trim().length===0) {
+			 	$("#klinik_persen").val(100);
+			 } 
 
-		if ($(this).val().trim().length===0) {
-			$("#klinik_persen").val(100);
-		}
-
-		if ($(this).val().trim().length===0) {
-			$("#klinik").val(total_);
-		}
+			 if ($(this).val().trim().length===0) {
+			 	$("#klinik").val(total);
+			 } 
+		});
 	});
 
-	
+	$("#jasa_asisten_persen").each(function () {
+		$(this).keyup(function () {
+			var total = parseFloat($("#total").val());
+			var klinik = total;
+			var jasa_klinik_persen = parseFloat($("#jasa_asisten_persen").val());
+			var klinik_persen = parseFloat($("#klinik_persen").val());
+			var sisa_klinik_persen =  klinik_persen - jasa_klinik_persen;
+			var diskon = klinik - ((jasa_klinik_persen/100)*klinik);
+			var sisa = klinik - diskon;
+			if (!isNaN(sisa_klinik_persen)) {
+				klinik_persen -= jasa_klinik_persen;
+			}
+			$("#jasa_asisten").val(sisa);
+			$("#klinik").val(diskon);
+			$("#klinik_persen").val(klinik_persen);
+			// $("#klinik_persen").val(sisa_klinik_persen);
+			 if ($("#jasa_asisten_persen").val() == 100) {
+			 	$("#jasa_asisten").val(klinik);
+			 } 
+			 if ($(this).val().trim().length===0) {
+			 	$("#klinik_persen").val(klinik_persen);
+			 } 
+
+			 if ($(this).val().trim().length===0) {
+			 	$("#klinik").val(total);
+			 } 
+		});
+	});
 
 	function kalkulasi_tarif() {
 		var tarif = 0;
-		var jasa_dokter_persen = parseInt($("#jasa_dokter_persen").val());
 		$(".tarif").each(function () {
 			var num = parseFloat(this.value.replace(/,/g, ''));
 			if (!isNaN(num)) {
 				tarif += num;
 			}
 			$("#klinik, #total").val(tarif);
-			$("#klinik_persen").val(100 - jasa_dokter_persen);
 		});
 	}
 
 	$('#diskon_persen, #jasa_dokter_persen').keyup(function(e) {
+                var num = $(this).val();
+                if (e.which!=8) {
+                    num = sortNumber(num);
+                   if(isNaN(num)||num<0 ||num>100) {
+                       alert("Tidak boleh melebihi 100% !");
+                       $(this).val(sortNumber(num.substr(0,num.length-1)));
+                   }
+                else
+                    $(this).val(sortNumber(num));
+                }
+                else {
+                    if(num < 2)
+                        $(this).val("");
+                    else
+                        $(this).val(sortNumber(num.substr(0,num.length-1)));
+                }
+            });
+
+	$('#jasa_asisten_persen').keyup(function(e) {
                 var num = $(this).val();
                 if (e.which!=8) {
                     num = sortNumber(num);

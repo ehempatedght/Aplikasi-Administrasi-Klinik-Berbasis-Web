@@ -92,15 +92,15 @@ class KelurahanController extends Controller
 		return redirect()->route('kelurahan.index', $kelurahan->id)->with('message','Kelurahan '.$kelurahan->nama_kelurahan.' berhasil dihapus!');
 	}
 
-	public function deleteKota($id) {
-		$kota = Kota::find($id);
-		$kota->delete();
-		return redirect()->route('kelurahan.create', $kota->id)->with('message','Kota '.$kota->nama_kota.' berhasil dihapus!');
-	}
+	// public function deleteKota($id) {
+	// 	$kota = Kota::find($id);
+	// 	$kota->delete();
+	// 	return redirect()->route('kelurahan.create', $kota->id)->with('message','Kota '.$kota->nama_kota.' berhasil dihapus!');
+	// }
 
-	public function deleteKecamatan($id) {
-		$kecamatan = Kecamatan::find($id);
-		$kecamatan->delete();
-		return redirect()->route('kelurahan.create', $kecamatan->id)->with('message','Kecamatan '.$kecamatan->nama_kecamatan.' berhasil dihapus!');
-	}
+	// public function deleteKecamatan($id) {
+	// 	$kecamatan = Kecamatan::find($id);
+	// 	$kecamatan->delete();
+	// 	return redirect()->route('kelurahan.create', $kecamatan->id)->with('message','Kecamatan '.$kecamatan->nama_kecamatan.' berhasil dihapus!');
+	// }
 }

@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('main')
-<h2>Tambah Data Kelurahan</h2>
+<h2>Edit Data Kelurahan {{$kelurahan->nama_kelurahan}}</h2>
 <br/>
 @if(count($errors) > 0) 
 <div class="alert alert-danger">
@@ -63,7 +63,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kota</label>
-								<div class="col-sm-4">
+								<div class="col-sm-5">
 									<select name="id_kota" class="selectboxit">
 										<option selected="selected" disabled value="Pilih">Pilih Kota</option>
 											@foreach ($kotas as $kota)
@@ -71,11 +71,11 @@
 											@endforeach
 									</select>
 								</div>
-								<div class="col-sm-3">
+								{{-- <div class="col-sm-3">
 									<button href="javascript:;" onclick="jQuery('#modal-7').modal('show', {backdrop: 'static'});" type="button" class="btn btn-info" disabled="">
 										<i class="entypo-plus"></i>
 									</button>
-								</div>
+								</div> --}}
 							</div>
 						</div>
 					</div>
@@ -84,7 +84,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kecamatan</label>
-								<div class="col-sm-4">
+								<div class="col-sm-5">
 									<select name="kec_id" class="selectboxit">
 										<option selected="selected" disabled value="Pilih">Pilih Kecamatan</option>
 											@foreach ($kecamatans as $kecamatan)
@@ -92,11 +92,11 @@
 											@endforeach
 									</select>
 								</div>
-								<div class="col-sm-3">
+								{{-- <div class="col-sm-3">
 									<button href="javascript:;" onclick="jQuery('#modal-8').modal('show', {backdrop: 'static'});" type="button" class="btn btn-info" disabled="">
 										<i class="entypo-plus"></i>
 									</button>
-								</div>
+								</div> --}}
 							</div>
 						</div>
 					</div>

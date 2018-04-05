@@ -49,7 +49,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kategori Pasien</label>
-								<div class="col-sm-4">
+								<div class="col-sm-5">
 									<select name="kategoripasien_id" class="selectboxit">
 										<option selected="selected" disabled value="Pilih">Pilih Kategori</option>
 											@foreach ($kategories as $kategori)
@@ -57,11 +57,11 @@
 											@endforeach
 									</select>
 								</div>
-								<div class="col-sm-3">
+								{{-- <div class="col-sm-3">
 									<button href="javascript:;" onclick="jQuery('#modal-6').modal('show', {backdrop: 'static'});" type="button" class="btn btn-info">
 										<i class="entypo-plus"></i>
 									</button>
-								</div>
+								</div> --}}
 							</div>
 						</div>
 					</div>
@@ -108,7 +108,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kota</label>
-								<div class="col-sm-4">
+								<div class="col-sm-5">
 									<select name="id_kota" class="selectboxit">
 										<option selected="selected" disabled value="Pilih">Pilih Kota</option>
 											@foreach ($kotas as $kota)
@@ -116,11 +116,11 @@
 											@endforeach
 									</select>
 								</div>
-								<div class="col-sm-3">
+								{{-- <div class="col-sm-3">
 									<button href="javascript:;" onclick="jQuery('#modal-7').modal('show', {backdrop: 'static'});" type="button" class="btn btn-info">
 										<i class="entypo-plus"></i>
 									</button>
-								</div>
+								</div> --}}
 							</div>
 						</div>
 					</div>
@@ -129,7 +129,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kecamatan</label>
-								<div class="col-sm-4">
+								<div class="col-sm-5">
 									<select name="id_kec" class="selectboxit">
 										<option selected="selected" disabled value="Pilih">Pilih Kecamatan</option>
 											@foreach ($kecamatans as $kecamatan)
@@ -137,11 +137,11 @@
 											@endforeach
 									</select>
 								</div>
-								<div class="col-sm-3">
+								{{-- <div class="col-sm-3">
 									<button href="javascript:;" onclick="jQuery('#modal-8').modal('show', {backdrop: 'static'});" type="button" class="btn btn-info">
 										<i class="entypo-plus"></i>
 									</button>
-								</div>
+								</div> --}}
 							</div>
 						</div>
 					</div>
@@ -150,7 +150,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kelurahan</label>
-								<div class="col-sm-4">
+								<div class="col-sm-5">
 									<select name="id_kel" class="selectboxit">
 										<option selected="selected" disabled value="Pilih">Pilih Kelurahan</option>
 											@foreach ($kelurahans as $kelurahan)
@@ -158,11 +158,11 @@
 											@endforeach
 									</select>
 								</div>
-								<div class="col-sm-3">
+								{{-- <div class="col-sm-3">
 									<button href="javascript:;" onclick="jQuery('#modal-9').modal('show', {backdrop: 'static'});" type="button" class="btn btn-info">
 										<i class="entypo-plus"></i>
 									</button>
-								</div>
+								</div> --}}
 							</div>
 						</div>
 					</div>

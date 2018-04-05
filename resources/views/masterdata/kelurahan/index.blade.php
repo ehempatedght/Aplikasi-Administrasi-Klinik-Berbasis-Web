@@ -50,8 +50,8 @@
 					<td>{{$kelurahan->kecamatan->kota->nama_kota}}</td>
 					<td>
 						<div align="center">
-							<form action="{{route('kelurahan.delete', ['id'=>$kelurahan->id])}}" method="post">
-								@csrf
+							{{-- <form action="{{route('kelurahan.delete', ['id'=>$kelurahan->id])}}" method="post">
+								@csrf --}}
 								<a href="{{route('kelurahan.edit', ['id'=>$kelurahan->id]) }}" class="btn btn-sm btn-green btn-icon icon-left">
 										<i class="entypo-pencil"></i>
 									Ubah
@@ -60,7 +60,7 @@
 										<i class="entypo-trash"></i>
 										Hapus
 								</a>
-							</form>
+							{{-- </form> --}}
 						</div>
 					</td>
 				</tr>

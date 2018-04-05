@@ -102,7 +102,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label"style="text-align:left;">&emsp;Ulangi Password</label>
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Ulangi Password</label>
 						
 						<div class="col-sm-5">
 							<input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
@@ -132,7 +132,6 @@ $(document).ready(function() {
 	$('#password_confirmation').keyup(function(){
 		var pas1 = $('#password').val();
 		var pas2 = $('#password_confirmation').val();
-		var nf = $('#notif').text();
 
 		if (pas1 != pas2) {
 			$('#not_match').text('Password Tidak Cocok');
@@ -140,10 +139,6 @@ $(document).ready(function() {
 		} else {
 			$('#not_match').text(' ');
 			$('#simpan').removeProp('disabled');
-		}
-
-		if(nf == 'Username sudah digunakan') {
-			$('#simpan').prop('disabled', true);
 		}
 	});
 

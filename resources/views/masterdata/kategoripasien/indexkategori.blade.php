@@ -126,7 +126,7 @@
 							<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
 							<button type="submit" name="simpan" id="simpan" class="btn btn-green btn-icon icon-left col-left">
 							<i class="entypo-check"></i>
-							Simpan</button>
+							Ubah</button>
 						</div>
 								</form>
 					</div>

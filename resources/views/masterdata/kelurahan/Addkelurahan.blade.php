@@ -141,7 +141,7 @@
 										<tr>
 											<th width="2%">No</th>
 											<th>Kota</th>
-											<th>Aksi</th>
+											{{-- <th>Aksi</th> --}}
 										</tr>
 									</thead>
 									<tbody>
@@ -150,7 +150,7 @@
 										<tr>
 											<td>{{$no++}}</td>
 											<td>{{$kota->nama_kota}}</td>
-											<td>
+											{{-- <td>
 												<div align="center">
 													<form action="{{route('kelurahan.deletekota', ['id'=>$kota->id]) }}" method="post">
 														@csrf
@@ -160,7 +160,7 @@
 		                  								</button>
 													</form>
 												</div>
-											</td>
+											</td> --}}
 										</tr>
 										@endforeach
 									</tbody>
@@ -207,16 +207,16 @@
 									<tr>
 										<th width="2%">No</th>
 										<th>Kecamatan</th>
-										<th>Aksi</th>
+										{{-- <th>Aksi</th> --}}
 									</tr>
 								</thead>
 								<tbody>
 									<?php $no=1; ?>
 									@foreach($kecamatans as $kecamatan)
 									<tr>
-										<td><?php echo $no=1; ?></td>
-										<td><?php echo $kecamatan->nama_kecamatan;?></td>
-										<td>
+										<td><?php echo $no++; ?></td>
+										<td><?php echo $kecamatan->nama_kecamatan.' | '.$kecamatan->kota->nama_kota; ?></td>
+										{{-- <td>
 											<div align="center">
 												<form action="{{ route('kelurahan.deletekec', ['id'=> $kecamatan->id]) }}" method="post">
 													@csrf
@@ -226,7 +226,7 @@
 		                  							</button>
 												</form>
 											</div>
-										</td>
+										</td> --}}
 									</tr>
 									@endforeach
 								</tbody>	

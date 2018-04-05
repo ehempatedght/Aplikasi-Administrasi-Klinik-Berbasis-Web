@@ -86,17 +86,31 @@ Route::group(['middleware'=> ['auth','role:admin']], function() {
 	});
 	
 	//Pemeriksaan
-	// Route::group(['prefix' => 'pemeriksaan'], function () {
-	// 	Route::get('/', ['as'=>'pemeriksaan.index','uses'=>'masterdata\PemeriksaanController@getIndex']);
-	// 	Route::get('/create', ['as'=>'pemeriksaan.create','uses'=>'masterdata\PemeriksaanController@getCreate']);
-	// 	Route::post('/insert', ['as'=>'pemeriksaan.masukkan','uses'=>'masterdata\PemeriksaanController@doMasukkan']);
-	// });
+	 Route::group(['prefix' => 'pemeriksaan'], function () {
+	 	Route::get('/', ['as'=>'pemeriksaan.index','uses'=>'masterdata\PemeriksaanController@getIndex']);
+	 	Route::get('/create', ['as'=>'pemeriksaan.create','uses'=>'masterdata\PemeriksaanController@getCreate']);
+	 	Route::post('/insert', ['as'=>'pemeriksaan.masukkan','uses'=>'masterdata\PemeriksaanController@doMasukkan']);
+	 });
+
+	 //peralatan medis
+	 Route::group(['prefix'=>'alatmedis'], function() {
+	 	Route::get('/', ['as'=>'alatmedis.index','uses'=>'masterdata\PeralatanmedisController@getIndex']);
+	 	Route::post('/insert', ['as'=>'alatmedis.insert','uses'=>'masterdata\PeralatanmedisController@doAdd']);
+	 	Route::post('/update/{id}', ['as'=>'alatmedis.update','uses'=>'masterdata\PeralatanmedisController@doUpdate']);
+	 });
+
+	 //peralatan kantor
+	 Route::group(['prefix'=>'alatkantor'], function() {
+	 	Route::get('/', ['as'=>'alatkantor.index','uses'=>'masterdata\PeralatankantorController@getIndex']);
+	 	Route::post('/insert', ['as'=>'alatkantor.insert','uses'=>'masterdata\PeralatankantorController@doAdd']);
+	 	Route::post('/update/{id}', ['as'=>'alatkantor.update','uses'=>'masterdata\PeralatankantorController@doUpdate']);
+	 });
 });
 
-Route::group(['middleware'=>['auth','role:staff']], function() {
+// Route::group(['middleware'=>['auth','role:staff']], function() {
 	
-});
+// });
 
-Route::group(['middleware'=>['auth','role:keuangan']], function() {
-});
+// Route::group(['middleware'=>['auth','role:keuangan']], function() {
+// });
 

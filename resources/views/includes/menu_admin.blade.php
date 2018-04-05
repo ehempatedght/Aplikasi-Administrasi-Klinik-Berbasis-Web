@@ -65,6 +65,16 @@
 				</li>
 				<li>
 					<a href="#">
+						<span class="title">Vendor Obat</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="title">Daftar Obat</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
 						<span class="title">Pasien</span>
 					</a>
 					<ul>
@@ -96,12 +106,12 @@
 					</a>
 					<ul>
 						<li>
-							<a href="#">
+							<a href="{{route('alatmedis.index')}}">
 								<span class="title">Medis</span>
 							</a>
 						</li>
 						<li>
-						<a href="#">
+						<a href="<?php echo route('alatkantor.index'); ?>">
 							<span class="title">Kantor</span>
 						</a>
 						</li>
@@ -113,7 +123,7 @@
 		<li class="has-sub">
 			<a href="#">
 				<i class="entypo-doc-text-inv"></i>
-				<span class="title">Perekeman Aktivitas</span>
+				<span class="title">Perekaman Aktivitas</span>
 			</a>
 			<ul>
 				<li>
@@ -272,13 +282,6 @@
 							</a>
 						</li>
 					</ul>
-				</li>
-
-				<li>
-					<a href="#">
-						<i class="entypo-calendar"></i>
-						<span class="title">Jadwal</span>
-					</a>
 				</li>
 
 				<li>
