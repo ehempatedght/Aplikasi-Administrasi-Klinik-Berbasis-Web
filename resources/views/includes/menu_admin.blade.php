@@ -51,18 +51,18 @@
 								<span class="title">Jadwal Petugas Medis</span>
 							</a>
 						</li>
-						<li>
+						{{-- <li>
 							<a href="{{route('petugas.create') }}">
 								<span class="title">Tambah Petugas Medis</span>
 							</a>
-						</li>
+						</li> --}}
 					</ul>
 				</li>
-				<li>
+				{{-- <li>
 					<a href="#">
 						<span class="title">Staff Administrasi</span>
 					</a>
-				</li>
+				</li> --}}
 				<li>
 					<a href="#">
 						<span class="title">Vendor Obat</span>
@@ -71,6 +71,11 @@
 				<li>
 					<a href="#">
 						<span class="title">Daftar Obat</span>
+					</a>
+				</li>
+				<li>
+					<a href="{{route('poli.index')}}">
+						<span class="title">Data Poli</span>
 					</a>
 				</li>
 				<li>
@@ -208,8 +213,8 @@
 		</li>
 		<li class="has-sub">
 			<a href="#">
-				<i class=" fa fa-book"></i>
-				<span class=" title"> Pelaporan</span>
+				<i class="entypo-book"></i>
+				<span class="title">Pelaporan</span>
 			</a>
 			<ul>
 				<li>
@@ -308,7 +313,7 @@
 		<li>
 			<a href="{{ route('logout') }}" onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
-				<i class="fa fa-sign-out"></i>
+				<i class="entypo-logout"></i>
 				<span>Logout</span>
 			</a>
 			<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

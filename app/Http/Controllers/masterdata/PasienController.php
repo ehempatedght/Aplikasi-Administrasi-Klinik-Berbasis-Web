@@ -123,8 +123,8 @@ class PasienController extends Controller
     	));
 
     	$data = $request->all();
-
-    	$namaPasien = $data['nama_pasien'];
+    
+     	$namaPasien = $data['nama_pasien'];
     	$IDkategoriPasien = $data['kategoripasien_id'];
     	$goldar = $data['golongan_darah'];
     	$gender = $data['jenis_kelamin'];
@@ -176,7 +176,7 @@ class PasienController extends Controller
         for ($i=1; $i<=($panjang-strlen($angka)); $i++) { 
             $tmp = $tmp."rm00";
         }
-
+        
         $hasil = $tmp.$angka;
         // dd($hasil);
         return $hasil;

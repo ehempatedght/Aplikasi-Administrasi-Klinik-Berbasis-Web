@@ -14,34 +14,30 @@ class PoliController extends Controller
 		return view('masterdata.poli.poli')->withPolis($polis);
 	}
 
-	public function getCreate() {
-		return view('masterdata.poli.create');
-	}
+	// public function getCreate() {
+	// 	return view('masterdata.poli.create');
+	// }
 
 	public function doInsert(Request $request) {
-		$this->validate($request, [
-			'nama_poli'=>'required|max:255'
-		], [
-			'required'=>strtoupper(':atribute harus terisi')
-		]);
+		$this->validate($request, array(
+			'nama_poli'=>'required'
+		));
 		$data = $request->all();
 		$poli = Poli::create($data);
 		if ($poli) {
-			return redirect()->route('poli.index')->with('message',''.$poli->nama_poli.' berhasil ditambah');
+			return redirect()->route('poli.index')->with('message','Poli '.$poli->nama_poli.' berhasil ditambah');
 		}
 	}
 
-	public function doEdit($id) {
-		$poli = Poli::find($id);
-		return view('masterdata.poli.ubah', compact('poli'));
-	}
+	// public function doEdit($id) {
+	// 	$poli = Poli::find($id);
+	// 	return view('masterdata.poli.ubah', compact('poli'));
+	// }
 	
 	public function doUpdate(Request $request, $id) {
-		$this->validate($request, [
-			'nama_poli'=>'required|max:255'
-		], [
-			'required'=>strtoupper(':atribute harus terisi')
-		]);
+		$this->validate($request, array(
+			'nama_poli'=>'required'
+		));
 		$poli = Poli::find($id);
 		$data = $request->all();
 		if ($poli->update($data)) {

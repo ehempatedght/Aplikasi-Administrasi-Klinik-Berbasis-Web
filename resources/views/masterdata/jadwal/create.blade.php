@@ -1,9 +1,9 @@
 @extends('template')
 
 @section('main')
-<h2>Tambah Petugas Medis</h2>
+<h2>Lihat Petugas Medis</h2>
 <br/>
-@if(count($errors) > 0)
+@if(count($errors) > 0) 
 <div class="alert alert-danger">
 	<ul>
 		@foreach($errors->all() as $error)
@@ -14,18 +14,133 @@
 	</ul>
 </div>
 @endif
-@if(session('message2'))
-    <div class="alert alert-danger">{{session('message')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
-@endif
+<script type="text/javascript">
+					jQuery( document ).ready( function( $ ) {
+						var $table4 = jQuery( "#table-1" );
+						$table4.DataTable( {
+							dom: 'Bfrtip',
+							buttons: [
+								'copyHtml5',
+								'excelHtml5',
+								'csvHtml5',
+								'pdfHtml5'
+							]
+						});
+					});
+
+					 jQuery( document ).ready( function( $ ) {
+					 	var $table4 = jQuery( "#table-2" );
+					 	$table4.DataTable( {
+					 		dom: 'Bfrtip',
+					 		buttons: [
+					 			'copyHtml5',
+					 			'excelHtml5',
+					 			'csvHtml5',
+					 			'pdfHtml5'
+					 		]
+					 	});
+					 });
+
+					 jQuery( document ).ready( function( $ ) {
+					 	var $table4 = jQuery( "#table-3" );
+					 	$table4.DataTable( {
+					 		dom: 'Bfrtip',
+					 		buttons: [
+					 			'copyHtml5',
+					 			'excelHtml5',
+					 			'csvHtml5',
+					 			'pdfHtml5'
+					 		]
+					 	});
+					 });
+
+					 jQuery( document ).ready( function( $ ) {
+					 	var $table4 = jQuery( "#table-4" );
+					 	$table4.DataTable( {
+					 		dom: 'Bfrtip',
+					 		buttons: [
+					 			'copyHtml5',
+					 			'excelHtml5',
+					 			'csvHtml5',
+					 			'pdfHtml5'
+					 		]
+					 	});
+					 });
+
+					 jQuery( document ).ready( function( $ ) {
+					 	var $table4 = jQuery( "#table-5" );
+					 	$table4.DataTable( {
+					 		dom: 'Bfrtip',
+					 		buttons: [
+					 			'copyHtml5',
+					 			'excelHtml5',
+					 			'csvHtml5',
+					 			'pdfHtml5'
+					 		]
+					 	});
+					 });
+
+					 jQuery( document ).ready( function( $ ) {
+					 	var $table4 = jQuery( "#table-6" );
+					 	$table4.DataTable( {
+					 		dom: 'Bfrtip',
+					 		buttons: [
+					 			'copyHtml5',
+					 			'excelHtml5',
+					 			'csvHtml5',
+					 			'pdfHtml5'
+					 		]
+					 	});
+					 });
+
+					 jQuery( document ).ready( function( $ ) {
+					 	var $table4 = jQuery( "#table-7" );
+					 	$table4.DataTable( {
+					 		dom: 'Bfrtip',
+					 		buttons: [
+					 			'copyHtml5',
+					 			'excelHtml5',
+					 			'csvHtml5',
+					 			'pdfHtml5'
+					 		]
+					 	});
+					 });
+
+					 jQuery( document ).ready( function( $ ) {
+					 	var $table4 = jQuery( "#table-8" );
+					 	$table4.DataTable( {
+					 		dom: 'Bfrtip',
+					 		buttons: [
+					 			'copyHtml5',
+					 			'excelHtml5',
+					 			'csvHtml5',
+					 			'pdfHtml5'
+					 		]
+					 	});
+					 });
+
+					 jQuery( document ).ready( function( $ ) {
+					 	var $table4 = jQuery( "#table-9" );
+					 	$table4.DataTable( {
+					 		dom: 'Bfrtip',
+					 		buttons: [
+					 			'copyHtml5',
+					 			'excelHtml5',
+					 			'csvHtml5',
+					 			'pdfHtml5'
+					 		]
+					 	});
+					 });
+</script>
 <div class="row">
 	<div class="col-md-12">
 		<hr />
 		<ol class="breadcrumb bc-3" >
 			<li>
-				<a href="{{route('petugas.index')}}"><i class="fa fa-home"></i>Data Petugas Medis</a>
+				<a href="{{route('jadwal.jadwal')}}"><i class="fa fa-home"></i>Lihat Jadwal</a>
 			</li>
 			<li class="active">
-				<strong>Tambah Petugas Medis</strong>
+				<strong>Lihat Petugas Medis</strong>
 			</li>
 		</ol>
 		<div class="panel panel-primary" data-collapsed="0">
@@ -43,36 +158,24 @@
 			</div>
 
 			<div class="panel-body">
-				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('petugas.insert') }}" method="post" >
-					{{ csrf_field() }}
-
-					<div class="form-group">
-						<label class="col-sm-3 control-label"style="text-align:left;">&emsp;Kategori</label>
-						
-						<div class="col-sm-5">
-							
-							<select name="category_id" class="select2">
-								<option selected="selected" disabled value="Pilih">Pilih Kategori</option>
-									@foreach ($categories as $kategori)
-										<option value="{{$kategori->id}}">{{$kategori->nama_kategori}}</option>
-									@endforeach
-							</select>
-						</div>
-					</div>
+				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('jadwal.insert') }}" method="POST">
 					
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama</label>
 						
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="nama" name="nama" placeholder="nama lengkap" value="{{ old('nama') }}" required />
+							<input type="text" class="form-control" id="nama" name="nama" placeholder="nama lengkap" data-validate="required" data-message-required="Wajib diisi." value="" disabled />
 						</div>
+						<a class="btn btn-white btn-sm btn-icon icon-left" href="javascript:;" onclick="jQuery('#modal-4').modal('show', {backdrop: 'static'});">
+								<i class="entypo-search" ></i>Pilih Petugas
+						</a>
 					</div>
 
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Spesialisasi</label>
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kategori</label>
 						
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="spesialisasi" name="spesialisasi" placeholder="spesialisasi" value="{{ old('spesialisasi') }}"/>
+							<input type="text" class="form-control" id="kategori" name="kategori" placeholder="kategori" data-validate="required" data-message-required="Wajib diisi." value="" disabled/>
 						</div>
 					</div>
 					
@@ -80,15 +183,15 @@
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Alamat</label>
 						
 						<div class="col-sm-5">
-							<textarea type="textarea" class="form-control" id="alamat" name="alamat" placeholder="alamat"></textarea>
+							<textarea type="textarea" class="form-control" id="alamat" name="alamat" placeholder="alamat" data-validate="required" data-message-required="Wajib diisi." disabled></textarea>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kota</label>
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;" disabled>&emsp;Kota</label>
 						
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="kota" name="kota" placeholder="kota" value="{{ old('kota') }}"/>
+							<input type="text" class="form-control" id="kota" name="kota" placeholder="kota" data-validate="required" data-message-required="Wajib diisi." value="" disabled/>
 						</div>
 					</div>
 
@@ -96,7 +199,7 @@
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nomor HP</label>
 						
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="nomor hp" data-mask="(9999) 9999-9999" value="{{ old('no_hp') }}"/>
+							<input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="nomor hp" data-mask="(9999) 9999-9999" data-validate="required" data-message-required="Wajib diisi." value="" disabled/>
 						</div>
 					</div>
 
@@ -104,7 +207,7 @@
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nomor Telepon</label>
 						
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="nomor telepon" data-mask="(9999) 9999-9999" value="{{ old('no_telp') }}"/>
+							<input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="nomor telepon" data-mask="(9999) 9999-9999" data-validate="required" data-message-required="Wajib diisi." value="" disabled/>
 						</div>
 					</div>
 
@@ -112,7 +215,7 @@
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Alamat Email</label>
 						
 						<div class="col-sm-5">
-							<input type="email" class="form-control" id="alamat_email" name="alamat_email" placeholder="alamat email" value="{{ old('alamat_email') }}" onkeyup="this.value = this.value.toLowerCase()"/>
+							<input type="email" class="form-control" id="alamat_email" name="alamat_email" placeholder="alamat email" data-validate="required" data-message-required="Wajib diisi." value="" onkeyup="this.value = this.value.toLowerCase()" disabled/>
 						</div>
 					</div>
 
@@ -121,7 +224,7 @@
 						
 						<div class="col-sm-5">
 							<div class="input-group">
-								<input type="text" class="form-control datepicker" data-format="yyyy-mm-dd" name="tgl_mulai_praktek" placeholder="tgl mulai praktek">
+								<input type="text" class="form-control datepicker" data-format="yyyy-mm-dd" name="tgl_mulai_praktek" id="tgl_mulai_praktek" placeholder="tgl mulai praktek" value="" disabled>
 								
 								<div class="input-group-addon">
 									<a href="#"><i class="entypo-calendar"></i></a>
@@ -138,7 +241,7 @@
 								<b-checkbox-group>
 									@foreach($days as $day)
 										<div class="checkbox checkbox-replace color-green" style="margin-bottom: 15px;">
-											<b-checkbox v-model="daysSelected" :native-value="{{$day->id}}" name="days[]"> {{$day->days}}</b-checkbox>
+											<b-checkbox v-model="daysSelected" :native-value="{{$day->id}}" name="days[]">{{$day->days}}</b-checkbox>
 										</div>
 									@endforeach
 								</b-checkbox-group>
@@ -205,43 +308,63 @@
 							</div>
 						</div>
 					</div>
-
-					<div class="form-group">
-						<label class="col-sm-2 control-label" style="text-align:left; font-size:13px;">&emsp;Upload Photo:
-							@if (session('error_upload'))
-								<br />
-								<p style="color:red;">
-									{{ session('error_upload') }}
-								</p>
-								@endif
-						</label>
-						<div class="col-sm-5">
-							<div class="fileinput fileinput-new" data-provides="fileinput">
-								<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput">
-									<img src="http://placehold.it/200x150" alt="...">
-								</div>
-								<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px"></div>
-								<div>
-									<span class="btn btn-white btn-file">
-										<span class="fileinput-new">Pilih Photo</span>
-										<span class="fileinput-exists">Ubah</span>
-										<input type="file" name="namaFile" accept="image/*">
-									</span>
-									<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Hapus</a>
-								</div>
-								</div>
-							</div>
-					</div>
 					<div class="form-group center-block full-right" style="margin-left: 15px;">
 						<button type="submit" name="simpan" id="simpan" class="btn btn-green btn-icon icon-left col-left">
 						Simpan
 						<i class="entypo-check"></i>
 						</button>
+						<a href="{{route('jadwal.jadwal')}}"><button type="submit" name="cancel" class="btn btn-red btn-icon icon-left col-left">
+						Batal
+						<i class="entypo-cancel"></i>
+						</button></a>
+					</div>
 				</form>
-				<a href="{{route('petugas.index')}}" class="btn btn-red btn-icon icon-left col-left">
-					Batal
-					<i class="entypo-cancel"></i>
-				</a>
+
+				<div class="modal fade" id="modal-4">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title">Pilih Petugas Medis</h4>
+							</div>
+							
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-md-12">
+										<form class="form-petugas" name="formp">
+											<table class="table table-bordered datatable" id="table-3">
+												<thead>
+													<tr>
+														<th>No</th>
+														<th>Kategori</th>
+														<th>Nama</th>
+														<th>Aksi</th>
+													</tr>
+												</thead>
+												<tbody>
+													<?php $no=1; ?>
+													@foreach($petugass as $petugas)
+													<tr>
+														<th>{{$no++}}</th>
+														<td>{{$petugas->category->nama_kategori}}</td>
+														<td>{{$petugas->nama}}</td>
+														<td>
+															<button data-id="{{$petugas->id}}"  name="addprobtn" data-dismiss="modal" class="btn btn-blue btn-icon icon-left col-left add">
+																<i class="entypo-check"></i>
+																Pilih
+															</button>
+														</td>
+													</tr>
+													@endforeach
+												</tbody>
+											</table>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -250,6 +373,23 @@
 <script src="{{asset('js/bootstrap-material-datetimepicker.js')}}"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		$(".datatable").on('click','.add', function(e){
+			e.preventDefault();
+			var id = $(this).data('id');
+
+			$.get(home_url + '/petugas/cari_petugas/'+id, function (data){
+				$("#nama").val(data.nama);
+				$("#kategori").val(data.nama_kategori);
+				$("#alamat").val(data.alamat);
+				$("#kota").val(data.kota);
+				$("#no_hp").val(data.no_hp);
+				$("#no_telp").val(data.no_telp);
+				$("#alamat_email").val(data.alamat_email);
+				$("#tgl_mulai_praktek").val(data.tgl_mulai_praktek);
+			});
+		});
+
+
 		$('#time').timepicker();
 		$('#time2').timepicker();
 		$('#time3').timepicker();
@@ -274,8 +414,11 @@
 	        }
     });
 });
+
+
 </script>
 @endsection
+
 @section('scripts')
   <script>
   var app = new Vue({

@@ -45,6 +45,7 @@
 	
 	<script type="text/javascript">
 	var home_url = "{{url('/')}}";
+	
 	$(document).ready(function() {
 		$("form").validate();
 

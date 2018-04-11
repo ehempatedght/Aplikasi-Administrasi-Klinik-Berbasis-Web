@@ -7,7 +7,7 @@
 			<h4>Menu ini digunakan untuk memasukkan data poli</h4>
 		</div>
 		<div class="col-md-6">
-			<a href="{{route('poli.create')}}" class="btn btn-success btn-sm btn-icon">
+			<a href="javascript:;" onclick="jQuery('#modal-7').modal('show', {backdrop: 'static'});" class="btn btn-success btn-sm btn-icon">
 				<i class="entypo-plus icon-white"></i>
 				Tambah Data Poli
 			</a>
@@ -58,10 +58,12 @@
 							<div align="center">
 								<form action="{{route('poli.hapus', ['id'=> $poli->id ]) }}" method="post">
 									{{ csrf_field() }}
-									<a href="{{route('poli.ubah', $poli->id)}}" class="btn btn-sm btn-green btn-icon icon-left">
+									<a href="javascript:;" onclick="jQuery('#modal-8{{$poli->id}}').modal('show', {backdrop: 'static'});" class="btn btn-sm btn-info btn-icon icon-left">
 										<i class="entypo-pencil"></i>
 										Ubah
 									</a>
+
+
 									<button type="submit" class="btn btn-sm btn-danger btn-icon icon-left" onclick="return confirm('ANDA YAKIN AKAN MENGHAPUS POLI INI?')">
 					                    <i class="entypo-cancel"> </i>
 					                    Hapus
@@ -76,6 +78,82 @@
 					@endforeach
 				</tbody>
 			</table>
+			<div class="modal fade" id="modal-7">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title">TAMBAH POLI</h4>
+						</div>
+						
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12">
+									<form action="{{route('poli.insert')}}" method="post">
+										@csrf
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama Poli</label>
+													<div class="col-sm-5">
+														<input type="text" class="form-control" name="nama_poli" required onkeyup="this.value = this.value.toUpperCase()">
+													</div>
+												</div>
+											</div>
+										</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+							<button type="submit" name="simpan" id="simpan" class="btn btn-green btn-icon icon-left col-left">
+							<i class="entypo-check"></i>
+							Simpan</button>
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			@foreach($polis as $poli)
+			<div class="modal fade" id="modal-8{{$poli->id}}">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title">UBAH POLI {{$poli->nama_poli}}</h4>
+						</div>
+						
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12">
+									<form action="{{route('poli.update', ['id'=>$poli->id])}}" method="post">
+										@csrf
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama Poli</label>
+													<div class="col-sm-5">
+														<input type="text" class="form-control" name="nama_poli" value="{{$poli->nama_poli}}" required onkeyup="this.value = this.value.toUpperCase()">
+													</div>
+												</div>
+											</div>
+										</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+							<button type="submit" name="simpan" id="simpan" class="btn btn-green btn-icon icon-left col-left">
+							<i class="entypo-check"></i>
+							Ubah</button>
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			@endforeach
 		</div>
 	</div>
 </div>

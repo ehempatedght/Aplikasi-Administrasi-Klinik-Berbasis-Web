@@ -42,7 +42,7 @@
 			<div class="panel-body">
 				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('petugas.update', $data->id) }}" method="post">
 					{{ csrf_field() }}
-
+					
 					<div class="form-group">
 						<label class="col-sm-3 control-label"style="text-align:left;">&emsp;Kategori</label>
 						

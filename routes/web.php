@@ -34,21 +34,25 @@ Route::group(['middleware'=> ['auth','role:admin']], function() {
 		Route::post('/update/{id}', ['as'=>'petugas.update','uses'=>'masterdata\PetugasController@doUpdate']);
 		Route::get('/show/{id}', ['as'=>'petugas.show','uses'=>'masterdata\PetugasController@getShow']);
 		Route::post('/hapus/{id}',['as'=>'petugas.hapus','uses'=>'masterdata\PetugasController@doHapus']);
+
+		//cari data petugas
+		Route::get('/cari_petugas/{id}', ['as'=>'petugas.cari_petugas','uses'=>'masterdata\JadwalController@cari_petugas']);
 	});
 	//Jadwal
 	Route::group(['prefix'=>'jadwal'], function() {
 		Route::get('/', ['as'=>'jadwal.jadwal','uses'=>'masterdata\JadwalController@getJadwal']);
-		// Route::get('/lihat/{id}', ['as'=>'jadwal.tampil','uses'=>'masterdata\JadwalController@getDay']);
+		Route::get('/create', ['as'=>'jadwal.create','uses'=>'masterdata\JadwalController@getCreate']);
+		Route::post('/insert', ['as'=>'jadwal.insert','uses'=>'masterdata\JadwalController@addJadwal']);
 	});
+
 	//Poli
 	Route::group(['prefix' => 'poli'], function () {
 		Route::get('/', ['as'=>'poli.index','uses'=>'masterdata\PoliController@getPoli']);
-		Route::get('/create', ['as'=>'poli.create','uses'=>'masterdata\PoliController@getCreate']);
 		Route::post('/insert',['as'=>'poli.insert','uses'=>'masterdata\PoliController@doInsert']);
-		Route::get('/ubah/{id}', ['as'=>'poli.ubah', 'uses'=>'masterdata\PoliController@doEdit']);
 		Route::post('/update/{id}', ['as'=>'poli.update','uses'=>'masterdata\PoliController@doUpdate']);
 		Route::post('/hapus/{id}',['as'=>'poli.hapus','uses'=>'masterdata\PoliController@doDelete']);
 	});
+
 	//Kategori Pasien
 	Route::group(['prefix'=>'kategoripasien'], function() {
 		Route::get('/', ['as'=>'kategoripasien.index','uses'=>'masterdata\KategoripasienController@getIndex']);
@@ -56,6 +60,7 @@ Route::group(['middleware'=> ['auth','role:admin']], function() {
 		Route::post('/update/{id}', ['as'=>'kategoripasien.update','uses'=>'masterdata\KategoripasienController@doUpdate']);
 		Route::post('/delete/{id}', ['as'=>'kategoripasien.delete','uses'=>'masterdata\KategoripasienController@doDelete']);
 	});
+
 	//Pasien
 	Route::group(['prefix'=>'pasien'], function() {
 		Route::get('/', ['as'=>'pasien.index','uses'=>'masterdata\PasienController@getIndex']);

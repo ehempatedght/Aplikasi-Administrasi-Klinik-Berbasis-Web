@@ -181,7 +181,7 @@ class PetugasController extends Controller
        if (isset($request->days)) {
        	$petugas->days()->sync($request->days);
 		} else {
-			$petugas->days()->sync(array());
+		$petugas->days()->sync(array());
 	   }
 
       if ($petugas->update([
