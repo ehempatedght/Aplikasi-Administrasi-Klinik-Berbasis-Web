@@ -23,7 +23,7 @@ class RoleController extends Controller
 	public function create() {
 		return view('admin.role.create');
 	}
-
+	
 	public function store(Request $request) {
 		$role = Role::orderBy('id','DESC')->first();
 

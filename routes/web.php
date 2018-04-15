@@ -44,7 +44,7 @@ Route::group(['middleware'=> ['auth','role:admin']], function() {
 		Route::get('/create', ['as'=>'jadwal.create','uses'=>'masterdata\JadwalController@getCreate']);
 		Route::post('/insert', ['as'=>'jadwal.insert','uses'=>'masterdata\JadwalController@addJadwal']);
 	});
-
+	
 	//Poli
 	Route::group(['prefix' => 'poli'], function () {
 		Route::get('/', ['as'=>'poli.index','uses'=>'masterdata\PoliController@getPoli']);
@@ -110,12 +110,24 @@ Route::group(['middleware'=> ['auth','role:admin']], function() {
 	 	Route::post('/insert', ['as'=>'alatkantor.insert','uses'=>'masterdata\PeralatankantorController@doAdd']);
 	 	Route::post('/update/{id}', ['as'=>'alatkantor.update','uses'=>'masterdata\PeralatankantorController@doUpdate']);
 	 });
+
+	 //data obat
+	 Route::group(['prefix'=>'jenisobat'], function () {
+	 	Route::get('/', ['as'=>'jenisobat.index','uses'=>'masterdata\JenisobatController@getIndex']);
+	 	Route::get('/create', ['as'=>'jenisobat.create','uses'=>'masterdata\JenisobatController@getCreate']);
+	 	Route::post('/insert', ['as'=>'jenisobat.insert','uses'=>'masterdata\JenisobatController@doInsert']);
+	 	Route::post('/addjenis', 'masterdata\JenisobatController@addJenis');
+	 	//buat jenis obat
+	 	Route::get('/createJenis', ['as'=>'jenisobat.jenis','uses'=>'masterdata\JenisobatController@createJenis']);
+	 });
 });
 
-// Route::group(['middleware'=>['auth','role:staff']], function() {
-	
-// });
 
-// Route::group(['middleware'=>['auth','role:keuangan']], function() {
-// });
+Route::group(['middleware'=>['auth','role:staff']], function() {
+	
+});
+
+Route::group(['middleware'=>['auth','role:keuangan']], function() {
+
+});
 

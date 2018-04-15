@@ -1,0 +1,20 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Jenisobatdetail extends Model
+{
+    protected $table = 'jenis_obat_detail';
+    protected $fillable = [
+    	'jenis_obat_id','nama_obat','satuan','deskripsi','harga','stok'
+    ];
+    protected $hidden = [
+    	'created_at','updated_at'
+    ];
+
+    public function jenis_obat() {
+    	return $this->belongsTo('App\Jenisobat');
+    }
+}

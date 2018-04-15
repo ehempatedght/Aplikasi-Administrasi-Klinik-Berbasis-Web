@@ -10,6 +10,7 @@ class Pasien extends Model
     protected $fillable = [
     	'no_urut','nama_pasien','kategoripasien_id','golongan_darah','jenis_kelamin','alamat','kota_id','kec_id','kel_id','kontak','pekerjaan','status_pernikahan','no_kk','namaIbuKandung','namaAyahKandung','TanggalLahir'
     ];
+    
     protected $hidden = [
     	'created_at','updated_at'
     ];

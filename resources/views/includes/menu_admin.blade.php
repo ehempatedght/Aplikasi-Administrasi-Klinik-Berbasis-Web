@@ -69,7 +69,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="{{route('jenisobat.index')}}">
 						<span class="title">Daftar Obat</span>
 					</a>
 				</li>

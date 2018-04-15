@@ -37,6 +37,8 @@
 	<link rel="stylesheet" href="{{asset('js/select2/select2.css') }}">
 	<link rel="stylesheet" href="{{asset('js/jvectormap/jquery-jvectormap-1.2.2.css') }}">
 	<link rel="stylesheet" href="{{asset('js/rickshaw/rickshaw.min.css') }}">
+
+	<script src="{{ asset('js/jquery.inputmask.bundle.js') }}"></script>
 	<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
     <link href="https://bootswatch.com/slate/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -45,6 +47,7 @@
 	
 	<script type="text/javascript">
 	var home_url = "{{url('/')}}";
+	
 	$(document).ready(function() {
 		$("form").validate();
 
@@ -72,12 +75,12 @@
 		@role('admin')
 			@include('includes.menu_admin')
 		@endrole
-		@role('staff')
+		{{-- @role('staff')
 			@include('includes.menu_staff')
-		@endrole
-		@role('keuangan')
+		@endrole --}}
+		{{-- @role('keuangan')
 			@include('includes.menu_keuangan')
-		@endrole
+		@endrole --}}
 		<div class="main-content" id="app">
 			@yield('main')
 		</div>
@@ -91,6 +94,16 @@
 	<script src="{{asset('js/rickshaw/rickshaw.min.js')}}"></script>
 	<script src="{{asset('js/raphael-min.js')}}"></script>
 	<script src="{{asset('js/morris.min.js')}}"></script>
+	<!-- Bottom scripts (common) -->
+	<script src="{{asset('js/gsap/TweenMax.min.js') }}"></script>
+	<script src="{{asset('js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js') }}"></script>
+	<script src="{{asset('js/bootstrap.js') }}"></script>
+	<script src="{{asset('js/joinable.js') }}"></script>
+	<script src="{{asset('js/resizeable.js') }}"></script>
+	<script src="{{asset('js/neon-api.js') }}"></script>
+	<!-- Imported scripts on this page -->
+	<script src="{{asset('js/fileinput.js')}}"></script>
+	<script src="{{asset('js/dropzone/dropzone.js')}}"></script>
 	{{-- <script src="{{asset('js/bootstrap-material-datetimepicker.js')}}"></script> --}}
 	{{-- <script src="{{asset('js/daterangepicker/moment.js')}}"></script> --}}
 	<script src="{{asset('js/fullcalendar-2/fullcalendar.js')}}"></script>
@@ -99,11 +112,7 @@
 	<script src="{{asset('js/moment-with-locales.js')}}"></script>
 	<script src="{{asset('js/moment-with-locales.min.js')}}"></script> --}}
 	<script src="{{asset('js/toastr.js')}}"></script>
-	<script src="{{asset('js/gsap/TweenMax.min.js') }}"></script>
-	<script src="{{asset('js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js') }}"></script>
 	{{-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> --}}
-	<script src="{{asset('js/joinable.js') }}"></script>
-	<script src="{{asset('js/resizeable.js') }}"></script>
 	<script src="{{asset('js/neon-api.js') }}"></script>
 	<script src="{{asset('js/select2/select2.min.js') }}"></script>
 	<script src="{{asset('js/bootstrap-tagsinput.min.js') }}"></script>
@@ -120,7 +129,6 @@
 	<script src="{{asset('js/icheck/icheck.min.js') }}"></script>
 	<script src="{{asset('js/timepicker.js') }}"></script>
 	<script src="{{asset('js/jquery.inputmask.bundle.js')}}"></script>
-	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
 	<script src="{{ asset('js/app.js') }}"></script>
 

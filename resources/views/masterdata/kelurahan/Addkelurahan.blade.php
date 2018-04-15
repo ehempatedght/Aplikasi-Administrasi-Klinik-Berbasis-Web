@@ -14,6 +14,7 @@
 		@endforeach
 	</ul>
 </div>
+
 @endif
 @if(session('message'))
     <div class="alert alert-success">{{session('message')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
