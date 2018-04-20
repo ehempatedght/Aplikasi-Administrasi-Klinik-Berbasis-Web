@@ -1,9 +1,9 @@
 @extends('template')
 @section('main')
 <h2>Daftar Obat</h2>
-<h5>Menu ini digunakan untuk menambahkan daftar obat</h5><br/>
-<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('daftarobat.create') }}">
-	<i class="entypo-plus"></i>Tambah Obat
+<h5>Menu ini digunakan untuk melihat dan menambahkan vendor obat</h5><br/>
+<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('vendorobat.create')}}">
+	<i class="entypo-plus"></i>Tambah Vendor
 </a>
 <br/>
 <br/>
@@ -31,30 +31,32 @@
 			<thead>
 				<tr>
 					<th data-hide="phone">No</th>
-					<th>Nama Obat</th>
-					<th>Stok</th>
-					<th width="200px">Aksi</th>
+					<th>Nama Vendor</th>
+					<th>Alamat</th>
+					<th>PIC/CP</th>
+					<th>Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php $no=1; ?>
-				@foreach($jenis_obat as $row)
+				@foreach($vendorobat as $row)
 				<tr>
-					<td>{{$row->id}}</td>
-					<td>{{$row->nama_obat}}</td>
-					<td>{{$row->stok}}</td>
+					<td>{{$no++}}</td>
+					<td>{{$row->nama_vendor}}</td>
+					<td>{{$row->alamat}}</td>
+					<td>{{$row->pic}}</td>
 					<td>
 						<div align="center">
-							<form action="{{route('daftarobat.delete', ['id'=>$row->id]) }}" method="post">
+							<form action="{{route('vendorobat.delete', ['nama_vendor'=>$row->nama_vendor])}}" method="post">
 								{{ csrf_field() }}
-								<a href="{{route('daftarobat.edit', ['id' => $row->id]) }}" class="btn btn-sm btn-green btn-icon icon-left">
-									<i class="entypo-pencil"></i>
-									Ubah
-								</a>
-								 <button type="submit" class="btn btn-sm btn-danger btn-icon icon-left" onclick="return confirm('ANDA YAKIN AKAN MENGHAPUS OBAT INI?')">
-				                    <i class="entypo-cancel"> </i>
-				                    Hapus
-				                </button>
+							<a href="{{route('vendorobat.edit', ['nama_vendor' => $row->nama_vendor]) }}" class="btn btn-sm btn-green btn-icon icon-left">
+								<i class="entypo-pencil"></i>
+								Ubah
+							</a>
+							 <button type="submit" class="btn btn-sm btn-danger btn-icon icon-left" onclick="return confirm('ANDA YAKIN AKAN MENGHAPUS VENDOR INI?')">
+			                    <i class="entypo-cancel"> </i>
+			                    Hapus
+			                </button>
 							</form>
 						</div>
 					</td>

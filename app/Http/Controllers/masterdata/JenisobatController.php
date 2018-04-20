@@ -13,27 +13,26 @@ use Illuminate\Support\Facades\Input;
 class JenisobatController extends Controller
 {
 	public function getIndex() {
-		$jenis_obat = Jenisobat::all();
+		$jenis_obat = Jenisobatdetail::all();
 		return view('masterdata.obat.get_index', compact('jenis_obat'));
 	} 
 
 	public function getCreate() {
-		return view('masterdata.obat.get_create', compact('kd_jenis','jenis_obat'));
+		return view('masterdata.obat.get_create');
 	}
 
 	public function createJenis() {
-		$kd_jenis = $this->KdJenisObat();
-		$jenis_obat =Jenisobat::all();
-		return view('masterdata.obat.create_jenis', compact('jenis_obat','kd_jenis'));
+		// $kdjenis = $this->KdJenisObat();
+		$jenisobat =Jenisobat::get();
+		return view('masterdata.obat.create_jenis')->withJenisobat($jenisobat);
 	}
+
 	public function doInsert(Request $request) {
 		$data = $request->all();
 		 $this->validate($request, array(
 		 	'nama_obat'=>'required|max:50',
 		 	'satuan'=>'required',
 		 	'harga'=>'required',
-		 	'stok'=>'required|integer',
-		 	'jenis_obat_id'=>'required|integer'
 		 ));
 
 		// $nama_obat = Input::get('nama_obat');
@@ -51,6 +50,7 @@ class JenisobatController extends Controller
 		 foreach ($data['jenis_obat_id'] as $key => $value) {
 		 	Jenisobatdetail::create([
 		 		'jenis_obat_id' => $data['jenis_obat_id'][$key],
+		 		'kd_jenis' => $data['kd_jenis'][$key],
 		 		'nama_obat'=>$data['nama_obat'][$key],
  	 			'satuan'=>$data['satuan'][$key],
  	 			'deskripsi'=>$data['deskripsi'][$key],
@@ -76,48 +76,78 @@ class JenisobatController extends Controller
 		// 	}
 		// }
 
-		return redirect()->route('jenisobat.index')->with('message','Jenis obat berhasil dibuat!');
+		return redirect()->route('daftarobat.index')->with('message','Obat berhasil dibuat!');
 
 	}
 
+	public function getEdit($id) {
+		$data = Jenisobatdetail::find($id);
+		$jenisobat =Jenisobat::get();
+		return view('masterdata.obat.get_edit', get_defined_vars());
+	}
+
+	public function doUpdate(Request $request, $id) {
+		$data = $request->all();
+		 $this->validate($request, array(
+		 	'nama_obat'=>'required|max:50',
+		 	'satuan'=>'required',
+		 	'harga'=>'required',
+		 ));
+
+		 $update = Jenisobatdetail::find($id);
+		 $update->update([
+		 	'jenis_obat_id' => $data['jenis_obat_id'],
+		 	'kd_jenis' => $data['kd_jenis'],
+		 	'nama_obat'=>$data['nama_obat'],
+ 	 		'satuan'=>$data['satuan'],
+ 	 		'deskripsi'=>$data['deskripsi'],
+ 	 		'harga'=>str_replace(',', '',$data['harga']),
+ 	 		'stok'=>$data['stok']
+		 ]);
+
+		 return redirect()->route('daftarobat.index')->with('message','Obat berhasil diupdate!');
+
+	}
+
+	public function doDelete($id) {
+		Jenisobatdetail::find($id)->delete();
+		return redirect()->route('daftarobat.index')->with('message','Obat berhasil dihapus!');
+	}
+	//Using JSON
 	public function addJenis(Request $request) {
-		$required = array(
-			'kd_jenis' => 'required',
-			'name' => 'required',
-		);
+		$rules = array(
+                'name' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->fails()) {
+            return Response::json(array(
 
-		$validator = validator::make(Input::all(), $required);
-		if ($validator->fails()) {
-			return Response::json(array(
-				'errors' => $validator->getMessageBag()->toArray(),
+                    'errors' => $validator->getMessageBag()->toArray(),
             ));
-		} else {
-			$data = new Jenisobat();
-			$data->kd_jenis = $this->KdJenisObat();
-			$data->name = $request->name;
-			$data->save();
-			return Response::json($data);
-		}
+        } else {
+            $data = new Jenisobat();
+            $data->name = $request->name;
+            $data->save();
+
+            return response()->json($data);
+        }
 	}
 
-	public function KdJenisObat() {
-		$panjang = 2;
-        $no_rm = Jenisobat::whereRaw('id = (select max(id) from jenis_obat )')->first();
-        if (empty($no_rm)) {
-            $angka = 0;
-        } else {
-            $angka = substr($no_rm->id, 0);
-        }
-        $angka++;
-        $angka = strval($angka);
-        $tmp = "";
-        for ($i=1; $i<=($panjang-strlen($angka)); $i++) { 
-            $tmp = $tmp."JN00";
-        }
+	public function updateJenis(Request $request) {
+		$data = Jenisobat::find($request->id);
+		$data->name = $request->name;
+		$data->save();
+		return response()->json($data);
+	}
 
-        $hasil = $tmp.$angka;
-        // dd($hasil);
-        return $hasil;
+	public function hapusJenis(Request $req) {
+		Jenisobat::find($req->id)->delete();
+		return response()->json();
+	}
+
+	public function KdObat($id) {
+		$kode = Jenisobat::where('id', $id)->count();
+		return 'JNS00'.$id;
 	}
 
 }

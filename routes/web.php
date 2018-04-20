@@ -25,6 +25,10 @@ Route::group(['middleware'=> ['auth','role:admin']], function() {
 	Route::resource('role','admin\RoleController', ['except'=>'show']);
 	//User
 	Route::resource('users','admin\UserController', ['except'=>'show']);
+	//masterdata
+	// Route::group(['prefix'=>'masterdata'], function() {
+
+	// });
 	//Petugas
 	Route::group(['prefix'=>'petugas'], function() {
 		Route::get('/', ['as'=>'petugas.index','uses'=>'masterdata\PetugasController@getIndex']);
@@ -112,14 +116,31 @@ Route::group(['middleware'=> ['auth','role:admin']], function() {
 	 });
 
 	 //data obat
-	 Route::group(['prefix'=>'jenisobat'], function () {
-	 	Route::get('/', ['as'=>'jenisobat.index','uses'=>'masterdata\JenisobatController@getIndex']);
-	 	Route::get('/create', ['as'=>'jenisobat.create','uses'=>'masterdata\JenisobatController@getCreate']);
-	 	Route::post('/insert', ['as'=>'jenisobat.insert','uses'=>'masterdata\JenisobatController@doInsert']);
+	 Route::group(['prefix'=>'daftarobat'], function () {
+	 	Route::get('/', ['as'=>'daftarobat.index','uses'=>'masterdata\JenisobatController@getIndex']);
+	 	Route::get('/create', ['as'=>'daftarobat.create','uses'=>'masterdata\JenisobatController@getCreate']);
+	 	Route::get('/edit/{id}', ['as'=>'daftarobat.edit','uses'=>'masterdata\JenisobatController@getEdit']);
+	 	Route::post('/insert', ['as'=>'daftarobat.insert','uses'=>'masterdata\JenisobatController@doInsert']);
+	 	Route::post('/delete/{id}', ['as'=>'daftarobat.delete','uses'=>'masterdata\JenisobatController@doDelete']);
+	 	Route::post('/update/{id}', ['as'=>'daftarobat.update','uses'=>'masterdata\JenisobatController@doUpdate']);
+	 	//buat jenis obat with json
+	 	Route::get('/createJenis', ['as'=>'daftarobat.jenis','uses'=>'masterdata\JenisobatController@createJenis']);
 	 	Route::post('/addjenis', 'masterdata\JenisobatController@addJenis');
-	 	//buat jenis obat
-	 	Route::get('/createJenis', ['as'=>'jenisobat.jenis','uses'=>'masterdata\JenisobatController@createJenis']);
-	 });
+	 	Route::post('/updatejenis','masterdata\JenisobatController@updateJenis');
+	 	Route::post('/deletejenis','masterdata\JenisobatController@hapusJenis');
+	 	//search kd obat
+	 	Route::get('/cari_kode/{id}', ['as'=>'daftarobat.cari_kode','uses'=>'masterdata\JenisobatController@KdObat']);
+	});
+
+	//vendor
+	Route::group(['prefix'=>'vendorobat'], function () {
+		Route::get('/', ['as'=>'vendorobat.index','uses'=>'masterdata\VendorobatController@getIndex']);
+		Route::get('/create', ['as'=>'vendorobat.create', 'uses'=>'masterdata\VendorobatController@getCreate']);
+		Route::get('/edit/{nama_vendor}', ['as'=>'vendorobat.edit', 'uses'=>'masterdata\VendorobatController@getEdit']);
+		Route::post('/insert', ['as'=>'vendorobat.insert', 'uses'=>'masterdata\VendorobatController@doAdd']);
+		Route::post('/delete/{nama_vendor}', ['as'=>'vendorobat.delete', 'uses'=>'masterdata\VendorobatController@doDelete']);
+		Route::post('/update/{nama_vendor}', ['as'=>'vendorobat.update', 'uses'=>'masterdata\VendorobatController@doUpdate']);
+	});
 });
 
 

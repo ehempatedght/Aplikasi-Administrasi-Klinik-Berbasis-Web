@@ -4,17 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Jenisobat extends Model
+class Vendorobat extends Model
 {
-    protected $table = 'jenis_obat';
+    protected $table = 'vendor_obat';
     protected $fillable = [
-    	'name'
+    	'nama_vendor','alamat','no_telp','no_hp','pic','email','deskripsi','obat_id','catatan'
     ];
     protected $hidden = [
     	'created_at','updated_at'
     ];
-    
-    public function jenis_obat_detail() {
+
+    public function jenisobatdetail() {
     	return $this->hasMany('App\Jenisobatdetail');
     }
 }

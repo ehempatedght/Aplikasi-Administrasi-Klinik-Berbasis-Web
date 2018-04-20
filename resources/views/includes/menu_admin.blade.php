@@ -64,12 +64,12 @@
 					</a>
 				</li> --}}
 				<li>
-					<a href="#">
+					<a href="{{route('vendorobat.index')}}">
 						<span class="title">Vendor Obat</span>
 					</a>
 				</li>
 				<li>
-					<a href="{{route('jenisobat.index')}}">
+					<a href="{{route('daftarobat.index')}}">
 						<span class="title">Daftar Obat</span>
 					</a>
 				</li>
