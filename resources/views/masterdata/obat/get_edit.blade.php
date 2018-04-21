@@ -6,13 +6,13 @@ $jenis_obats = \App\Jenisobat::all();
 <h2>Tambah Obat</h2>
 <ol class="breadcrumb bc-3">
 	<li>
-		<a href="{{ route('daftarobat.index') }}"><i class="entypo-home"> Daftar Obat</i></a>
+		<a href="{{ route('masterdata.daftarobat.index') }}"><i class="entypo-home"> Daftar Obat</i></a>
 	</li>
 	<li class="active">
 		<strong>Tambah Jenis Obat</strong>
 	</li>
 </ol>
-<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('daftarobat.jenis')}}">
+<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('masterdata.daftarobat.jenis')}}">
 	<i class="entypo-plus"></i>Tambah Jenis Obat
 </a>
 <br/>
@@ -29,7 +29,7 @@ $jenis_obats = \App\Jenisobat::all();
 	<div class="col-md-12">
 		<div class="panel panel-primary" data-collapsed="0">
 			<div class="panel-body">
-				<form role="form" class="form-horizontal" action="{{ route('daftarobat.update', ['id'=>$data->id]) }}" method="post">
+				<form role="form" class="form-horizontal" action="{{ route('masterdata.daftarobat.update', ['id'=>$data->id]) }}" method="post">
 					{{ csrf_field() }}
 					<div id="obat_1">
 						<div class="form-group">
@@ -122,7 +122,7 @@ $jenis_obats = \App\Jenisobat::all();
 						Simpan
 						<i class="entypo-check"></i>
 						</button>
-						<a href="{{ route('daftarobat.index') }}" class="btn btn-red btn-icon icon-left">
+						<a href="{{ route('masterdata.daftarobat.index') }}" class="btn btn-red btn-icon icon-left">
 								Kembali
 							<i class="entypo-cancel"></i>
 						</a>
@@ -141,7 +141,7 @@ $jenis_obats = \App\Jenisobat::all();
 
 		$('#id_1').change(function() {
 			var id = $(this).val();
-			$.get(home_url + '/daftarobat/cari_kode/' + id, function(data) {
+			$.get(home_url + '/masterdata/daftarobat/cari_kode/' + id, function(data) {
 				$('#kd_jenis_1').val(data);
 			});
 		});

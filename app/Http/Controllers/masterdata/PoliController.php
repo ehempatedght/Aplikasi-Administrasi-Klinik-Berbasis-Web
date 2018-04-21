@@ -25,7 +25,7 @@ class PoliController extends Controller
 		$data = $request->all();
 		$poli = Poli::create($data);
 		if ($poli) {
-			return redirect()->route('poli.index')->with('message','Poli '.$poli->nama_poli.' berhasil ditambah');
+			return redirect()->route('masterdata.poli.index')->with('message','Poli '.$poli->nama_poli.' berhasil ditambah');
 		}
 	}
 
@@ -41,7 +41,7 @@ class PoliController extends Controller
 		$poli = Poli::find($id);
 		$data = $request->all();
 		if ($poli->update($data)) {
-			return redirect()->route('poli.index')->with('message','Poli berhasil diubah');
+			return redirect()->route('masterdata.poli.index')->with('message','Poli berhasil diubah');
 		}
 	}
 
@@ -51,7 +51,7 @@ class PoliController extends Controller
 
 		$poli = Poli::find($id);
 		if ($poli->delete()) {
-			return redirect()->route('poli.index')->with('message',''.$poli->nama_poli.' berhasil dihapus');
+			return redirect()->route('masterdata.poli.index')->with('message',''.$poli->nama_poli.' berhasil dihapus');
 		}
 
 	}

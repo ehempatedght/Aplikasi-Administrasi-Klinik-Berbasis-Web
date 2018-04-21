@@ -4,7 +4,7 @@
 <h2>Tambah User</h2>
 <ol class="breadcrumb bc-3">
 	<li>
-		<a href="{{ route('users.index') }}"><i class="entypo-home"> Daftar User</i></a>
+		<a href="{{ route('pengaturan.user.data.index') }}"><i class="entypo-home"> Daftar User</i></a>
 	</li>
 	<li class="active">
 		<strong>Tambah User</strong>
@@ -40,7 +40,7 @@
 			</div>
 
 			<div class="panel-body">
-				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('users.store') }}" method="post">
+				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('pengaturan.user.data.simpan') }}" method="post">
 					{{ csrf_field() }}
 
 					<div class="form-group">
@@ -65,7 +65,7 @@
 						
 						<div class="col-sm-5">
 							<input type="text" class="form-control" id="username" name="username" placeholder="username" data-validate="required" data-message-required="Wajib diisi." value="{{ old('username') }}" onkeyup="this.value = this.value.toLowerCase()" />
-							<div style="color:red; padding-top: 8px;" class="help-block hasil_cek_username"></div>
+							<div style="color:red;padding-top: 8px;" id="avaibility"></div>
 						</div>
 					</div>
 
@@ -114,10 +114,10 @@
 						Simpan
 						<i class="entypo-check"></i>
 						</button>
-						<button type="submit" name="cancel" class="btn btn-red btn-icon icon-left col-left">
-						Cancel
-						<i class="entypo-cancel"></i>
-						</button>
+						<a href="{{route('pengaturan.user.data.index')}}" class="btn btn-red btn-icon icon-left col-left">
+					Batal
+					<i class="entypo-cancel"></i>
+						</a>
 					</div>
 				</form>
 			</div>
@@ -127,11 +127,24 @@
 
 <script type="text/javascript" src="{{ asset('js/fileinput.js') }}"></script>
 <script type="text/javascript">
-
+	
+function cekUsername(){
+	var username = $("#username").val();
+	$.get(home_url + '/pengaturan/user/data/cekusername/' + username, function(data){
+		if(data == 'Username sudah digunakan'){
+			$('#avaibility').text(data);
+			$('#save').prop('disabled', true);
+		}else if(data == '0'){
+			$("#avaibility").text(' ');
+			$("#save").removeProp('disabled');
+		}
+	});
+}
 $(document).ready(function() {
 	$('#password_confirmation').keyup(function(){
 		var pas1 = $('#password').val();
 		var pas2 = $('#password_confirmation').val();
+		var avail = $("#avaibility").text();
 
 		if (pas1 != pas2) {
 			$('#not_match').text('Password Tidak Cocok');
@@ -142,62 +155,10 @@ $(document).ready(function() {
 		}
 	});
 
+	$("#username").keyup(function(){
+		cekUsername();
+	});
 
-	 // $("#username").keyup(function(){
-	 // 	var username = $("#username").val();
-	 // 	$.get(home_url + '/admin/user/cekusername/'+username, function(data){
-		// if(data == 'Username sudah digunakan'){
-	 // 		$('#notif').text(data);
-	 // 		$('#simpan').prop('disabled', true);
-	 // 	}else if(data == '0'){
-	 // 		$("#notif").text(' ');
-	 // 		$("#simpan").removeProp('disabled');
-	 // 	}
-	 // 	});
-	 // });
-	 // jumlah karakter minimal
-		// 	var jum_karakter_minimal = 3;
-
-		// 	// pesan error jika username < 3
-		// 	var karakter_minimal_error = "Karakter kurang dari 3";
-
-		// 	// pesan cek username
-		// 	var pesan_cek = 'cek username ...';
-
-		// 	// variabel username
-		// 	var check_username = $('#username');
-
-		// 	// variabel result hasil cek
-		// 	var hasil_cek_username = $('.hasil_cek_username')
-
-		// 	// menggunakan onkeyup untuk mendeteksi setiap inputan
-		// 	check_username.on('keyup', function(){
-
-		// 		if(check_username.val().length <= jum_karakter_minimal) {
-					
-		// 			hasil_cek_username.html(karakter_minimal_error);
-
-		// 		} else {
-
-		// 			// hasil_cek_username.html(pesan_cek);
-
-		// 			// // check username
-		// 			cek_username();
-		// 		}
-
-		// 	});
-
-
-	 // function cek_username() {
-		// var username = $('input[name="username"]').val();
-		// $.get("cek_username.php", {username: username}, function (hasil){
-		// 	if (hasil == 1) {
-		// 		hasil_cek_username.html('<strong>'+username+'</strong> tersedia');
-		// 	} else {
-		// 		hasil_cek_username.html('<strong>'+username+'</strong> sudah digunakan!');
-		// 	}
-		// });
-}
 });
 </script>
 @endsection

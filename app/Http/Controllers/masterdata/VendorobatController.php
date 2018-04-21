@@ -56,7 +56,7 @@ class VendorobatController extends Controller
     		]); 
     	}
 
-    	return redirect()->route('vendorobat.index')->with('message','Vendor berhasil ditambah!');
+    	return redirect()->route('masterdata.vendorobat.index')->with('message','Vendor berhasil ditambah!');
     }
 
     public function getEdit($nama_vendor) {
@@ -93,7 +93,7 @@ class VendorobatController extends Controller
             ]); 
         }
 
-        return redirect()->route('vendorobat.index')->with('message','Vendor berhasil diupdate!');
+        return redirect()->route('masterdata.vendorobat.index')->with('message','Vendor berhasil diupdate!');
     }
 
     public function getShow($id) {
@@ -102,6 +102,6 @@ class VendorobatController extends Controller
 
     public function doDelete($nama_vendor) {
         Vendorobat::where('nama_vendor', $nama_vendor)->delete();
-        return redirect()->route('vendorobat.index')->with('Vendor berhasil dihapus!');
+        return redirect()->route('masterdata.vendorobat.index')->with('Vendor berhasil dihapus!');
     }
 }

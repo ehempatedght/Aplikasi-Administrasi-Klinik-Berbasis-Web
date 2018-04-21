@@ -86,7 +86,7 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12">
-									<form action="{{route('alatkantor.update', ['id'=>$alat_kantor->id])}}" method="post">
+									<form action="{{route('masterdata.peralatan.kantor.update', ['id'=>$alat_kantor->id])}}" method="post">
 										@csrf
 										<div class="row">
 											<div class="col-md-12">
@@ -158,7 +158,7 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12">
-									<form action="{{route('alatkantor.insert')}}" method="post">
+									<form action="{{route('masterdata.peralatan.kantor.insert')}}" method="post">
 										@csrf
 										<div class="row">
 											<div class="col-md-12">

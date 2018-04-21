@@ -4,7 +4,7 @@
 <h2>Edit User {{$user->username}}</h2>
 <ol class="breadcrumb bc-3">
 	<li>
-		<a href="{{ route('users.index') }}"><i class="entypo-home"> Daftar User</i></a>
+		<a href="{{ route('pengaturan.user.data.index') }}"><i class="entypo-home"> Daftar User</i></a>
 	</li>
 	<li class="active">
 		<strong>Edit User</strong>
@@ -40,7 +40,7 @@
 			</div>
 
 			<div class="panel-body">
-				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('users.update', $user->id) }}" method="post">
+				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('pengaturan.user.data.update', $user->id) }}" method="post">
 					{{ csrf_field() }}
 					{{method_field('PUT')}}
 
@@ -106,10 +106,10 @@
 						Simpan
 						<i class="entypo-check"></i>
 						</button>
-						<button type="submit" name="cancel" class="btn btn-red btn-icon icon-left col-left">
-						Cancel
-						<i class="entypo-cancel"></i>
-						</button>
+						<a href="{{route('pengaturan.user.data.index')}}" class="btn btn-red btn-icon icon-left col-left">
+					Batal
+					<i class="entypo-cancel"></i>
+						</a>
 					</div>
 				</form>
 			</div>

@@ -115,7 +115,7 @@ class PetugasController extends Controller
 		]);
 		$petugas->days()->sync($request->days, false);
 		if ($petugas) {
-			return redirect()->route('petugas.index')->with('message','Petugas medis '.strtoupper($petugas->nama).' berhasil ditambah!');
+			return redirect()->route('masterdata.petugasmedis.datapetugasmedis.index')->with('message','Petugas medis '.strtoupper($petugas->nama).' berhasil ditambah!');
 		} 
 	}
 
@@ -210,7 +210,7 @@ class PetugasController extends Controller
 		'minggu1' => $minggu1,
 		'minggu2' => $minggu2
       ])) {
-      	return redirect()->route('petugas.index')->with('message','Petugas medis berhasil diubah');
+      	return redirect()->route('masterdata.petugasmedis.datapetugasmedis.index')->with('message','Petugas medis berhasil diubah');
       }
 
 		// $petugas = Petugas::find($id);
@@ -230,7 +230,7 @@ class PetugasController extends Controller
 		$petugas = Petugas::find($id);
 		$petugas->days()->detach();
 		if ($petugas->delete()) {
-			return redirect()->route('petugas.index')->with('message2','Petugas medis '.strtoupper($petugas->nama).' berhasil dihapus!');
+			return redirect()->route('masterdata.petugasmedis.datapetugasmedis.index')->with('message2','Petugas medis '.strtoupper($petugas->nama).' berhasil dihapus!');
 		}
 
 	}

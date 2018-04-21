@@ -22,7 +22,7 @@
 		<hr />
 		<ol class="breadcrumb bc-3" >
 			<li>
-				<a href="{{route('petugas.index')}}"><i class="fa fa-home"></i>Data Petugas Medis</a>
+				<a href="{{route('masterdata.petugasmedis.datapetugasmedis.index')}}"><i class="fa fa-home"></i>Data Petugas Medis</a>
 			</li>
 			<li class="active">
 				<strong>Tambah Petugas Medis</strong>
@@ -43,7 +43,7 @@
 			</div>
 
 			<div class="panel-body">
-				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('petugas.insert') }}" method="post" >
+				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('masterdata.petugasmedis.datapetugasmedis.insert') }}" method="post" >
 					{{ csrf_field() }}
 
 					<div class="form-group">
@@ -238,7 +238,7 @@
 						<i class="entypo-check"></i>
 						</button>
 				</form>
-				<a href="{{route('petugas.index')}}" class="btn btn-red btn-icon icon-left col-left">
+				<a href="{{route('masterdata.petugasmedis.datapetugasmedis.index')}}" class="btn btn-red btn-icon icon-left col-left">
 					Batal
 					<i class="entypo-cancel"></i>
 				</a>

@@ -1,7 +1,7 @@
 @extends('template')
 @section('main')
 <h2 align="center">Daftar User</h2>
-<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('users.create') }}">
+<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('pengaturan.user.data.create') }}">
 	<i class="entypo-user-add" ></i>Tambah User
 </a>
 <br/>
@@ -55,13 +55,13 @@
 				<td>
 					<div class="row">
 						<div class="col-sm-3">
-							<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('users.edit', $user->id)}}">
+							<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('pengaturan.user.data.edit', $user->id)}}">
 								<i class="entypo-eye" ></i>Edit
 							</a>
 						</div>
 
 						<div class="col-sm-2">
-							{!! Form::open(['method'=>'DELETE', 'route'=>['users.destroy', $user->id]]) !!}
+							{!! Form::open(['method'=>'DELETE', 'route'=>['pengaturan.user.data.delete', $user->id]]) !!}
 							{{ Form::button('<i class="entypo-pencil"></i> Hapus',['type'=>'submit', 'class'=>'btn btn-danger btn-sm btn-icon icon-left']) }}
 							{!! Form::close() !!}
 						</div>

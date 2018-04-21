@@ -22,7 +22,7 @@
 		<hr />
 		<ol class="breadcrumb bc-3" >
 			<li>
-				<a href="{{route('pasien.index')}}"><i class="fa fa-home"></i>Data Pasien</a>
+				<a href="{{route('masterdata.pasien.datapasien.index')}}"><i class="fa fa-home"></i>Data Pasien</a>
 			</li>
 			<li class="active">
 				<strong>Lihat Data Pasien</strong>
@@ -30,7 +30,7 @@
 		</ol>
 		<div class="panel panel-primary" data-collapsed="0">
 			<div class="panel-body">
-				<form role="form" class="form-horizontal" action="{{ route('pasien.update', $pasien->id) }}" method="post">
+				<form role="form" class="form-horizontal" action="{{ route('masterdata.pasien.datapasien.update', $pasien->id) }}" method="post">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;No RM</label>
@@ -216,162 +216,6 @@
 				</form>
 			</div>
 		</div>
-
-		<!-- Modal 6 (Long Modal)-->
-	<div class="modal fade" id="modal-6">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Tambah Kategori Pasien</h4>
-				</div>
-				
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-md-12">
-							<form action="{{route('pasien.kategori')}}" method="post">
-								@csrf
-								<div class="form-group">
-									<label for="field-1" class="control-label">Nama Kategori</label>
-									<input type="text" class="form-control" name="nama_kategori" placeholder="nama kategori" required>
-								</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-					<button type="submit" name="simpan" id="simpan" class="btn btn-green btn-icon icon-left col-left">
-					<i class="entypo-check"></i>
-					Simpan</button>
-				</div>
-						</form>
-			</div>
-		</div>
-	</div>
-	
-	<div class="modal fade" id="modal-7">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Tambah Kota</h4>
-				</div>
-				
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-md-12">
-							<form action="{{route('pasien.kota')}}" method="post">
-								@csrf
-							<div class="form-group">
-								<label for="field-1" class="control-label">Nama Kota</label>
-								<input type="text" class="form-control" name="nama_kota" placeholder="nama kota" required>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-					<button type="submit" name="simpan" id="simpan" class="btn btn-green btn-icon icon-left col-left">
-					<i class="entypo-check"></i>
-					Simpan</button>
-				</div>
-						</form>
-			</div>
-		</div>
-	</div>
-
-	<div class="modal fade" id="modal-8">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Tambah Kecamatan</h4>
-				</div>
-				
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-md-6">
-							<form action="{{route('pasien.kecamatan')}}" method="post">
-								@csrf
-								<div class="form-group">
-									<label for="field-1" class="control-label">Kota</label>
-									<select name="id_kota" class="selectboxit">
-										<option selected="selected" disabled value="Pilih">Pilih Kota</option>
-											@foreach ($kotas as $kota)
-												<option value="{{$kota->id}}">{{$kota->nama_kota}}</option>
-											@endforeach
-									</select>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label for="field-1" class="control-label">Nama Kecamatan</label>
-									<input type="text" class="form-control" name="nama_kecamatan" placeholder="nama kecamatan" required>
-								</div>
-							</div>
-					</div>
-				</div>
-				
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-					<button type="submit" name="simpan" id="simpan" class="btn btn-green btn-icon icon-left col-left">
-					<i class="entypo-check"></i>
-					Simpan</button>
-				</div>
-						</form>
-			</div>
-		</div>
-	</div>
-
-	<div class="modal fade" id="modal-9">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Tambah Kelurahan</h4>
-				</div>
-				
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-md-6">
-							<form action="{{route('pasien.kelurahan')}}" method="post">
-								@csrf
-								<div class="form-group">
-									<label for="field-1" class="control-label">Kecamatan</label>
-									<select name="id_kec" class="selectboxit">
-										<option selected="selected" disabled value="Pilih">Pilih Kecamatan</option>
-											@foreach ($kecamatans as $kecamatan)
-												<option value="{{$kecamatan->id}}">{{$kecamatan->nama_kecamatan}}</option>
-											@endforeach
-									</select>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label for="field-1" class="control-label">Nama Kelurahan</label>
-									<input type="text" class="form-control" name="nama_kelurahan" placeholder="nama kelurahan" required>
-								</div>
-							</div>
-					</div>
-				</div>
-				
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-					<button type="submit" name="simpan" id="simpan" class="btn btn-green btn-icon icon-left col-left">
-					<i class="entypo-check"></i>
-					Simpan</button>
-				</div>
-						</form>
-			</div>
-		</div>
-	</div>
-
 	</div>
 </div>
 <script>

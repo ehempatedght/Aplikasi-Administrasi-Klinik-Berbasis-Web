@@ -3,7 +3,7 @@
 <h2>Tambah Data Poli</h2>
 <ol class="breadcrumb bc-3">
 	<li>
-		<a href="{{ route('poli.index') }}"><i class="entypo-home"> Daftar Poli</i></a>
+		<a href="{{ route('masterdata.poli.index') }}"><i class="entypo-home"> Daftar Poli</i></a>
 	</li>
 	<li class="active">
 		<strong>Tambah Data Poli</strong>
@@ -22,7 +22,7 @@
 	<div class="col-md-12">
 		<div class="panel panel-primary" data-collapsed="0">
 			<div class="panel-body">
-				<form role="form" class="form-horizontal" action="{{ route('poli.insert') }}" method="post">
+				<form role="form" class="form-horizontal" action="{{ route('masterdata.poli.insert') }}" method="post">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label">Nama Poli</label>
@@ -35,7 +35,7 @@
 						Simpan
 						<i class="entypo-check"></i>
 						</button>
-						<a href="{{ route('poli.index') }}" class="btn btn-red btn-icon icon-left">
+						<a href="{{ route('masterdata.poli.index') }}" class="btn btn-red btn-icon icon-left">
 								Kembali
 							<i class="entypo-cancel"></i>
 						</a>

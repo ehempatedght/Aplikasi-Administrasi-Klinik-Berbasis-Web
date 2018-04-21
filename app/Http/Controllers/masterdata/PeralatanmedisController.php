@@ -30,7 +30,7 @@ class PeralatanmedisController extends Controller
     	]);
 
     	if ($peralatanmedik) {
-    		return redirect()->route('alatmedis.index')->with('message','Peralatan '.strtoupper($peralatanmedik->nm_alat).' berhasil dibuat!');
+    		return redirect()->route('masterdata.peralatan.medis.index')->with('message','Peralatan '.strtoupper($peralatanmedik->nm_alat).' berhasil dibuat!');
     	}
     }
 
@@ -50,14 +50,14 @@ class PeralatanmedisController extends Controller
     		'jumlah' => $data['jumlah'],
     		'description' => $data['description']
     	])) {
-    		return redirect()->route('alatmedis.index')->with('message','Peralatan berhasil diupdate');
+    		return redirect()->route('masterdata.peralatan.medis.index')->with('message','Peralatan berhasil diupdate');
     	}
     }
 
-    public function doHapus($id) {
-    	$peralatanmedik = Peralatanmedik::find($id);
-    	if ($peralatanmedik->delete()) {
-    		return redirect()->route('')->with('message','Peralatan '.strtoupper($peralatanmedik->nm_alat).' berhasil dihapus!');
-    	}
-    }
+    // public function doHapus($id) {
+    // 	$peralatanmedik = Peralatanmedik::find($id);
+    // 	if ($peralatanmedik->delete()) {
+    // 		return redirect()->route('masterdata.peralatan.medis.index')->with('message','Peralatan '.strtoupper($peralatanmedik->nm_alat).' berhasil dihapus!');
+    // 	}
+    // }
 }

@@ -76,7 +76,7 @@ class JenisobatController extends Controller
 		// 	}
 		// }
 
-		return redirect()->route('daftarobat.index')->with('message','Obat berhasil dibuat!');
+		return redirect()->route('masterdata.daftarobat.index')->with('message','Obat berhasil dibuat!');
 
 	}
 
@@ -105,7 +105,7 @@ class JenisobatController extends Controller
  	 		'stok'=>$data['stok']
 		 ]);
 
-		 return redirect()->route('daftarobat.index')->with('message','Obat berhasil diupdate!');
+		 return redirect()->route('masterdata.daftarobat.index')->with('message','Obat berhasil diupdate!');
 
 	}
 

@@ -2,7 +2,7 @@
 @section('main')
 <h2>Daftar Obat</h2>
 <h5>Menu ini digunakan untuk melihat dan menambahkan vendor obat</h5><br/>
-<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('vendorobat.create')}}">
+<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('masterdata.vendorobat.create')}}">
 	<i class="entypo-plus"></i>Tambah Vendor
 </a>
 <br/>
@@ -47,9 +47,9 @@
 					<td>{{$row->pic}}</td>
 					<td>
 						<div align="center">
-							<form action="{{route('vendorobat.delete', ['nama_vendor'=>$row->nama_vendor])}}" method="post">
+							<form action="{{route('masterdata.vendorobat.delete', ['nama_vendor'=>$row->nama_vendor])}}" method="post">
 								{{ csrf_field() }}
-							<a href="{{route('vendorobat.edit', ['nama_vendor' => $row->nama_vendor]) }}" class="btn btn-sm btn-green btn-icon icon-left">
+							<a href="{{route('masterdata.vendorobat.edit', ['nama_vendor' => $row->nama_vendor]) }}" class="btn btn-sm btn-green btn-icon icon-left">
 								<i class="entypo-pencil"></i>
 								Ubah
 							</a>

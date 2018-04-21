@@ -3,7 +3,7 @@
 
 <h2>Jadwal Petugas Medis</h2>
 <h5>Menu ini digunakan untuk melihat data jadwal petugas medis</h5><br/>
-<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('jadwal.create') }}">
+<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('masterdata.petugasmedis.jadwal.petugas') }}">
 	<i class="entypo-cog"></i>Atur Jadwal Petugas Medis
 </a>
 <br/>

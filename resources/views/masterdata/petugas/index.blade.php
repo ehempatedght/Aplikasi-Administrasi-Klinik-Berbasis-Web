@@ -2,7 +2,7 @@
 @section('main')
 <h2>Data Petugas Medis</h2>
 <h5>Menu ini digunakan untuk memasukkan data petugas medis di klinik</h5><br/>
-<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('petugas.create') }}">
+<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('masterdata.petugasmedis.datapetugasmedis.create') }}">
 	<i class="entypo-user-add"></i>Tambah Petugas Medis
 </a>
 <br/>
@@ -56,10 +56,10 @@
 						<div align="center">
 							<form action="#" method="POST">
 								{{csrf_field()}}
-								<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('petugas.ubah', $petugas->id)}}">
+								<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('masterdata.petugasmedis.datapetugasmedis.ubah', $petugas->id)}}">
 									<i class="entypo-pencil"></i>Ubah
 								</a>
-								<a class="btn btn-primary btn-sm btn-icon icon-left" href="{{route('petugas.show', $petugas->id)}}">
+								<a class="btn btn-primary btn-sm btn-icon icon-left" href="{{route('masterdata.petugasmedis.datapetugasmedis.show', $petugas->id)}}">
 									<i class="entypo-eye"></i>Lihat
 								</a>
 								<a href="javascript:;" onclick="jQuery('#modal-8{{$petugas->id}}').modal('show', {backdrop: 'static'});" class="btn btn-sm btn-danger btn-icon icon-left">
@@ -86,7 +86,7 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12">
-									<form action="{{ route('petugas.hapus', ['id'=>$petugas->id]) }}" method="POST">
+									<form action="{{ route('masterdata.petugasmedis.datapetugasmedis.hapus', ['id'=>$petugas->id]) }}" method="POST">
 								        {{ csrf_field() }}
 										<div class="form-group">
 											<button type="submit" name="simpan" id="simpan" class="btn btn-danger btn-block">

@@ -29,7 +29,7 @@ $jenis_obats = \App\Jenisobat::all();
 	<div class="col-md-12">
 		<div class="panel panel-primary" data-collapsed="0">
 			<div class="panel-body">
-				<form role="form" class="form-horizontal" action="{{ route('jenisobat.insert') }}" method="post">
+				<form role="form" class="form-horizontal" action="{{ route('masterdata.daftarobat.insert') }}" method="post">
 					{{ csrf_field() }}
 					<div id="obat_0">
 						<div class="form-group">
@@ -117,7 +117,7 @@ $jenis_obats = \App\Jenisobat::all();
 						Simpan
 						<i class="entypo-check"></i>
 						</button>
-						<a href="{{ route('jenisobat.index') }}" class="btn btn-red btn-icon icon-left">
+						<a href="{{ route('masterdata.daftarobat.index') }}" class="btn btn-red btn-icon icon-left">
 								Kembali
 							<i class="entypo-cancel"></i>
 						</a>
@@ -143,7 +143,7 @@ $jenis_obats = \App\Jenisobat::all();
 
 		$('#id').change(function() {
 			var id = $(this).val();
-			$.get(home_url + '/jenisobat/cari_kode/' + id, function(data) {
+			$.get(home_url + '/masterdata/jenisobat/cari_kode/' + id, function(data) {
 				$('#kd_jenis').val(data);
 			});
 		});

@@ -9,7 +9,7 @@
 <div class="container">
 <h2>Jenis Obat</h2>
 <h5>Menu ini digunakan untuk menambahkan jenis obat</h5><br/>
-<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('daftarobat.create') }}">
+<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('masterdata.daftarobat.create') }}">
 	<i class="entypo-back"></i>Kembali
 </a>
 <br/>
@@ -130,7 +130,7 @@
 
         $.ajax({
             type: 'post',
-            url: '/daftarobat/updatejenis',
+            url: '/masterdata/daftarobat/updatejenis',
             data: {
                 '_token': $('input[name=_token]').val(),
                 'id': $("#fid").val(),
@@ -145,7 +145,7 @@
      $('.modal-footer').on('click', '.delete', function() {
         $.ajax({
             type: 'post',
-            url: '/daftarobat/deletejenis',
+            url: '/masterdata/daftarobat/deletejenis',
             data: {
                 '_token': $('input[name=_token]').val(),
                 'id': $('.did').text()
@@ -160,7 +160,7 @@
         
         $.ajax({
             type: 'post',
-            url: '/daftarobat/addjenis',
+            url: '/masterdata/daftarobat/addjenis',
             data: {
                 '_token': $('input[name=_token]').val(),
                 'name': $('input[name=name]').val()

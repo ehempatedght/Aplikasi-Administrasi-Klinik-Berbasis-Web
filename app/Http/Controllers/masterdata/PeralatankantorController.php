@@ -29,7 +29,7 @@ class PeralatankantorController extends Controller
     	]);
 
     	if ($Peralatankantor) {
-    		return redirect()->route('alatkantor.index')->with('message','Peralatan '.strtoupper($Peralatankantor->nm_alat).' berhasil dibuat!');
+    		return redirect()->route('masterdata.peralatan.kantor.index')->with('message','Peralatan '.strtoupper($Peralatankantor->nm_alat).' berhasil dibuat!');
     	}
     }
 
@@ -48,7 +48,7 @@ class PeralatankantorController extends Controller
     		'jenis_alat' => $data['jenis_alat'],
     		'jumlah' => $data['jumlah']
     	])) {
-    		return redirect()->route('alatkantor.index')->with('message','Peralatan berhasil diupdate');
+    		return redirect()->route('masterdata.peralatan.kantor.index')->with('message','Peralatan berhasil diupdate');
     	}
     }
 }

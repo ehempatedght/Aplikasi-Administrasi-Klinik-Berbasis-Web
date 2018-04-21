@@ -32,7 +32,7 @@ class KelurahanController extends Controller
 		]);
 
 		if ($kelurahan) {
-			return redirect()->route('kelurahan.index')->with('message','Kelurahan '.$kelurahan->nama_kelurahan.' berhasil ditambah');
+			return redirect()->route('masterdata.pasien.kelurahan.index')->with('message','Kelurahan '.$kelurahan->nama_kelurahan.' berhasil ditambah');
 		}
 	}
 
@@ -54,7 +54,7 @@ class KelurahanController extends Controller
 			'nama_kelurahan' => $data['nama_kelurahan'],
 			'kec_id' => $data['kec_id']
 		])) {
-			return redirect()->route('kelurahan.index', $kelurahan->id)->with('message','Kelurahan berhasil diubah');
+			return redirect()->route('masterdata.pasien.kelurahan.index', $kelurahan->id)->with('message','Kelurahan berhasil diubah');
 		}
 	}
 
@@ -67,7 +67,7 @@ class KelurahanController extends Controller
             'nama_kota' => $data['nama_kota'],
         ]);
         if ($kota) {
-            return redirect()->route('kelurahan.create')->with('message','Kota '.$kota->nama_kota.' berhasil ditambah!');
+            return redirect()->route('masterdata.pasien.kelurahan.create')->with('message','Kota '.$kota->nama_kota.' berhasil ditambah!');
         }
     }
 
@@ -82,25 +82,13 @@ class KelurahanController extends Controller
             'kota_id' => $data['id_kota']
         ]);
         if ($kecamatan) {
-            return redirect()->route('kelurahan.create')->with('message','Kecamatan '.$kecamatan->nama_kecamatan.' berhasil ditambah!');
+            return redirect()->route('masterdata.pasien.kelurahan.create')->with('message','Kecamatan '.$kecamatan->nama_kecamatan.' berhasil ditambah!');
         }
     }
 
 	public function doDelete($id) {
 		$kelurahan = Kelurahan::find($id);
 		$kelurahan->delete();
-		return redirect()->route('kelurahan.index', $kelurahan->id)->with('message','Kelurahan '.$kelurahan->nama_kelurahan.' berhasil dihapus!');
+		return redirect()->route('masterdata.pasien.kelurahan.create', $kelurahan->id)->with('message','Kelurahan '.$kelurahan->nama_kelurahan.' berhasil dihapus!');
 	}
-
-	// public function deleteKota($id) {
-	// 	$kota = Kota::find($id);
-	// 	$kota->delete();
-	// 	return redirect()->route('kelurahan.create', $kota->id)->with('message','Kota '.$kota->nama_kota.' berhasil dihapus!');
-	// }
-
-	// public function deleteKecamatan($id) {
-	// 	$kecamatan = Kecamatan::find($id);
-	// 	$kecamatan->delete();
-	// 	return redirect()->route('kelurahan.create', $kecamatan->id)->with('message','Kecamatan '.$kecamatan->nama_kecamatan.' berhasil dihapus!');
-	// }
 }

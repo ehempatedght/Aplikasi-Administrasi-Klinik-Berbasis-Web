@@ -19,7 +19,7 @@
 		<hr />
 		<ol class="breadcrumb bc-3" >
 			<li>
-				<a href="{{route('jadwal.create')}}"><i class="fa fa-home"></i>Petugas</a>
+				<a href="{{route('masterdata.petugasmedis.jadwal.petugas')}}"><i class="fa fa-home"></i>Petugas</a>
 			</li>
 			<li class="active">
 				<strong>Atur Jadwal</strong>
@@ -40,7 +40,7 @@
 			</div>
 
 			<div class="panel-body">
-				<form role="form" class="form-horizontal form-groups-bordered" action="{{route('jadwal.add', $petugas->id)}}" method="post">
+				<form role="form" class="form-horizontal form-groups-bordered" action="{{route('masterdata.petugasmedis.jadwal.add', $petugas->id)}}" method="post">
 					{{ csrf_field() }}
 
 					<div class="form-group">
@@ -124,7 +124,7 @@
 						<i class="entypo-check"></i>
 						</button>
 				</form>
-				<a href="{{route('jadwal.create')}}" class="btn btn-red btn-icon icon-left col-left">
+				<a href="{{route('masterdata.petugasmedis.jadwal.petugas')}}" class="btn btn-red btn-icon icon-left col-left">
 					Batal
 					<i class="entypo-cancel"></i>
 				</a>

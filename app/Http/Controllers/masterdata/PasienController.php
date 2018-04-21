@@ -82,7 +82,7 @@ class PasienController extends Controller
     	]);
 
     	if ($pasien) {
-    		return redirect()->route('pasien.index')->with('message','Pasien '.$pasien->nama_pasien.' Berhasil Ditambah');
+    		return redirect()->route('masterdata.pasien.datapasien.index')->with('message','Pasien '.$pasien->nama_pasien.' Berhasil Ditambah');
     	}
     }
 
@@ -158,7 +158,7 @@ class PasienController extends Controller
     		'namaAyahKandung' => $AyahKandung,
     		'TanggalLahir' => $tgl_lahir
     	])) {
-    		return redirect()->route('pasien.index', $pasien->id_pasien)->with('message','Pasien berhasil diubah!');
+    		return redirect()->route('masterdata.pasien.datapasien.index', $pasien->id_pasien)->with('message','Pasien berhasil diubah!');
     	}
     }
 
@@ -182,66 +182,10 @@ class PasienController extends Controller
         return $hasil;
     }
 
-    public function inputKategoriPasien(Request $request) {
-        $this->validate($request, array(
-            'nama_kategori' => 'required|min:3|max:55'
-        ));
-        $data = $request->all();
-        $kategori = Kategoripasien::create([
-            'nama_kategori' => $data['nama_kategori'],
-        ]);
-        if ($kategori) {
-            return redirect()->route('pasien.create')->with('message','Kategori '.$kategori->nama_kategori.' berhasil ditambah!');
-        }
-    }
-
-    public function inputKotaPasien(Request $request) {
-        $this->validate($request, array(
-            'nama_kota' => 'required|min:3|max:55'
-        ));
-        $data = $request->all();
-        $kota = Kota::create([
-            'nama_kota' => $data['nama_kota'],
-        ]);
-        if ($kota) {
-            return redirect()->route('pasien.create')->with('message','Kota '.$kota->nama_kota.' berhasil ditambah!');
-        }
-    }
-
-    public function inputKecamatanPasien(Request $request) {
-        $this->validate($request, array(
-            'nama_kecamatan' => 'required|min:3|max:55',
-            'id_kota' => 'required|integer'
-        ));
-        $data = $request->all();
-        $kecamatan = Kecamatan::create([
-            'nama_kecamatan' => $data['nama_kecamatan'],
-            'kota_id' => $data['id_kota']
-        ]);
-        if ($kecamatan) {
-            return redirect()->route('pasien.create')->with('message','Kecamatan '.$kecamatan->nama_kecamatan.' berhasil ditambah!');
-        }
-    }
-
-    public function inputKelurahanPasien(Request $request) {
-        $this->validate($request, array(
-            'nama_kelurahan' => 'required|min:3|max:55',
-            'id_kec' => 'required|integer'
-        ));
-        $data = $request->all();
-        $kelurahan = Kelurahan::create([
-            'nama_kelurahan' => $data['nama_kelurahan'],
-            'kec_id' => $data['id_kec']
-        ]);
-        if ($kelurahan) {
-            return redirect()->route('pasien.create')->with('message','Kelurahan '.$kelurahan->nama_kelurahan.' berhasil ditambah!');
-        }
-    }
-
     public function hapus($id) {
     	$pasien = Pasien::find($id);
     	if ($pasien->delete()) {
-    		return redirect()->route('pasien.index', $pasien->id)->with('message','Pasien '.$pasien->nama_pasien.' berhasil dihapus!');
+    		return redirect()->route('masterdata.pasien.datapasien.index', $pasien->id)->with('message','Pasien '.$pasien->nama_pasien.' berhasil dihapus!');
     	}
     }
 }

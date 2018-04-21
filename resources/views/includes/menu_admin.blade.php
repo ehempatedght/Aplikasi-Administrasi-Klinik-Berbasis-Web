@@ -42,12 +42,12 @@
 					</a>
 					<ul>
 						<li>
-							<a href="{{route('petugas.index')}}">
+							<a href="{{route('masterdata.petugasmedis.datapetugasmedis.index')}}">
 								<span class="title">Data Petugas Medis</span>
 							</a>
 						</li>
 						<li>
-							<a href="{{route('jadwal.jadwal') }}">
+							<a href="{{route('masterdata.petugasmedis.jadwal.index') }}">
 								<span class="title">Jadwal Petugas Medis</span>
 							</a>
 						</li>
@@ -64,17 +64,17 @@
 					</a>
 				</li> --}}
 				<li>
-					<a href="{{route('vendorobat.index')}}">
+					<a href="{{route('masterdata.vendorobat.index')}}">
 						<span class="title">Vendor Obat</span>
 					</a>
 				</li>
 				<li>
-					<a href="{{route('daftarobat.index')}}">
+					<a href="{{route('masterdata.daftarobat.index')}}">
 						<span class="title">Daftar Obat</span>
 					</a>
 				</li>
 				<li>
-					<a href="{{route('poli.index')}}">
+					<a href="{{route('masterdata.poli.index')}}">
 						<span class="title">Data Poli</span>
 					</a>
 				</li>
@@ -84,22 +84,22 @@
 					</a>
 					<ul>
 						<li>
-							<a href="{{route('kategoripasien.index')}}">
+							<a href="{{route('masterdata.pasien.kategori.index')}}">
 								<span class="title">Data Kategori Pasien</span>
 							</a>
 						</li>
 						<li>
-							<a href="{{route('kelurahan.index')}}">
+							<a href="{{route('masterdata.pasien.kelurahan.index')}}">
 								<span class="title">Data Kelurahan</span>
 							</a>
 						</li>
 						<li>
-							<a href="{{route('pasien.index')}}">
+							<a href="{{route('masterdata.pasien.datapasien.index')}}">
 								<span class="title">Data Pasien</span>
 							</a>
 						</li>
 						<li>
-							<a href="{{route('pasien.create')}}">
+							<a href="{{route('masterdata.pasien.datapasien.create')}}">
 								<span class="title">Registrasi Pasien</span>
 							</a>
 						</li>
@@ -111,12 +111,12 @@
 					</a>
 					<ul>
 						<li>
-							<a href="{{route('alatmedis.index')}}">
+							<a href="{{route('masterdata.peralatan.medis.index')}}">
 								<span class="title">Medis</span>
 							</a>
 						</li>
 						<li>
-						<a href="<?php echo route('alatkantor.index'); ?>">
+						<a href="<?php echo route('masterdata.peralatan.kantor.index'); ?>">
 							<span class="title">Kantor</span>
 						</a>
 						</li>
@@ -281,7 +281,7 @@
 						</li>
 
 						<li>
-							<a href="{{route('users.index')}}">
+							<a href="{{route('pengaturan.user.data.index')}}">
 								<i class="fa fa-user"></i>
 								<span class="title">Data User</span>	
 							</a>

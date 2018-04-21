@@ -2,7 +2,7 @@
 @section('main')
 <h2>Daftar Obat</h2>
 <h5>Menu ini digunakan untuk menambahkan daftar obat</h5><br/>
-<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('daftarobat.create') }}">
+<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('masterdata.daftarobat.create') }}">
 	<i class="entypo-plus"></i>Tambah Obat
 </a>
 <br/>
@@ -45,9 +45,9 @@
 					<td>{{$row->stok}}</td>
 					<td>
 						<div align="center">
-							<form action="{{route('daftarobat.delete', ['id'=>$row->id]) }}" method="post">
+							<form action="{{route('masterdata.daftarobat.delete', ['id'=>$row->id]) }}" method="post">
 								{{ csrf_field() }}
-								<a href="{{route('daftarobat.edit', ['id' => $row->id]) }}" class="btn btn-sm btn-green btn-icon icon-left">
+								<a href="{{route('masterdata.daftarobat.edit', ['id' => $row->id]) }}" class="btn btn-sm btn-green btn-icon icon-left">
 									<i class="entypo-pencil"></i>
 									Ubah
 								</a>

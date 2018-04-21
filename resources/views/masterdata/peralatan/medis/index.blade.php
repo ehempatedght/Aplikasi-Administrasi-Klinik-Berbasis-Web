@@ -86,7 +86,7 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12">
-									<form action="{{route('alatmedis.update', ['id'=>$alat_medis->id])}}" method="post">
+									<form action="{{route('masterdata.peralatan.medis.update', ['id'=>$alat_medis->id])}}" method="post">
 										@csrf
 										<div class="row">
 											<div class="col-md-12">
@@ -171,7 +171,7 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12">
-									<form action="{{route('alatmedis.insert')}}" method="post">
+									<form action="{{route('masterdata.peralatan.medis.insert')}}" method="post">
 										@csrf
 										<div class="row">
 											<div class="col-md-12">

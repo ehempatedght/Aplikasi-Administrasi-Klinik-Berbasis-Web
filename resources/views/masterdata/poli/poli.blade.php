@@ -56,7 +56,7 @@
 						<td>{{$poli->nama_poli}}</td>
 						<td>
 							<div align="center">
-								<form action="{{route('poli.hapus', ['id'=> $poli->id ]) }}" method="post">
+								<form action="{{route('masterdata.poli.hapus', ['id'=> $poli->id ]) }}" method="post">
 									{{ csrf_field() }}
 									<a href="javascript:;" onclick="jQuery('#modal-8{{$poli->id}}').modal('show', {backdrop: 'static'});" class="btn btn-sm btn-info btn-icon icon-left">
 										<i class="entypo-pencil"></i>
@@ -90,7 +90,7 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12">
-									<form action="{{route('poli.insert')}}" method="post">
+									<form action="{{route('masterdata.poli.insert')}}" method="post">
 										@csrf
 										<div class="row">
 											<div class="col-md-12">
@@ -128,7 +128,7 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12">
-									<form action="{{route('poli.update', ['id'=>$poli->id])}}" method="post">
+									<form action="{{route('masterdata.poli.update', ['id'=>$poli->id])}}" method="post">
 										@csrf
 										<div class="row">
 											<div class="col-md-12">

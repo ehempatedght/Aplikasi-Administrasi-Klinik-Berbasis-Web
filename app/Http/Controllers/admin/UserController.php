@@ -29,7 +29,7 @@ class UserController extends Controller
     	return view('admin.user.create')->with($data);
     }
 
-    public function store(Request $request) {
+    public function simpan(Request $request) {
 
     	  $validator = Validator::make($request->all(),
     	  	[
@@ -71,7 +71,7 @@ class UserController extends Controller
     	$user->attachRole($request->input('role'));
 
         if ($user) {
-           return redirect()->route('users.index')->with('message','User '.$user->username.' berhasil ditambah');
+           return redirect()->route('pengaturan.user.data.index')->with('message','User '.$user->username.' berhasil ditambah');
         }
     }
 
@@ -111,15 +111,26 @@ class UserController extends Controller
         }
 
         if($user->update($data)) {
-            return redirect()->route('users.index')->with('message','User berhasil diubah');
+            return redirect()->route('pengaturan.user.data.index')->with('message','User berhasil diubah');
         }
     }
     
-    public function destroy($id) {
+    public function delete($id) {
         $user = User::find($id);
 
         if ($user->delete()) {
-            return redirect()->route('users.index')->with('message','User '.$user->username.' berhasil dihapus');
+            return redirect()->route('pengaturan.user.data.index')->with('message','User '.$user->username.' berhasil dihapus');
         }
+    }
+
+    public function cekusername($username) {
+        $user = User::where('username', $username)->first();
+        if (count($user) > 0) {
+            $msg = 'Username sudah digunakan!';
+        } else {
+            $msg = '0';
+        }
+
+        return $msg;
     }
 }

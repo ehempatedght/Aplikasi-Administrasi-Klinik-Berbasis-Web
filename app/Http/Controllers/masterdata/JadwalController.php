@@ -54,7 +54,7 @@ class JadwalController extends Controller
             'minggu2' => $data['minggu2']
         ]);
 
-        return redirect()->route('jadwal.jadwal')->with('message','Berhasil atur jadwal!');
+        return redirect()->route('masterdata.petugasmedis.jadwal.index')->with('message','Berhasil atur jadwal!');
     }
 
     // public function cari_petugas($id) {

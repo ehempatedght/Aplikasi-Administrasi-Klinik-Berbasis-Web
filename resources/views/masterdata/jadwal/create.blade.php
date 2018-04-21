@@ -33,7 +33,7 @@
 		<hr />
 		<ol class="breadcrumb bc-3" >
 			<li>
-				<a href="{{route('jadwal.jadwal')}}"><i class="fa fa-home"></i>Lihat Jadwal</a>
+				<a href="{{route('masterdata.petugasmedis.jadwal.index')}}"><i class="fa fa-home"></i>Lihat Jadwal</a>
 			</li>
 			<li class="active">
 				<strong>Atur Jadwal Petugas Medis</strong>
@@ -65,7 +65,7 @@
 					<td>
 						<div align="center">
 							<form action="#" method="POST">
-								<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('jadwal.atur', $petugas->id)}}">
+								<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('masterdata.petugasmedis.jadwal.atur', $petugas->id)}}">
 									<i class="entypo-check"></i>Pilih
 								</a>
 							</form>

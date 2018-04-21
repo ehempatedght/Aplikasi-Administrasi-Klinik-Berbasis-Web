@@ -81,7 +81,7 @@
 					<div class="modal-body">
 						<div class="row">
 							<div class="col-md-12">
-								<form action="{{route('kategoripasien.insert')}}" method="post">
+								<form action="{{route('masterdata.pasien.kategori.insert')}}" method="post">
 									@csrf
 									<div class="form-group">
 										<label for="field-1" class="control-label">Nama Kategori</label>
@@ -113,7 +113,7 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12">
-									<form action="{{route('kategoripasien.update', $kategori->id)}}" method="post">
+									<form action="{{route('masterdata.pasien.kategori.update', $kategori->id)}}" method="post">
 										@csrf
 										<div class="form-group">
 											<label for="field-1" class="control-label">Nama Kategori</label>
@@ -147,7 +147,7 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12">
-									<form action="{{route('kategoripasien.delete', ['id' => $kategori->id]) }}" method="post">
+									<form action="{{route('masterdata.pasien.kategori.delete', ['id' => $kategori->id]) }}" method="post">
 										@csrf
 										<div class="form-group">
 											<button type="submit" name="simpan" id="simpan" class="btn btn-danger btn-block">

@@ -2,7 +2,7 @@
 @section('main')
 <h2>Data Pasien</h2>
 <h5>Menu ini digunakan untuk registrasi pasien</h5><br/>
-<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('pasien.create') }}">
+<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('masterdata.pasien.datapasien.create') }}">
 	<i class="entypo-user-add"></i>Registrasi Pasien
 </a>
 <br/>
@@ -54,13 +54,13 @@
 					<th>{{$pasien->alamat}}</th>
 					<th>
 						<div align="center">
-							<form action="{{route('pasien.hapus', ['id' => $pasien->id])}}" method="post">
+							<form action="{{route('masterdata.pasien.datapasien.hapus', ['id' => $pasien->id])}}" method="post">
 								{{ csrf_field() }}
-									<a href="{{route('pasien.ubah', $pasien->id)}}" class="btn btn-sm btn-green btn-icon icon-left">
+									<a href="{{route('masterdata.pasien.datapasien.ubah', $pasien->id)}}" class="btn btn-sm btn-green btn-icon icon-left">
 										<i class="entypo-pencil"></i>
 										Ubah
 									</a>
-									<a href="{{route('pasien.lihat', $pasien->id)}}" class="btn btn-sm btn-green btn-icon icon-left">
+									<a href="{{route('masterdata.pasien.datapasien.lihat', $pasien->id)}}" class="btn btn-sm btn-green btn-icon icon-left">
 										<i class="entypo-eye"></i>
 										Lihat
 									</a>
@@ -89,7 +89,7 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12">
-									<form action="{{route('pasien.hapus', ['id' => $pasien->id])}}" method="post">
+									<form action="{{route('masterdata.pasien.datapasien.hapus', ['id' => $pasien->id])}}" method="post">
 								        {{ csrf_field() }}
 										<div class="form-group">
 											<button type="submit" name="simpan" id="simpan" class="btn btn-danger btn-block">
