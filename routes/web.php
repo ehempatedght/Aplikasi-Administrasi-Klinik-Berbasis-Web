@@ -45,8 +45,9 @@ Route::group(['middleware'=> ['auth','role:admin']], function() {
 	//Jadwal
 	Route::group(['prefix'=>'jadwal'], function() {
 		Route::get('/', ['as'=>'jadwal.jadwal','uses'=>'masterdata\JadwalController@getJadwal']);
-		Route::get('/create', ['as'=>'jadwal.create','uses'=>'masterdata\JadwalController@getCreate']);
-		Route::post('/insert', ['as'=>'jadwal.insert','uses'=>'masterdata\JadwalController@addJadwal']);
+		Route::get('/petugas', ['as'=>'jadwal.create','uses'=>'masterdata\JadwalController@getPetugas']);
+		Route::get('/aturjadwal/{id}', ['as'=>'jadwal.atur','uses'=>'masterdata\JadwalController@aturJadwal']);
+		Route::post('/aturjadwal/{id}', ['as'=>'jadwal.add','uses'=>'masterdata\JadwalController@addAtur']);
 	});
 	
 	//Poli

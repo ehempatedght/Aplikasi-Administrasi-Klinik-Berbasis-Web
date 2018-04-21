@@ -3,6 +3,9 @@
 
 <h2>Jadwal Petugas Medis</h2>
 <h5>Menu ini digunakan untuk melihat data jadwal petugas medis</h5><br/>
+<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('jadwal.create') }}">
+	<i class="entypo-cog"></i>Atur Jadwal Petugas Medis
+</a>
 <br/>
 <br/>
 <script type="text/javascript">
@@ -193,13 +196,13 @@
 
 								<tbody>
 									<?php $no=1; ?>
-									@foreach($days[0]->petugas as $petugas_medis)
+									@foreach($days[0]->petugas as $petugas)
 									<tr>
 										<td>{{$no++}}</td>
-										<td><center><span class="label label-primary">{{strtoupper($petugas_medis->category->nama_kategori)}}</span></center></td>
-										<td>{{$petugas_medis->nama}}</td>
-										<td>{{$petugas_medis->senin1}}</td>
-										<td>{{$petugas_medis->senin2}}</td>
+										<td><center><span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span></center></td>
+										<td>{{$petugas->nama}}</td>
+										<td>{{$petugas->senin1}}</td>
+										<td>{{$petugas->senin2}}</td>
 									</tr>
 									@endforeach
 								</tbody>
@@ -219,13 +222,13 @@
 
 								<tbody>
 									<?php $no=1; ?>
-									@foreach($days[1]->petugas as $petugas_medis)
+									@foreach($days[1]->petugas as $petugas)
 									<tr>
 										<td>{{$no++}}</td>
-										<td><center><span class="label label-primary">{{strtoupper($petugas_medis->category->nama_kategori)}}</span></center></td>
-										<td>{{$petugas_medis->nama}}</td>
-										<td>{{$petugas_medis->selasa1}}</td>
-										<td>{{$petugas_medis->selasa2}}</td>
+										<td><center><span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span></center></td>
+										<td>{{$petugas->nama}}</td>
+										<td>{{$petugas->selasa1}}</td>
+										<td>{{$petugas->selasa2}}</td>
 									</tr>
 									@endforeach
 								</tbody>
@@ -246,13 +249,13 @@
 
 								<tbody>
 									<?php $no=1; ?>
-									@foreach($days[2]->petugas as $petugas_medis)
+									@foreach($days[2]->petugas as $petugas)
 									<tr>
 										<td>{{$no++}}</td>
-										<td><center><span class="label label-primary">{{strtoupper($petugas_medis->category->nama_kategori)}}</span></center></td>
-										<td>{{$petugas_medis->nama}}</td>
-										<td>{{$petugas_medis->rabu1}}</td>
-										<td>{{$petugas_medis->rabu2}}</td>
+										<td><center><span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span></center></td>
+										<td>{{$petugas->nama}}</td>
+										<td>{{$petugas->rabu1}}</td>
+										<td>{{$petugas->rabu2}}</td>
 									</tr>
 									@endforeach
 								</tbody>
@@ -272,13 +275,13 @@
 
 							<tbody>
 								<?php $no=1; ?>
-								@foreach($days[3]->petugas as $petugas_medis)
+								@foreach($days[3]->petugas as $petugas)
 								<tr>
 									<td>{{$no++}}</td>
-									<td><center><span class="label label-primary">{{strtoupper($petugas_medis->category->nama_kategori)}}</span></center></td>
-									<td>{{$petugas_medis->nama}}</td>
-									<td>{{$petugas_medis->kamis1}}</td>
-									<td>{{$petugas_medis->kamis2}}</td>
+									<td><center><span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span></center></td>
+									<td>{{$petugas->nama}}</td>
+									<td>{{$petugas->kamis1}}</td>
+									<td>{{$petugas->kamis2}}</td>
 								</tr>
 								@endforeach
 							</tbody>
@@ -298,13 +301,13 @@
 
 						<tbody>
 							<?php $no=1; ?>
-							@foreach($days[4]->petugas as $petugas_medis)
+							@foreach($days[4]->petugas as $petugas)
 							<tr>
 								<td>{{$no++}}</td>
-								<td><center><span class="label label-primary">{{strtoupper($petugas_medis->category->nama_kategori)}}</span></center></td>
-								<td>{{$petugas_medis->nama}}</td>
-								<td>{{$petugas_medis->jumat1}}</td>
-								<td>{{$petugas_medis->jumat2}}</td>
+								<td><center><span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span></center></td>
+								<td>{{$petugas->nama}}</td>
+								<td>{{$petugas->jumat1}}</td>
+								<td>{{$petugas->jumat2}}</td>
 							</tr>
 							@endforeach
 						</tbody>
@@ -324,13 +327,13 @@
 
 						<tbody>
 							<?php $no=1; ?>
-							@foreach($days[5]->petugas as $petugas_medis)
+							@foreach($days[5]->petugas as $petugas)
 							<tr>
 								<td>{{$no++}}</td>
-								<td><center><span class="label label-primary">{{strtoupper($petugas_medis->category->nama_kategori)}}</span></center></td>
-								<td>{{$petugas_medis->nama}}</td>
-								<td>{{$petugas_medis->sabtu1}}</td>
-								<td>{{$petugas_medis->sabtu2}}</td>
+								<td><center><span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span></center></td>
+								<td>{{$petugas->nama}}</td>
+								<td>{{$petugas->sabtu1}}</td>
+								<td>{{$petugas->sabtu2}}</td>
 							</tr>
 							@endforeach
 						</tbody>
@@ -350,13 +353,13 @@
 
 						<tbody>
 							<?php $no=1; ?>
-							@foreach($days[6]->petugas as $petugas_medis)
+							@foreach($days[6]->petugas as $petugas)
 							<tr>
 								<td>{{$no++}}</td>
-								<td><center><span class="label label-primary">{{strtoupper($petugas_medis->category->nama_kategori)}}</span></center></td>
-								<td>{{$petugas_medis->nama}}</td>
-								<td>{{$petugas_medis->minggu1}}</td>
-								<td>{{$petugas_medis->minggu2}}</td>
+								<td><center><span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span></center></td>
+								<td>{{$petugas->nama}}</td>
+								<td>{{$petugas->minggu1}}</td>
+								<td>{{$petugas->minggu2}}</td>
 							</tr>
 							@endforeach
 						</tbody>

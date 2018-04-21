@@ -128,7 +128,7 @@
 					</div>
 
 
-					<div class="form-group">
+					{{-- <div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Hari Praktek</label>
 						<div class="row">
 							<div class="col-md-2">
@@ -202,9 +202,9 @@
 								<br/>
 							</div>
 						</div>
-					</div>
+					</div> --}}
 					<div class="form-group">
-							<label class="col-sm-2 control-label" style="text-align:left; font-size:13px;">&emsp;Upload Photo:
+							<label class="col-sm-3 control-label" style="text-align:left; font-size:13px;">&emsp;Upload Photo:
 								@if (session('error_upload'))
 								<br />
 								<p style="color:red;">

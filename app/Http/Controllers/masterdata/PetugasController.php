@@ -85,7 +85,7 @@ class PetugasController extends Controller
 	        }
 	      } else {
 	        $img ='user_default.png';
-      }
+      	}
 
 		$petugas = Petugas::create([
 			'nama' => $nama,

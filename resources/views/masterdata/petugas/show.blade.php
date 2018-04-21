@@ -127,7 +127,7 @@
 					</div>
 
 
-					<div class="form-group">
+					{{-- <div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Hari Praktek</label>
 						<div class="row">
 							<div class="col-md-2">
@@ -201,10 +201,10 @@
 								<br/>
 							</div>
 						</div>
-					</div>
+					</div> --}}
 
 					<div class="form-group">
-							<label class="col-sm-2 control-label" style="text-align:left; font-size:13px;">&emsp;Upload Photo:
+							<label class="col-sm-3 control-label" style="text-align:left; font-size:13px;">&emsp;Photo:
 								@if (session('error_upload'))
 								<br />
 								<p style="color:red;">
@@ -214,18 +214,18 @@
 							</label>
 							<div class="col-sm-5">
 								<div class="fileinput fileinput-new" data-provides="fileinput" disabled>
-									<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput">
+									<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput" disabled>
 										<img src="{{ asset('petugass/'.$data->img) }}" alt="...">
 									</div>
 									<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px"></div>
-									<div>
+									{{-- <div>
 										<span class="btn btn-white btn-file">
-											<span class="fileinput-new" disabled>Pilih Photo</span>
+											<span class="fileinput-new" disabled>Pilih Photo</span> 
 											<span class="fileinput-exists" disabled>Ubah</span>
 											<input type="file" name="namaFile" accept="image/*">
 										</span>
 										<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput" disabled>Hapus</a>
-									</div>
+									</div> --}}
 								</div>
 							</div>
 							<input type="hidden" name="gambar_lama" value="{{ $data->img }}" />
