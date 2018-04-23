@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use Hash;
 
 class UserController extends Controller
 {
@@ -50,7 +51,7 @@ class UserController extends Controller
             'first_name' => $nama_depan,
             'last_name' => $nama_belakang,
             'email' => $email,
-            'password' => bcrypt($password),
+            'password' => Hash::make($password),
             'admin' => $admin,
             'petugasmedis' => $petugasmedis,
             'vendorobat' => $vendorobat,
@@ -116,7 +117,7 @@ class UserController extends Controller
                 'first_name' => $nama_depan,
                 'last_name' => $nama_belakang,
                 'email' => $email,
-                'password' => bcrypt($password),
+                'password' => Hash::make($password),
                 'admin' => $admin,
                 'petugasmedis' => $petugasmedis,
                 'vendorobat' => $vendorobat,
@@ -132,7 +133,7 @@ class UserController extends Controller
                 'sethonor' => $sethonor
             ]);
 
-            if($password != '') User::where('id', $id)->update(['password'=>bcrypt($password)]);
+            if($password != '') User::where('id', $id)->update(['password'=>Hash::make($password)]);
             return redirect()->route('pengaturan.user.data.index')->with('message','Pengguna berhasil diubah!');
         } else {
             User::where('id', $id)->update([
@@ -142,7 +143,7 @@ class UserController extends Controller
                 'email' => $email
             ]);
 
-            if($password != '') User::where('id', $id)->update(['password'=>bcrypt($password)]);
+            if($password != '') User::where('id', $id)->update(['password'=>Hash::make($password)]);
             return redirect('/');
         }
     }

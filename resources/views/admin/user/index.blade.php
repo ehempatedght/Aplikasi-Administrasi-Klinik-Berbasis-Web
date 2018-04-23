@@ -1,8 +1,8 @@
 @extends('template')
 @section('main')
-<h2 align="center">Daftar User</h2>
+<h2 align="center">Daftar Pengguna</h2>
 <a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('pengaturan.user.data.create') }}">
-	<i class="entypo-user-add" ></i>Tambah User
+	<i class="entypo-user-add" ></i>Tambah Pengguna
 </a>
 <br/>
 <br/>

@@ -16,46 +16,34 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         
-    	$faker 		  = Faker\Factory::create();
-        // $userRole 	  = Role::where('name', '=', 'User')->first();
-        $adminRole 	  = Role::where('name', '=', 'Admin')->first();
-		$permissions  = Permission::all();
-
-	    /**
+        /**
 	     * Tambah Users
 	     *
 	     */
         if (User::where('email', '=', 'admin@admin.com')->first() === null) {
 
 	        $newUser = User::create([
-	            'username'         => 'admin',
+	            'username'     => 'admin',
                 'first_name'   => 'Administrator',
                 'last_name'    => 'admin',
                 'email'        => 'admin@admin.com',
                 'password'     => Hash::make('admin'),
+                'admin'        => 1,
+                'petugasmedis' => 1,
+                'vendorobat'   => 1,
+                'daftarobat'   => 1,
+                'datapoli'     => 1,
+                'pasien'       => 1,
+                'peralatan'    => 1,
+                'rekmedis'     => 1,
+                'rekkeuangan'  => 1,
+                'lapmedis'     => 1,
+                'lapakuntansi' => 1,
+                'setuser'      => 1,
+                'sethonor'     => 1
 	        ]);
 
-	        $newUser->attachRole($adminRole);
-			foreach ($permissions as $permission) {
-				$newUser->attachPermission($permission);
-			}
-
         }
-
-        // if (User::where('email', '=', 'user@user.com')->first() === null) {
-
-	       //  $newUser = User::create([
-	       //      'name'        => $faker->userName,
-        //         'first_name'  => $faker->firstName,
-        //         'last_name'   => $faker->lastName,
-        //         'email'       => 'user@user.com',
-        //         'password'    => Hash::make('password'),
-	       //  ]);
-
-	       //  $newUser;
-	       //  $newUser->attachRole($userRole);
-
-        // }
 
     }
 }

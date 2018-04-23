@@ -95,7 +95,7 @@
 						<label for="field-1" class="col-sm-3 control-label"style="text-align:left;">&emsp;Kata Sandi Baru</label>
 						
 						<div class="col-sm-5">
-							<input type="password" class="form-control" id="password" name="password">
+							<input type="password" class="form-control" id="password" name="password" required>
 						</div>
 					</div>
 
@@ -103,7 +103,7 @@
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Konfirmasi Kata Sandi</label>
 						
 						<div class="col-sm-5">
-							<input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
+							<input type="password" class="form-control" name="password_confirmation" id="password_confirmation" required>
 						</div>
 						<div style="color:red;padding-top: 8px;" id="not_match"></div>
 					</div>
