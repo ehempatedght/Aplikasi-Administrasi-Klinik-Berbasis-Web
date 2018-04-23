@@ -7,8 +7,6 @@ use Validator;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use jeremykenedy\LaravelRoles\Models\Role;
-use jeremykenedy\LaravelRoles\Models\Permission;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller
@@ -20,98 +18,132 @@ class UserController extends Controller
     }
 
     public function create() {
-
-    	$roles = Role::all();
-    	$data = [
-    		'roles' => $roles,
-    	];
-
-    	return view('admin.user.create')->with($data);
+    	return view('admin.user.create');
     }
 
     public function simpan(Request $request) {
+        $data = $request->all();
+        if (!isset($data['role'])) return redirect()->back()->withInput()->with('status','Wajib pilih minimal satu!');
 
-    	  $validator = Validator::make($request->all(),
-    	  	[
-    	  		'username'				=>'required|max:255|unique:users',
-    	  		'first_name'			=>'',
-    	  		'last_name'				=>'',
-    	  		'email'					=>'required|email|max:255|unique:users',
-    	  		'password'				=>'required|min:6|max:20|confirmed',
-    	  		'password_confirmation'	=>'required|same:password',
-    	  		'role'					=>'required',
-    	  	],
-    	  	[
-    	  		  'username.unique'     => trans('auth.userNameTaken'),
-                  'username.required'   => trans('auth.userNameRequired'),
-                  'first_name.required' => trans('auth.fNameRequired'),
-                  'last_name.required'  => trans('auth.lNameRequired'),
-                  'email.required'      => trans('auth.emailRequired'),
-                  'email.email'         => trans('auth.emailInvalid'),
-                  'password.required'   => trans('auth.passwordRequired'),
-                  'password.min'        => trans('Panjang password minimal 6'),
-                  'password.max'        => trans('auth.PasswordMax'),
-                  'role.required'       => trans('auth.roleRequired'),
-    	  	]
-    	  );
+        $nama_depan = $data['first_name'];
+        $nama_belakang = $data['last_name'];
+        $username = $data['username'];
+        $email = $data['email'];
+        $password = $data['password'];
 
-    	  if ($validator->fails()) {
-    	  	return back()->withErrors($validator)->withInput();
-    	  }
+        (isset($data['role']['admin']) ? $admin = "1" : $admin = "0");
+        (isset($data['role']['petugasmedis']) ? $petugasmedis = "1" : $petugasmedis = "0");
+        (isset($data['role']['vendorobat']) ? $vendorobat = "1" : $vendorobat = "0");
+        (isset($data['role']['daftarobat']) ? $daftarobat = "1" : $daftarobat = "0");
+        (isset($data['role']['datapoli']) ? $datapoli = "1" : $datapoli = "0");
+        (isset($data['role']['pasien']) ? $pasien = "1" : $pasien = "0");
+        (isset($data['role']['peralatan']) ? $peralatan = "1" : $peralatan = "0");
+        (isset($data['role']['rekmedis']) ? $rekmedis = "1" : $rekmedis = "0");
+        (isset($data['role']['rekkeuangan']) ? $rekkeuangan = "1" : $rekkeuangan = "0");
+        (isset($data['role']['lapmedis']) ? $lapmedis = "1" : $lapmedis = "0");
+        (isset($data['role']['lapakuntansi']) ? $lapakuntansi = "1" : $lapakuntansi = "0");
+        (isset($data['role']['setuser']) ? $setuser = "1" : $setuser = "0");
+        (isset($data['role']['sethonor']) ? $sethonor = "1" : $sethonor = "0");
 
     	$user = User::create([
-    		'username' => $request->input('username'),
-    		'first_name' => $request->input('first_name'),
-    		'last_name' => $request->input('last_name'),
-    		'email' => $request->input('email'),
-    		'password' => bcrypt($request->input('password')),
-            'token'    => str_random(64),
+    		'username' => $username,
+            'first_name' => $nama_depan,
+            'last_name' => $nama_belakang,
+            'email' => $email,
+            'password' => bcrypt($password),
+            'admin' => $admin,
+            'petugasmedis' => $petugasmedis,
+            'vendorobat' => $vendorobat,
+            'daftarobat' => $daftarobat,
+            'datapoli' => $datapoli,
+            'pasien' => $pasien,
+            'peralatan' => $peralatan,
+            'rekmedis' => $rekmedis,
+            'rekkeuangan' => $rekkeuangan,
+            'lapmedis' => $lapmedis,
+            'lapakuntansi' => $lapakuntansi,
+            'setuser' => $setuser,
+            'sethonor' => $sethonor
     	]);
 
-    	$user->attachRole($request->input('role'));
 
         if ($user) {
-           return redirect()->route('pengaturan.user.data.index')->with('message','User '.$user->username.' berhasil ditambah');
+           return redirect()->route('pengaturan.user.data.index')->with('message','Pengguna '.$user->username.' berhasil ditambah');
         }
     }
 
     public function edit($id) {
-
-        $user = User::find($id);
-        $roles = Role::all();
-
-        foreach ($user->roles as $user_role) {
-            $currentRole = $user_role;
+        if (Auth::user()->admin != '1') {
+            if($id != Auth::user()->id) return redirect()->back();
         }
-
-        $data = [
-            'user'  => $user,
-            'roles' => $roles,
-            'currentRole' => $currentRole,
-        ];
-
-        return view('admin.user.edit')->with($data);
+        $data = User::where('id', $id)->first();
+        return view('admin.user.edit', get_defined_vars());
     }
 
     public function update(Request $request, $id) {
-
-        $user = User::find($id);
         $data = $request->all();
 
-        //Akan dieksekusi jika ingin mengganti password
-        if (!empty($data['ganti_password'])) {
-            $data['password'] = bcrypt($data['ganti_password']);
+        if (Auth::user()->admin != '1') {
+            if (password_verify($data['password0'], User::where('id', $id)->first()->password)) {
+                return redirect()->back()->with('error_1','Password lama salah!');
+            } else {
+                if(!isset($data['role'])) return redirect()->back()->with('status','Wajib pilih minimal satu!');
+            }
         }
+        $nama_depan = $data['first_name'];
+        $nama_belakang = $data['last_name'];
+        $username = $data['username'];
+        $email = $data['email'];
+        $password = $data['password'];
 
-        //Akan dieksekusi jika mengganti role user
-        $userRole = $request->input('role');
-        if ($userRole != null) {
-            $user->detachAllRoles();
-            $user->attachRole($userRole);
-        }
+        (isset($data['role']['admin']) ? $admin = "1" : $admin = "0");
+        (isset($data['role']['petugasmedis']) ? $petugasmedis = "1" : $petugasmedis = "0");
+        (isset($data['role']['vendorobat']) ? $vendorobat = "1" : $vendorobat = "0");
+        (isset($data['role']['daftarobat']) ? $daftarobat = "1" : $daftarobat = "0");
+        (isset($data['role']['datapoli']) ? $datapoli = "1" : $datapoli = "0");
+        (isset($data['role']['pasien']) ? $pasien = "1" : $pasien = "0");
+        (isset($data['role']['peralatan']) ? $peralatan = "1" : $peralatan = "0");
+        (isset($data['role']['rekmedis']) ? $rekmedis = "1" : $rekmedis = "0");
+        (isset($data['role']['rekkeuangan']) ? $rekkeuangan = "1" : $rekkeuangan = "0");
+        (isset($data['role']['lapmedis']) ? $lapmedis = "1" : $lapmedis = "0");
+        (isset($data['role']['lapakuntansi']) ? $lapakuntansi = "1" : $lapakuntansi = "0");
+        (isset($data['role']['setuser']) ? $setuser = "1" : $setuser = "0");
+        (isset($data['role']['sethonor']) ? $sethonor = "1" : $sethonor = "0");
 
-        if($user->update($data)) {
-            return redirect()->route('pengaturan.user.data.index')->with('message','User berhasil diubah');
+        if (Auth::user()->admin == '1') {
+            User::where('id', $id)->update([
+                'username' => $username,
+                'first_name' => $nama_depan,
+                'last_name' => $nama_belakang,
+                'email' => $email,
+                'password' => bcrypt($password),
+                'admin' => $admin,
+                'petugasmedis' => $petugasmedis,
+                'vendorobat' => $vendorobat,
+                'daftarobat' => $daftarobat,
+                'datapoli' => $datapoli,
+                'pasien' => $pasien,
+                'peralatan' => $peralatan,
+                'rekmedis' => $rekmedis,
+                'rekkeuangan' => $rekkeuangan,
+                'lapmedis' => $lapmedis,
+                'lapakuntansi' => $lapakuntansi,
+                'setuser' => $setuser,
+                'sethonor' => $sethonor
+            ]);
+
+            if($password != '') User::where('id', $id)->update(['password'=>bcrypt($password)]);
+            return redirect()->route('pengaturan.user.data.index')->with('message','Pengguna berhasil diubah!');
+        } else {
+            User::where('id', $id)->update([
+                'username' => $username,
+                'first_name' => $nama_depan,
+                'last_name' => $nama_belakang,
+                'email' => $email
+            ]);
+
+            if($password != '') User::where('id', $id)->update(['password'=>bcrypt($password)]);
+            return redirect('/');
         }
     }
     
@@ -119,7 +151,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         if ($user->delete()) {
-            return redirect()->route('pengaturan.user.data.index')->with('message','User '.$user->username.' berhasil dihapus');
+            return redirect()->route('pengaturan.user.data.index')->with('message','Pengguna '.$user->username.' berhasil dihapus');
         }
     }
 

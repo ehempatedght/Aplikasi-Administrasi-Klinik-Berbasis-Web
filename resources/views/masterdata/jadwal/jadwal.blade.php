@@ -128,59 +128,6 @@
 </script>
 <div class="row">
 	<div class="col-md-12">
-		<ul class="nav nav-tabs bordered"><!-- available classes "bordered", "right-aligned" -->
-			<li class="active">
-				<a href="#home" data-toggle="tab">
-					<span class="visible-xs"><i class="entypo-home"></i></span>
-					<span class="hidden-xs">TAMPILKAN BERDASARKAN NAMA PETUGAS MEDIS</span>
-				</a>
-			</li>
-			<li>
-				<a href="#profile" data-toggle="tab">
-					<span class="visible-xs"><i class="entypo-user"></i></span>
-					<span class="hidden-xs">TAMPILKAN BERDASARKAN HARI KERJA</span>
-				</a>
-			</li>
-		</ul>
-		<div class="tab-content">
-			<div class="tab-pane active" id="home">
-					<br/>
-					<table class="table table-bordered datatable" id="table-1">
-						<thead>
-							<tr>
-								<th>No</th>
-								<th>Kategori</th>
-								<th>Nama</th>
-								<th>Senin</th>
-								<th>Selasa</th>
-								<th>Rabu</th>
-								<th>Kamis</th>
-								<th>Jumat</th>
-								<th>Sabtu</th>
-								<th>Minggu</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php $no=1; ?>
-							@foreach($petugass as $petugas)
-							<tr>
-								<td>{{$no++}}</td>
-								<td><span class="label label-primary">{{strtoupper($petugas->category->nama_kategori) }}</span></td>
-								<td>{{$petugas->nama}}</td>
-								<td>{{$petugas->senin1.' - '.$petugas->senin2}}</td>
-								<td>{{$petugas->selasa1.' - '.$petugas->selasa2}}</td>
-								<td>{{$petugas->rabu1.' - '.$petugas->rabu2}}</td>
-								<td>{{$petugas->kamis1.' - '.$petugas->kamis2}}</td>
-								<td>{{$petugas->jumat1.' - '.$petugas->jumat2}}</td>
-								<td>{{$petugas->sabtu1.' - '.$petugas->sabtu2}}</td>
-								<td>{{$petugas->minggu1.' - '.$petugas->minggu2}}</td>
-							</tr>
-							@endforeach
-						</tbody>
-					</table>
-			</div>
-			<br/>
-			<div class="tab-pane" id="profile">
 				<div class="scrollable" data-height="100%">
 							<table class="table table-bordered datatable" id="table-3">
 								<h4 class="modal-title" id="myModalLabel"><strong>{{strtoupper($days[0]->days)}}</strong></h4>
@@ -364,9 +311,7 @@
 							@endforeach
 						</tbody>
 					</table>
-				</div>
-			</div>
-		</div>
+				</di
 	</div>
 </div>
 

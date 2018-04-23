@@ -5,11 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
 
 class User extends Authenticatable
 {
-    use HasRoleAndPermission;
     use Notifiable;
 
     /**
@@ -18,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username','first_name','last_name','email', 'password',
+        'username','first_name','last_name','email','password','admin','petugasmedis','vendorobat','daftarobat','datapoli','pasien','perlatan','rekmedis','rekkeuangan','lapmedis','lapakuntansi','setuser','sethonor'
     ];
 
     /**

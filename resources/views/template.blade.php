@@ -70,15 +70,7 @@
 	<meta name="csrf_token" content="{{ csrf_token() }}">
 
 	<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
-		@role('admin')
-			@include('includes.menu_admin')
-		@endrole
-		{{-- @role('staff')
-			@include('includes.menu_staff')
-		@endrole --}}
-		{{-- @role('keuangan')
-			@include('includes.menu_keuangan')
-		@endrole --}}
+		@include('includes.menu_admin')
 		<div class="main-content" id="app">
 			@yield('main')
 		</div>

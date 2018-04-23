@@ -14,7 +14,7 @@
 Auth::routes();
 Route::get('/', 'HomeController@index');
 
-Route::group(['middleware'=> ['auth','role:admin']], function() {
+Route::group(['middleware'=> ['web','auth']], function() {
 
 	Route::group(['prefix'=>'pengaturan'], function () {
 		//user
@@ -25,13 +25,11 @@ Route::group(['middleware'=> ['auth','role:admin']], function() {
 				Route::post('/save', ['as'=>'pengaturan.user.data.simpan','uses'=>'admin\UserController@simpan']);
 				Route::get('/edit/{id}', ['as'=>'pengaturan.user.data.edit','uses'=>'admin\UserController@edit']);
 				Route::put('/update/{id}', ['as'=>'pengaturan.user.data.update','uses'=>'admin\UserController@update']);
-				Route::delete('/delete/{id}', ['as'=>'pengaturan.user.data.delete', 'uses'=>'admin\UserController@delete']);
+				Route::post('/delete/{id}', ['as'=>'pengaturan.user.data.delete', 'uses'=>'admin\UserController@delete']);
 				Route::get('/cekusername/{username}', ['as'=>'pengaturan.user.data.cek', 'uses'=>'admin\UserController@cekusername']);
 			});
 		});
 	});
-	//Role
-	Route::resource('role','admin\RoleController', ['except'=>'show']);
 	//master data
 	Route::group(['prefix'=>'masterdata'], function () {
 		Route::group(['prefix'=>'petugasmedis'], function() {

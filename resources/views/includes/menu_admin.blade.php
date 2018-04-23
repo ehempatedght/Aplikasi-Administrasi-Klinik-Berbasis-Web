@@ -30,12 +30,14 @@
 			
 		</li>
 		
+		@if(Auth::user()->admin == '1' || Auth::user()->petugasmedis == '1' || Auth::user()->vendorobat == '1' || Auth::user()->daftarobat == '1' ||Auth::user()->datapoli == '1' || Auth::user()->pasien == '1' || Auth::user()->peralatan == '1')
 		<li class="has-sub">
 			<a href="#">
 				<i class="entypo-layout"></i>
 				<span class="title">Master Data</span>
 			</a>
 			<ul>
+				@if(Auth::user()->admin == '1' || Auth::user()->petugasmedis == '1')
 				<li>
 					<a href="#">
 						<span class="title">Petugas Medis</span>
@@ -58,26 +60,34 @@
 						</li> --}}
 					</ul>
 				</li>
+				@endif
 				{{-- <li>
 					<a href="#">
 						<span class="title">Staff Administrasi</span>
 					</a>
 				</li> --}}
+				@if(Auth::user()->vendorobat == '1')
 				<li>
 					<a href="{{route('masterdata.vendorobat.index')}}">
 						<span class="title">Vendor Obat</span>
 					</a>
 				</li>
+				@endif
+				@if(Auth::user()->daftarobat == '1')
 				<li>
 					<a href="{{route('masterdata.daftarobat.index')}}">
 						<span class="title">Daftar Obat</span>
 					</a>
 				</li>
+				@endif
+				@if(Auth::user()->datapoli == '1')
 				<li>
 					<a href="{{route('masterdata.poli.index')}}">
 						<span class="title">Data Poli</span>
 					</a>
 				</li>
+				@endif
+				@if(Auth::user()->pasien == '1')
 				<li>
 					<a href="#">
 						<span class="title">Pasien</span>
@@ -105,6 +115,8 @@
 						</li>
 					</ul>
 				</li>
+				@endif
+				@if(Auth::user()->peralatan == '1')
 				<li class="has-sub">
 					<a href="#">
 						<span class="title">Peralatan</span>
@@ -122,15 +134,18 @@
 						</li>
 					</ul>
 				</li>
+				@endif
 			</ul>
 		</li>
-		
+		@endif
+		@if(Auth::user()->rekmedis == '1' || Auth::user()->rekkeuangan == '1')
 		<li class="has-sub">
 			<a href="#">
 				<i class="entypo-doc-text-inv"></i>
 				<span class="title">Perekaman Aktivitas</span>
 			</a>
 			<ul>
+				@if(Auth::user()->rekmedis == '1')
 				<li>
 					<a href="#">
 						<i class="fa fa-medkit"></i>
@@ -154,6 +169,8 @@
 						</li>
 					</ul>
 				</li>
+				@endif
+				@if(Auth::user()->rekkeuangan == '1')
 				<li>
 					<a href="#">
 						<i class="fa fa-money"></i>
@@ -209,14 +226,18 @@
 						</li>
 					</ul>
 				</li>
+				@endif
 			</ul>
 		</li>
+		@endif
+		@if(Auth::user()->lapmedis == '1' || Auth::user()->lapakuntansi == '1')
 		<li class="has-sub">
 			<a href="#">
 				<i class="entypo-book"></i>
 				<span class="title">Pelaporan</span>
 			</a>
 			<ul>
+				@if(Auth::user()->lapmedis == '1')
 				<li>
 					<a href="#">
 						<i class="fa fa-hospital-o"></i>
@@ -235,7 +256,8 @@
 						</li>
 					</ul>
 				</li>
-
+				@endif
+				@if(Auth::user()->lapakuntansi == '1')
 				<li>
 					<a href="#">
 						<i class="fa fa-bank"></i>
@@ -259,36 +281,34 @@
 						</li>
 					</ul>
 				</li>
+				@endif
 			</ul>
 		</li>
+		@endif
+		@if(Auth::user()->admin == '1' || Auth::user()->setuser == '1' || Auth::user()->sethonor == '1')
 		<li class="has-sub">
 			<a href="#">
 				<i class="entypo-cog"></i>
 				<span class="title">Pengaturan</span>
 			</a>
 			<ul>
+				@if(Auth::user()->admin == '1' || Auth::user()->setuser == '1')
 				<li class="has-sub">
 					<a href="#">
 						<i class="fa fa-user-plus"></i>
-						<span class="title">User</span>
+						<span class="title">Pengguna</span>
 					</a>
 					<ul>
 						<li>
-							<a href="{{route('role.index')}}">
-								<i class="fa fa-group"></i>
-								<span class="title">Group User</span>	
-							</a>
-						</li>
-
-						<li>
 							<a href="{{route('pengaturan.user.data.index')}}">
 								<i class="fa fa-user"></i>
-								<span class="title">Data User</span>	
+								<span class="title">Data Pengguna</span>	
 							</a>
 						</li>
 					</ul>
 				</li>
-
+				@endif
+				@if(Auth::user()->sethonor == '1')
 				<li>
 					<a href="#">
 						<i class="entypo-alert"></i>
@@ -302,14 +322,15 @@
 						</li>
 						<li>
 							<a href="#">
-								<span class="title">Staf Administrasi</span>
+								<span class="title">Staff Administrasi</span>
 							</a>
 						</li>
 					</ul>
 				</li>
+				@endif
 			</ul>
 		</li>
-	
+		@endif
 		<li>
 			<a href="{{ route('logout') }}" onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
