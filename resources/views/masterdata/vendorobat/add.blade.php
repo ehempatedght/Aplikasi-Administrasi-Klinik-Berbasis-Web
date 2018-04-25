@@ -3,7 +3,7 @@
 <h2>Tambah Obat</h2>
 <ol class="breadcrumb bc-3">
 	<li>
-		<a href="{{ route('vendorobat.index') }}"><i class="entypo-home"> Daftar Vendor Obar</i></a>
+		<a href="{{ route('masterdata.vendorobat.index') }}"><i class="entypo-home"> Daftar Vendor Obar</i></a>
 	</li>
 	<li class="active">
 		<strong>Tambah Vendor Obat</strong>

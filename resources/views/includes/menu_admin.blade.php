@@ -37,7 +37,7 @@
 				<span class="title">Master Data</span>
 			</a>
 			<ul>
-				@if(Auth::user()->admin == '1' || Auth::user()->petugasmedis == '1')
+				@if(Auth::user()->petugasmedis == '1')
 				<li>
 					<a href="#">
 						<span class="title">Petugas Medis</span>
@@ -183,12 +183,12 @@
 							</a>
 							<ul>
 								<li>
-									<a href="">
+									<a href="{{route('perekaman_aktivitas.keuangan.penerimaan.donasi_uang.index')}}">
 										<span class="title">Donasi Uang</span>
 									</a>
 								</li>
 								<li>
-									<a href="">
+									<a href="{{route('perekaman_aktivitas.keuangan.penerimaan.donasi_obat.index')}}">
 										<span class="title">Donasi Obat</span>
 									</a>
 								</li>

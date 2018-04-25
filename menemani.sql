@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 23 Apr 2018 pada 01.58
+-- Generation Time: 25 Apr 2018 pada 16.53
 -- Versi Server: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -147,6 +147,56 @@ INSERT INTO `day_petugas` (`id`, `day_id`, `petugas_id`, `created_at`, `updated_
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `donasi_obat`
+--
+
+CREATE TABLE `donasi_obat` (
+  `id` int(11) NOT NULL,
+  `nama_donatur` varchar(50) NOT NULL,
+  `cp` varchar(50) NOT NULL,
+  `hp` varchar(14) DEFAULT NULL,
+  `jns_obt` varchar(50) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `keterangan` text,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `donasi_obat`
+--
+
+INSERT INTO `donasi_obat` (`id`, `nama_donatur`, `cp`, `hp`, `jns_obt`, `jumlah`, `keterangan`, `created_at`, `updated_at`) VALUES
+(2, 'Kimia Farma Updated', 'Valerian', '08127272', 'Cair', 2, 'lorem ipsum dolor sit amet updated', '2018-04-25 14:19:11', '2018-04-25 14:19:11');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `donasi_uang`
+--
+
+CREATE TABLE `donasi_uang` (
+  `id` int(11) NOT NULL,
+  `nama_donatur` varchar(50) NOT NULL,
+  `cp` varchar(50) NOT NULL,
+  `hp` varchar(15) NOT NULL,
+  `jml_donasi` bigint(20) NOT NULL,
+  `keterangan` text,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `donasi_uang`
+--
+
+INSERT INTO `donasi_uang` (`id`, `nama_donatur`, `cp`, `hp`, `jml_donasi`, `keterangan`, `created_at`, `updated_at`) VALUES
+(5, 'Juan Valerian Delima', 'Bastian Delima', '081236264027', 400000000000000000, 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet', '2018-04-25 01:21:54', '2018-04-25 01:21:54'),
+(6, 'Cindy C', 'Cornel', '081818182', 3500000000, 'lorem ipsum dolor sit amet', '2018-04-25 01:22:25', '2018-04-25 01:22:25');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `jenis_obat`
 --
 
@@ -156,16 +206,6 @@ CREATE TABLE `jenis_obat` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `jenis_obat`
---
-
-INSERT INTO `jenis_obat` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Tablet', '2018-04-20 02:00:46', '2018-04-20 02:00:46'),
-(2, 'Injeksi', '2018-04-20 02:01:01', '2018-04-20 02:01:01'),
-(3, 'Cair', '2018-04-20 12:06:41', '2018-04-20 12:06:41'),
-(4, 'Bubuk', '2018-04-21 02:55:10', '2018-04-21 02:55:10');
 
 -- --------------------------------------------------------
 
@@ -180,19 +220,11 @@ CREATE TABLE `jenis_obat_detail` (
   `nama_obat` varchar(55) NOT NULL,
   `satuan` varchar(4) NOT NULL,
   `deskripsi` text,
-  `harga` double NOT NULL,
+  `harga` bigint(20) NOT NULL,
   `stok` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `jenis_obat_detail`
---
-
-INSERT INTO `jenis_obat_detail` (`id`, `kd_jenis`, `jenis_obat_id`, `nama_obat`, `satuan`, `deskripsi`, `harga`, `stok`, `created_at`, `updated_at`) VALUES
-(1, 'JNS001', 1, 'Tablet 2 Update', 'kg', 'lorem ipsum dolor sit amet', 1000000, 24, '2018-04-20 12:04:16', '2018-04-20 12:04:16'),
-(2, 'JNS002', 2, 'injek 1', 'box', 'lorem ipsum dolor sit amet', 1350000, 20, '2018-04-20 12:04:34', '2018-04-20 12:04:34');
 
 -- --------------------------------------------------------
 
@@ -366,7 +398,32 @@ INSERT INTO `laravel_logger_activity` (`id`, `description`, `userType`, `userId`
 (51, 'Logged Out', 'Registered', 1, 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/pengaturan/user/data', 'POST', '2018-04-22 23:52:39', '2018-04-22 23:52:39', NULL),
 (52, 'Logged In', 'Registered', 2, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-04-22 23:52:54', '2018-04-22 23:52:54', NULL),
 (53, 'Logged Out', 'Registered', 2, 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/masterdata/daftarobat/create', 'POST', '2018-04-22 23:54:21', '2018-04-22 23:54:21', NULL),
-(54, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-04-22 23:54:33', '2018-04-22 23:54:33', NULL);
+(54, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-04-22 23:54:33', '2018-04-22 23:54:33', NULL),
+(55, 'Logged Out', 'Registered', 1, 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/pengaturan/user/data/edit/2', 'POST', '2018-04-23 00:09:46', '2018-04-23 00:09:46', NULL),
+(56, 'Failed Login Attempt', 'Guest', NULL, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-04-23 00:10:00', '2018-04-23 00:10:00', NULL),
+(57, 'Failed Login Attempt', 'Guest', NULL, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-04-23 00:10:12', '2018-04-23 00:10:12', NULL),
+(58, 'Failed Login Attempt', 'Guest', NULL, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-04-23 00:10:26', '2018-04-23 00:10:26', NULL),
+(59, 'Failed Login Attempt', 'Guest', NULL, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-04-23 00:10:36', '2018-04-23 00:10:36', NULL),
+(60, 'Failed Login Attempt', 'Guest', NULL, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-04-23 00:11:50', '2018-04-23 00:11:50', NULL),
+(61, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-04-23 00:23:39', '2018-04-23 00:23:39', NULL),
+(62, 'Logged Out', 'Registered', 1, 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/pengaturan/user/data', 'POST', '2018-04-23 00:26:50', '2018-04-23 00:26:50', NULL),
+(63, 'Failed Login Attempt', 'Guest', NULL, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-04-23 00:27:01', '2018-04-23 00:27:01', NULL),
+(64, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-04-23 00:34:42', '2018-04-23 00:34:42', NULL),
+(65, 'Logged Out', 'Registered', 1, 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/pengaturan/user/data', 'POST', '2018-04-23 00:42:01', '2018-04-23 00:42:01', NULL),
+(66, 'Logged In', 'Registered', 2, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-04-23 00:43:18', '2018-04-23 00:43:18', NULL),
+(67, 'Logged Out', 'Registered', 2, 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/', 'POST', '2018-04-23 00:44:28', '2018-04-23 00:44:28', NULL),
+(68, 'Logged In', 'Registered', 2, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-04-23 00:45:09', '2018-04-23 00:45:09', NULL),
+(69, 'Logged Out', 'Registered', 2, 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/', 'POST', '2018-04-23 00:51:00', '2018-04-23 00:51:00', NULL),
+(70, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-04-23 00:51:13', '2018-04-23 00:51:13', NULL),
+(71, 'Logged Out', 'Registered', 1, 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/pengaturan/user/data', 'POST', '2018-04-23 00:59:51', '2018-04-23 00:59:51', NULL),
+(72, 'Logged In', 'Registered', 2, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-04-23 01:00:02', '2018-04-23 01:00:02', NULL),
+(73, 'Logged Out', 'Registered', 2, 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/pengaturan/user/data/create', 'POST', '2018-04-23 01:42:24', '2018-04-23 01:42:24', NULL),
+(74, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0', 'id,en-US;q=0.7,en;q=0.3', 'http://127.0.0.1:8000/login', 'POST', '2018-04-23 01:43:21', '2018-04-23 01:43:21', NULL),
+(75, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-04-23 14:18:15', '2018-04-23 14:18:15', NULL),
+(76, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-04-24 13:38:30', '2018-04-24 13:38:30', NULL),
+(77, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-04-25 00:14:45', '2018-04-25 00:14:45', NULL),
+(78, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-04-25 10:54:23', '2018-04-25 10:54:23', NULL),
+(79, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-04-25 13:46:11', '2018-04-25 13:46:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -451,32 +508,6 @@ CREATE TABLE `password_resets` (
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `permissions`
---
-
-CREATE TABLE `permissions` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `model` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data untuk tabel `permissions`
---
-
-INSERT INTO `permissions` (`id`, `name`, `slug`, `description`, `model`, `created_at`, `updated_at`) VALUES
-(1, 'Can View Users', 'view.users', 'Can view users', 'Permission', '2018-03-19 15:37:07', '2018-03-19 15:37:07'),
-(2, 'Can Create Users', 'create.users', 'Can create new users', 'Permission', '2018-03-19 15:37:07', '2018-03-19 15:37:07'),
-(3, 'Can Edit Users', 'edit.users', 'Can edit users', 'Permission', '2018-03-19 15:37:07', '2018-03-19 15:37:07'),
-(4, 'Can Delete Users', 'delete.users', 'Can delete users', 'Permission', '2018-03-19 15:37:07', '2018-03-19 15:37:07');
 
 -- --------------------------------------------------------
 
@@ -602,8 +633,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `admin`, `petugasmedis`, `vendorobat`, `daftarobat`, `datapoli`, `pasien`, `peralatan`, `rekmedis`, `rekkeuangan`, `lapmedis`, `lapakuntansi`, `setuser`, `sethonor`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'Administrator', 'admin', 'admin@admin.com', '$2y$10$Y5G2i6/jfXqPbeoMaorDYOKUX7usMyTI8pze/ko.7g1TqHFPIbbaW', 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, '0qE1EIsY38MkQMJjiIt3mioIQAW9fdTWGMzjJKOnBS68KxTjvPfq8KvVStBr', '2018-03-19 15:37:10', '2018-04-22 23:56:32'),
-(2, 'bastiandelima', 'Bastian', 'Delima', 'bastiand@mail.com', '$2y$10$KROYtyxcQJPTsO0.Tp1DX.IxDsp4oN4YSpcDBQ3abCnlx07qSJyxS', 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 'Il8ED5frSNFuCKeMNZRuxJgQHSBwDkaITnHQplaTeAb2rppdYKvFynwg8Wnu', '2018-04-22 23:52:28', '2018-04-22 23:52:28');
+(1, 'admin', 'Administrator', 'admin', 'admin@admin.com', '$2y$10$8hMa2Dmp2jLhrXlbVDm/v.zSbY/OqWm3F8ZkrZhqsnnIudupUMrYS', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'wqxaOlQOlZttNlpFtIeS8V4uehL7mrHOCZKkmpwyxfLwv3neOtNqolKZc4mR', '2018-04-23 00:34:08', '2018-04-23 14:37:33'),
+(2, 'bastiandelima', 'Bastian', 'Delima', 'bastiand@mail.com', '$2y$10$BnmgNsImmtBWl4rkcyV/E.AD8gU.oRHvHR1fmX6slq6IoZjEO.FWW', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 'CXXtpkPXkPYTgK89SmWjzrSZNt6ApzdeEhdHMbfDm7aNZcqlnrea7zFCLZMx', '2018-04-23 00:41:52', '2018-04-23 00:59:30');
 
 -- --------------------------------------------------------
 
@@ -673,6 +704,18 @@ ALTER TABLE `day_petugas`
   ADD KEY `day_petugas_petugas_id_index` (`petugas_id`);
 
 --
+-- Indexes for table `donasi_obat`
+--
+ALTER TABLE `donasi_obat`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `donasi_uang`
+--
+ALTER TABLE `donasi_uang`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `jenis_obat`
 --
 ALTER TABLE `jenis_obat`
@@ -731,13 +774,6 @@ ALTER TABLE `pasien`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
-
---
--- Indexes for table `permissions`
---
-ALTER TABLE `permissions`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `permissions_slug_unique` (`slug`);
 
 --
 -- Indexes for table `petugas`
@@ -807,16 +843,28 @@ ALTER TABLE `day_petugas`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `donasi_obat`
+--
+ALTER TABLE `donasi_obat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `donasi_uang`
+--
+ALTER TABLE `donasi_uang`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `jenis_obat`
 --
 ALTER TABLE `jenis_obat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `jenis_obat_detail`
 --
 ALTER TABLE `jenis_obat_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `kategoripasien`
@@ -846,7 +894,7 @@ ALTER TABLE `kota`
 -- AUTO_INCREMENT for table `laravel_logger_activity`
 --
 ALTER TABLE `laravel_logger_activity`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -859,12 +907,6 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `pasien`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `permissions`
---
-ALTER TABLE `permissions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `petugas`

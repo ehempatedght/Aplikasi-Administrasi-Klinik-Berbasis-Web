@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Jenisobat;
 use App\Jenisobatdetail;
+use App\Donasiobat;
 use Validator;
 use Response;
 use Illuminate\Support\Facades\Input;
@@ -82,7 +83,7 @@ class JenisobatController extends Controller
 
 	public function getEdit($id) {
 		$data = Jenisobatdetail::find($id);
-		$jenisobat =Jenisobat::get();
+		$jenisobat = Donasiobat::get();
 		return view('masterdata.obat.get_edit', get_defined_vars());
 	}
 
@@ -146,7 +147,7 @@ class JenisobatController extends Controller
 	}
 
 	public function KdObat($id) {
-		$kode = Jenisobat::where('id', $id)->count();
+		$kode = Donasiobat::where('id', $id)->count();
 		return 'JNS00'.$id;
 	}
 

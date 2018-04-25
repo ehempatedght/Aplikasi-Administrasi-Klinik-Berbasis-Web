@@ -1,7 +1,7 @@
 @extends('template')
 @section('main')
 <?php
-$jenis_obats = \App\Jenisobat::all();
+$jenis_obats = \App\Donasiobat::all();
 ?>
 <h2>Tambah Obat</h2>
 <ol class="breadcrumb bc-3">
@@ -40,7 +40,7 @@ $jenis_obats = \App\Jenisobat::all();
 										<select name="jenis_obat_id[0]" class="form-control" id="id" required>
 											<option selected="selected" disabled value="Pilih">Pilih Jenis</option>
 												@foreach ($jenis_obats as $jenis_obat)
-													<option value="{{$jenis_obat->id}}">{{$jenis_obat->name}}</option>
+													<option value="{{$jenis_obat->id}}">{{$jenis_obat->jns_obt}}</option>
 												@endforeach
 										</select>
 									</div>

@@ -21,4 +21,8 @@ class Jenisobatdetail extends Model
     public function vendorobat() {
         return $this->belongsTo('App\Vendorobat');
     }
+
+    public function donasiobat() {
+        return $this->belongsTo('App\Donasiobat');
+    }
 }

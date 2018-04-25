@@ -1,7 +1,7 @@
 @extends('template')
 @section('main')
 <?php
-$jenis_obats = \App\Jenisobat::all();
+$jenis_obats = \App\Donasiobat::all();
 ?>
 <h2>Tambah Obat</h2>
 <ol class="breadcrumb bc-3">
@@ -41,7 +41,7 @@ $jenis_obats = \App\Jenisobat::all();
 											<option></option>
 											<optgroup label="Pilih Jenis Obat">
 												@foreach ($jenis_obats as $jenis_obat)
-													<option value="{{$jenis_obat->id}}" @if($data->jenis_obat_id == $jenis_obat->id) selected @endif>{{$jenis_obat->name}}</option>
+													<option value="{{$jenis_obat->id}}" @if($data->jenis_obat_id == $jenis_obat->id) selected @endif>{{$jenis_obat->jns_obt}}</option>
 												@endforeach
 											</optgroup>
 										</select>

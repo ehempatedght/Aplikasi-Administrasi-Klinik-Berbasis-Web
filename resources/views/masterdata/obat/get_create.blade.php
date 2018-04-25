@@ -1,7 +1,7 @@
 @extends('template')
 @section('main')
 <?php
-$jenis_obats = \App\Jenisobat::all();
+$jenis_obats = \App\Donasiobat::all();
 ?>
 <h2>Tambah Obat</h2>
 <ol class="breadcrumb bc-3">
@@ -12,9 +12,9 @@ $jenis_obats = \App\Jenisobat::all();
 		<strong>Tambah Jenis Obat</strong>
 	</li>
 </ol>
-<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('masterdata.daftarobat.jenis')}}">
+{{-- <a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('masterdata.daftarobat.jenis')}}">
 	<i class="entypo-plus"></i>Tambah Jenis Obat
-</a>
+</a> --}}
 <br/>
 @if (count($errors) > 0)
 <div class="alert alert-danger">
@@ -41,7 +41,7 @@ $jenis_obats = \App\Jenisobat::all();
 											<option></option>
 											<optgroup label="Pilih Jenis Obat">
 												@foreach ($jenis_obats as $jenis_obat)
-													<option value="{{$jenis_obat->id}}">{{$jenis_obat->name}}</option>
+													<option value="{{$jenis_obat->id}}">{{$jenis_obat->jns_obt}}</option>
 												@endforeach
 											</optgroup>
 										</select>
@@ -170,7 +170,7 @@ $jenis_obats = \App\Jenisobat::all();
 			'<option></option>' +
 			'<optgroup label="Pilih Jenis Obat">' +
 			'@foreach ($jenis_obats as $jenis_obat)' +
-			'<option class="kd_jn" value="{{$jenis_obat->id}}">{{$jenis_obat->name}}</option>' +
+			'<option class="kd_jn" value="{{$jenis_obat->id}}">{{$jenis_obat->jns_obt}}</option>' +
 			'@endforeach' +
 			'</optgroup>' +
 			'</select>' +

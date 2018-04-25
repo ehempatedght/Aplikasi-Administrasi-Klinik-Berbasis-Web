@@ -15,7 +15,6 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 
 Route::group(['middleware'=> ['web','auth']], function() {
-
 	Route::group(['prefix'=>'pengaturan'], function () {
 		//user
 		Route::group(['prefix'=>'user'], function() {
@@ -52,7 +51,7 @@ Route::group(['middleware'=> ['web','auth']], function() {
 				Route::post('/aturjadwal/{id}', ['as'=>'masterdata.petugasmedis.jadwal.add','uses'=>'masterdata\JadwalController@addAtur']);
 			});
 		});
-		
+
 		//Poli
 		Route::group(['prefix' => 'poli'], function () {
 			Route::get('/', ['as'=>'masterdata.poli.index','uses'=>'masterdata\PoliController@getPoli']);
@@ -60,7 +59,6 @@ Route::group(['middleware'=> ['web','auth']], function() {
 			Route::post('/update/{id}', ['as'=>'masterdata.poli.update','uses'=>'masterdata\PoliController@doUpdate']);
 			Route::post('/hapus/{id}',['as'=>'masterdata.poli.hapus','uses'=>'masterdata\PoliController@doDelete']);
 		});
-
 		
 		Route::group(['prefix'=>'pasien'], function() {
 			//Kategori Pasien
@@ -101,13 +99,6 @@ Route::group(['middleware'=> ['web','auth']], function() {
 			});
 		});
 		
-		//Pemeriksaan
-		 // Route::group(['prefix' => 'pemeriksaan'], function () {
-		 // 	Route::get('/', ['as'=>'masterdata.pemeriksaan.index','uses'=>'masterdata\PemeriksaanController@getIndex']);
-		 // 	Route::get('/create', ['as'=>'masterdata.pemeriksaan.create','uses'=>'masterdata\PemeriksaanController@getCreate']);
-		 // 	Route::post('/insert', ['as'=>'masterdata.pemeriksaan.masukkan','uses'=>'masterdata\PemeriksaanController@doMasukkan']);
-		 // });
-
 		//peralatan
 		Route::group(['prefix'=>'peralatan'], function () {
 			// medis
@@ -152,14 +143,47 @@ Route::group(['middleware'=> ['web','auth']], function() {
 			Route::post('/update/{nama_vendor}', ['as'=>'masterdata.vendorobat.update', 'uses'=>'masterdata\VendorobatController@doUpdate']);
 		});
 	});
-});
 
+	//perekeman aktivitas
+	Route::group(['prefix'=>'perekaman_aktivitas'], function() {
+		//keuangan
+		Route::group(['prefix'=>'keuangan'], function () {
+			Route::group(['prefix'=>'penerimaan'], function() {
+				Route::group(['prefix'=>'donasi_uang'], function() {
+					Route::get('/', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_uang.index','uses'=>'rekam_aktivitas\keuangan\DonasiuangController@getIndex']);
+					Route::get('/create', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_uang.create','uses'=>'rekam_aktivitas\keuangan\DonasiuangController@getCreate']);
+					Route::post('/save', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_uang.save','uses'=>'rekam_aktivitas\keuangan\DonasiuangController@save']);
+					Route::get('/show/{id}', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_uang.show','uses'=>'rekam_aktivitas\keuangan\DonasiuangController@show']);
+					Route::get('/edit/{id}', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_uang.edit','uses'=>'rekam_aktivitas\keuangan\DonasiuangController@edit']);
+					Route::post('/update/{id}', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_uang.update','uses'=>'rekam_aktivitas\keuangan\DonasiuangController@update']);
+					Route::post('/delete/{id}', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_uang.delete','uses'=>'rekam_aktivitas\keuangan\DonasiuangController@doDelete']);
 
-Route::group(['middleware'=>['auth','role:staff']], function() {
-	
-});
+				});
 
-Route::group(['middleware'=>['auth','role:keuangan']], function() {
+				Route::group(['prefix'=>'donasi_obat'], function () {
+					Route::get('/', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_obat.index','uses'=>'rekam_aktivitas\keuangan\DonasiobatController@getIndex']);
+					Route::get('/create', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_obat.create','uses'=>'rekam_aktivitas\keuangan\DonasiobatController@getCreate']);
+					Route::post('/save', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_obat.save','uses'=>'rekam_aktivitas\keuangan\DonasiobatController@save']);
+					Route::get('/show/{id}', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_obat.show','uses'=>'rekam_aktivitas\keuangan\DonasiobatController@show']);
+					Route::get('/edit/{id}', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_obat.edit','uses'=>'rekam_aktivitas\keuangan\DonasiobatController@edit']);
+					Route::post('/update/{id}', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_obat.update','uses'=>'rekam_aktivitas\keuangan\DonasiobatController@update']);
+					Route::post('/delete/{id}', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_obat.delete','uses'=>'rekam_aktivitas\keuangan\DonasiobatController@delete']);
+				});
+			});
+		});
 
+		//medis
+		Route::group(['prefix'=>'medis'], function() {
+			Route::group(['prefix'=>'pendaftaran'], function () {
+
+			});
+			Route::group(['prefix'=>'pemeriksaan'], function () {
+
+			});
+			Route::group(['prefix'=>'pembelian_obat'], function () {
+
+			});
+		});
+	});
 });
 
