@@ -24,7 +24,7 @@
 							'csvHtml5',
 							'pdfHtml5'
 						]
-					} );
+					});
 						} );
 		</script>
 		<table class="table table-bordered datatable" id="table-1">

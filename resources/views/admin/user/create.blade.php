@@ -215,9 +215,9 @@
 	
 function cekUsername(){
 	var username = $('#username').val();
-	$.get(home_url + '/pengaturan/user/data/cekusername/' + username, function(data){
+	$.get(home_url + '/pengaturan/pengguna/cekusername/' + username, function(data){
 		if(data == 'Username sudah digunakan'){
-			$('#avaibility').text(data);
+			$('#avaibility').val(data);
 			$('#save').prop('disabled', true);
 		}else if(data == '0'){
 			$('#avaibility').text(' ');

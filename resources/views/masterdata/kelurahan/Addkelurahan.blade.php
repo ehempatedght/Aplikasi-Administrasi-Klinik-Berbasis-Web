@@ -51,7 +51,7 @@
 		<hr />
 		<ol class="breadcrumb bc-3" >
 			<li>
-				<a href="{{route('kelurahan.index')}}"><i class="fa fa-home"></i>Data Kelurahan</a>
+				<a href="{{route('masterdata.pasien.kelurahan.index')}}"><i class="fa fa-home"></i>Data Kelurahan</a>
 			</li>
 			<li class="active">
 				<strong>Tambah Data Kelurahan</strong>
@@ -59,7 +59,7 @@
 		</ol>
 		<div class="panel panel-primary" data-collapsed="0">
 			<div class="panel-body">
-				<form role="form" class="form-horizontal" action="{{ route('kelurahan.insert') }}" method="post">
+				<form role="form" class="form-horizontal" action="{{ route('masterdata.pasien.kelurahan.insert') }}" method="post">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<div class="row">
@@ -115,7 +115,7 @@
 						Simpan
 						<i class="entypo-check"></i>
 						</button>
-						<a href="{{ route('kelurahan.index') }}" class="btn btn-red btn-icon icon-left">
+						<a href="{{ route('masterdata.pasien.kelurahan.index') }}" class="btn btn-red btn-icon icon-left">
 								Kembali
 							<i class="entypo-cancel"></i>
 						</a>
@@ -170,7 +170,7 @@
 						</div>
 						<div class="row">
 							<div class="col-md-12">
-								<form action="{{route('kelurahan.kota')}}" method="post">
+								<form action="{{route('masterdata.pasien.kelurahan.kota')}}" method="post">
 									@csrf
 								<div class="form-group">
 									<br/>
@@ -237,7 +237,7 @@
 					<div class="row">
 						<br/>
 						<div class="col-md-6">
-							<form action="{{route('kelurahan.kecamatan')}}" method="post">
+							<form action="{{route('masterdata.pasien.kelurahan.kecamatan')}}" method="post">
 								@csrf
 								<div class="form-group">
 									<label for="field-1" class="control-label">Kota</label>

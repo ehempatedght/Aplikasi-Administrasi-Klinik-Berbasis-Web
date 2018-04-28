@@ -59,10 +59,10 @@
 										<i class="entypo-eye"></i>
 										Lihat
 									</a>
-									<button type="submit" name="simpan" id="simpan" class="btn btn-sm btn-danger btn-icon icon-left">
-										<i class="entypo-trash"></i>
-										Hapus
-									</button>
+									<button type="submit" class="btn btn-sm btn-danger btn-icon icon-left" onclick="return confirm('ANDA YAKIN AKAN MENGHAPUS DONATUR INI?')">
+                    					<i class="entypo-trash"> </i>
+                    					Hapus
+                  					</button>
 							</form>
 						</div>
 					</th>

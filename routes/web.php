@@ -17,18 +17,17 @@ Route::get('/', 'HomeController@index');
 Route::group(['middleware'=> ['web','auth']], function() {
 	Route::group(['prefix'=>'pengaturan'], function () {
 		//user
-		Route::group(['prefix'=>'user'], function() {
-			Route::group(['prefix'=>'data'], function() {
-				Route::get('/', ['as'=>'pengaturan.user.data.index','uses'=>'admin\UserController@index']);
-				Route::get('/create', ['as'=>'pengaturan.user.data.create','uses'=>'admin\UserController@create']);
-				Route::post('/save', ['as'=>'pengaturan.user.data.simpan','uses'=>'admin\UserController@simpan']);
-				Route::get('/edit/{id}', ['as'=>'pengaturan.user.data.edit','uses'=>'admin\UserController@edit']);
-				Route::put('/update/{id}', ['as'=>'pengaturan.user.data.update','uses'=>'admin\UserController@update']);
-				Route::post('/delete/{id}', ['as'=>'pengaturan.user.data.delete', 'uses'=>'admin\UserController@delete']);
-				Route::get('/cekusername/{username}', ['as'=>'pengaturan.user.data.cek', 'uses'=>'admin\UserController@cekusername']);
-			});
+		Route::group(['prefix'=>'pengguna'], function() {
+			Route::get('/', ['as'=>'pengaturan.user.data.index','uses'=>'admin\UserController@index']);
+			Route::get('/create', ['as'=>'pengaturan.user.data.create','uses'=>'admin\UserController@create']);
+			Route::post('/save', ['as'=>'pengaturan.user.data.simpan','uses'=>'admin\UserController@simpan']);
+			Route::get('/edit/{id}', ['as'=>'pengaturan.user.data.edit','uses'=>'admin\UserController@edit']);
+			Route::put('/update/{id}', ['as'=>'pengaturan.user.data.update','uses'=>'admin\UserController@update']);
+			Route::post('/delete/{id}', ['as'=>'pengaturan.user.data.delete', 'uses'=>'admin\UserController@delete']);
+			Route::get('/cekusername/{username}', ['as'=>'pengaturan.user.data.cek', 'uses'=>'admin\UserController@cekusername']);
 		});
 	});
+	
 	//master data
 	Route::group(['prefix'=>'masterdata'], function () {
 		Route::group(['prefix'=>'petugasmedis'], function() {
@@ -168,6 +167,15 @@ Route::group(['middleware'=> ['web','auth']], function() {
 					Route::get('/edit/{id}', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_obat.edit','uses'=>'rekam_aktivitas\keuangan\DonasiobatController@edit']);
 					Route::post('/update/{id}', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_obat.update','uses'=>'rekam_aktivitas\keuangan\DonasiobatController@update']);
 					Route::post('/delete/{id}', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_obat.delete','uses'=>'rekam_aktivitas\keuangan\DonasiobatController@delete']);
+				});
+
+				Route::group(['prefix'=>'biaya_pendaftaran'], function() {
+					Route::get('/', ['as'=>'penerimaan.biaya.index','uses'=>'rekam_aktivitas\keuangan\BiayapendaftaranController@index']);
+					Route::get('/create', ['as'=>'penerimaan.biaya.create','uses'=>'rekam_aktivitas\keuangan\BiayapendaftaranController@create']);
+					Route::post('/save', ['as'=>'penerimaan.biaya.save','uses'=>'rekam_aktivitas\keuangan\BiayapendaftaranController@save']);
+					Route::get('/edit/{id}', ['as'=>'penerimaan.biaya.edit','uses'=>'rekam_aktivitas\keuangan\BiayapendaftaranController@edit']);
+					Route::post('/update/{id}', ['as'=>'penerimaan.biaya.update','uses'=>'rekam_aktivitas\keuangan\BiayapendaftaranController@update']);
+					Route::post('/delete/{id}', ['as'=>'penerimaan.biaya.delete','uses'=>'rekam_aktivitas\keuangan\BiayapendaftaranController@doDelete']);
 				});
 			});
 		});

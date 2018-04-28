@@ -12,9 +12,9 @@ $jenis_obats = \App\Donasiobat::all();
 		<strong>Tambah Jenis Obat</strong>
 	</li>
 </ol>
-<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('masterdata.daftarobat.jenis')}}">
+{{-- <a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('masterdata.daftarobat.jenis')}}">
 	<i class="entypo-plus"></i>Tambah Jenis Obat
-</a>
+</a> --}}
 <br/>
 @if (count($errors) > 0)
 <div class="alert alert-danger">

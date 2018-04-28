@@ -193,7 +193,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="">
+									<a href="{{route('penerimaan.biaya.index')}}">
 										<span class="title">Biaya Pendaftaran</span>
 									</a>
 								</li>
@@ -285,27 +285,19 @@
 			</ul>
 		</li>
 		@endif
-		@if(Auth::user()->admin == '1' || Auth::user()->setuser == '1' || Auth::user()->sethonor == '1')
+		@if(Auth::user()->setuser == '1' || Auth::user()->sethonor == '1')
 		<li class="has-sub">
 			<a href="#">
 				<i class="entypo-cog"></i>
 				<span class="title">Pengaturan</span>
 			</a>
 			<ul>
-				@if(Auth::user()->admin == '1' || Auth::user()->setuser == '1')
-				<li class="has-sub">
-					<a href="#">
+				@if(Auth::user()->setuser == '1')
+				<li>
+					<a href="{{route('pengaturan.user.data.index')}}">
 						<i class="fa fa-user-plus"></i>
 						<span class="title">Pengguna</span>
 					</a>
-					<ul>
-						<li>
-							<a href="{{route('pengaturan.user.data.index')}}">
-								<i class="fa fa-user"></i>
-								<span class="title">Data Pengguna</span>	
-							</a>
-						</li>
-					</ul>
 				</li>
 				@endif
 				@if(Auth::user()->sethonor == '1')

@@ -2,7 +2,7 @@
 @section('main')
 <h2>Data Kelurahan</h2>
 <h5>Menu ini digunakan untuk menambahkan data kelurahan</h5><br/>
-<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('kelurahan.create') }}">
+<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('masterdata.pasien.kelurahan.create') }}">
 	<i class="entypo-user-add"></i>Tambah Data Kelurahan
 </a>
 <br/>
@@ -52,7 +52,7 @@
 						<div align="center">
 							{{-- <form action="{{route('kelurahan.delete', ['id'=>$kelurahan->id])}}" method="post">
 								@csrf --}}
-								<a href="{{route('kelurahan.edit', ['id'=>$kelurahan->id]) }}" class="btn btn-sm btn-green btn-icon icon-left">
+								<a href="{{route('masterdata.pasien.kelurahan.edit', ['id'=>$kelurahan->id]) }}" class="btn btn-sm btn-green btn-icon icon-left">
 										<i class="entypo-pencil"></i>
 									Ubah
 								</a>
@@ -81,7 +81,7 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12">
-									<form action="{{route('kelurahan.delete', ['id'=>$kelurahan->id])}}" method="post">
+									<form action="{{route('masterdata.pasien.kelurahan.delete', ['id'=>$kelurahan->id])}}" method="post">
 										@csrf
 										<div class="form-group">
 											<button type="submit" name="simpan" id="simpan" class="btn btn-danger btn-block">

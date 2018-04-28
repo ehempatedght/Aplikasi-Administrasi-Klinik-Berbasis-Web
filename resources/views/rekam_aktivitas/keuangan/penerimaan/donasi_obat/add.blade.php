@@ -1,6 +1,6 @@
 @extends('template')
 @section('main')
-<h2>Tambah Data Poli</h2>
+<h2>Tambah Donasi Obat</h2>
 <ol class="breadcrumb bc-3">
 	<li>
 		<a href="{{ route('perekaman_aktivitas.keuangan.penerimaan.donasi_obat.index') }}"><i class="entypo-home"> Daftar Donasi Uang</i></a>

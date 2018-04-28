@@ -164,7 +164,7 @@ $jenis_obats = \App\Donasiobat::all();
 			'<select name="jenis_obat_id['+loop+']" class="form-control kode" id="id">' +
 			'<option selected="selected" disabled value="Pilih">Pilih Jenis</option>' +
 			'@foreach ($jenis_obats as $jenis_obat)' +
-			'<option class="kd_jn" value="{{$jenis_obat->id}}">{{$jenis_obat->name}}</option>' +
+			'<option class="kd_jn" value="{{$jenis_obat->id}}">{{$jenis_obat->jns_obt}}</option>' +
 			'@endforeach' +
 			'</select>' +
 			'</div>' +
