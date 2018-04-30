@@ -18,4 +18,8 @@ class Category extends Model
      public function petugas() {
      	return $this->hasMany('App\Petugas');
      }
+
+     public function honor() {
+        return $this->hasMany('App\Honor');
+     }
 }

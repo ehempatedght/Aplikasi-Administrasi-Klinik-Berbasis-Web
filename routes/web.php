@@ -178,20 +178,42 @@ Route::group(['middleware'=> ['web','auth']], function() {
 					Route::post('/delete/{id}', ['as'=>'penerimaan.biaya.delete','uses'=>'rekam_aktivitas\keuangan\BiayapendaftaranController@doDelete']);
 				});
 			});
+
+			Route::group(['prefix'=>'pengeluaran'], function() {
+				Route::group(['prefix'=>'honor'], function() {
+					Route::get('/', ['as'=>'pengeluaran.honor.index','uses'=>'rekam_aktivitas\keuangan\HonorController@index']);
+					Route::get('/create', ['as'=>'pengeluaran.honor.create','uses'=>'rekam_aktivitas\keuangan\HonorController@create']);
+					Route::post('/save', ['as'=>'pengeluaran.honor.save','uses'=>'rekam_aktivitas\keuangan\HonorController@save']);
+					Route::get('/edit/{id}', ['as'=>'pengeluaran.honor.edit','uses'=>'rekam_aktivitas\keuangan\HonorController@edit']);
+					Route::post('/update/{id}', ['as'=>'pengeluaran.honor.update','uses'=>'rekam_aktivitas\keuangan\HonorController@update']);
+					Route::get('/show/{id}', ['as'=>'pengeluaran.honor.show','uses'=>'rekam_aktivitas\keuangan\HonorController@show']);
+					Route::post('/delete/{id}', ['as'=>'pengeluaran.honor.delete','uses'=>'rekam_aktivitas\keuangan\HonorController@delete']);
+				});
+
+				Route::group(['prefix'=>'operasional'], function() {
+					Route::get('/', ['as'=>'pengeluaran.operasional.index','uses'=>'rekam_aktivitas\keuangan\OperasionalController@index']);
+					Route::get('/create', ['as'=>'pengeluaran.operasional.create','uses'=>'rekam_aktivitas\keuangan\OperasionalController@create']);
+					Route::post('/save', ['as'=>'pengeluaran.operasional.save','uses'=>'rekam_aktivitas\keuangan\OperasionalController@save']);
+					Route::get('/edit/{tgl}', ['as'=>'pengeluaran.operasional.edit','uses'=>'rekam_aktivitas\keuangan\OperasionalController@edit']);
+					Route::post('/update/{tgl}', ['as'=>'pengeluaran.operasional.update','uses'=>'rekam_aktivitas\keuangan\OperasionalController@update']);
+					Route::get('/show/{tgl}', ['as'=>'pengeluaran.operasional.show','uses'=>'rekam_aktivitas\keuangan\OperasionalController@show']);
+					Route::post('/delete/{tgl}', ['as'=>'pengeluaran.operasional.delete','uses'=>'rekam_aktivitas\keuangan\OperasionalController@doDelete']);
+				});
+			});
 		});
 
 		//medis
-		Route::group(['prefix'=>'medis'], function() {
-			Route::group(['prefix'=>'pendaftaran'], function () {
+		// Route::group(['prefix'=>'medis'], function() {
+		// 	Route::group(['prefix'=>'pendaftaran'], function () {
 
-			});
-			Route::group(['prefix'=>'pemeriksaan'], function () {
+		// 	});
+		// 	Route::group(['prefix'=>'pemeriksaan'], function () {
 
-			});
-			Route::group(['prefix'=>'pembelian_obat'], function () {
+		// 	});
+		// 	Route::group(['prefix'=>'pembelian_obat'], function () {
 
-			});
-		});
+		// 	});
+		// });
 	});
 });
 

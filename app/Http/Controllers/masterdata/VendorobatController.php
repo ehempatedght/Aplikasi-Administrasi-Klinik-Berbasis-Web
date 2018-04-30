@@ -92,7 +92,7 @@ class VendorobatController extends Controller
                 'catatan' => $request->catatan[$i]
             ]); 
         }
-
+        
         return redirect()->route('masterdata.vendorobat.index')->with('message','Vendor berhasil diupdate!');
     }
 

@@ -208,7 +208,7 @@
 							</a>
 							<ul>
 								<li>
-									<a href="">
+									<a href="{{route('pengeluaran.honor.index')}}">
 										<span class="title">Honor</span>
 									</a>
 								</li>
@@ -218,7 +218,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="">
+									<a href="{{route('pengeluaran.operasional.index')}}">
 										<span class="title">Operasional</span>
 									</a>
 								</li>
