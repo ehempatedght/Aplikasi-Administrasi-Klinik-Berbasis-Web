@@ -25,4 +25,8 @@ class Jenisobatdetail extends Model
     public function donasiobat() {
         return $this->belongsTo('App\Donasiobat');
     }
+    
+    public function pembeli() {
+        return $this->hasMany('App\Pembelian');
+    }
 }

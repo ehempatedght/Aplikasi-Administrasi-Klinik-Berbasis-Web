@@ -8,13 +8,17 @@ class Honor extends Model
 {
     protected $table = 'honor';
     protected $fillable = [
-    	'tgl','category_id','nama','jumlah','jam','total'
+    	'tgl','category_id','petugas_id','jumlah','jam','total'
     ];
     protected $hidden = [
     	'created_at','updated_at'
     ];
 
     public function category() {
-    	return $this->belongsTo('App\Category');
+    	return $this->belongsTo('App\Category','category_id');
+    }
+
+    public function petugas() {
+        return $this->belongsTo('App\Petugas','petugas_id');
     }
 }

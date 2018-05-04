@@ -213,7 +213,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="">
+									<a href="{{route('pengeluaran.pembelian.index')}}">
 										<span class="title">Pembelian Obat</span>
 									</a>
 								</li>

@@ -198,7 +198,7 @@
 							<div class="checkbox">
 								<label>
 									<input type="checkbox" class="check" name="role[setuser]" @if($data->setuser == '1') checked @endif>
-									User
+									Pengguna
 								</label>
 							</div>
 							<div class="checkbox">

@@ -22,13 +22,13 @@
 	<div class="col-md-12">
 		<div class="panel panel-primary" data-collapsed="0">
 			<div class="panel-body">
-				<form role="form" class="form-horizontal" action="{{ route('pengeluaran.pembelian.update', $data->id) }}" method="post">
+				<form role="form" class="form-horizontal" action="{{ route('pengeluaran.pembelian.save') }}" method="post">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tanggal</label>
 						<div class="col-sm-5">
 							<div class="input-group">
-								<input type="text" class="form-control datepicker" name="tgl" data-format="dd MM yyyy" placeholder="tanggal" required="" value="{{ date("d M Y", strtotime($data->tgl)) }}">
+								<input type="text" class="form-control datepicker" name="tgl" data-format="dd MM yyyy" placeholder="tanggal" required="">
 										
 								<div class="input-group-addon">
 									<a href="#"><i class="entypo-calendar"></i></a>
@@ -39,9 +39,9 @@
 					<div id="ket_1">
 						<div class="form-group">
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Vendor</label>
-							<input type="hidden" name="vendor_id" id="vendor_id" value="{{$data->vendor_id}}">
+							<input type="hidden" name="vendor_id[]">
 							<div class="col-sm-5">
-								<input type="text" class="form-control" id="vendor_1" name="vendor" placeholder="nama vendor" value="{{$data->vendor->nama_vendor}}" required readonly/>
+								<input type="text" class="form-control" id="vendor_1" name="vendor" placeholder="nama vendor" value="{{ old('nama vendor') }}" required readonly/>
 							</div>
 							<a class="btn btn-white" href="javascript:;" onclick="jQuery('#modal-5').modal('show', {backdrop: 'static'}); ">	
 	                       		<i class="entypo-search" ></i>        
@@ -50,9 +50,9 @@
 						
 						<div class="form-group">
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Obat/Barang</label>
-							<input type="hidden" name="obat_id" id="obat_id" value="{{$data->obat_id}}">
+							<input type="hidden" name="obat_id[]">
 							<div class="col-sm-5">
-								<input type="text" class="form-control" id="obat_1" name="obat" placeholder="nama obat" value="{{$data->jenisobat->nama_obat}}" required readonly/>
+								<input type="text" class="form-control" id="obat_1" name="obat" placeholder="nama obat" value="{{ old('nama obat') }}" required readonly/>
 							</div>
 							<a class="btn btn-white" href="javascript:;" onclick="jQuery('#modal-6').modal('show', {backdrop: 'static'}); ">	
 	                       		<i class="entypo-search" ></i>        
@@ -63,7 +63,7 @@
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jumlah</label>
 							
 							<div class="col-sm-5">
-								<input type="text" class="form-control numberValidation jumlah" id="jumlah_1" name="jumlah" onkeyup="hitung_total()" placeholder="jumlah" value="{{$data->jumlah}}" required readonly />
+								<input type="text" class="form-control numberValidation jumlah" id="jumlah_1" name="jumlah[]" onkeyup="hitung_total()" placeholder="jumlah" value="0" required />
 							</div>
 						</div>
 
@@ -71,7 +71,7 @@
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Harga</label>
 							
 							<div class="col-sm-5">
-								<input type="text" class="form-control numbers harga" id="harga_1" name="harga" placeholder="harga" value="{{$data->harga}}" autocomplete="off" onkeyup="hitung_total()" required readonly />
+								<input type="text" class="form-control numbers harga" id="harga_1" name="jumlah[]" placeholder="harga" value="0" autocomplete="off" onkeyup="hitung_total()" required />
 							</div>
 						</div>
 					</div>
@@ -90,7 +90,7 @@
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Total</label>
 							
 						<div class="col-sm-5">
-							<input type="text" class="form-control numbers" id="total" name="total" placeholder="total" value="{{$data->total}}" required readonly/>
+							<input type="text" class="form-control numbers" id="total" name="total" placeholder="total" value="0" required readonly/>
 						</div>
 					</div>
 					<div class="form-group center-block full-right" style="margin-left: 15px;">
@@ -146,7 +146,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="modal fade" id="modal-6">
 		<div class="modal-dialog" style="width: 800px;">
 			<div class="modal-content">
@@ -220,6 +220,71 @@
 	}
 
 	$(document).ready(function () {
+		$('#tambah_ket').click(function(e) {
+			e.preventDefault();
+			var html = '';
+			html +=
+					'<div id="ket_'+loop+'">' +
+					'<hr>' +
+					'<div class="form-group">' +
+					'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Vendor</label>' +
+					'<input type="hidden" name="vendor_id[]" id="vendor_'+loop+'">' +
+					'<div class="col-sm-5">' +
+					'<input type="text" class="form-control" id="vendor_'+loop+'"name="vendor" placeholder="nama vendor" value="{{ old('nama vendor') }}" required readonly/>' +
+					'</div>' +
+					'<a class="btn btn-white" id="vendor_'+loop+'" href="javascript:;" onclick="jQuery("#modal-5").modal("show", {backdrop: "static"}); ">' +	
+	                '<i class="entypo-search" ></i>' +        
+					'</a>' + 
+					'</div> ' +
+						
+					'<div class="form-group">' +
+					'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Obat/Barang</label>' +
+					'<input type="hidden" name="obat_id[]" id="obat_'+loop+'">' +
+					'<div class="col-sm-5">' +
+					'<input type="text" class="form-control" id="obat_'+loop+'" name="obat" placeholder="nama obat" value="{{ old('nama obat') }}" required readonly/>' +
+					'</div>' +
+					'<a class="btn btn-white" id="obat_'+loop+'" href="javascript:;" onclick="jQuery("#modal-6").modal("show", {backdrop: "static"}); ">' +	
+	                '<i class="entypo-search" ></i> ' +        
+					'</a>' + 
+					'</div>' +
+
+					'<div class="form-group">' +
+					'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jumlah</label>' +
+					'<div class="col-sm-5">' +
+					'<input type="text" class="form-control numberValidation jumlah" id="jumlah_'+loop+'" name="jumlah[]" placeholder="jumlah" value="0" required />' +
+					'</div>' +
+					'</div>' +
+
+					'<div class="form-group">' +
+					'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Harga</label>' +
+					'<div class="col-sm-5">' +
+					'<input type="text" class="form-control numbers harga" id="harga_'+loop+'" name="jumlah[]" placeholder="harga" value="0" autocomplete="off" onkeyup="hitung_total()" required />' +
+					'</div>' +
+					'</div>' +
+
+					'<div class="form-group">' +
+					'<div class="col-sm-offset-3 col-sm-5">' +
+					'<button type="button" class="btn btn-red btn-icon icon-left hapus" data-id="'+loop+'">' +
+					'Hapus' +
+					'<i class="entypo-cancel"></i>' +
+					'</button>' +
+					'</div>' +
+					'</div>' +
+
+					'</div>';
+
+					$('#tambah_list').append(html);
+					$('.numbers').number(true);
+					hitung_total();
+					loop++;					
+		});
+
+		$("#tambah_list").on('click','.hapus', function(e){
+			e.preventDefault();
+			var id = $(this).data('id');
+			$("#ket_"+id).remove();
+			hitung_total();
+		});
 
 		$('.datatable').DataTable({
 	      "oLanguage": {
@@ -245,7 +310,6 @@
 			var nama = $(this).data('name');
 			var id = $(this).data('id');
 			$("#vendor_1").val(nama);
-			$("#vendor_id").val(id);
 			$("#modal-5").modal('hide');
 		});
 
@@ -255,7 +319,6 @@
 			var harga = $(this).data('harga');
 			var id = $(this).data('id');
 			var total = jumlah * harga;
-			$("#obat_id").val(id);
 			$("#obat_1").val(nama);
 			$("#jumlah_1").val(jumlah);
 			$("#harga_1").val(harga);

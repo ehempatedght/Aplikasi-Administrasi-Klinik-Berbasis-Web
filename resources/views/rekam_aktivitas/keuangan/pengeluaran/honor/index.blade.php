@@ -42,9 +42,9 @@
 				@foreach($honor as $honor)
 				<tr>
 					<th>{{$no++}}</th>
-					<th>{{ date('d M y', strtotime($honor->tgl)) }}</th>
+					<th>{{ date('d M Y', strtotime($honor->tgl)) }}</th>
 					<th>{{$honor->category->nama_kategori}}</th>
-					<th>{{$honor->nama}}</th>
+					<th>{{$honor->petugas->nama}}</th>
 					<th>
 						<div align="center">
 							<form action="{{route('pengeluaran.honor.delete', $honor->id)}}" method="post">

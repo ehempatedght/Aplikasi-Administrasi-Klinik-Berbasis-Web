@@ -22,4 +22,8 @@ class Petugas extends Model
     public function days() {
     	return $this->belongsToMany('App\Day');
     }
+
+    public function honor() {
+        return $this->hasOne('App\Honor');
+    }
 }

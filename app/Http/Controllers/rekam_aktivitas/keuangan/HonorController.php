@@ -24,7 +24,6 @@ class HonorController extends Controller
     	$this->validateWith(array(
     		'tgl' => 'required',
     		'category_id' => 'required|integer',
-    		'nama' => 'required|max:55',
     		'jumlah' => 'required',
     		'jam' => 'required',
     		'total' => 'required'
@@ -34,7 +33,7 @@ class HonorController extends Controller
     	Honor::create([
     		'tgl' => date('Y-m-d', strtotime(($data['tgl']))),
     		'category_id' => $data['category_id'],
-    		'nama' => $data['nama'],
+    		'petugas_id' => $data['petugas_id'],
     		'jumlah' => str_replace(',', '', $data['jumlah']),
     		'jam' => $data['jam'],
     		'total' => str_replace(',', '', $data['total'])
@@ -50,27 +49,19 @@ class HonorController extends Controller
     	return view('rekam_aktivitas.keuangan.pengeluaran.honor.edit', get_defined_vars());
     }
 
-    public function update(Request $request, $id) {
-    	$this->validateWith(array(
-    		'tgl' => 'required',
-    		'category_id' => 'required|integer',
-    		'nama' => 'required|max:55',
-    		'jumlah' => 'required',
-    		'jam' => 'required',
-    		'total' => 'required'
-    	));
-
-    	$data = $request->all();
-    	Honor::find($id)->update([
-    		'tgl' => date('Y-m-d', strtotime(($data['tgl']))),
-    		'category_id' => $data['category_id'],
-    		'nama' => $data['nama'],
-    		'jumlah' => str_replace(',', '', $data['jumlah']),
-    		'jam' => $data['jam'],
-    		'total' => str_replace(',', '', $data['total'])
-    	]);
-
-    	return redirect()->route('pengeluaran.honor.index')->with('message','Honor berhasil diubah!');
+    public function doUpdate(Request $req, $id) {
+        $data = $req->all();
+        $honor = Honor::find($id);
+        if ($honor->update([
+            'tgl' => date('Y-m-d', strtotime(($data['tgl']))),
+            'category_id' => $data['category_id'],
+            'petugas_id' => $data['petugas_id'],
+            'jumlah' => str_replace(',', '', $data['jumlah']),
+            'jam' => $data['jam'],
+            'total' => str_replace(',', '', $data['total'])
+        ])) {
+            return redirect()->route('pengeluaran.honor.index')->with('message','Honor berhasil diubah!');
+        }
     }
 
     public function show($id) {

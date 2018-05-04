@@ -147,7 +147,7 @@
 
 					'<div class="form-group">' +
 					'<div class="col-sm-offset-3 col-sm-5">' +
-					'<button type="button" class="btn btn-red btn-icon hapus" data-id="'+loop+'">' +
+					'<button type="button" class="btn btn-red btn-icon icon-left hapus" data-id="'+loop+'">' +
 					'Hapus' +
 					'<i class="entypo-cancel"></i>' +
 					'</button>' +

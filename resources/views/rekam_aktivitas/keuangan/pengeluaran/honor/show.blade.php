@@ -1,12 +1,12 @@
 @extends('template')
 @section('main')
-<h2>Lihat Honor {{$honor->nama}}</h2>
+<h2>Lihat Honor {{$honor->petugas->nama}}</h2>
 <ol class="breadcrumb bc-3">
 	<li>
 		<a href="{{ route('pengeluaran.honor.index') }}"><i class="entypo-home"> Daftar Honor</i></a>
 	</li>
 	<li class="active">
-		<strong>Lihat Honor</strong>
+		<strong>Lihat</strong>
 	</li>
 </ol>
 @if (count($errors) > 0)
@@ -22,13 +22,13 @@
 	<div class="col-md-12">
 		<div class="panel panel-primary" data-collapsed="0">
 			<div class="panel-body">
-				<form role="form" class="form-horizontal" action="{{ route('pengeluaran.honor.update', $honor->id) }}" method="post">
+				<form role="form" class="form-horizontal" action="{{ route('pengeluaran.honor.update', ['id'=>$honor->id]) }}" method="post">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tanggal</label>
 						<div class="col-sm-5">
 							<div class="input-group">
-								<input type="text" class="form-control datepicker" name="tgl" data-format="dd MM yyyy" placeholder="tanggal" value="{{date("d M Y", strtotime($honor->tgl)) }}" readonly>
+								<input type="text" class="form-control datepicker" name="tgl" data-format="dd MM yyyy" placeholder="tanggal" required="" value="{{ date("d M Y", strtotime($honor->tgl)) }}" readonly>
 										
 								<div class="input-group-addon">
 									<a href="#"><i class="entypo-calendar"></i></a>
@@ -39,34 +39,33 @@
 
 					<div class="form-group">
 						<label class="col-sm-3 control-label"style="text-align:left;">&emsp;Kategori</label>
-						
+						<input type="hidden" name="category_id" id="category_id" value="{{$honor->category_id}}">
 						<div class="col-sm-5">
-							
-							<select name="category_id" class="select2" disabled>
-								<option selected="selected" disabled value="Pilih" disabled>Pilih Kategori</option>
+							<input type="text" class="form-control" id="category" name="category" placeholder="nama kategori" value="{{$honor->category->nama_kategori}}" required readonly/>
+							{{-- <select name="category" class="select2" data-placeholder="Pilih kategori..." required>
+								<option></option>
+								<optgroup label="Pilih Kategori">
 									@foreach ($kategori as $kategori)
-										<option value="{{$kategori->id}}" @if($honor->category_id == $kategori->id) selected @endif>{{$kategori->nama_kategori}}</option>
+										<option value="{{$kategori->id}}" id="category_id">{{$kategori->nama_kategori}}</option>
 									@endforeach
-							</select>
+								</optgroup>
+							</select> --}}
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama</label>
-						
+						<input type="hidden" name="petugas_id" id="petugas_id" value="{{$honor->petugas_id}}">
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="petugas" name="nama" placeholder="nama petugas" value="{{ $honor->nama }}" required readonly/>
+							<input type="text" class="form-control" id="petugas" name="nama" placeholder="nama petugas" value="{{$honor->petugas->nama}}" required readonly/>
 						</div>
-						<a class="btn btn-white" href="javascript:;" onclick="jQuery('#modal-5').modal('show', {backdrop: 'static'});" disabled>	
-                       		<i class="entypo-search"></i>        
-						</a> 
 					</div>
 					
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jumlah</label>
 						
 						<div class="col-sm-5">
-							<input type="text" class="form-control numbers" id="jumlah" name="jumlah" placeholder="jumlah" value="{{ $honor->jumlah }}" required readonly />
+							<input type="text" class="form-control numbers" id="jumlah" name="jumlah" placeholder="jumlah" value="{{$honor->jumlah}}" required readonly />
 						</div>
 					</div>
 					
@@ -74,7 +73,7 @@
 						<label for="field-1" class="col-sm-3 control-label numberValidation" style="text-align:left;">&emsp;Jam</label>
 						
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="jam" name="jam" placeholder="example: 2 jam" value="{{ $honor->jam }}" required readonly/>
+							<input type="text" class="form-control" id="jam" name="jam" placeholder="example: 2 jam" value="{{$honor->jam}}" required readonly />
 						</div>
 					</div>
 
@@ -82,7 +81,7 @@
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Total</label>
 						
 						<div class="col-sm-5">
-							<input type="text" class="form-control numbers" id="total" name="total" placeholder="total" value="{{ $honor->total }}" required readonly />
+							<input type="text" class="form-control numbers" id="total" name="total" placeholder="total" value="{{$honor->total}}" required readonly />
 						</div>
 					</div>
 
@@ -108,6 +107,7 @@
 						<thead>
  							<tr>
 								<th>No</th>
+								<th>Kategori</th>
 								<th>Nama</th>
 								<th>Spesialisasi</th>
 								<th>Alamat</th>
@@ -119,11 +119,16 @@
 							@foreach($petugas as $petugas)
 							<tr>
 								<td>{{$no++}}</td>
+								<td>
+									<center>
+										<span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span>
+									</center>
+								</td>
 								<td>{{strtoupper($petugas->nama)}}</td>
 								<td>{{$petugas->spesialisasi}}</td>
 								<td>{{$petugas->alamat}}</td>
 								<td align="center">
-									<button data-id="{{$petugas->id}}" data-name="{{$petugas->nama}}" class="btn btn-green btn-sm btn-icon icon-left addPas">
+									<button data-id="{{$petugas->id}}" data-category="{{$petugas->category_id}}" data-valcat="{{$petugas->category->nama_kategori}}" data-name="{{$petugas->nama}}" class="btn btn-green btn-sm btn-icon icon-left addPas">
 										<i class="entypo-check"></i>
 										Pilih
 									</button>
@@ -153,19 +158,26 @@
 		        }
 	    });
 
+
 	    $('.datatable').DataTable({
-      "oLanguage": {
-       "sSearch": "Search:",
-       "oPaginate": {
-         "sPrevious": "Previous &emsp;",
-         "sNext": "Next"
+	      "oLanguage": {
+	       "sSearch": "Search:",
+	       "oPaginate": {
+	         "sPrevious": "Previous &emsp;",
+	         "sNext": "Next"
+					 }
 				 }
-			 }
-	});
+		});
 	
 		$('.datatable').on('click','.addPas', function(e){
 			var nama = $(this).data('name');
+			var id = $(this).data('id');
+			var cat = $(this).data('category');
+			var valc = $(this).data('valcat');
+			$("#petugas_id").val(id);
 			$("#petugas").val(nama);
+			$("#category_id").val(cat);
+			$("#category").val(valc);
 			$("#modal-5").modal('hide');
 		});
     });

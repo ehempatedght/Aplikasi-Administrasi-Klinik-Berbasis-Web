@@ -183,7 +183,7 @@
 							<div class="checkbox">
 								<label>
 									<input type="checkbox" class="check" name="role[setuser]" @if(is_array(old('role')) && array_key_exists("setuser", old('role'))) checked @endif>
-									User
+									Pengguna
 								</label>
 							</div>
 							<div class="checkbox">

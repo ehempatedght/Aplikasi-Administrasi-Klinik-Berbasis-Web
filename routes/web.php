@@ -156,7 +156,6 @@ Route::group(['middleware'=> ['web','auth']], function() {
 					Route::get('/edit/{id}', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_uang.edit','uses'=>'rekam_aktivitas\keuangan\DonasiuangController@edit']);
 					Route::post('/update/{id}', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_uang.update','uses'=>'rekam_aktivitas\keuangan\DonasiuangController@update']);
 					Route::post('/delete/{id}', ['as'=>'perekaman_aktivitas.keuangan.penerimaan.donasi_uang.delete','uses'=>'rekam_aktivitas\keuangan\DonasiuangController@doDelete']);
-
 				});
 
 				Route::group(['prefix'=>'donasi_obat'], function () {
@@ -185,7 +184,7 @@ Route::group(['middleware'=> ['web','auth']], function() {
 					Route::get('/create', ['as'=>'pengeluaran.honor.create','uses'=>'rekam_aktivitas\keuangan\HonorController@create']);
 					Route::post('/save', ['as'=>'pengeluaran.honor.save','uses'=>'rekam_aktivitas\keuangan\HonorController@save']);
 					Route::get('/edit/{id}', ['as'=>'pengeluaran.honor.edit','uses'=>'rekam_aktivitas\keuangan\HonorController@edit']);
-					Route::post('/update/{id}', ['as'=>'pengeluaran.honor.update','uses'=>'rekam_aktivitas\keuangan\HonorController@update']);
+					Route::post('/update/{id}', ['as'=>'pengeluaran.honor.update','uses'=>'rekam_aktivitas\keuangan\HonorController@doUpdate']);
 					Route::get('/show/{id}', ['as'=>'pengeluaran.honor.show','uses'=>'rekam_aktivitas\keuangan\HonorController@show']);
 					Route::post('/delete/{id}', ['as'=>'pengeluaran.honor.delete','uses'=>'rekam_aktivitas\keuangan\HonorController@delete']);
 				});
@@ -198,6 +197,16 @@ Route::group(['middleware'=> ['web','auth']], function() {
 					Route::post('/update/{tgl}', ['as'=>'pengeluaran.operasional.update','uses'=>'rekam_aktivitas\keuangan\OperasionalController@update']);
 					Route::get('/show/{tgl}', ['as'=>'pengeluaran.operasional.show','uses'=>'rekam_aktivitas\keuangan\OperasionalController@show']);
 					Route::post('/delete/{tgl}', ['as'=>'pengeluaran.operasional.delete','uses'=>'rekam_aktivitas\keuangan\OperasionalController@doDelete']);
+				});
+
+				Route::group(['prefix'=>'pembelian'], function() {
+					Route::get('/', ['as'=>'pengeluaran.pembelian.index','uses'=>'rekam_aktivitas\keuangan\PembelianController@index']);
+					Route::get('/create', ['as'=>'pengeluaran.pembelian.create','uses'=>'rekam_aktivitas\keuangan\PembelianController@create']);
+					Route::post('/save', ['as'=>'pengeluaran.pembelian.save','uses'=>'rekam_aktivitas\keuangan\PembelianController@save']);
+					Route::get('/edit/{id}', ['as'=>'pengeluaran.pembelian.edit','uses'=>'rekam_aktivitas\keuangan\PembelianController@edit']);
+					Route::post('/update/{id}', ['as'=>'pengeluaran.pembelian.update','uses'=>'rekam_aktivitas\keuangan\PembelianController@update']);
+					Route::get('/show/{id}', ['as'=>'pengeluaran.pembelian.show','uses'=>'rekam_aktivitas\keuangan\PembelianController@show']);
+					Route::post('/delete/{id}', ['as'=>'pengeluaran.pembelian.delete','uses'=>'rekam_aktivitas\keuangan\PembelianController@delete']);
 				});
 			});
 		});

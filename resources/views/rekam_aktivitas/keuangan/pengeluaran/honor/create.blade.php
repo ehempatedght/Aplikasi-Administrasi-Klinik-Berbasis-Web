@@ -39,23 +39,23 @@
 
 					<div class="form-group">
 						<label class="col-sm-3 control-label"style="text-align:left;">&emsp;Kategori</label>
-						
+						<input type="hidden" name="category_id" id="category_id">
 						<div class="col-sm-5">
-							
-							<select name="category_id" class="select2" data-placeholder="Pilih kategori..." required>
+							<input type="text" class="form-control" id="category" name="category" placeholder="nama kategori" value="{{ old('nama petugas') }}" required readonly/>
+							{{-- <select name="category" class="select2" data-placeholder="Pilih kategori..." required>
 								<option></option>
 								<optgroup label="Pilih Kategori">
 									@foreach ($kategori as $kategori)
-										<option value="{{$kategori->id}}">{{$kategori->nama_kategori}}</option>
+										<option value="{{$kategori->id}}" id="category_id">{{$kategori->nama_kategori}}</option>
 									@endforeach
 								</optgroup>
-							</select>
+							</select> --}}
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama</label>
-						
+						<input type="hidden" name="petugas_id" id="petugas_id">
 						<div class="col-sm-5">
 							<input type="text" class="form-control" id="petugas" name="nama" placeholder="nama petugas" value="{{ old('nama petugas') }}" required readonly/>
 						</div>
@@ -114,6 +114,7 @@
 						<thead>
  							<tr>
 								<th>No</th>
+								<th>Kategori</th>
 								<th>Nama</th>
 								<th>Spesialisasi</th>
 								<th>Alamat</th>
@@ -125,11 +126,16 @@
 							@foreach($petugas as $petugas)
 							<tr>
 								<td>{{$no++}}</td>
+								<td>
+									<center>
+										<span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span>
+									</center>
+								</td>
 								<td>{{strtoupper($petugas->nama)}}</td>
 								<td>{{$petugas->spesialisasi}}</td>
 								<td>{{$petugas->alamat}}</td>
 								<td align="center">
-									<button data-id="{{$petugas->id}}" data-name="{{$petugas->nama}}" class="btn btn-green btn-sm btn-icon icon-left addPas">
+									<button data-id="{{$petugas->id}}" data-category="{{$petugas->category_id}}" data-valcat="{{$petugas->category->nama_kategori}}" data-name="{{$petugas->nama}}" class="btn btn-green btn-sm btn-icon icon-left addPas">
 										<i class="entypo-check"></i>
 										Pilih
 									</button>
@@ -159,19 +165,26 @@
 		        }
 	    });
 
+
 	    $('.datatable').DataTable({
-      "oLanguage": {
-       "sSearch": "Search:",
-       "oPaginate": {
-         "sPrevious": "Previous &emsp;",
-         "sNext": "Next"
+	      "oLanguage": {
+	       "sSearch": "Search:",
+	       "oPaginate": {
+	         "sPrevious": "Previous &emsp;",
+	         "sNext": "Next"
+					 }
 				 }
-			 }
-	});
+		});
 	
 		$('.datatable').on('click','.addPas', function(e){
 			var nama = $(this).data('name');
+			var id = $(this).data('id');
+			var cat = $(this).data('category');
+			var valc = $(this).data('valcat');
+			$("#petugas_id").val(id);
 			$("#petugas").val(nama);
+			$("#category_id").val(cat);
+			$("#category").val(valc);
 			$("#modal-5").modal('hide');
 		});
     });

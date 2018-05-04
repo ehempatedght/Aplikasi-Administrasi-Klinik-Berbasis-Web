@@ -17,4 +17,8 @@ class Vendorobat extends Model
     public function jenisobatdetail() {
     	return $this->hasMany('App\Jenisobatdetail');
     }
+
+    public function pembelian() {
+        return $this->hasMany('App\Pembelian');
+    }
 }
