@@ -22,7 +22,7 @@
 	<div class="col-md-12">
 		<div class="panel panel-primary" data-collapsed="0">
 			<div class="panel-body">
-				<form role="form" class="form-horizontal" action="{{ route('perekaman_aktivitas.keuangan.penerimaan.donasi_uang.update', $donasi_uang->id) }}" method="post">
+				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('perekaman_aktivitas.keuangan.penerimaan.donasi_uang.update', $donasi_uang->id) }}" method="post">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama Donatur</label>

@@ -22,7 +22,7 @@
 	<div class="col-md-12">
 		<div class="panel panel-primary" data-collapsed="0">
 			<div class="panel-body">
-				<form role="form" class="form-horizontal" action="{{ route('masterdata.vendorobat.insert') }}" method="post">
+				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('masterdata.vendorobat.insert') }}" method="post">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama Vendor</label>
@@ -66,7 +66,7 @@
 							<textarea name="deskripsi" class="form-control"></textarea>
 						</div>
 					</div>
-					<hr>
+					<br>
 					<div id="obat_1">
 						<div class="form-group">
 							<div class="row">
@@ -127,6 +127,7 @@
     		e.preventDefault();
     		var html = '';
     		html += '<div id="obat_'+loop+'">' +
+    				'<hr width="100%">' +
 					'<div class="form-group">' +
 					'<div class="row">' +
 					'<div class="col-md-12">' +

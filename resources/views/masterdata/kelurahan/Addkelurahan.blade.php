@@ -59,7 +59,7 @@
 		</ol>
 		<div class="panel panel-primary" data-collapsed="0">
 			<div class="panel-body">
-				<form role="form" class="form-horizontal" action="{{ route('masterdata.pasien.kelurahan.insert') }}" method="post">
+				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('masterdata.pasien.kelurahan.insert') }}" method="post">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<div class="row">

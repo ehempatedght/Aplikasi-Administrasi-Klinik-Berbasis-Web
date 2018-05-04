@@ -30,7 +30,7 @@
 		</ol>
 		<div class="panel panel-primary" data-collapsed="0">
 			<div class="panel-body">
-				<form role="form" class="form-horizontal" action="{{ route('masterdata.pasien.datapasien.update', $pasien->id) }}" method="POST">
+				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('masterdata.pasien.datapasien.update', $pasien->id) }}" method="POST">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;No RM</label>

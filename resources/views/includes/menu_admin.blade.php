@@ -163,7 +163,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="{{route('medis.pemberian.index')}}">
 								<span class="title">Pemberian Obat</span>
 							</a>
 						</li>

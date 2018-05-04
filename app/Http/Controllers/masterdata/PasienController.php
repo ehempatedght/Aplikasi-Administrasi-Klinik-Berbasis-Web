@@ -163,20 +163,20 @@ class PasienController extends Controller
     }
 
     public function no_rekamMedis() {
-        $panjang = 2;
-        $no_rm = Pasien::whereRaw('id = (select max(id) from pasien )')->first();
-        if (empty($no_rm)) {
-            $angka = 0;
-        } else {
-            $angka = substr($no_rm->id, 0);
+        $panjang = 4;
+        $no_pend = Pasien::whereRaw('id = (select max(id) from pasien )')->first();
+        // dd($id_cust->id_customer);
+        if(empty($no_pend)){
+          $angka = 0;
+        }else{
+          $angka = substr($no_pend->id, 0);
         }
-        $angka++;
+        $angka = $angka + 1;
         $angka = strval($angka);
         $tmp = "";
-        for ($i=1; $i<=($panjang-strlen($angka)); $i++) { 
-            $tmp = $tmp."rm00";
+        for($i=1; $i<=($panjang-strlen($angka)); $i++) {
+          $tmp=$tmp."0";
         }
-        
         $hasil = $tmp.$angka;
         // dd($hasil);
         return $hasil;

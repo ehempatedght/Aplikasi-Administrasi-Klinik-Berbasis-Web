@@ -29,7 +29,7 @@ $jenis_obats = \App\Donasiobat::all();
 	<div class="col-md-12">
 		<div class="panel panel-primary" data-collapsed="0">
 			<div class="panel-body">
-				<form role="form" class="form-horizontal" action="{{ route('masterdata.daftarobat.insert') }}" method="post">
+				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('masterdata.daftarobat.insert') }}" method="post">
 					{{ csrf_field() }}
 					<div id="obat_0">
 						<div class="form-group">

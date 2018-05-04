@@ -75,7 +75,7 @@
 							</div>
 						</div>
 					</div>
-					{{-- <div id="tambah_list"></div>
+					<div id="tambah_list"></div>
 					<div class="form-group">
 						<label for="field-ta" class="col-sm-3 control-label"></label>
 
@@ -85,7 +85,7 @@
 							<i class="entypo-plus"></i>
 							</button>
 						</div>
-					</div> --}}
+					</div>
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Total</label>
 							

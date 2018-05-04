@@ -86,7 +86,7 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12">
-									<form action="{{route('masterdata.peralatan.kantor.update', ['id'=>$alat_kantor->id])}}" method="post">
+									<form action="{{route('masterdata.peralatan.kantor.update', ['id'=>$alat_kantor->id])}}" method="post" class="form-horizontal form-groups-bordered">
 										@csrf
 										<div class="row">
 											<div class="col-md-12">
@@ -165,7 +165,7 @@
 												<div class="form-group">
 													<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kode Alat</label>
 													<div class="col-sm-5">
-														<input type="text" class="form-control" name="kd_alat">
+														<input type="text" class="form-control" name="kd_alat" required>
 													</div>
 												</div>
 											</div>
@@ -176,7 +176,7 @@
 												<div class="form-group">
 													<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama Alat</label>
 													<div class="col-sm-5">
-														<input type="text" class="form-control" name="nm_alat" >
+														<input type="text" class="form-control" name="nm_alat" required>
 													</div>
 												</div>
 											</div>
@@ -187,7 +187,7 @@
 												<div class="form-group">
 													<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jenis Alat</label>
 													<div class="col-sm-5">
-														<input type="text" class="form-control" name="jenis_alat" >
+														<input type="text" class="form-control" name="jenis_alat" required>
 													</div>
 												</div>
 											</div>
@@ -198,7 +198,7 @@
 												<div class="form-group">
 													<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jumlah</label>
 													<div class="col-sm-5">
-														<input type="text" class="form-control" name="jumlah" >
+														<input type="text" class="form-control" name="jumlah" required>
 													</div>
 												</div>
 											</div>

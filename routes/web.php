@@ -212,17 +212,23 @@ Route::group(['middleware'=> ['web','auth']], function() {
 		});
 
 		//medis
-		// Route::group(['prefix'=>'medis'], function() {
-		// 	Route::group(['prefix'=>'pendaftaran'], function () {
+		Route::group(['prefix'=>'medis'], function() {
+			Route::group(['prefix'=>'pendaftaran'], function () {
 
-		// 	});
-		// 	Route::group(['prefix'=>'pemeriksaan'], function () {
+			});
+			Route::group(['prefix'=>'pemeriksaan'], function () {
 
-		// 	});
-		// 	Route::group(['prefix'=>'pembelian_obat'], function () {
-
-		// 	});
-		// });
+			});
+			Route::group(['prefix'=>'pemberian'], function () {
+				Route::get('/', ['as'=>'medis.pemberian.index','uses'=>'rekam_aktivitas\medis\PemberianobatController@index']);
+				Route::get('/create', ['as'=>'medis.pemberian.create','uses'=>'rekam_aktivitas\medis\PemberianobatController@create']);
+				Route::post('/save', ['as'=>'medis.pemberian.save','uses'=>'rekam_aktivitas\medis\PemberianobatController@save']);
+				Route::get('/edit/{id}', ['as'=>'medis.pemberian.edit','uses'=>'rekam_aktivitas\medis\PemberianobatController@edit']);
+				Route::post('/update/{id}', ['as'=>'medis.pemberian.update','uses'=>'rekam_aktivitas\medis\PemberianobatController@update']);
+				Route::get('/show/{id}', ['as'=>'medis.pemberian.show','uses'=>'rekam_aktivitas\medis\PemberianobatController@show']);
+				Route::post('/delete/{id}', ['as'=>'medis.pemberian.delete','uses'=>'rekam_aktivitas\medis\PemberianobatController@delete']);
+			});
+		});
 	});
 });
 

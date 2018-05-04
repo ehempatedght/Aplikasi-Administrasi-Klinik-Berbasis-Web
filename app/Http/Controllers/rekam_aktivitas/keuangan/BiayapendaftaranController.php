@@ -23,7 +23,7 @@ class BiayapendaftaranController extends Controller
     	$this->validateWith(array(
     		'tgl' => 'required',
     		'no_pend' => 'required',
-    		'pasien' => 'required|max:50',
+    		'pasien_id' => 'required|integer',
     		'jumlah' => 'required',
     	));
 
@@ -31,7 +31,7 @@ class BiayapendaftaranController extends Controller
     	Biayapendaftaran::create([
     		'tgl' => date('Y-m-d', strtotime(($data['tgl']))),
     		'no_pend' => $data['no_pend'],
-    		'pasien' => $data['pasien'],
+    		'pasien_id' => $data['pasien_id'],
     		'jumlah' => str_replace(',', '',$data['jumlah'])
     	]);
 
@@ -48,7 +48,7 @@ class BiayapendaftaranController extends Controller
     	$this->validateWith(array(
     		'tgl' => 'required',
     		'no_pend' => 'required',
-    		'pasien' => 'required|max:50',
+    		'pasien_id' => 'required|max:50',
     		'jumlah' => 'required',
     	));
 
@@ -57,7 +57,7 @@ class BiayapendaftaranController extends Controller
     	Biayapendaftaran::find($id)->update([
     		'tgl' => date('Y-m-d', strtotime(($data['tgl']))),
     		'no_pend' => $data['no_pend'],
-    		'pasien' => $data['pasien'],
+    		'pasien_id' => $data['pasien_id'],
     		'jumlah' => str_replace(',', '',$data['jumlah'])
     	]);
 

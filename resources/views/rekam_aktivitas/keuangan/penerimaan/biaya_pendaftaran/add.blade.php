@@ -22,13 +22,13 @@
 	<div class="col-md-12">
 		<div class="panel panel-primary" data-collapsed="0">
 			<div class="panel-body">
-				<form role="form" class="form-horizontal" action="{{ route('penerimaan.biaya.save') }}" method="post">
+				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('penerimaan.biaya.save') }}" method="post">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tanggal</label>
 						<div class="col-sm-5">
 							<div class="input-group">
-								<input type="text" class="form-control datepicker" name="tgl" data-format="dd MM yyyy" placeholder="tanggal">
+								<input type="text" class="form-control datepicker" name="tgl" data-format="dd MM yyyy" placeholder="tanggal" required>
 										
 								<div class="input-group-addon">
 									<a href="#"><i class="entypo-calendar"></i></a>
@@ -39,20 +39,19 @@
 
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;No.Pendaftaran</label>
-						
 						<div class="col-sm-5">
-							<input type="text" class="form-control" name="no_pend" placeholder="nomor pendaftaran" value="{{ $np }}" required readonly/>
+							<input type="text" class="form-control" name="no_pend" placeholder="nomor pendaftaran" id="nopen" required readonly/>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Pasien</label>
-						
+						<input type="hidden" name="pasien_id" id="pasien_id">
 						<div class="col-sm-5">
 							<input type="text" class="form-control" id="pasien" name="pasien" placeholder="pasien" value="{{ old('pasien') }}" required readonly/>
 						</div>
 						<a class="btn btn-white" href="javascript:;" onclick="jQuery('#modal-5').modal('show', {backdrop: 'static'}); ">	
-                       		<i class="entypo-search" ></i>        
+	                       		<i class="entypo-search" ></i>        
 						</a> 
 					</div>
 					
@@ -102,7 +101,7 @@
 								<td>{{$pasien->nama_pasien}}</td>
 								<td>{{$pasien->alamat}}</td>
 								<td align="center">
-									<button data-id="{{$pasien->id}}" data-name="{{$pasien->nama_pasien}}" class="btn btn-green btn-sm btn-icon icon-left addPas">
+									<button data-id="{{$pasien->id}}" data-pend="{{$pasien->no_urut}}" data-name="{{$pasien->nama_pasien}}" class="btn btn-green btn-sm btn-icon icon-left addPas">
 										<i class="entypo-check"></i>
 										Pilih
 									</button>
@@ -144,7 +143,11 @@
 	
 		$('.datatable').on('click','.addPas', function(e){
 			var nama = $(this).data('name');
+			var pasien_id = $(this).data('id');
+			var valpen = $(this).data('pend');
+			$("#nopen").val(valpen);
 			$("#pasien").val(nama);
+			$("#pasien_id").val(pasien_id);
 			$("#modal-5").modal('hide');
 		});
     });

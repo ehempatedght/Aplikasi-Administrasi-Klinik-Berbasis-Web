@@ -22,7 +22,7 @@
 	<div class="col-md-12">
 		<div class="panel panel-primary" data-collapsed="0">
 			<div class="panel-body">
-				<form role="form" class="form-horizontal" action="{{ route('pengeluaran.pembelian.save') }}" method="post">
+				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('pengeluaran.pembelian.save') }}" method="post">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tanggal</label>
@@ -36,7 +36,7 @@
 							</div>
 						</div>
 					</div>
-					<div id="ket_1">
+					{{-- <div id="ket_1"> --}}
 						<div class="form-group">
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Vendor</label>
 							<input type="hidden" name="vendor_id" id="vendor_id">
@@ -74,7 +74,7 @@
 								<input type="text" class="form-control numbers harga" id="harga_1" name="harga" placeholder="harga" value="0" autocomplete="off" onkeyup="hitung_total()" required readonly />
 							</div>
 						</div>
-					</div>
+					{{-- </div> --}}
 					{{-- <div id="tambah_list"></div>
 					<div class="form-group">
 						<label for="field-ta" class="col-sm-3 control-label"></label>
@@ -174,7 +174,7 @@
 								<td>{{strtoupper($jenis->nama_obat)}}</td>
 								<td>{{$jenis->satuan}}</td>
 								<td>{{$jenis->stok}}</td>
-								<td>{{$jenis->harga}}</td>
+								<td class="numbers">{{$jenis->harga}}</td>
 								<td align="center">
 									<button data-id="{{$jenis->id}}" data-name="{{$jenis->nama_obat}}" data-harga="{{$jenis->harga}}" data-stok="{{$jenis->stok}}" class="btn btn-green btn-sm btn-icon icon-left addObt">
 										<i class="entypo-check"></i>
@@ -207,7 +207,6 @@
 
 		hitung_total();
 	}
-
 	function hitung_total() {
 		var total = 0;
 		$(".harga, .jumlah").each(function () {

@@ -13,20 +13,20 @@ class Jenisobatdetail extends Model
     protected $hidden = [
     	'created_at','updated_at'
     ];
-
+    
     public function jenis_obat() {
-    	return $this->belongsTo('App\Jenisobat');
-    }
-
-    public function vendorobat() {
-        return $this->belongsTo('App\Vendorobat');
-    }
-
-    public function donasiobat() {
-        return $this->belongsTo('App\Donasiobat');
+    	return $this->belongsTo('App\Donasiobat','jenis_obat_id');
     }
     
     public function pembeli() {
         return $this->hasMany('App\Pembelian');
+    }
+
+    public function vendor() {
+        return $this->hasMany('App\Vendorobat');
+    }
+
+    public function pemberian() {
+        return $this->hasMany('App\Pemberianobat');
     }
 }

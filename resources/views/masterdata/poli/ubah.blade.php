@@ -22,7 +22,7 @@
 	<div class="col-md-12">
 		<div class="panel panel-primary" data-collapsed="0">
 			<div class="panel-body">
-				<form role="form" class="form-horizontal" action="{{ route('poli.update', $poli->id) }}" method="post">
+				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('poli.update', $poli->id) }}" method="post">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label">Nama Poli</label>

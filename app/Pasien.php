@@ -30,4 +30,12 @@ class Pasien extends Model
     public function kecamatan() {
         return $this->belongsTo('App\Kecamatan','kec_id');
     }
+
+    public function biayaPendaftaran() {
+        return $this->hasMany('App\Biayapendaftaran');
+    }
+
+    public function pemberianObat() {
+        return $this->hasMany('App\Pemberianobat');
+    }
 }
