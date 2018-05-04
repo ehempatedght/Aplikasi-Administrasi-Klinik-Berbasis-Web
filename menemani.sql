@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 04 Mei 2018 pada 05.13
+-- Generation Time: 04 Mei 2018 pada 19.12
 -- Versi Server: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -82,7 +82,7 @@ CREATE TABLE `biaya_pendaftaran` (
   `id` int(11) NOT NULL,
   `tgl` date NOT NULL,
   `no_pend` varchar(5) NOT NULL,
-  `pasien` varchar(50) NOT NULL,
+  `pasien_id` int(3) NOT NULL,
   `jumlah` bigint(20) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
@@ -92,8 +92,8 @@ CREATE TABLE `biaya_pendaftaran` (
 -- Dumping data untuk tabel `biaya_pendaftaran`
 --
 
-INSERT INTO `biaya_pendaftaran` (`id`, `tgl`, `no_pend`, `pasien`, `jumlah`, `created_at`, `updated_at`) VALUES
-(2, '2018-04-28', '0001', 'Bastian Clearesta', 300000, '2018-04-28 02:39:44', '2018-04-28 02:39:44');
+INSERT INTO `biaya_pendaftaran` (`id`, `tgl`, `no_pend`, `pasien_id`, `jumlah`, `created_at`, `updated_at`) VALUES
+(2, '2018-05-01', '0001', 1, 65000, '2018-05-04 13:49:03', '2018-05-04 13:49:03');
 
 -- --------------------------------------------------------
 
@@ -495,7 +495,8 @@ INSERT INTO `laravel_logger_activity` (`id`, `description`, `userType`, `userId`
 (92, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-01 09:48:00', '2018-05-01 09:48:00', NULL),
 (93, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-02 00:32:30', '2018-05-02 00:32:30', NULL),
 (94, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-03 13:16:39', '2018-05-03 13:16:39', NULL),
-(95, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-04 00:09:05', '2018-05-04 00:09:05', NULL);
+(95, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-04 00:09:05', '2018-05-04 00:09:05', NULL),
+(96, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-04 11:48:58', '2018-05-04 11:48:58', NULL);
 
 -- --------------------------------------------------------
 
@@ -554,9 +555,10 @@ CREATE TABLE `operasional` (
 --
 
 INSERT INTO `operasional` (`id`, `tgl`, `keterangan`, `jumlah`, `total`, `created_at`, `updated_at`) VALUES
-(20, '2018-05-01', 'lorem ipsum dolor sit amet', 100000, 550000, '2018-04-30 17:12:09', '2018-04-30 17:12:09'),
-(21, '2018-05-01', NULL, 450000, 550000, '2018-04-30 17:12:09', '2018-04-30 17:12:09'),
-(26, '2018-04-30', 'lorem ipsum dolor sit amet', 3400000, 3400000, '2018-05-01 08:23:33', '2018-05-01 08:23:33');
+(26, '2018-04-30', 'lorem ipsum dolor sit amet', 3400000, 3400000, '2018-05-01 08:23:33', '2018-05-01 08:23:33'),
+(27, '2018-05-01', 'lorem ipsum dolor sit amet', 100000, 680000, '2018-05-04 12:17:07', '2018-05-04 12:17:07'),
+(28, '2018-05-01', 'ini keterangan', 450000, 680000, '2018-05-04 12:17:07', '2018-05-04 12:17:07'),
+(29, '2018-05-01', 'lorem ipsum dolor sit amet', 130000, 680000, '2018-05-04 12:17:07', '2018-05-04 12:17:07');
 
 -- --------------------------------------------------------
 
@@ -591,8 +593,7 @@ CREATE TABLE `pasien` (
 --
 
 INSERT INTO `pasien` (`id`, `no_urut`, `nama_pasien`, `kategoripasien_id`, `golongan_darah`, `jenis_kelamin`, `alamat`, `kota_id`, `kec_id`, `kel_id`, `kontak`, `pekerjaan`, `status_pernikahan`, `no_kk`, `namaIbuKandung`, `namaAyahKandung`, `TanggalLahir`, `created_at`, `updated_at`) VALUES
-(1, 'rm001', 'Juan Valerian Delima', 1, 'A', 'Laki-laki', 'Perum GMM Blok F8/27', 2, 2, 2, '(0812) 3626-4027', 'IT Consultant', 'Menikah', '11999288171662', 'Roosye Lidyana', 'Joventius', '1996-06-06', '2018-03-23 13:50:25', '2018-03-23 13:50:25'),
-(3, 'RM002', 'Bastian Clearesta', 1, 'A', 'Laki-laki', 'Perum gmm', 1, 1, 6, '(0119) 1918-1818', 'IT Consultan', 'Menikah', '11982882827', 'Roosye', 'Jovent', '2012-10-25', '2018-03-31 01:20:41', '2018-03-31 01:20:41');
+(1, '0001', 'Cindy Cornelia Delima', 1, 'B', 'Perempuan', 'perumahan graha mustika media blok f8/27', 2, 2, 2, '(0818) 2772-7262', 'Akunting', 'Menikah', '1111222334455666778', 'Roosye lidayan leander', 'Joventius delima', '2000-03-06', '2018-05-04 13:10:33', '2018-05-04 13:10:33');
 
 -- --------------------------------------------------------
 
@@ -631,6 +632,32 @@ CREATE TABLE `pembelian` (
 INSERT INTO `pembelian` (`id`, `tgl`, `vendor_id`, `obat_id`, `jumlah`, `harga`, `total`, `created_at`, `updated_at`) VALUES
 (3, '2018-05-01', '12', '1', 2, 2000000, 4000000, '2018-05-04 00:47:42', '2018-05-04 00:47:42'),
 (5, '2018-05-04', '8', '2', 3, 1000000, 3000000, '2018-05-04 00:46:58', '2018-05-04 00:46:58');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pemberian_obat`
+--
+
+CREATE TABLE `pemberian_obat` (
+  `id` int(11) NOT NULL,
+  `tgl` date NOT NULL,
+  `no_pend` varchar(6) NOT NULL,
+  `pasien_id` int(3) NOT NULL,
+  `jenis_id` int(3) NOT NULL,
+  `obat_id` int(3) NOT NULL,
+  `jumlah` int(2) NOT NULL,
+  `keterangan` text,
+  `created_at` date NOT NULL,
+  `updated_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `pemberian_obat`
+--
+
+INSERT INTO `pemberian_obat` (`id`, `tgl`, `no_pend`, `pasien_id`, `jenis_id`, `obat_id`, `jumlah`, `keterangan`, `created_at`, `updated_at`) VALUES
+(2, '2018-06-06', '0001', 1, 2, 1, 2, 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet updated', '2018-05-04', '2018-05-04');
 
 -- --------------------------------------------------------
 
@@ -695,7 +722,7 @@ CREATE TABLE `poli` (
 
 INSERT INTO `poli` (`id`, `nama_poli`, `created_at`, `updated_at`) VALUES
 (1, 'ANAK', '2018-04-06 11:32:14', '2018-04-06 11:32:14'),
-(2, 'UMUM', '2018-04-06 11:33:15', '2018-04-10 05:39:59');
+(2, 'UMUM UPDATE', '2018-04-06 11:33:15', '2018-05-04 11:52:22');
 
 -- --------------------------------------------------------
 
@@ -926,6 +953,12 @@ ALTER TABLE `pembelian`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `pemberian_obat`
+--
+ALTER TABLE `pemberian_obat`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `petugas`
 --
 ALTER TABLE `petugas`
@@ -1056,7 +1089,7 @@ ALTER TABLE `kota`
 -- AUTO_INCREMENT for table `laravel_logger_activity`
 --
 ALTER TABLE `laravel_logger_activity`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1068,19 +1101,25 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `operasional`
 --
 ALTER TABLE `operasional`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pembelian`
 --
 ALTER TABLE `pembelian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `pemberian_obat`
+--
+ALTER TABLE `pemberian_obat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `petugas`
