@@ -1,6 +1,9 @@
 @extends('template')
 @section('main')
 <h2>Tambah Pembelian</h2>
+<?php
+	$vendors = \App\Vendorobat::groupBy('nama_vendor')->get();
+?>
 <ol class="breadcrumb bc-3">
 	<li>
 		<a href="{{ route('pengeluaran.pembelian.index') }}"><i class="entypo-home"> Daftar Pembelian</i></a>
@@ -28,7 +31,7 @@
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tanggal</label>
 						<div class="col-sm-5">
 							<div class="input-group">
-								<input type="text" class="form-control datepicker" name="tgl" data-format="dd MM yyyy" placeholder="tanggal" required="">
+								<input type="text" id="tgl_1" class="form-control datepicker" name="tgl" data-format="dd MM yyyy" placeholder="tanggal" required="">
 										
 								<div class="input-group-addon">
 									<a href="#"><i class="entypo-calendar"></i></a>
@@ -36,10 +39,10 @@
 							</div>
 						</div>
 					</div>
-					<div id="ket_1">
+					<div id="ket_1"> 
 						<div class="form-group">
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Vendor</label>
-							<input type="hidden" name="vendor_id[]">
+							<input type="hidden" name="vendor_id" id="vendor_id">
 							<div class="col-sm-5">
 								<input type="text" class="form-control" id="vendor_1" name="vendor" placeholder="nama vendor" value="{{ old('nama vendor') }}" required readonly/>
 							</div>
@@ -50,7 +53,7 @@
 						
 						<div class="form-group">
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Obat/Barang</label>
-							<input type="hidden" name="obat_id[]">
+							<input type="hidden" name="obat_id" id="obat_id">
 							<div class="col-sm-5">
 								<input type="text" class="form-control" id="obat_1" name="obat" placeholder="nama obat" value="{{ old('nama obat') }}" required readonly/>
 							</div>
@@ -63,7 +66,7 @@
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jumlah</label>
 							
 							<div class="col-sm-5">
-								<input type="text" class="form-control numberValidation jumlah" id="jumlah_1" name="jumlah[]" onkeyup="hitung_total()" placeholder="jumlah" value="0" required />
+								<input type="text" class="form-control numberValidation jumlah" id="jumlah_1" name="jumlah" onkeyup="hitung_total()" placeholder="jumlah" value="0" required readonly />
 							</div>
 						</div>
 
@@ -71,7 +74,7 @@
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Harga</label>
 							
 							<div class="col-sm-5">
-								<input type="text" class="form-control numbers harga" id="harga_1" name="jumlah[]" placeholder="harga" value="0" autocomplete="off" onkeyup="hitung_total()" required />
+								<input type="text" class="form-control numbers harga" id="harga_1" name="harga" placeholder="harga" value="0" autocomplete="off" onkeyup="hitung_total()" required readonly />
 							</div>
 						</div>
 					</div>
@@ -174,7 +177,7 @@
 								<td>{{strtoupper($jenis->nama_obat)}}</td>
 								<td>{{$jenis->satuan}}</td>
 								<td>{{$jenis->stok}}</td>
-								<td>{{$jenis->harga}}</td>
+								<td class="numbers">{{$jenis->harga}}</td>
 								<td align="center">
 									<button data-id="{{$jenis->id}}" data-name="{{$jenis->nama_obat}}" data-harga="{{$jenis->harga}}" data-stok="{{$jenis->stok}}" class="btn btn-green btn-sm btn-icon icon-left addObt">
 										<i class="entypo-check"></i>
@@ -207,7 +210,6 @@
 
 		hitung_total();
 	}
-
 	function hitung_total() {
 		var total = 0;
 		$(".harga, .jumlah").each(function () {
@@ -223,9 +225,21 @@
 		$('#tambah_ket').click(function(e) {
 			e.preventDefault();
 			var html = '';
-			html +=
-					'<div id="ket_'+loop+'">' +
+			html += '<div id="ket_'+loop+'">' +
 					'<hr>' +
+
+					'<div class="form-group">' +
+					'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tanggal</label>' +
+					'<div class="col-sm-5">' +
+					'<div class="input-group">' +
+					'<input type="text" id="tgl_'+loop+'" class="form-control datepicker" name="tgl" data-format="dd MM yyyy" placeholder="tanggal" required="">' +
+					'<div class="input-group-addon">' +
+					'<a href="#"><i class="entypo-calendar"></i></a>' +
+					'</div>' +
+					'</div>' +
+					'</div>' +
+					'</div>' +	
+
 					'<div class="form-group">' +
 					'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Vendor</label>' +
 					'<input type="hidden" name="vendor_id[]" id="vendor_'+loop+'">' +
@@ -236,7 +250,7 @@
 	                '<i class="entypo-search" ></i>' +        
 					'</a>' + 
 					'</div> ' +
-						
+
 					'<div class="form-group">' +
 					'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Obat/Barang</label>' +
 					'<input type="hidden" name="obat_id[]" id="obat_'+loop+'">' +
@@ -251,14 +265,14 @@
 					'<div class="form-group">' +
 					'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jumlah</label>' +
 					'<div class="col-sm-5">' +
-					'<input type="text" class="form-control numberValidation jumlah" id="jumlah_'+loop+'" name="jumlah[]" placeholder="jumlah" value="0" required />' +
+					'<input type="text" class="form-control numberValidation jumlah" id="jumlah_'+loop+'" name="jumlah[]" placeholder="jumlah" value="0" required readonly/>' +
 					'</div>' +
 					'</div>' +
 
 					'<div class="form-group">' +
 					'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Harga</label>' +
 					'<div class="col-sm-5">' +
-					'<input type="text" class="form-control numbers harga" id="harga_'+loop+'" name="jumlah[]" placeholder="harga" value="0" autocomplete="off" onkeyup="hitung_total()" required />' +
+					'<input type="text" class="form-control numbers harga" id="harga_'+loop+'" name="jumlah[]" placeholder="harga" value="0" autocomplete="off" onkeyup="hitung_total()" required readonly/>' +
 					'</div>' +
 					'</div>' +
 
@@ -271,19 +285,53 @@
 					'</div>' +
 					'</div>' +
 
+					'<div class="modal fade" id="modal-5">' +
+					'<div class="modal-dialog" style="width: 800px;">' +
+					'<div class="modal-content">' +
+					'<div class="modal-header">' +
+					'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
+					'<h4 class="modal-title">Pilih Vendor</h4>' +
+					'</div>' +
+					'<div class="modal-body">' +
+					'<table class="table table-bordered datatable" id="table-1">' +
+					'<thead>' +
+ 					'<tr>' +
+					'<th>No</th>' +
+					'<th>Nama Vendor</th>' +
+					'<th>Alamat</th>' +
+					'<th>Action</th>' +
+					'</tr>' +
+					'</thead>' +
+					'<tbody>' +
+					'<?php $no=1; ?>' +
+					@foreach($vendors as $vendor)
+					'<tr>' +
+					'<td>{{$no++}}</td>' +
+					'<td>{{strtoupper($vendor->nama_vendor)}}</td>' +
+					'<td>{{$vendor->alamat}}</td>' +
+					'<td align="center">' +
+					'<button data-id="{{$vendor->id}}" data-name="{{$vendor->nama_vendor}}" class="btn btn-green btn-sm btn-icon icon-left addPas">' + 
+					'<i class="entypo-check"></i>' +
+					'Pilih' +
+					'</button>' +
+					'</td>' +
+					'</tr>' +
+					@endforeach
+					'</tbody>' +
+					'</table>' +
+					'</div>' +
+					'</div>' +
+					'</div>' +
+					'</div>' +	
+
 					'</div>';
 
 					$('#tambah_list').append(html);
+					$('#tgl_'+loop).datepicker();
 					$('.numbers').number(true);
 					hitung_total();
-					loop++;					
-		});
-
-		$("#tambah_list").on('click','.hapus', function(e){
-			e.preventDefault();
-			var id = $(this).data('id');
-			$("#ket_"+id).remove();
-			hitung_total();
+					loop++;
+					$('#modal-5').modal();	
 		});
 
 		$('.datatable').DataTable({
@@ -310,6 +358,7 @@
 			var nama = $(this).data('name');
 			var id = $(this).data('id');
 			$("#vendor_1").val(nama);
+			$("#vendor_id").val(id);
 			$("#modal-5").modal('hide');
 		});
 
@@ -319,6 +368,7 @@
 			var harga = $(this).data('harga');
 			var id = $(this).data('id');
 			var total = jumlah * harga;
+			$("#obat_id").val(id);
 			$("#obat_1").val(nama);
 			$("#jumlah_1").val(jumlah);
 			$("#harga_1").val(harga);

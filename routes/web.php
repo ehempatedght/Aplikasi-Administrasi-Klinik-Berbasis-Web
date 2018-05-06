@@ -16,7 +16,7 @@ Route::get('/', 'HomeController@index');
 
 Route::group(['middleware'=> ['web','auth']], function() {
 	Route::group(['prefix'=>'pengaturan'], function () {
-		//user
+		//pengaturan pengguna
 		Route::group(['prefix'=>'pengguna'], function() {
 			Route::get('/', ['as'=>'pengaturan.user.data.index','uses'=>'admin\UserController@index']);
 			Route::get('/create', ['as'=>'pengaturan.user.data.create','uses'=>'admin\UserController@create']);
@@ -25,6 +25,16 @@ Route::group(['middleware'=> ['web','auth']], function() {
 			Route::put('/update/{id}', ['as'=>'pengaturan.user.data.update','uses'=>'admin\UserController@update']);
 			Route::post('/delete/{id}', ['as'=>'pengaturan.user.data.delete', 'uses'=>'admin\UserController@delete']);
 			Route::get('/cekusername/{username}', ['as'=>'pengaturan.user.data.cek', 'uses'=>'admin\UserController@cekusername']);
+		});
+
+		//pengaturan honor
+		Route::group(['prefix'=>'honor'], function() {
+			Route::get('/', ['uses'=>'pengaturan\ConfhonorController@index'])->name('pengaturan.honor.index');
+			Route::get('/create', ['as'=>'pengaturan.honor.create','uses'=>'pengaturan\ConfhonorController@create']);
+			Route::post('/save', ['as'=>'pengaturan.honor.save','uses'=>'pengaturan\ConfhonorController@save']);
+			Route::get('/edit/{id}', ['uses'=>'pengaturan\ConfhonorController@edit'])->name('pengaturan.honor.edit');
+			Route::post('/update/{id}', ['uses'=>'pengaturan\ConfhonorController@update'])->name('pengaturan.honor.update');
+			Route::post('/delete/{id}/{petugas_id}', ['uses'=>'pengaturan\ConfhonorController@delete'])->name('pengaturan.honor.delete');
 		});
 	});
 	
@@ -125,9 +135,9 @@ Route::group(['middleware'=> ['web','auth']], function() {
 		 	Route::post('/update/{id}', ['as'=>'masterdata.daftarobat.update','uses'=>'masterdata\JenisobatController@doUpdate']);
 		 	Route::get('/createJenis', ['as'=>'masterdata.daftarobat.jenis','uses'=>'masterdata\JenisobatController@createJenis']);
 		 	//pake json
-		 	Route::post('/addjenis', 'masterdata\JenisobatController@addJenis');
-		 	Route::post('/updatejenis','masterdata\JenisobatController@updateJenis');
-		 	Route::post('/deletejenis','masterdata\JenisobatController@hapusJenis');
+		 	// Route::post('/addjenis', 'masterdata\JenisobatController@addJenis');
+		 	// Route::post('/updatejenis','masterdata\JenisobatController@updateJenis');
+		 	// Route::post('/deletejenis','masterdata\JenisobatController@hapusJenis');
 		 	//search kd obat
 		 	Route::get('/cari_kode/{id}', ['as'=>'masterdata.daftarobat.cari_kode','uses'=>'masterdata\JenisobatController@KdObat']);
 		});

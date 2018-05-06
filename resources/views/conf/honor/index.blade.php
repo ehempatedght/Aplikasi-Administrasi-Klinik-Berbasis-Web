@@ -1,9 +1,9 @@
 @extends('template')
 @section('main')
-<h2>Data Honor</h2>
-<h5>Menu ini digunakan untuk menambahkan honor</h5><br/>
-<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('pengeluaran.honor.create')}}">
-	<i class="entypo-user-add"></i>Tambah Honor
+<h2>Data Pengaturan Honor</h2>
+<h5>Menu ini digunakan untuk mengatur honor</h5><br/>
+<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('pengaturan.honor.create')}}">
+	<i class="entypo-user-add"></i>Tambah Pengaturan Honor
 </a>
 <br/>
 <br/>
@@ -30,36 +30,36 @@
 		<table class="table table-bordered datatable" id="table-1">
 			<thead>
 				<tr>
-					<th data-hide="phone">No</th>
+					<th width="5%">No</th>
 					<th>Tanggal</th>
 					<th>Kategori</th>
 					<th>Nama</th>
 					<th>Honor/Jam</th>
-					<th>Jumlah Jam</th>
-					<th>Total</th>
 					<th width="24%">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php $no=1; ?>
-				@foreach($honor as $honor)
+				@foreach($conf as $conf)
 				<tr>
 					<th>{{$no++}}</th>
-					<th>{{ date('d M Y', strtotime($honor->tgl)) }}</th>
-					<th>{{$honor->confhonor->petugas->category->nama_kategori}}</th>
-					<th>{{$honor->confhonor->petugas->nama}}</th>
-					<th class="numbers">{{$honor->confhonor->honor}}</th>
-					<th>{{$honor->jam}}</th>
-					<th class="numbers">{{$honor->confhonor->honor * $honor->jam}}</th>
+					<th>{{ date('d M Y', strtotime($conf->tgl)) }}</th>
+					<th>{{$conf->petugas->category->nama_kategori}}</th>
+					<th>{{$conf->petugas->nama}}</th>
+					<th class="numbers">{{$conf->honor}}</th>
 					<th>
 						<div align="center">
-							<form action="{{route('pengeluaran.honor.delete', $honor->id)}}" method="post">
+							<form action="{{route('pengaturan.honor.delete',['id' => $conf->id, 'petugas_id' => $conf->petugas_id])}}" method="post">
 									{{ csrf_field() }}
-									<a href="{{route('pengeluaran.honor.edit', $honor->id)}}" class="btn btn-sm btn-green btn-icon icon-left">
+									<a href="{{route('pengaturan.honor.edit', $conf->id)}}" class="btn btn-sm btn-green btn-icon icon-left">
 										<i class="entypo-pencil"></i>
 										Ubah
 									</a>
-									<button type="submit" class="btn btn-sm btn-danger btn-icon icon-left" onclick="return confirm('ANDA YAKIN AKAN MENGHAPUS HONOR INI?')">
+									{{-- <a href="{{route('pengeluaran.pembelian.show', $conf->id)}}" class="btn btn-sm btn-info btn-icon icon-left">
+										<i class="entypo-eye"></i>
+										Lihat
+									</a> --}}
+									<button type="submit" class="btn btn-sm btn-danger btn-icon icon-left" onclick="return confirm('ANDA YAKIN AKAN MENGHAPUS PENGATURAN HONOR INI?')">
                     					<i class="entypo-trash"> </i>
                     					Hapus
                   					</button>

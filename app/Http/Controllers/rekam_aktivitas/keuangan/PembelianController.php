@@ -5,6 +5,7 @@ namespace App\Http\Controllers\rekam_aktivitas\keuangan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Pembelian;
+use App\Vendorobat;
 use DB;
 class PembelianController extends Controller
 {
@@ -14,9 +15,9 @@ class PembelianController extends Controller
     }
 
     public function create() {
-    	$vendor = DB::table('vendor_obat')->groupBy('nama_vendor')->get();
+    	$vendor = Vendorobat::groupBy('nama_vendor')->get();
     	$jenis = DB::table('jenis_obat_detail')->get();
-    	return view('rekam_aktivitas.keuangan.pengeluaran.pembelian.create', get_defined_vars());
+    	return view('rekam_aktivitas.keuangan.pengeluaran.pembelian.create', get_defined_vars(), get_object_vars($this));
     }
 
     public function save(Request $request) {

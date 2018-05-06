@@ -28,7 +28,7 @@
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tanggal</label>
 						<div class="col-sm-5">
 							<div class="input-group">
-								<input type="text" class="form-control datepicker" name="tgl" data-format="dd MM yyyy" placeholder="tanggal">
+								<input type="text" class="form-control datepicker" name="tgl" data-format="dd MM yyyy" placeholder="tanggal" required="">
 										
 								<div class="input-group-addon">
 									<a href="#"><i class="entypo-calendar"></i></a>
@@ -41,7 +41,7 @@
 						<label class="col-sm-3 control-label"style="text-align:left;">&emsp;Kategori</label>
 						<input type="hidden" name="category_id" id="category_id">
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="category" name="category" placeholder="nama kategori" value="{{ old('nama petugas') }}" required readonly/>
+							<input type="text" class="form-control" id="category" name="category" placeholder="nama kategori" value="{{ old('category') }}" required readonly/>
 							{{-- <select name="category" class="select2" data-placeholder="Pilih kategori..." required>
 								<option></option>
 								<optgroup label="Pilih Kategori">
@@ -65,18 +65,18 @@
 					</div>
 					
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jumlah</label>
-						
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Honor/Jam</label>
+						<input type="hidden" name="confhonor_id" id="confhonor_id">				
 						<div class="col-sm-5">
-							<input type="text" class="form-control numbers" id="jumlah" name="jumlah" placeholder="jumlah" value="{{ old('jumlah') }}" required />
+							<input type="text" class="form-control numbers" id="honor" name="honor_perjam" placeholder="0" autocomplete="off" required readonly />
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label numberValidation" style="text-align:left;">&emsp;Jam</label>
+						<label for="field-1" class="col-sm-3 control-label numberValidation" style="text-align:left;">&emsp;Jumlah Jam</label>
 						
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="jam" name="jam" placeholder="example: 2 jam" value="{{ old('jam') }}" required />
+							<input type="text" class="form-control" id="jam" name="jam" placeholder="jumlah jam" value="{{ old('jam') }}" required />
 						</div>
 					</div>
 
@@ -84,7 +84,7 @@
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Total</label>
 						
 						<div class="col-sm-5">
-							<input type="text" class="form-control numbers" id="total" name="total" placeholder="total" value="{{ old('total') }}" required />
+							<input type="text" class="form-control numbers" id="total" name="total" placeholder="total" value="{{ old('total') }}" required readonly />
 						</div>
 					</div>
 
@@ -116,26 +116,24 @@
 								<th>No</th>
 								<th>Kategori</th>
 								<th>Nama</th>
-								<th>Spesialisasi</th>
-								<th>Alamat</th>
+								<th>Honor\Jam</th>
 								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php $no=1; ?>
-							@foreach($petugas as $petugas)
+							@foreach($conf as $conf)
 							<tr>
 								<td>{{$no++}}</td>
 								<td>
 									<center>
-										<span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span>
+										<span class="label label-primary">{{strtoupper($conf->petugas->category->nama_kategori)}}</span>
 									</center>
 								</td>
-								<td>{{strtoupper($petugas->nama)}}</td>
-								<td>{{$petugas->spesialisasi}}</td>
-								<td>{{$petugas->alamat}}</td>
+								<td>{{strtoupper($conf->petugas->nama)}}</td>
+								<th>{{number_format($conf->honor, 0, ',',',')}}</th>
 								<td align="center">
-									<button data-id="{{$petugas->id}}" data-category="{{$petugas->category_id}}" data-valcat="{{$petugas->category->nama_kategori}}" data-name="{{$petugas->nama}}" class="btn btn-green btn-sm btn-icon icon-left addPas">
+									<button data-id="{{$conf->petugas->id}}" data-idcat="{{$conf->petugas->category->id}}" data-valcat="{{$conf->petugas->category->nama_kategori}}" data-name="{{$conf->petugas->nama}}" data-honid="{{$conf->id}}" data-honor="{{$conf->honor}}" class="btn btn-green btn-sm btn-icon icon-left addPas" data-dismiss="modal">
 										<i class="entypo-check"></i>
 										Pilih
 									</button>
@@ -153,6 +151,12 @@
             this.value = this.value.replace(/[^0-9\.]/g,'');
     });
 
+	$("#jam").keyup(function() {
+		var honor = parseFloat($("#honor").val());
+		var jam = parseInt($("#jam").val());
+		var total = honor * jam;
+		$("#total").val(total);
+	});
     $(document).ready(function () {
     	$('.numbers').number(true);
     	$('input').on('keydown', function(event) {
@@ -179,11 +183,15 @@
 		$('.datatable').on('click','.addPas', function(e){
 			var nama = $(this).data('name');
 			var id = $(this).data('id');
-			var cat = $(this).data('category');
+			var idcat = $(this).data('idcat');
 			var valc = $(this).data('valcat');
+			var honid = $(this).data('honid');
+			var honor = $(this).data('honor');
 			$("#petugas_id").val(id);
+			$("#category_id").val(idcat);
+			$("#honor").val(honor);
+			$("#confhonor_id").val(honid);
 			$("#petugas").val(nama);
-			$("#category_id").val(cat);
 			$("#category").val(valc);
 			$("#modal-5").modal('hide');
 		});

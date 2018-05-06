@@ -295,29 +295,17 @@
 				@if(Auth::user()->setuser == '1')
 				<li>
 					<a href="{{route('pengaturan.user.data.index')}}">
-						<i class="fa fa-user-plus"></i>
+						<i class="entypo-users"></i>
 						<span class="title">Pengguna</span>
 					</a>
 				</li>
 				@endif
 				@if(Auth::user()->sethonor == '1')
 				<li>
-					<a href="#">
+					<a href="{{route('pengaturan.honor.index')}}">
 						<i class="entypo-alert"></i>
 						<span class="title">Honor</span>
 					</a>
-					<ul>
-						<li>
-							<a href="#">
-								<span class="title">Dokter</span>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<span class="title">Staff Administrasi</span>
-							</a>
-						</li>
-					</ul>
 				</li>
 				@endif
 			</ul>

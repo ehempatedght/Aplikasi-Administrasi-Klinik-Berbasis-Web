@@ -14,7 +14,7 @@ class Petugas extends Model
     protected $hidden = [
     	'created_at','updated_at'
     ];
-
+    
     public function category() {
     	return $this->belongsTo('App\Category','category_id');
     }
@@ -25,5 +25,9 @@ class Petugas extends Model
 
     public function honor() {
         return $this->hasOne('App\Honor');
+    }
+
+    public function confhonor() {
+        return $this->hasOne('App\Confhonor');
     }
 }

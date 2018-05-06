@@ -22,13 +22,13 @@
 	<div class="col-md-12">
 		<div class="panel panel-primary" data-collapsed="0">
 			<div class="panel-body">
-				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('pengeluaran.pembelian.save') }}" method="post">
+				<form role="form" class="form-horizontal" action="{{ route('pengeluaran.pembelian.save') }}" method="post">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tanggal</label>
 						<div class="col-sm-5">
 							<div class="input-group">
-								<input type="text" class="form-control datepicker" name="tgl" data-format="dd MM yyyy" placeholder="tanggal" required="">
+								<input type="text" id="tgl_1" class="form-control datepicker" name="tgl" data-format="dd MM yyyy" placeholder="tanggal" required="">
 										
 								<div class="input-group-addon">
 									<a href="#"><i class="entypo-calendar"></i></a>
@@ -36,7 +36,7 @@
 							</div>
 						</div>
 					</div>
-					{{-- <div id="ket_1"> --}}
+					<div id="ket_1"> 
 						<div class="form-group">
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Vendor</label>
 							<input type="hidden" name="vendor_id" id="vendor_id">
@@ -74,7 +74,7 @@
 								<input type="text" class="form-control numbers harga" id="harga_1" name="harga" placeholder="harga" value="0" autocomplete="off" onkeyup="hitung_total()" required readonly />
 							</div>
 						</div>
-					{{-- </div> --}}
+					</div>
 					{{-- <div id="tambah_list"></div>
 					<div class="form-group">
 						<label for="field-ta" class="col-sm-3 control-label"></label>
@@ -219,6 +219,79 @@
 	}
 
 	$(document).ready(function () {
+		$('#tambah_ket').click(function(e) {
+			e.preventDefault();
+			var html = '';
+			html += '<div id="ket_'+loop+'">' +
+					'<hr>' +
+
+					'<div class="form-group">' +
+					'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tanggal</label>' +
+					'<div class="col-sm-5">' +
+					'<div class="input-group">' +
+					'<input type="text" id="tgl_'+loop+'" class="form-control datepicker" name="tgl" data-format="dd MM yyyy" placeholder="tanggal" required="">' +
+					'<div class="input-group-addon">' +
+					'<a href="#"><i class="entypo-calendar"></i></a>' +
+					'</div>' +
+					'</div>' +
+					'</div>' +
+					'</div>' +	
+
+					'<div class="form-group">' +
+					'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Vendor</label>' +
+					'<input type="hidden" name="vendor_id[]" id="vendor_'+loop+'">' +
+					'<div class="col-sm-5">' +
+					'<input type="text" class="form-control" id="vendor_'+loop+'"name="vendor" placeholder="nama vendor" value="{{ old('nama vendor') }}" required readonly/>' +
+					'</div>' +
+					'<a class="btn btn-white" id="vendor" href="javascript:;" onclick="jQuery("#modal-'+loop+'").modal("show", {backdrop: "static"}); ">' +	
+	                '<i class="entypo-search" ></i>' +        
+					'</a>' + 
+					'</div> ' +
+
+					'<div class="form-group">' +
+					'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Obat/Barang</label>' +
+					'<input type="hidden" name="obat_id[]" id="obat_'+loop+'">' +
+					'<div class="col-sm-5">' +
+					'<input type="text" class="form-control" id="obat_'+loop+'" name="obat" placeholder="nama obat" value="{{ old('nama obat') }}" required readonly/>' +
+					'</div>' +
+					'<a class="btn btn-white" id="obat_'+loop+'" href="javascript:;" onclick="jQuery("#modal-6").modal("show", {backdrop: "static"}); ">' +	
+	                '<i class="entypo-search" ></i> ' +        
+					'</a>' + 
+					'</div>' +
+
+					'<div class="form-group">' +
+					'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jumlah</label>' +
+					'<div class="col-sm-5">' +
+					'<input type="text" class="form-control numberValidation jumlah" id="jumlah_'+loop+'" name="jumlah[]" placeholder="jumlah" value="0" required readonly/>' +
+					'</div>' +
+					'</div>' +
+
+					'<div class="form-group">' +
+					'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Harga</label>' +
+					'<div class="col-sm-5">' +
+					'<input type="text" class="form-control numbers harga" id="harga_'+loop+'" name="jumlah[]" placeholder="harga" value="0" autocomplete="off" onkeyup="hitung_total()" required readonly/>' +
+					'</div>' +
+					'</div>' +
+
+					'<div class="form-group">' +
+					'<div class="col-sm-offset-3 col-sm-5">' +
+					'<button type="button" class="btn btn-red btn-icon icon-left hapus" data-id="'+loop+'">' +
+					'Hapus' +
+					'<i class="entypo-cancel"></i>' +
+					'</button>' +
+					'</div>' +
+					'</div>' +
+
+					'</div>';
+
+					$('#tambah_list').append(html);
+					$('#tgl_'+loop).datepicker();
+					$('.numbers').number(true);
+					$('#modal-'+loop).modal();
+					hitung_total();
+					loop++;
+		});
+						
 
 		$('.datatable').DataTable({
 	      "oLanguage": {
