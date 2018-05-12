@@ -35,7 +35,7 @@
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;No RM</label>
 						<div class="col-sm-5">
-							<input type="text" class="form-control" name="no_rm" value="{{strtoupper($pasien->no_urut)}}" readonly="" required>
+							<input type="text" class="form-control" name="no_rm" value="{{strtoupper($pasien->no_rm)}}" readonly="" required>
 						</div>
 					</div>
 					<div class="form-group">

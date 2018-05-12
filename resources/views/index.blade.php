@@ -1,21 +1,124 @@
 @extends('template')
 @section('main')
-
-		<h2>Grafik/Tabel(Coming Soon)</h2>
-		<ul>
-			<h3><li>Grafik/Tabel Ringkasan Pemeriksaan dan Tindakan Medis</li></h3>
-			<h3><li>Grafik/Tabel Ringkasan Pemakaian dan Ketersediaan Obat</li></h3>
-			<h3><li>Grafik/Tabel Ringkasan Kinerja Dokter dan Staff Administrasi</li></h3>
-			<h3><li>Grafik/Tabel Ringkasan Penerimaan dan Pengeluaran Keuangan</li></h3>
+<?php
+	$img = \App\User::where('id', Auth::user()->id)->first();
+?>
+<div class="row">
+	<div class="col-md-6 col-sm-8 clearfix">
+		<ul class="user-info pull-left pull-none-xsm">
+			<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<img src="{{ asset('pengguna/'.$img->img) }}" alt="" class="img-circle" width="44" height="46" />
+						{{ Auth::user()->first_name}}
+				</a>
+				
+				<ul class="dropdown-menu">
+					<!-- Reverse Caret -->
+					<li class="caret"></li>
+					<!-- Profile sub-links -->
+					<li>
+						<a href="{{route('pengaturan.user.data.edit', Auth::user()->id)}}">
+							<i class="entypo-user"></i>
+							Edit Profile
+						</a>
+					</li>
+				</ul>
+			</li>
 		</ul>
-		<p>You can scroll to this page, and the sidebar will stay fixed on its position. Try it, scroll down <i class="entypo-down-open"></i></p>
-		
-		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-	
-		<br />
-		<!-- lets do some work here... -->
-		<!-- Footer -->
+	</div>
 
-   		 @stop
+	<div class="col-md-6 col-sm-4 clearfix hidden-xs">
+		<ul class="list-inline links-list pull-right">
+			<li>
+				<a href="{{ route('logout') }}" onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+					Log Out <i class="entypo-logout right"></i>
+				</a>
+				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                	@csrf
+            	</form>
+			</li>
+		</ul>
+	</div>
+</div>
+<hr/>
+<script type="text/javascript">
+	jQuery(document).ready(function($)
+	{
+		setTimeout(function()
+			{
+				var opts = {
+					"closeButton": true,
+					"debug": false,
+					"positionClass": rtl() || public_vars.$pageContainer.hasClass('right-sidebar') ? "toast-top-left" : "toast-top-right",
+					"toastClass": "black",
+					"onclick": null,
+					"showDuration": "300",
+					"hideDuration": "1000",
+					"timeOut": "5000",
+					"extendedTimeOut": "1000",
+					"showEasing": "swing",
+					"hideEasing": "linear",
+					"showMethod": "fadeIn",
+					"hideMethod": "fadeOut"
+				};
+		
+				toastr.success("SELAMAT DATANG, <b>{{strtoupper(Auth::user()->first_name)}}</b>", opts);
+			}, 3000);
+	});
+</script>
+<?php
+	$pengguna = \App\User::all()->count();
+	$petugas = \App\Petugas::all()->count();
+	$pasien = \App\Pasien::all()->count();
+	$obat = \App\Jenisobatdetail::all()->count();
+?>
+<div class="row">
+	<div class="col-sm-3 col-xs-6">
+		{{-- <a href="{{route('pengaturan.user.data.index')}}"> --}}
+		<div class="tile-stats tile-red">
+			<div class="icon"><i class="entypo-users"></i></div>
+			<div class="num" data-start="0" data-end="{{$pengguna}}" data-postfix="" data-duration="1500" data-delay="0">0</div>
+		
+			<h3>Pengguna</h3>
+			<p>jumlah pengguna aplikasi.</p>
+		</div>
+		{{-- </a> --}}
+	</div>
+
+	<div class="col-sm-3 col-xs-6">
+		{{-- <a href="{{route('masterdata.petugasmedis.datapetugasmedis.index')}}"> --}}
+		<div class="tile-stats tile-green">
+			<div class="icon" style="margin-bottom: 35px;"><i class="fa fa-user-md"></i></div>
+			<div class="num" data-start="0" data-end="{{$petugas}}" data-postfix="" data-duration="1500" data-delay="600">0</div>
+				<h3>Petugas</h3>
+				<p>jumlah petugas klinik.</p>
+		</div>
+		{{-- </a> --}}
+	</div>
+
+	<div class="clear visible-xs"></div>
+	
+	<div class="col-sm-3 col-xs-6">
+		{{-- <a href="{{route('masterdata.pasien.datapasien.index')}}"> --}}
+		<div class="tile-stats tile-aqua">
+			<div class="icon"><i class="entypo-user"></i></div>
+			<div class="num" data-start="0" data-end="{{$pasien}}" data-postfix="" data-duration="1500" data-delay="1200">0</div>
+			<h3>Pasien</h3>
+			<p>jumlah pasien yang sudah registrasi.</p>
+		</div>
+		{{-- </a> --}}
+	</div>
+
+	<div class="col-sm-3 col-xs-6">
+		{{-- <a href="{{route('masterdata.daftarobat.index')}}"> --}}
+		<div class="tile-stats tile-blue">
+			<div class="icon" style="margin-bottom: 35px;"><i class="fa fa-medkit"></i></div>
+			<div class="num" data-start="0" data-end="{{$obat}}" data-postfix="" data-duration="1500" data-delay="1800">0</div>
+			<h3>Obat</h3>
+			<p>jumlah obat klinik.</p>
+		</div>
+		{{-- </a> --}}
+	</div>
+</div>
+@stop

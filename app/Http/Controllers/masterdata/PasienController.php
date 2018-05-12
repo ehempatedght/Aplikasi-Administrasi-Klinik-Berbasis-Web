@@ -63,7 +63,7 @@ class PasienController extends Controller
         $tgl_lahir = date('Y-m-d', strtotime($data['TanggalLahir']));
 
     	$pasien = Pasien::create([
-            'no_urut' => $no_rm,
+            'no_rm' => $no_rm,
     		'nama_pasien' => $namaPasien,
     		'kategoripasien_id' => $IDkategoriPasien,
     		'golongan_darah' => $goldar,

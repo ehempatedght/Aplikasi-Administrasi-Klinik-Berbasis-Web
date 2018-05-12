@@ -92,7 +92,7 @@ Route::group(['middleware'=> ['web','auth']], function() {
 				Route::post('/tambahkecamatan', ['as'=>'masterdata.pasien.datapasien.kecamatan','uses'=>'masterdata\PasienController@inputKecamatanPasien']);
 				Route::post('/tambahkelurahan', ['as'=>'masterdata.pasien.datapasien.kelurahan','uses'=>'masterdata\PasienController@inputKelurahanPasien']);
 			});
-
+			
 			//kelurahan
 			Route::group(['prefix'=>'kelurahan'], function() {
 				Route::get('/', ['as'=>'masterdata.pasien.kelurahan.index','uses'=>'masterdata\KelurahanController@getIndex']);
@@ -152,7 +152,7 @@ Route::group(['middleware'=> ['web','auth']], function() {
 			Route::post('/update/{nama_vendor}', ['as'=>'masterdata.vendorobat.update', 'uses'=>'masterdata\VendorobatController@doUpdate']);
 		});
 	});
-
+			
 	//perekeman aktivitas
 	Route::group(['prefix'=>'perekaman_aktivitas'], function() {
 		//keuangan
@@ -224,10 +224,18 @@ Route::group(['middleware'=> ['web','auth']], function() {
 		//medis
 		Route::group(['prefix'=>'medis'], function() {
 			Route::group(['prefix'=>'pendaftaran'], function () {
-
+				Route::get('/', ['uses'=>'rekam_aktivitas\medis\ReservasiController@index'])->name('medis.reservasi.index');
+				Route::get('/create', ['uses'=>'rekam_aktivitas\medis\ReservasiController@create'])->name('medis.reservasi.create');
+				Route::post('/save', ['uses'=>'rekam_aktivitas\medis\ReservasiController@save'])->name('medis.reservasi.save');
+				Route::get('/edit/{id}', ['uses'=>'rekam_aktivitas\medis\ReservasiController@edit'])->name('medis.reservasi.edit');
+				Route::get('/show/{id}', ['uses'=>'rekam_aktivitas\medis\ReservasiController@show'])->name('medis.reservasi.show');
+				Route::post('/update/{id}', ['uses'=>'rekam_aktivitas\medis\ReservasiController@update'])->name('medis.reservasi.update');
+				Route::post('/delete/{id}', ['uses'=>'rekam_aktivitas\medis\ReservasiController@delete'])->name('medis.reservasi.delete');
+				//search spesialisasi
+				Route::get('/search_spesialisasi/{id}', ['as'=>'search.spesialisasi','uses'=>'rekam_aktivitas\medis\ReservasiController@search_spesialisasi']);
 			});
 			Route::group(['prefix'=>'pemeriksaan'], function () {
-
+				
 			});
 			Route::group(['prefix'=>'pemberian'], function () {
 				Route::get('/', ['as'=>'medis.pemberian.index','uses'=>'rekam_aktivitas\medis\PemberianobatController@index']);

@@ -215,7 +215,7 @@
 							<div class="col-sm-5">
 								<div class="fileinput fileinput-new" data-provides="fileinput" disabled>
 									<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput" disabled>
-										<img src="{{ asset('petugass/'.$data->img) }}" alt="...">
+										<img src="{{ asset('petugas/'.$data->img) }}" alt="...">
 									</div>
 									<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px"></div>
 									{{-- <div>
@@ -248,20 +248,6 @@
 <script src="{{asset('js/bootstrap-material-datetimepicker.js')}}"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#time').timepicker();
-		$('#time2').timepicker();
-		$('#time3').timepicker();
-		$('#time4').timepicker();
-		$('#time5').timepicker();
-		$('#time6').timepicker();
-		$('#time7').timepicker();
-		$('#time8').timepicker();
-		$('#time9').timepicker();
-		$('#time10').timepicker();
-		$('#time11').timepicker();
-		$('#time12').timepicker();
-		$('#time13').timepicker();
-		$('#time14').timepicker();
 		$('input').on('keydown', function(event) {
 	        if (this.selectionStart == 0 && event.keyCode >= 65 && event.keyCode <= 90 && !(event.shiftKey) && !(event.ctrlKey) && !(event.metaKey) && !(event.altKey)) {
 	           var $t = $(this);

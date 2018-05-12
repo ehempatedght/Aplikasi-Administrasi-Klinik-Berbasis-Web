@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Hash;
+use File;
 
 class UserController extends Controller
 {
@@ -31,7 +32,7 @@ class UserController extends Controller
         $username = $data['username'];
         $email = $data['email'];
         $password = $data['password'];
-
+        
         (isset($data['role']['admin']) ? $admin = "1" : $admin = "0");
         (isset($data['role']['petugasmedis']) ? $petugasmedis = "1" : $petugasmedis = "0");
         (isset($data['role']['vendorobat']) ? $vendorobat = "1" : $vendorobat = "0");
@@ -46,12 +47,26 @@ class UserController extends Controller
         (isset($data['role']['setuser']) ? $setuser = "1" : $setuser = "0");
         (isset($data['role']['sethonor']) ? $sethonor = "1" : $sethonor = "0");
 
+        if($request->hasFile('photo')) {
+            $cek_ekstensi = $data['photo']->getClientMimeType();
+            if (substr($cek_ekstensi, 0, 5) != "image") {
+                return redirect()->back()->withInput()->with("error_upload", "Format file harus gambar!");
+            } else {
+                $img = random_int(0, 9999).'-'.$data['photo']->getClientOriginalName();
+                $destination = public_path().'/pengguna';
+                $request->file('photo')->move($destination, $img);
+            }
+        } else {
+            $img ='';
+        }
+
     	$user = User::create([
     		'username' => $username,
             'first_name' => $nama_depan,
             'last_name' => $nama_belakang,
             'email' => $email,
             'password' => Hash::make($password),
+            'img' => $img,
             'admin' => $admin,
             'petugasmedis' => $petugasmedis,
             'vendorobat' => $vendorobat,
@@ -111,13 +126,27 @@ class UserController extends Controller
         (isset($data['role']['setuser']) ? $setuser = "1" : $setuser = "0");
         (isset($data['role']['sethonor']) ? $sethonor = "1" : $sethonor = "0");
 
+        if($request->hasFile('photo')) {
+            $cek_ekstensi = $data['photo']->getClientMimeType();
+            if (substr($cek_ekstensi, 0, 5) != "image") {
+                return redirect()->back()->with("error_upload", "Format file harus gambar!");
+            } else {
+                File::delete('pengguna/'.$data['gambar_lama']);
+                $img = random_int(0, 9999).'-'.$data['photo']->getClientOriginalName();
+                $destination = public_path().'/pengguna';
+                $request->file('photo')->move($destination, $img);
+            }
+        } else {
+            $img = User::find($id)->img;
+        }
+
         if (Auth::user()->admin == '1') {
             User::where('id', $id)->update([
                 'username' => $username,
                 'first_name' => $nama_depan,
                 'last_name' => $nama_belakang,
                 'email' => $email,
-                'password' => Hash::make($password),
+                'img' => $img,
                 'admin' => $admin,
                 'petugasmedis' => $petugasmedis,
                 'vendorobat' => $vendorobat,
@@ -140,7 +169,8 @@ class UserController extends Controller
                 'username' => $username,
                 'first_name' => $nama_depan,
                 'last_name' => $nama_belakang,
-                'email' => $email
+                'email' => $email,
+                'img' => $img
             ]);
 
             if($password != '') User::where('id', $id)->update(['password'=>Hash::make($password)]);

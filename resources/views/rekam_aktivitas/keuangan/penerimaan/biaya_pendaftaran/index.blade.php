@@ -32,8 +32,9 @@
 				<tr>
 					<th data-hide="phone">No</th>
 					<th>Tanggal</th>
-					<th>No.Pendaftaran</th>
+					<th>No.RM</th>
 					<th>Pasien</th>
+					<th>Jumlah Biaya</th>
 					<th width="24%">Aksi</th>
 				</tr>
 			</thead>
@@ -45,6 +46,7 @@
 					<th>{{date('d M y', strtotime($biaya->tgl))}}</th>
 					<th>{{$biaya->no_pend}}</th>
 					<th>{{$biaya->pasien->nama_pasien}}</th>
+					<th class="numbers">{{$biaya->jumlah}}</th>
 					<th>
 						<div align="center">
 							<form action="{{route('penerimaan.biaya.delete', $biaya->id)}}" method="post">

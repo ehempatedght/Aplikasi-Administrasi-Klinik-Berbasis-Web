@@ -43,7 +43,7 @@
 			</div>
 
 			<div class="panel-body">
-				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('masterdata.petugasmedis.datapetugasmedis.insert') }}" method="post" >
+				<form role="form" class="form-horizontal form-groups-bordered validate" enctype="multipart/form-data" action="{{ route('masterdata.petugasmedis.datapetugasmedis.insert') }}" method="post" >
 					{{ csrf_field() }}
 
 					<div class="form-group">
@@ -131,31 +131,31 @@
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-3 control-label" style="text-align:left; font-size:13px;">&emsp;Upload Photo:
-							@if (session('error_upload'))
-								<br />
-								<p style="color:red;">
-									{{ session('error_upload') }}
-								</p>
+							<label class="col-sm-3 control-label" style="text-align:left; font-size:13px;">&emsp;Upload Photo:
+								@if (session('error_upload'))
+									<br />
+									<p style="color:red;">
+										{{ session('error_upload') }}
+									</p>
 								@endif
-						</label>
-						<div class="col-sm-5">
-							<div class="fileinput fileinput-new" data-provides="fileinput">
-								<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput">
-									<img src="http://placehold.it/200x150" alt="...">
-								</div>
-								<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px"></div>
-								<div>
-									<span class="btn btn-white btn-file">
-										<span class="fileinput-new">Pilih Photo</span>
-										<span class="fileinput-exists">Ubah</span>
-										<input type="file" name="namaFile" accept="image/*">
-									</span>
-									<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Hapus</a>
-								</div>
+							</label>
+							<div class="col-sm-5">
+								<div class="fileinput fileinput-new" data-provides="fileinput">
+									<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput">
+										<img src="http://placehold.it/200x150" alt="...">
+									</div>
+									<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px"></div>
+									<div>
+										<span class="btn btn-white btn-file">
+											<span class="fileinput-new">Pilih Photo</span>
+											<span class="fileinput-exists">Ubah</span>
+											<input type="file" name="photo" accept="image/*">
+										</span>
+										<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Hapus</a>
+									</div>
 								</div>
 							</div>
-					</div>
+						</div>
 					<div class="form-group center-block full-right" style="margin-left: 15px;">
 						<button type="submit" name="simpan" id="simpan" class="btn btn-green btn-icon icon-left col-left">
 						Simpan
@@ -171,23 +171,10 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="{{ asset('js/fileinput.js') }}"></script>
 <script src="{{asset('js/bootstrap-material-datetimepicker.js')}}"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#time').timepicker();
-		$('#time2').timepicker();
-		$('#time3').timepicker();
-		$('#time4').timepicker();
-		$('#time5').timepicker();
-		$('#time6').timepicker();
-		$('#time7').timepicker();
-		$('#time8').timepicker();
-		$('#time9').timepicker();
-		$('#time10').timepicker();
-		$('#time11').timepicker();
-		$('#time12').timepicker();
-		$('#time13').timepicker();
-		$('#time14').timepicker();
 		$('input').on('keydown', function(event) {
 	        if (this.selectionStart == 0 && event.keyCode >= 65 && event.keyCode <= 90 && !(event.shiftKey) && !(event.ctrlKey) && !(event.metaKey) && !(event.altKey)) {
 	           var $t = $(this);

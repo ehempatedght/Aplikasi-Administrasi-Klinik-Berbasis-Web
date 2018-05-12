@@ -40,7 +40,7 @@
 			</div>
 
 			<div class="panel-body">
-				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('pengaturan.user.data.update', $data->id) }}" method="post">
+				<form role="form" class="form-horizontal form-groups-bordered validate" enctype="multipart/form-data" action="{{ route('pengaturan.user.data.update', $data->id) }}" method="post">
 					{{ csrf_field() }}
 					{{ method_field('PUT') }}
 
@@ -95,7 +95,7 @@
 						<label for="field-1" class="col-sm-3 control-label"style="text-align:left;">&emsp;Kata Sandi Baru</label>
 						
 						<div class="col-sm-5">
-							<input type="password" class="form-control" id="password" name="password" required>
+							<input type="password" class="form-control" id="password" name="password" >
 						</div>
 					</div>
 
@@ -103,7 +103,7 @@
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Konfirmasi Kata Sandi</label>
 						
 						<div class="col-sm-5">
-							<input type="password" class="form-control" name="password_confirmation" id="password_confirmation" required>
+							<input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
 						</div>
 						<div style="color:red;padding-top: 8px;" id="not_match"></div>
 					</div>
@@ -208,6 +208,33 @@
 								</label>
 							</div>
 						</div>
+					</div>
+					<div class="form-group">
+								<label class="col-sm-3 control-label" style="text-align:left; font-size:13px;">&emsp;Upload Photo:
+									@if (session('error_upload'))
+										<br />
+										<p style="color:red;">
+											{{ session('error_upload') }}
+										</p>
+									@endif
+								</label>
+								<div class="col-sm-5">
+									<div class="fileinput fileinput-new" data-provides="fileinput">
+										<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput">
+											<img @if ($data->img != '') src="{{ asset('pengguna/'.$data->img) }}" @else src="http://placehold.it/200x150" @endif alt="...">
+										</div>
+										<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px"></div>
+										<div>
+											<span class="btn btn-white btn-file">
+												<span class="fileinput-new">Pilih Photo</span>
+												<span class="fileinput-exists">Ubah</span>
+												<input type="file" name="photo" accept="image/*">
+											</span>
+											<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Hapus</a>
+										</div>
+									</div>
+								</div>
+								<input type="hidden" name="gambar_lama" value="{{ $data->img }}" />
 					</div>
 					<div class="form-group center-block full-right" style="margin-left: 15px;">
 						<button type="submit" name="simpan" id="simpan" class="btn btn-green btn-icon icon-left col-left">

@@ -38,9 +38,9 @@
 					</div>
 
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;No.Pendaftaran</label>
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;No.RM</label>
 						<div class="col-sm-5">
-							<input type="text" class="form-control" name="no_pend" placeholder="nomor pendaftaran" id="nopen" required readonly/>
+							<input type="text" class="form-control" name="no_pend" placeholder="nomor rm" id="nopen" required readonly/>
 						</div>
 					</div>
 
@@ -97,11 +97,11 @@
 						<tbody>
 							@foreach($pasien as $pasien)
 							<tr>
-								<td>{{strtoupper($pasien->no_urut)}}</td>
+								<td>{{strtoupper($pasien->no_rm)}}</td>
 								<td>{{$pasien->nama_pasien}}</td>
 								<td>{{$pasien->alamat}}</td>
 								<td align="center">
-									<button data-id="{{$pasien->id}}" data-pend="{{$pasien->no_urut}}" data-name="{{$pasien->nama_pasien}}" class="btn btn-green btn-sm btn-icon icon-left addPas">
+									<button data-id="{{$pasien->id}}" data-pend="{{$pasien->no_rm}}" data-name="{{$pasien->nama_pasien}}" class="btn btn-green btn-sm btn-icon icon-left addPas">
 										<i class="entypo-check"></i>
 										Pilih
 									</button>

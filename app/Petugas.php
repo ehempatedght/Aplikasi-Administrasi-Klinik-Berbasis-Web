@@ -30,4 +30,8 @@ class Petugas extends Model
     public function confhonor() {
         return $this->hasOne('App\Confhonor');
     }
+
+    public function reservasi() {
+        return $this->hasMany('App\Reservasi');
+    }
 }

@@ -124,11 +124,11 @@
 							@foreach($pasien as $pasien)
 							<tr>
 								<td>{{$no++}}</td>
-								<td>{{$pasien->no_urut}}</td>
+								<td>{{$pasien->no_rm}}</td>
 								<td>{{$pasien->kategoripasien->nama_kategori}}</td>
 								<td>{{$pasien->nama_pasien}}</td>
 								<td align="center">
-									<button data-id="{{$pasien->id}}" data-name="{{$pasien->nama_pasien}}" data-nopend="{{$pasien->no_urut}}" class="btn btn-green btn-sm btn-icon icon-left addPas">
+									<button data-id="{{$pasien->id}}" data-name="{{$pasien->nama_pasien}}" data-nopend="{{$pasien->no_rm}}" class="btn btn-green btn-sm btn-icon icon-left addPas">
 										<i class="entypo-check"></i>
 										Pilih
 									</button>
@@ -180,7 +180,6 @@
 			</div>
 		</div>
 	</div>
-
 </div>
 <script type="text/javascript">
 

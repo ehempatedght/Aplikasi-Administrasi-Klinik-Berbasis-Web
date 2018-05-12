@@ -13,7 +13,7 @@ class Pemberianobat extends Model
     protected $hidden = [
     	'created_at','updated_at'
     ];
-
+    
     public function pasien() {
     	return $this->belongsTo('App\Pasien','pasien_id');
     }

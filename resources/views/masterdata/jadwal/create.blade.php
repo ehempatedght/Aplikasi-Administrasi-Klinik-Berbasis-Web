@@ -83,7 +83,7 @@
 		$(".datatable").on('click','.add', function(e){
 			e.preventDefault();
 			var id = $(this).data('id');
-
+			
 			$.get(home_url + '/petugas/cari_petugas/'+id, function (data){
 				$("#nama").val(data.nama);
 				$("#kategori").val(data.nama_kategori);

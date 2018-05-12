@@ -18,12 +18,6 @@ class CategoriesTableSeeder extends Seeder
         	]);
         }
 
-        if (Category::where('nama_kategori','=','Perawat')->first() === null) {
-        	$perawatCategory = Category::create([
-        		'nama_kategori'=>'Perawat',
-        	]);
-        }
-
         if (Category::where('nama_kategori','=','Pegawai')->first() === null) {
         	$perawatCategory = Category::create([
         		'nama_kategori'=>'Pegawai',

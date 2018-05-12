@@ -20,10 +20,28 @@
 				</a>
 			</div>
 		</header>
-
+		<?php
+			$img = \App\User::where('id', Auth::user()->id)->first();
+		?>
+		<div class="sidebar-user-info">
+			<div class="sui-normal">
+				<a href="#" class="user-link">
+					<img src="{{ asset('pengguna/'.$img->img) }}" width="55" height="56" alt="" class="img-circle" />
+					<span>Welcome,</span>
+					<strong>{{ Auth::user()->username }}</strong>
+				</a>
+			</div>
+			<div class="sui-hover inline-links animate-in"><!-- You can remove "inline-links" class to make links appear vertically, class "animate-in" will make A elements animateable when click on user profile -->
+				<a href="{{route('pengaturan.user.data.edit', Auth::user()->id)}}">
+					<i class="entypo-user "></i>
+					<span style="font-size:15px;"><b>Edit Profile</b></span>
+				</a>
+				<span class="close-sui-popup">&times;</span><!-- this is mandatory -->
+			</div>
+		</div>
 		<ul id="main-menu" class="main-menu">
 		<li>
-			<a href="#">
+			<a href="/">
 				<i class="entypo-gauge"></i>
 				<span class="title">Dashboard</span>
 			</a>
@@ -153,7 +171,7 @@
 					</a>
 					<ul>
 						<li>
-							<a href="#">
+							<a href="{{route('medis.reservasi.index')}}">
 								<span class="title">Pendaftaran</span>
 							</a>
 						</li>

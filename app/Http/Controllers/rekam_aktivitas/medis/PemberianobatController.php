@@ -76,7 +76,7 @@ class PemberianobatController extends Controller
 
     	return redirect()->route('medis.pemberian.index')->with('message','Pemberian berhasil diubah');
     }
-
+    
     public function show($id) {
     	$pasien = Pasien::all();
     	$jenis = Jenisobatdetail::all();

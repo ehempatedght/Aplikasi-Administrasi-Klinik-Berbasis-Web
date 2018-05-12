@@ -154,7 +154,6 @@ $jenis_obats = \App\Donasiobat::all();
 			});
 		});
 
-		
 
 		$('#tambah_obat').click(function(e) {
 			e.preventDefault();

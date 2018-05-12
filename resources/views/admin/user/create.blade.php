@@ -40,7 +40,7 @@
 			</div>
 
 			<div class="panel-body">
-				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('pengaturan.user.data.simpan') }}" method="post">
+				<form role="form" class="form-horizontal form-groups-bordered validate" enctype="multipart/form-data" action="{{ route('pengaturan.user.data.simpan') }}" method="post">
 					{{ csrf_field() }}
 
 					<div class="form-group">
@@ -193,6 +193,33 @@
 								</label>
 							</div>
 						</div>
+					</div>
+
+					<div class="form-group">
+							<label class="col-sm-3 control-label" style="text-align:left; font-size:13px;">&emsp;Upload Photo:
+								@if (session('error_upload'))
+									<br />
+									<p style="color:red;">
+										{{ session('error_upload') }}
+									</p>
+								@endif
+							</label>
+							<div class="col-sm-5">
+								<div class="fileinput fileinput-new" data-provides="fileinput">
+									<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput">
+										<img src="http://placehold.it/200x150" alt="...">
+									</div>
+									<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px"></div>
+									<div>
+										<span class="btn btn-white btn-file">
+											<span class="fileinput-new">Pilih Photo</span>
+											<span class="fileinput-exists">Ubah</span>
+											<input type="file" name="photo" accept="image/*">
+										</span>
+										<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Hapus</a>
+									</div>
+								</div>
+							</div>
 					</div>
 					<div class="form-group center-block full-right" style="margin-left: 15px;">
 						<button type="submit" name="simpan" id="simpan" class="btn btn-green btn-icon icon-left col-left">

@@ -4,9 +4,9 @@ namespace App\Http\Controllers\masterdata;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Petugas;
 use App\Category;
-use App\Day;
 use Carbon\Carbon;
 use Validator;
 use File;
@@ -21,10 +21,8 @@ class PetugasController extends Controller
 
 	public function getCreate() {
 		$categories = Category::all();
-		$days = Day::all();
 		$data = [
 			'categories'=>$categories,
-			'days'=>$days,
 		];
 		return view('masterdata.petugas.create')->with($data);
 	}
@@ -37,18 +35,11 @@ class PetugasController extends Controller
 			$cats[$category->id] = $category->nama_kategori;
 		}
 
-		$days = Day::all();
-		$days2 = array();
-		foreach ($days as $day) {
-			$days2[$day->id] = $day->days;
-		}
-
 		return view('masterdata.petugas.show', get_defined_vars());
 	}
 
 	public function doAdd(Request $request) {
 		$data = $request->all();
-
 		$nama = $data['nama'];
 		$spesialisasi = $data['spesialisasi'];
 		$alamat = $data['alamat'];
@@ -59,23 +50,21 @@ class PetugasController extends Controller
 		$tgl_mulai = $data['tgl_mulai_praktek'];
 		$category_id = $data['category_id'];
 		
-
-		$id = Petugas::orderBy('id', 'DESC')->first();
-		if($request->hasFile('namaFile')) {
-	        $cek_ekstensi = $data['namaFile']->getClientMimeType();
-	        if (substr($cek_ekstensi, 0, 5) != "image") {
-	          return redirect()->back()->withInput()->with("error_upload", "Format file harus gambar!");
-	        } else {
-	          $img = $id.'-'.$data['namaFile']->getClientOriginalName();
-	          $destination = public_path().'/petugass';
-	          $request->image('namaFile')->move($destination, $img);
-	        }
-	      } else {
-	        $img ='user_default.png';
-      	}
-
-		$petugas = Petugas::create([
+		if($request->hasFile('photo')) {
+            $cek_ekstensi = $data['photo']->getClientMimeType();
+            if (substr($cek_ekstensi, 0, 5) != "image") {
+                return redirect()->back()->withInput()->with("error_upload", "Format file harus gambar!");
+            } else {
+                $img = random_int(0, 9999).'-'.$data['photo']->getClientOriginalName();
+                $destination = public_path().'/petugas';
+                $request->file('photo')->move($destination, $img);
+            }
+        } else {
+            $img ='';
+        }
+		Petugas::create([
 			'nama' => $nama,
+			'img' => $img,
 			'spesialisasi' => $spesialisasi,
 			'alamat' => $alamat,
 			'kota' => $kota,
@@ -83,13 +72,9 @@ class PetugasController extends Controller
 			'no_telp' => $no_telp,
 			'alamat_email' => $alamat_email,
 			'tgl_mulai_praktek' => $tgl_mulai,
-			'img' => $img,
 			'category_id' => $category_id,
 		]);
-		$petugas->days()->sync($request->days, false);
-		if ($petugas) {
-			return redirect()->route('masterdata.petugasmedis.datapetugasmedis.index')->with('message','Petugas medis '.strtoupper($petugas->nama).' berhasil ditambah!');
-		} 
+		return redirect()->route('masterdata.petugasmedis.datapetugasmedis.index')->with('message','Petugas medis berhasil ditambah!');
 	}
 
 	public function getEdit($id) {
@@ -98,11 +83,6 @@ class PetugasController extends Controller
 		$cats = array();
 		foreach ($categories as $category) {
 			$cats[$category->id] = $category->nama_kategori;
-		}
-		$days = Day::all();
-		$days2 = array();
-		foreach ($days as $day) {
-			$days2[$day->id] = $day->days;
 		}
 		return view('masterdata.petugas.edit', get_defined_vars());
 	}
@@ -121,43 +101,37 @@ class PetugasController extends Controller
 		$category_id = $data['category_id'];
 		
 
-		if($request->hasFile('namaFile')) {
-        $cek_ekstensi = $data['namaFile']->getClientMimeType();
-        if (substr($cek_ekstensi, 0, 5) != "image") {
-          return redirect()->back()->with("error_upload", "Format file harus gambar!");
+		if($request->hasFile('photo')) {
+            $cek_ekstensi = $data['photo']->getClientMimeType();
+            if (substr($cek_ekstensi, 0, 5) != "image") {
+                return redirect()->back()->with("error_upload", "Format file harus gambar!");
+            } else {
+                File::delete('petugas/'.$data['gambar_lama']);
+                $img = random_int(0, 9999).'-'.$data['photo']->getClientOriginalName();
+                $destination = public_path().'/petugas';
+                $request->file('photo')->move($destination, $img);
+            }
         } else {
-          File::delete('petugass/'.$data['gambar_lama']);
-          $img = $id.'-'.$data['namaFile']->getClientOriginalName();
-          $destination = public_path().'/petugass';
-          $request->image('namaFile')->move($destination, $img);
+            $img = Petugas::find($id)->img;
         }
-      } else {
-        $file = Petugas::where('id', $id)->first();
-        $img = $file->img;
-      }
 
-      $petugas = Petugas::where('id', $id)->first();
-
-       if (isset($request->days)) {
-       	$petugas->days()->sync($request->days);
-		} else {
-		$petugas->days()->sync(array());
-	   }
-
-      if ($petugas->update([
-      	'nama' => $nama,
-		'spesialisasi' => $spesialisasi,
-		'alamat' => $alamat,
-		'kota' => $kota,
-		'no_hp' => $no_hp,
-		'no_telp' => $no_telp,
-		'alamat_email' => $alamat_email,
-		'tgl_mulai_praktek' => $tgl_mulai,
-		'img' => $img,
-		'category_id' => $category_id,
-      ])) {
+        if (Auth::user()->petugasmedis == '1') {
+        	Petugas::where('id', $id)->update([
+        		'nama' => $nama,
+        		'img' => $img,
+				'spesialisasi' => $spesialisasi,
+				'alamat' => $alamat,
+				'kota' => $kota,
+				'no_hp' => $no_hp,
+				'no_telp' => $no_telp,
+				'alamat_email' => $alamat_email,
+				'tgl_mulai_praktek' => $tgl_mulai,
+				'category_id' => $category_id,
+        	]);
+        }
+     
       	return redirect()->route('masterdata.petugasmedis.datapetugasmedis.index')->with('message','Petugas medis berhasil diubah');
-      }
+     
 
 		// $petugas = Petugas::find($id);
 		// if (isset($request->days)) {
