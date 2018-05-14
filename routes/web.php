@@ -223,6 +223,7 @@ Route::group(['middleware'=> ['web','auth']], function() {
 
 		//medis
 		Route::group(['prefix'=>'medis'], function() {
+			//pendaftaran
 			Route::group(['prefix'=>'pendaftaran'], function () {
 				Route::get('/', ['uses'=>'rekam_aktivitas\medis\ReservasiController@index'])->name('medis.reservasi.index');
 				Route::get('/create', ['uses'=>'rekam_aktivitas\medis\ReservasiController@create'])->name('medis.reservasi.create');
@@ -234,9 +235,16 @@ Route::group(['middleware'=> ['web','auth']], function() {
 				//search spesialisasi
 				Route::get('/search_spesialisasi/{id}', ['as'=>'search.spesialisasi','uses'=>'rekam_aktivitas\medis\ReservasiController@search_spesialisasi']);
 			});
+
+			//pemeriksaan
 			Route::group(['prefix'=>'pemeriksaan'], function () {
-				
+				Route::get('/', ['uses'=>'rekam_aktivitas\medis\PemeriksaanController@index'])->name('medis.pemeriksaan.index');
+				Route::get('/create', ['uses'=>'rekam_aktivitas\medis\PemeriksaanController@create'])->name('medis.pemeriksaan.create');
+				Route::post('/save', ['uses'=>'rekam_aktivitas\medis\PemeriksaanController@save'])->name('medis.pemeriksaan.save');
+				Route::get('/show/{id}', ['uses'=>'rekam_aktivitas\medis\PemeriksaanController@show'])->name('medis.pemeriksaan.show');
 			});
+
+			//pemberian
 			Route::group(['prefix'=>'pemberian'], function () {
 				Route::get('/', ['as'=>'medis.pemberian.index','uses'=>'rekam_aktivitas\medis\PemberianobatController@index']);
 				Route::get('/create', ['as'=>'medis.pemberian.create','uses'=>'rekam_aktivitas\medis\PemberianobatController@create']);

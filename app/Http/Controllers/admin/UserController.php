@@ -15,11 +15,17 @@ class UserController extends Controller
 {
 
     public function index() {
+        if (Auth::user()->setuser != '1') {
+            $this->cek_akses("admin");
+        }
     	$users = User::all();
     	return view('admin.user.index')->withUsers($users);
     }
 
     public function create() {
+        if (Auth::user()->setuser != '1') {
+            $this->cek_akses("admin");
+        }
     	return view('admin.user.create');
     }
 
@@ -30,9 +36,10 @@ class UserController extends Controller
         $nama_depan = $data['first_name'];
         $nama_belakang = $data['last_name'];
         $username = $data['username'];
-        $email = $data['email'];
         $password = $data['password'];
         
+        if (User::where('username', $username)->count() > 0) return redirect()->back()->withInput()->with('status_username','Username sudah digunakan!');
+
         (isset($data['role']['admin']) ? $admin = "1" : $admin = "0");
         (isset($data['role']['petugasmedis']) ? $petugasmedis = "1" : $petugasmedis = "0");
         (isset($data['role']['vendorobat']) ? $vendorobat = "1" : $vendorobat = "0");
@@ -64,7 +71,6 @@ class UserController extends Controller
     		'username' => $username,
             'first_name' => $nama_depan,
             'last_name' => $nama_belakang,
-            'email' => $email,
             'password' => Hash::make($password),
             'img' => $img,
             'admin' => $admin,
@@ -109,8 +115,8 @@ class UserController extends Controller
         $nama_depan = $data['first_name'];
         $nama_belakang = $data['last_name'];
         $username = $data['username'];
-        $email = $data['email'];
         $password = $data['password'];
+
 
         (isset($data['role']['admin']) ? $admin = "1" : $admin = "0");
         (isset($data['role']['petugasmedis']) ? $petugasmedis = "1" : $petugasmedis = "0");
@@ -145,7 +151,6 @@ class UserController extends Controller
                 'username' => $username,
                 'first_name' => $nama_depan,
                 'last_name' => $nama_belakang,
-                'email' => $email,
                 'img' => $img,
                 'admin' => $admin,
                 'petugasmedis' => $petugasmedis,
@@ -169,7 +174,6 @@ class UserController extends Controller
                 'username' => $username,
                 'first_name' => $nama_depan,
                 'last_name' => $nama_belakang,
-                'email' => $email,
                 'img' => $img
             ]);
 
@@ -189,7 +193,7 @@ class UserController extends Controller
     public function cekusername($username) {
         $user = User::where('username', $username)->first();
         if (count($user) > 0) {
-            $msg = 'Username sudah digunakan!';
+            $msg = "Username sudah digunakan!";
         } else {
             $msg = '0';
         }

@@ -116,7 +116,7 @@
 			<div class="icon" style="margin-bottom: 35px;"><i class="fa fa-medkit"></i></div>
 			<div class="num" data-start="0" data-end="{{$obat}}" data-postfix="" data-duration="1500" data-delay="1800">0</div>
 			<h3>Obat</h3>
-			<p>jumlah obat klinik.</p>
+			<p>jumlah ketersediaan obat klinik.</p>
 		</div>
 		{{-- </a> --}}
 	</div>

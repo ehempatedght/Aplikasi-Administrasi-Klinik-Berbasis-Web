@@ -69,13 +69,14 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					{{-- <div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label"style="text-align:left;">&emsp;Email</label>
 						
 						<div class="col-sm-5">
 							<input type="text" class="form-control" id="field-1" name="email" placeholder="email" onkeyup="this.value = this.value.toLowerCase()" value="{{$data->email}}" required>
 						</div>
-					</div>
+					</div> --}}
+					
 					@if (Auth::user()->admin != '1')
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kata Sandi Lama:
@@ -241,10 +242,17 @@
 						Simpan
 						<i class="entypo-check"></i>
 						</button>
+						@if(Auth::user()->admin == '1' || Auth::user()->setuser == '1')
 						<a href="{{route('pengaturan.user.data.index')}}" class="btn btn-red btn-icon icon-left col-left">
-					Batal
-					<i class="entypo-cancel"></i>
+						Batal
+						<i class="entypo-cancel"></i>
 						</a>
+						@else
+						<a href="/" class="btn btn-red btn-icon icon-left col-left">
+						Batal
+						<i class="entypo-cancel"></i>
+						</a>
+						@endif
 					</div>
 				</form>
 			</div>

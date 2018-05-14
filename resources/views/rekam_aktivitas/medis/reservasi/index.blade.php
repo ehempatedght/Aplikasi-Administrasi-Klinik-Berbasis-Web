@@ -53,7 +53,16 @@
 					<th>{{$reservasi->dokter->nama}}</th>
 					<th>{{$reservasi->poli->nama_poli}}</th>
 					<th>{{$reservasi->no_urut}}</th>
-					<th>{{$reservasi->status_res}}</th>
+					<th>
+						@foreach($pemeriksaan as $pemeriksa)
+							@if($reservasi->id_res == $pemeriksa->reservasi_id)
+							Sudah
+							@endif
+						@endforeach
+						{{-- @if($reservasi->id_res != $pemeriksa->reservasi_id)
+							{{$reservasi->status_res}}
+						@endif --}}
+					</th>
 					<th>
 						<div align="center">
 							<form action="{{route('medis.reservasi.delete', ['id'=>$reservasi->id])}}" method="post">

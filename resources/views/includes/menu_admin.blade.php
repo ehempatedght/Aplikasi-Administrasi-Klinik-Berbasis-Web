@@ -176,7 +176,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="{{route('medis.pemeriksaan.index')}}">
 								<span class="title">Pemeriksaan</span>
 							</a>
 						</li>

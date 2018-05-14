@@ -37,7 +37,7 @@ var baseurl = '';
                         <i class="entypo-user"></i>
                     </div>
 
-                    <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="username or email" required autofocus>
+                    <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="username" required autofocus>
                 </div>
             </div>
             @if ($errors->has('email'))

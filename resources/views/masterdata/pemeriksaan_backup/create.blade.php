@@ -3,7 +3,7 @@
 <h2>Tambah Data Pemeriksaan</h2>
 <ol class="breadcrumb bc-3">
 	<li>
-		<a href="{{ route('pemeriksaan.index') }}"><i class="entypo-home"> Daftar Pemeriksaan</i></a>
+		<a href="#"><i class="entypo-home"> Daftar Pemeriksaan</i></a>
 	</li>
 	<li class="active">
 		<strong>Tambah Data Pemeriksaan</strong>
@@ -22,21 +22,9 @@
 	<div class="col-md-12">
 		<div class="panel panel-primary" data-collapsed="0">
 			<div class="panel-body">
-				<form role="form" class="form-horizontal" action="{{ route('pemeriksaan.masukkan') }}" method="post">
+				<form role="form" class="form-horizontal" method="post">
 					{{ csrf_field() }}
-					<div class="form-group">
-						<label class="col-sm-3 control-label"style="text-align:left;">&emsp;Kategori</label>
-						
-						<div class="col-sm-5">
-							
-							<select name="category_id" class="select2" data-validate="required" data-message-required="Wajib diisi." required="">
-								<option selected="selected" disabled value="Pilih">Pilih Kategori</option>
-									@foreach ($kategories as $kategori)
-										<option value="{{$kategori->id_kategori_pemeriksaan}}">{{$kategori->nama_kategori_pemeriksaan}}</option>
-									@endforeach
-							</select>
-						</div>
-					</div>
+					
 
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama Pemeriksaan</label>
@@ -139,7 +127,7 @@
 						Simpan
 						<i class="entypo-check"></i>
 						</button>
-						<a href="{{ route('pemeriksaan.index') }}" class="btn btn-red btn-icon icon-left">
+						<a href="#" class="btn btn-red btn-icon icon-left">
 								Kembali
 							<i class="entypo-cancel"></i>
 						</a>

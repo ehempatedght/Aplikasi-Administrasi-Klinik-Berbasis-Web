@@ -1,13 +1,13 @@
 @extends('template')
 
 @section('main')
-<h2>Tambah User</h2>
+<h2>Tambah Pengguna</h2>
 <ol class="breadcrumb bc-3">
 	<li>
-		<a href="{{ route('pengaturan.user.data.index') }}"><i class="entypo-home"> Daftar User</i></a>
+		<a href="{{ route('pengaturan.user.data.index') }}"><i class="entypo-home"> Daftar Pengguna</i></a>
 	</li>
 	<li class="active">
-		<strong>Tambah User</strong>
+		<strong>Tambah Pengguna</strong>
 	</li>
 </ol>
 @if(count($errors) > 0) 
@@ -47,8 +47,8 @@
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Username</label>
 						
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="username" name="username" placeholder="username" data-validate="required" data-message-required="Wajib diisi." value="{{ old('username') }}" onkeyup="this.value = this.value.toLowerCase()" />
-							<div style="color:red;padding-top: 8px;" id="avaibility"></div>
+							<input type="text" class="form-control" id="username" name="username" placeholder="username" data-validate="required" data-message-required="Wajib diisi." value="{{ old('username') }}"/>
+							<div style="color:red;padding-top: 8px;" id="avaibility">@if (session('status_username')){{ session('status_username') }} @endif</div>
 						</div>
 					</div>
 
@@ -68,13 +68,13 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					{{-- <div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label"style="text-align:left;">&emsp;Email</label>
 						
 						<div class="col-sm-5">
 							<input type="text" class="form-control" id="field-1" name="email" placeholder="email" onkeyup="this.value = this.value.toLowerCase()" required>
 						</div>
-					</div>
+					</div> --}}
 
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label"style="text-align:left;">&emsp;Kata Sandi</label>
@@ -239,25 +239,12 @@
 
 <script type="text/javascript" src="{{ asset('js/fileinput.js') }}"></script>
 <script type="text/javascript">
-	
-function cekUsername(){
-	var username = $('#username').val();
-	$.get(home_url + '/pengaturan/pengguna/cekusername/' + username, function(data){
-		if(data == 'Username sudah digunakan'){
-			$('#avaibility').val(data);
-			$('#save').prop('disabled', true);
-		}else if(data == '0'){
-			$('#avaibility').text(' ');
-			$('#save').removeProp('disabled');
-		}
-	});
-}
 
 $(document).ready(function() {
-	$('#password_confirmation').keyup(function(){
+	$("#password_confirmation").keyup(function(){
 		var pas1 = $('#password').val();
 		var pas2 = $('#password_confirmation').val();
-		var avail = $('#avaibility').text();
+		var avail = $("#avaibility").text();
 
 		if (pas1 != pas2) {
 			$('#not_match').text('Password Tidak Cocok');
@@ -266,14 +253,33 @@ $(document).ready(function() {
 			$('#not_match').text(' ');
 			$('#simpan').removeProp('disabled');
 		}
+
+		if (avail == 'Username sudah digunakan!') {
+			$("#simpan").prop('disabled', true);
+		}
 	});
 
 	$("#username").keyup(function(){
-		cekUsername();
+		var username = $("#username").val();
+		$.get(home_url + '/pengaturan/pengguna/cekusername/'+username, function(data){
+			if (data == 'Username sudah digunakan'){
+				$("#avaibility").text(data);
+				$('#simpan').prop('disabled', true);
+			} else if(data == '0') {
+				$("#avaibility").text(' ');
+				$("#simpan").removeProp('disabled');
+			}
+		});
 	});
 
-	$('#admin').click(function () {
+	$("#admin").click(function () {
 		$('.check').prop("checked", this.checked);
+	});
+
+	$(".check").click(function() {
+		if (($('#admin').prop('checked') == true) && ($(this).prop("checked") == false)) {
+			$("#admin").prop("checked", false);
+		}
 	});
 });
 </script>
