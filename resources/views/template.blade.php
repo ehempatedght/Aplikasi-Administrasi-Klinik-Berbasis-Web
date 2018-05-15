@@ -128,7 +128,9 @@
 	    }
 	});
 	</script>
+
 	@yield('scripts')
+	
 </head>
 <body class="page-body" data-url="http://neon.dev">
 	{{-- <meta name="csrf_token" content="{{ csrf_token() }}"> --}}
