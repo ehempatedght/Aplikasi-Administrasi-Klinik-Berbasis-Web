@@ -268,7 +268,7 @@ $(document).ready(function() {
 	$('#password_confirmation').keyup(function(){
 		var pas1 = $('#password').val();
 		var pas2 = $('#password_confirmation').val();
-		var avail = $('#avaibility').text();
+		var avail = $("#avaibility").text();
 
 		if (pas1 != pas2) {
 			$('#not_match').text('Password Tidak Cocok');
@@ -277,20 +277,26 @@ $(document).ready(function() {
 			$('#not_match').text(' ');
 			$('#simpan').removeProp('disabled');
 		}
+
+		if (avail == 'Username sudah digunakan!') {
+			$("#simpan").prop('disabled', true);
+		}
 	});
 
 	$("#username").keyup(function(){
 		var home_Url = "{{url('/')}}";
 		var username = $("#username").val();
-		$.get(home_Url + '/pengaturan/pengguna/cekusername/' + username, function(data){
-			if (data == 'Username sudah digunakan'){
-				$("#avaibility").text(data);
-				$('#simpan').prop('disabled', true);
-			} else if(data == '0') {
-				$("#avaibility").text(' ');
-				$("#simpan").removeProp('disabled');
-			}
-		});
+		if (username != "{{ $data->username }}") {
+			$.get(home_Url + '/pengaturan/pengguna/cekusername/' + username, function(data){
+				if (data == 'Username sudah digunakan'){
+					$("#avaibility").text(data);
+					$('#simpan').prop('disabled', true);
+				} else if(data == '0') {
+					$("#avaibility").text(' ');
+					$("#simpan").removeProp('disabled');
+				}
+			});
+		}
 	});
 
 	$('#admin').click(function () {

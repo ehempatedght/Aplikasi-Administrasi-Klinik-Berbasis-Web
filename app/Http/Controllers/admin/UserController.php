@@ -189,7 +189,7 @@ class UserController extends Controller
             return redirect()->route('pengaturan.user.data.index')->with('message','Pengguna '.$user->username.' berhasil dihapus');
         }
     }
-
+    
     public function cekUserName($username) {
         $user = User::where('username', $username)->first();
         if (count($user) > 0) {
