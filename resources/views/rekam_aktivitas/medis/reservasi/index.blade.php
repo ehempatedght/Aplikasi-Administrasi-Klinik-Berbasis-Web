@@ -3,7 +3,7 @@
 <h2>Data Pendaftaran Pasien</h2>
 <h5>Menu ini untuk melakukan pendaftaran pasien pada poli-poli yang bersangkutan</h5><br/>
 <a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('medis.reservasi.create')}}">
-	<i class="entypo-user-add"></i>Tambah Reservasi
+	<i class="entypo-user-add"></i>Tambah Pendaftaran
 </a>
 <br/>
 <br/>

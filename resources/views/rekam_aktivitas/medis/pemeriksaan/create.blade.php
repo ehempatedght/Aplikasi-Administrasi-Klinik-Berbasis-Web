@@ -1,6 +1,6 @@
 @extends('template')
 @section('main')
-<h2>Tambah Pemeriksaan Dokter</h2>
+<h2>Tambah Pemeriksaan Pasien</h2>
 <ol class="breadcrumb bc-3">
 	<li>
 		<a href="{{ route('medis.pemeriksaan.index') }}"><i class="entypo-home"> Daftar Pemeriksaan</i></a>

@@ -1,13 +1,13 @@
 @extends('template')
 
 @section('main')
-<h2>Tambah User</h2>
+<h2>Edit Pengguna</h2>
 <ol class="breadcrumb bc-3">
 	<li>
-		<a href="{{ route('pengaturan.user.data.index') }}"><i class="entypo-home"> Daftar User</i></a>
+		<a href="{{ route('pengaturan.user.data.index') }}"><i class="entypo-home"> Daftar Pengguna</i></a>
 	</li>
 	<li class="active">
-		<strong>Tambah User</strong>
+		<strong>Edit Pengguna</strong>
 	</li>
 </ol>
 @if(count($errors) > 0) 
@@ -263,7 +263,6 @@
 <script type="text/javascript" src="{{ asset('js/fileinput.js') }}"></script>
 <script type="text/javascript">
 	
-
 $(document).ready(function() {
 	$('#password_confirmation').keyup(function(){
 		var pas1 = $('#password').val();
@@ -303,11 +302,14 @@ $(document).ready(function() {
 		$('.check').prop("checked", this.checked);
 	});
 
+
 	$(".check").click(function() {
 		if (($('#admin').prop('checked') == true) && ($(this).prop("checked") == false)) {
 			$("#admin").prop("checked", false);
 		}
 	});
+
+
 });
 </script>
 @endsection

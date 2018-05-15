@@ -1,7 +1,7 @@
 @extends('template')
 @section('main')
-<h2>Data Pemeriksaan Dokter</h2>
-<h5>Menu ini untuk melakukan transaksi pemeriksaan dokter</h5><br/>
+<h2>Data Pemeriksaan Pasien</h2>
+<h5>Menu ini untuk melakukan transaksi pemeriksaan pasien</h5><br/>
 <a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('medis.pemeriksaan.create')}}">
 	<i class="entypo-user-add"></i>Tambah Pemeriksaan
 </a>

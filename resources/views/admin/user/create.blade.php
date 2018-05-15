@@ -273,9 +273,11 @@ $(document).ready(function() {
 		});
 	});
 
+
 	$("#admin").click(function () {
 		$('.check').prop("checked", this.checked);
 	});
+
 
 	$(".check").click(function() {
 		if (($('#admin').prop('checked') == true) && ($(this).prop("checked") == false)) {
