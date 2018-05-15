@@ -46,25 +46,25 @@
 	<script type="text/javascript">
 	var home_url = "{{url('/')}}";
 	
-	// $(document).ready(function() {
-	// 	$("form").validate();
+	$(document).ready(function() {
+		$("form").validate();
 
-	// 	$('.numbers').keyup(function () {
- //            this.value = this.value.replace(/[^0-9\.\-]/g,'');
- //        });
+		$('.numbers').keyup(function () {
+			this.value = this.value.replace(/[^0-9\.\-]/g,'');
+		});
 
- //        //Pattern for NPWP
-	//     if ($(".npwpMaskingTextBox").length > 0) {
-	//         VMasker($(".npwpMaskingTextBox")).maskPattern('99.999.999.9-999.999');
-	//     }
+		//Pattern for NPWP
+		if ($(".npwpMaskingTextBox").length > 0) {
+			VMasker($(".npwpMaskingTextBox")).maskPattern('99.999.999.9-999.999');
+		}
 
-	//     $('.moneyMasking').mask('000,000,000,000,000', {reverse: true});
+		$('.moneyMasking').mask('000,000,000,000,000', {reverse: true});
 
-	// 		//Pattern buat No. HP
-	// 		if ($(".hpMaskingTextBox").length > 0) {
-	//         VMasker($(".hpMaskingTextBox")).maskPattern('9999-9999-9999-9999');
-	//     }
-	// });
+		//Pattern buat No. HP
+		if ($(".hpMaskingTextBox").length > 0) {
+			VMasker($(".hpMaskingTextBox")).maskPattern('9999-9999-9999-9999');
+		}
+	});
 	</script>
 
 	<meta name="csrf_token" content="{{ csrf_token() }}">
