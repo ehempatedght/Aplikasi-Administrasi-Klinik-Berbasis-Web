@@ -15,9 +15,8 @@ use Auth;
 class ReservasiController extends Controller
 {
 	public function index() {
-		$reservasii = Reservasi::all();
-		$reservasi = Reservasi::all();
-		$pemeriksaan = Pemeriksaan::all();
+		$reservasi = Reservasi::get();
+		$pemeriksaan = Pemeriksaan::get();
 		return view('rekam_aktivitas.medis.reservasi.index', get_defined_vars());
 	}
 
@@ -103,11 +102,11 @@ class ReservasiController extends Controller
 		return redirect()->route('medis.reservasi.index')->with('message','Reservasi berhasil dihapus');
 	}
 
-	public function search_spesialisasi($id) {
-		$spls = Petugas::where('spesialisasi', $id)->count();
+	// public function search_spesialisasi($id) {
+	// 	$spls = Petugas::where('spesialisasi', $id)->count();
 
-		return $id;
-	}
+	// 	return $id;
+	// }
 
 	public function no_reservasi() {
 		$panjang = 3;

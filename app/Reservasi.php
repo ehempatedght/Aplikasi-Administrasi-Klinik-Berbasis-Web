@@ -11,6 +11,7 @@ class Reservasi extends Model
     protected $fillable = [
     	'kd_res','poli_id','pasien_id','dokter_id','status_res','no_urut','no_rm','u_id'
     ];
+
     protected $hidden = [
     	'created_at','updated_at'
     ];
@@ -18,7 +19,7 @@ class Reservasi extends Model
     public function poli() {
     	return $this->belongsTo('App\Poli','poli_id');
     }
-
+    
     public function pasien() {
     	return $this->belongsTo('App\Pasien','pasien_id');
     }

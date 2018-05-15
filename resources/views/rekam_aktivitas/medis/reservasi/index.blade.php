@@ -38,34 +38,31 @@
 					<th>Nama Dokter</th>
 					<th>Poli</th>
 					<th>No Urut</th>
-					<th>Status</th>
+					{{-- <th>Status</th> --}}
 					<th width="8%">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($reservasi as $reservasi)
+				@foreach($reservasi as $reservas)
 				<tr>
-					<th>{{$reservasi->kd_res}}</th>
-					<th>{{$reservasi->pasien->no_rm}}</th>
-					<th>{{$reservasi->pasien->nama_pasien}}</th>
-					<th>{{$reservasi->pasien->jenis_kelamin}}</th>
-					<th>{{$reservasi->pasien->kategoripasien->nama_kategori}}</th>
-					<th>{{$reservasi->dokter->nama}}</th>
-					<th>{{$reservasi->poli->nama_poli}}</th>
-					<th>{{$reservasi->no_urut}}</th>
-					<th>
-						@foreach($pemeriksaan as $pemeriksa)
-							@if($reservasi->id_res == $pemeriksa->reservasi_id)
-							Sudah
-							@endif
-						@endforeach
-						{{-- @if($reservasi->id_res != $pemeriksa->reservasi_id)
-							{{$reservasi->status_res}}
-						@endif --}}
-					</th>
+					<th>{{$reservas->kd_res}}</th>
+					<th>{{$reservas->pasien->no_rm}}</th>
+					<th>{{$reservas->pasien->nama_pasien}}</th>
+					<th>{{$reservas->pasien->jenis_kelamin}}</th>
+					<th>{{$reservas->pasien->kategoripasien->nama_kategori}}</th>
+					<th>{{$reservas->dokter->nama}}</th>
+					<th>{{$reservas->poli->nama_poli}}</th>
+					<th>{{$reservas->no_urut}}</th>
+					{{-- <th>
+						@if($pemeriksaan->reservasi->)
+						Sudah
+						@else
+						Belum
+						@endif
+					</th> --}}
 					<th>
 						<div align="center">
-							<form action="{{route('medis.reservasi.delete', ['id'=>$reservasi->id])}}" method="post">
+							<form action="#" method="post">
 									{{ csrf_field() }}
 									<a href="#" class="btn btn-sm btn-info btn-icon icon-left">
 										<i class="entypo-print"></i>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Reservasi;
 use App\Pemeriksaan;
+use App\Biayapendaftaran;
 
 class PemeriksaanController extends Controller
 {
@@ -16,7 +17,7 @@ class PemeriksaanController extends Controller
 
     public function create() {
     	$reservasi = Reservasi::orderBy('id_res','DESC')->get();
-    	$noFaktur = $this->no_faktur();
+        $noFaktur = $this->no_faktur();
     	return view('rekam_aktivitas.medis.pemeriksaan.create', get_defined_vars());
     }
 
@@ -45,7 +46,6 @@ class PemeriksaanController extends Controller
     		'disc' => $data['disc'],
     		'subtotal' => str_replace(',', '', $data['subtotal'])
     	]);
-
     	return redirect()->route('medis.pemeriksaan.index')->with('message','Pemeriksaan berhasil ditambah');
     }
 

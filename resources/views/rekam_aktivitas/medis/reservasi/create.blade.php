@@ -110,7 +110,7 @@
 						Simpan
 						<i class="entypo-check"></i>
 						</button>
-						<a href="{{ route('medis.pemberian.index') }}" class="btn btn-red btn-icon icon-left">
+						<a href="{{ route('medis.reservasi.index') }}" class="btn btn-red btn-icon icon-left">
 								Kembali
 							<i class="entypo-cancel"></i>
 						</a>
