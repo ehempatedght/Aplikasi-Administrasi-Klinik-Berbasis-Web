@@ -40,42 +40,7 @@
 	<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
     <link href="https://bootswatch.com/slate/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-</head>
-<body class="page-body" data-url="http://neon.dev">
-	
-	<script type="text/javascript">
-	var home_url = "{{url('/')}}";
-	
-	$(document).ready(function() {
-		$("form").validate();
-
-		$('.numbers').keyup(function () {
-			this.value = this.value.replace(/[^0-9\.\-]/g,'');
-		});
-
-		//Pattern for NPWP
-		if ($(".npwpMaskingTextBox").length > 0) {
-			VMasker($(".npwpMaskingTextBox")).maskPattern('99.999.999.9-999.999');
-		}
-
-		$('.moneyMasking').mask('000,000,000,000,000', {reverse: true});
-
-		//Pattern buat No. HP
-		if ($(".hpMaskingTextBox").length > 0) {
-			VMasker($(".hpMaskingTextBox")).maskPattern('9999-9999-9999-9999');
-		}
-	});
-	</script>
-
-	<meta name="csrf_token" content="{{ csrf_token() }}">
-
-	<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
-		@include('includes.menu_admin')
-		<div class="main-content" id="app">
-			@yield('main')
-		</div>
-	</div>
-	<script src="{{asset('js/datatables/datatables.js') }}"></script>
+		<script src="{{asset('js/datatables/datatables.js') }}"></script>
 	<script src="{{asset('js/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
 	<script src="{{asset('js/jvectormap/jquery-jvectormap-europe-merc-en.js')}}"></script>
 	<script src="{{asset('js/jquery.sparkline.min.js')}}"></script>
@@ -127,17 +92,31 @@
 	<script src="{{asset('js/neon-demo.js') }}"></script>
 	<script src="{{asset('js/jquery number/jquery.number.min.js')}}"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$(".numbers").number(true,0);
-			$('.moneyMasking').mask('000,000,000,000,000', {reverse: true});
+	var home_url = "{{url('/')}}";
+	
+	$(document).ready(function() {
+		$("form").validate();
+
+		$('.numbers').keyup(function () {
+			this.value = this.value.replace(/[^0-9\.\-]/g,'');
 		});
 
-		//Pattern for numbers
-	    // if ($(".numberValidation").length > 0) {
-	    //     VMasker($(".numberValidation")).maskNumber();
-	    // }
+		//Pattern for NPWP
+		if ($(".npwpMaskingTextBox").length > 0) {
+			VMasker($(".npwpMaskingTextBox")).maskPattern('99.999.999.9-999.999');
+		}
 
-	    $('.numberValidation').keyup(function () {
+		$('.moneyMasking').mask('000,000,000,000,000', {reverse: true});
+
+		//Pattern buat No. HP
+		if ($(".hpMaskingTextBox").length > 0) {
+			VMasker($(".hpMaskingTextBox")).maskPattern('9999-9999-9999-9999');
+		}
+
+		$(".numbers").number(true,0);
+			$('.moneyMasking').mask('000,000,000,000,000', {reverse: true});
+
+		 $('.numberValidation').keyup(function () {
             this.value = this.value.replace(/[^0-9\.]/g,'');
         });
 
@@ -147,8 +126,17 @@
 	    if ($(".npwpMaskingTextBox").length > 0) {
 	        VMasker($(".npwpMaskingTextBox")).maskPattern('99.999.999.9-999.999');
 	    }
-
+	});
 	</script>
 	@yield('scripts')
+</head>
+<body class="page-body" data-url="http://neon.dev">
+	{{-- <meta name="csrf_token" content="{{ csrf_token() }}"> --}}
+	<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+		@include('includes.menu_admin')
+		<div class="main-content" id="app">
+			@yield('main')
+		</div>
+	</div>
 </body>
 </html>
