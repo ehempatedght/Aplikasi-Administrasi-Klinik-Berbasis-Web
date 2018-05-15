@@ -260,8 +260,9 @@ $(document).ready(function() {
 	});
 
 	$("#username").keyup(function(){
+		var home_Url = "{{url('/')}}";
 		var username = $("#username").val();
-		$.get(home_url + '/pengaturan/pengguna/cekusername/'+username, function(data){
+		$.get(home_Url + '/pengaturan/pengguna/cekusername/' + username, function(data){
 			if (data == 'Username sudah digunakan'){
 				$("#avaibility").text(data);
 				$('#simpan').prop('disabled', true);

@@ -263,18 +263,6 @@
 <script type="text/javascript" src="{{ asset('js/fileinput.js') }}"></script>
 <script type="text/javascript">
 	
-function cekUsername(){
-	var username = $('#username').val();
-	$.get(home_url + '/pengaturan/user/data/cekusername/' + username, function(data){
-		if(data == 'Username sudah digunakan'){
-			$('#avaibility').text(data);
-			$('#save').prop('disabled', true);
-		}else if(data == '0'){
-			$('#avaibility').text(' ');
-			$('#save').removeProp('disabled');
-		}
-	});
-}
 
 $(document).ready(function() {
 	$('#password_confirmation').keyup(function(){
@@ -292,11 +280,27 @@ $(document).ready(function() {
 	});
 
 	$("#username").keyup(function(){
-		cekUsername();
+		var home_Url = "{{url('/')}}";
+		var username = $("#username").val();
+		$.get(home_Url + '/pengaturan/pengguna/cekusername/' + username, function(data){
+			if (data == 'Username sudah digunakan'){
+				$("#avaibility").text(data);
+				$('#simpan').prop('disabled', true);
+			} else if(data == '0') {
+				$("#avaibility").text(' ');
+				$("#simpan").removeProp('disabled');
+			}
+		});
 	});
 
 	$('#admin').click(function () {
 		$('.check').prop("checked", this.checked);
+	});
+
+	$(".check").click(function() {
+		if (($('#admin').prop('checked') == true) && ($(this).prop("checked") == false)) {
+			$("#admin").prop("checked", false);
+		}
 	});
 });
 </script>

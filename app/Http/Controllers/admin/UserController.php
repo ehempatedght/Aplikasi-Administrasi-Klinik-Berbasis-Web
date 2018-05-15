@@ -190,7 +190,7 @@ class UserController extends Controller
         }
     }
 
-    public function cekusername($username) {
+    public function cekUserName($username) {
         $user = User::where('username', $username)->first();
         if (count($user) > 0) {
             $msg = "Username sudah digunakan!";
