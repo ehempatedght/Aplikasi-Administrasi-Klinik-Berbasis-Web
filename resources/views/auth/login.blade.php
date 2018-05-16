@@ -15,7 +15,7 @@ var baseurl = '';
         
         <div class="login-content">
             
-            <a href="index.html" class="logo">
+            <a href="{{url('/login')}}" class="logo">
                 <img src="images/logo.jpeg" width="240" alt="" />
             </a>
             

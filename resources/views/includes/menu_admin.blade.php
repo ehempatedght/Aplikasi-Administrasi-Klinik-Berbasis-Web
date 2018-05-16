@@ -3,7 +3,7 @@
 		<header class="logo-env">
 			<!-- logo -->
 			<div class="logo">
-				<a href="index">
+				<a href="/">
 					<img src="{{asset('images/logo.jpeg') }}" width="120" alt="" />
 				</a>
 			</div>
