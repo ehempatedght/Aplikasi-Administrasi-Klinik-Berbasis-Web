@@ -116,7 +116,8 @@ class UserController extends Controller
         $nama_belakang = $data['last_name'];
         $username = $data['username'];
         $password = $data['password'];
-
+        
+        // if(User::where('username', $username)->count() > 0) return redirect()->back()->withInput()->with('status_username','Username sudah digunakan');
 
         (isset($data['role']['admin']) ? $admin = "1" : $admin = "0");
         (isset($data['role']['petugasmedis']) ? $petugasmedis = "1" : $petugasmedis = "0");
@@ -167,7 +168,7 @@ class UserController extends Controller
                 'sethonor' => $sethonor
             ]);
 
-            if($password != '') User::where('id', $id)->update(['password'=>Hash::make($password)]);
+            if($password != '') User::find($id)->update(['password'=>Hash::make($password)]);
             return redirect()->route('pengaturan.user.data.index')->with('message','Pengguna berhasil diubah!');
         } else {
             User::where('id', $id)->update([
@@ -177,7 +178,7 @@ class UserController extends Controller
                 'img' => $img
             ]);
 
-            if($password != '') User::where('id', $id)->update(['password'=>Hash::make($password)]);
+            if($password != '') User::find($id)->update(['password'=>Hash::make($password)]);
             return redirect('/');
         }
     }
