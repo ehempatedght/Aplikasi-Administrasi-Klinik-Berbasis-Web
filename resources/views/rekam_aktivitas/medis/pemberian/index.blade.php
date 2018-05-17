@@ -46,7 +46,7 @@
 					<th>{{$no++}}</th>
 					<th>{{ date('d M Y', strtotime($pemberian->tgl)) }}</th>
 					<th>{{$pemberian->no_pend}}</th>
-					<th>{{$pemberian->pasien->nama_pasien}}</th>
+					<th>{{$pemberian->pasien->reservasi->pasien->nama_pasien}}</th>
 					<th>{{$pemberian->obat->jenis_obat->jns_obt}}</th>
 					<th>{{$pemberian->obat->nama_obat}}</th>
 					<th>

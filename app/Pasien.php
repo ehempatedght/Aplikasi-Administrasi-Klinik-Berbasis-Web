@@ -18,7 +18,7 @@ class Pasien extends Model
     public function kategoripasien(){
     	return $this->belongsTo('App\Kategoripasien','kategoripasien_id');
     }
-
+    
     public function kota() {
         return $this->belongsTo('App\Kota','kota_id');
     }

@@ -53,7 +53,7 @@
 					<td>{{$pemeriksaan->reservasi->dokter->nama}}</td>
 					<td>
 						<div align="center">
-							<a href="#" class="btn btn-sm btn-blue btn-icon icon-left">
+							<a href="{{route('medis.pemeriksaan.show', $pemeriksaan->id_pemeriksaan)}}" class="btn btn-sm btn-blue btn-icon icon-left">
 								<i class="entypo-eye"></i>
 								Detail
 							</a>

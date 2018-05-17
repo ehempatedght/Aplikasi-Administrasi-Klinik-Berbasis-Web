@@ -10,6 +10,7 @@ use App\Biayapendaftaran;
 
 class PemeriksaanController extends Controller
 {
+
     public function index() {
     	$pemeriksaan = Pemeriksaan::all();
     	return view('rekam_aktivitas.medis.pemeriksaan.index')->withPemeriksaan($pemeriksaan);

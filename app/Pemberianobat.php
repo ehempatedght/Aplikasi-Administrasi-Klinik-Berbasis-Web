@@ -15,7 +15,7 @@ class Pemberianobat extends Model
     ];
     
     public function pasien() {
-    	return $this->belongsTo('App\Pasien','pasien_id');
+    	return $this->belongsTo('App\Pemeriksaan','pasien_id');
     }
 
    	public function obat() {

@@ -11,6 +11,7 @@ class Pemeriksaan extends Model
     protected $fillable = [
         'tgl','no_faktur','reservasi_id','nama_pemeriksaan','tarif','jml','total','disc','subtotal'
     ];
+
     protected $hidden = [
         'created_at','updated_at'
     ];

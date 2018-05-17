@@ -5,7 +5,6 @@ namespace App\Http\Controllers\rekam_aktivitas\medis;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Pemberianobat;
-use App\Pasien;
 use App\Jenisobatdetail;
 
 class PemberianobatController extends Controller
@@ -14,9 +13,9 @@ class PemberianobatController extends Controller
     	$pemberian = Pemberianobat::orderBy('id','DESC')->get();
     	return view('rekam_aktivitas.medis.pemberian.index')->withPemberian($pemberian);
     }
-
+    
     public function create() {
-    	$pasien = Pasien::all();
+    	$pasien = \App\Pemeriksaan::all();
     	$jenis = Jenisobatdetail::all();
     	return view('rekam_aktivitas.medis.pemberian.create', get_defined_vars());
     }
@@ -46,7 +45,7 @@ class PemberianobatController extends Controller
     }
 
     public function edit($id) {
-    	$pasien = Pasien::all();
+    	$pasien = \App\Pemeriksaan::all();
     	$jenis = Jenisobatdetail::all();
     	$pemberian = Pemberianobat::find($id);
     	return view('rekam_aktivitas.medis.pemberian.edit', get_defined_vars());
@@ -78,7 +77,7 @@ class PemberianobatController extends Controller
     }
     
     public function show($id) {
-    	$pasien = Pasien::all();
+    	$pasien = \App\Pemeriksaan::all();
     	$jenis = Jenisobatdetail::all();
     	$pemberian = Pemberianobat::find($id);
     	return view('rekam_aktivitas.medis.pemberian.show', get_defined_vars());

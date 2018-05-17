@@ -107,7 +107,7 @@ Route::group(['middleware'=> ['web','auth']], function() {
 				Route::post('/deletekec/{id}', ['as'=>'masterdata.pasien.kelurahan.deletekec','uses'=>'masterdata\KelurahanController@deleteKecamatan']);
 			});
 		});
-		
+
 		//peralatan
 		Route::group(['prefix'=>'peralatan'], function () {
 			// medis
