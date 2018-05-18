@@ -112,7 +112,7 @@ class JenisobatController extends Controller
 
 	public function doDelete($id) {
 		Jenisobatdetail::find($id)->delete();
-		return redirect()->route('daftarobat.index')->with('message','Obat berhasil dihapus!');
+		return redirect()->route('masterdata.daftarobat.index')->with('message','Obat berhasil dihapus!');
 	}
 	//Using JSON
 	public function addJenis(Request $request) {

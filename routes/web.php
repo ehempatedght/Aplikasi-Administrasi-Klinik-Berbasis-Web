@@ -254,6 +254,17 @@ Route::group(['middleware'=> ['web','auth']], function() {
 				Route::get('/show/{id}', ['as'=>'medis.pemberian.show','uses'=>'rekam_aktivitas\medis\PemberianobatController@show']);
 				Route::post('/delete/{id}', ['as'=>'medis.pemberian.delete','uses'=>'rekam_aktivitas\medis\PemberianobatController@delete']);
 			});
+
+			//rekam medis
+			Route::group(['prefix'=>'rekam_medis'], function() {
+				Route::get('/', ['uses'=>'rekam_aktivitas\medis\RekamMedisController@index'])->name('rekam_medis.index');
+				Route::get('/create', ['uses'=>'rekam_aktivitas\medis\RekamMedisController@create'])->name('rekam_medis.create');
+				Route::post('/save', ['uses'=>'rekam_aktivitas\medis\RekamMedisController@save'])->name('rekam_medis.save');
+				Route::get('/edit/{id}', ['uses'=>'rekam_aktivitas\medis\RekamMedisController@edit'])->name('rekam_medis.edit');
+				Route::post('/update/{id}', ['uses'=>'rekam_aktivitas\medis\RekamMedisController@update'])->name('rekam_medis.update');
+				Route::get('/show/{id}', ['uses'=>'rekam_aktivitas\medis\RekamMedisController@show'])->name('rekam_medis.show');
+				Route::post('/delete/{id}', ['uses'=>'rekam_aktivitas\medis\RekamMedisController@delete'])->name('rekam_medis.delete');
+			});
 		});
 	});
 });

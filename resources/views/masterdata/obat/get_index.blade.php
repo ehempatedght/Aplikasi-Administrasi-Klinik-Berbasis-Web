@@ -30,7 +30,7 @@
 		<table class="table table-bordered datatable" id="table-1">
 			<thead>
 				<tr>
-					<th data-hide="phone">No</th>
+					<th width="3%">No</th>
 					<th>Nama Obat</th>
 					<th>Stok</th>
 					<th width="200px">Aksi</th>

@@ -181,6 +181,11 @@
 							</a>
 						</li>
 						<li>
+							<a href="{{route('rekam_medis.index')}}">
+								<span class="title">Rekam Medis</span>
+							</a>
+						</li>
+						<li>
 							<a href="{{route('medis.pemberian.index')}}">
 								<span class="title">Pemberian Obat</span>
 							</a>

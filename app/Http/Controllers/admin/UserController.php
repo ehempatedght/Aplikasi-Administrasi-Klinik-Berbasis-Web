@@ -106,12 +106,10 @@ class UserController extends Controller
         $data = $request->all();
 
         if (Auth::user()->admin != '1') {
-            if (password_verify($data['password0'], User::where('id', $id)->first()->password)) {
-                return redirect()->back()->with('error_1','Password lama salah!');
+            if (password_verify($data['password0'], User::find($id)->password)) return redirect()->back()->with('error_1', 'Password lama salah!');
             } else {
                 if(!isset($data['role'])) return redirect()->back()->with('status','Wajib pilih minimal satu!');
             }
-        }
         $nama_depan = $data['first_name'];
         $nama_belakang = $data['last_name'];
         $username = $data['username'];

@@ -172,7 +172,7 @@
 							<input type="text" class="form-control" id="no_hp" name="kontak" placeholder="nomor hp" data-mask="(9999) 9999-9999" value="{{$pasien->kontak}}" readonly="" />
 						</div>
 					</div>
-
+					
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-12">
