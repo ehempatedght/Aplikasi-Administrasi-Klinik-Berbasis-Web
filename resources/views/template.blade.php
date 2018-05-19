@@ -69,7 +69,7 @@
 
 	<meta name="csrf_token" content="{{ csrf_token() }}">
 
-	<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+	<div class="page-container @if(isset($tampilan_penuh)) sidebar-collapsed @endif"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
 		@include('includes.menu_admin')
 		<div class="main-content" id="app">
 			@yield('main')

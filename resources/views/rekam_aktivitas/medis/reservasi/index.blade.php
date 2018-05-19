@@ -53,7 +53,15 @@
 					<th>{{$reservas->dokter->nama}}</th>
 					<th>{{$reservas->poli->nama_poli}}</th>
 					<th>{{$reservas->no_urut}}</th>
-					<th>{{$reservas->status_res}}</th>
+					<th>
+						<center>
+						@if($reservas->status_res == 'Belum')
+						<span class="label label-danger">{{strtoupper($reservas->status_res)}}</span>
+						@else
+						<span class="label label-primary">{{strtoupper($reservas->status_res)}}
+						@endif
+						</center>
+					</th>
 					<th>
 						<div align="center">
 							<form action="#" method="post">

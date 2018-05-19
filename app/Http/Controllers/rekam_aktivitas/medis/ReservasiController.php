@@ -17,6 +17,7 @@ class ReservasiController extends Controller
 	public function index() {
 		$reservasi = Reservasi::all();
 		$rekam = Rekam::all();
+		$tampilan_penuh = true;
 		return view('rekam_aktivitas.medis.reservasi.index', get_defined_vars());
 	}
 
