@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 19 Mei 2018 pada 04.13
+-- Generation Time: 19 Mei 2018 pada 09.22
 -- Versi Server: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -578,7 +578,8 @@ INSERT INTO `laravel_logger_activity` (`id`, `description`, `userType`, `userId`
 (161, 'Logged Out', 'Registered', 1, 'http://127.0.0.1:8000/logout', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/pengaturan/pengguna', 'POST', '2018-05-17 16:31:07', '2018-05-17 16:31:07', NULL),
 (162, 'Logged In', 'Registered', 4, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-17 16:31:20', '2018-05-17 16:31:20', NULL),
 (163, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-18 09:53:14', '2018-05-18 09:53:14', NULL),
-(164, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-19 01:59:27', '2018-05-19 01:59:27', NULL);
+(164, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-19 01:59:27', '2018-05-19 01:59:27', NULL),
+(165, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-19 06:27:48', '2018-05-19 06:27:48', NULL);
 
 -- --------------------------------------------------------
 
@@ -738,13 +739,6 @@ CREATE TABLE `pemberian_obat` (
   `updated_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `pemberian_obat`
---
-
-INSERT INTO `pemberian_obat` (`id`, `tgl`, `no_pend`, `pasien_id`, `jenis_id`, `obat_id`, `jumlah`, `keterangan`, `created_at`, `updated_at`) VALUES
-(1, '2018-05-19', '0004', 1, 3, 4, 3, 'lorem ipsum dolor sit amet', '2018-05-19', '2018-05-19');
-
 -- --------------------------------------------------------
 
 --
@@ -765,14 +759,6 @@ CREATE TABLE `pemeriksaan` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `pemeriksaan`
---
-
-INSERT INTO `pemeriksaan` (`id_pemeriksaan`, `reservasi_id`, `tgl`, `no_faktur`, `nama_pemeriksaan`, `tarif`, `jml`, `total`, `disc`, `subtotal`, `created_at`, `updated_at`) VALUES
-(1, 1, '2018-05-15', '180515001', 'TEST', 200000, 2, 400000, 100, 178000, 2018, 2018),
-(2, 3, '2018-05-17', '18051702', 'Biaya Poli', 50000, 2, 100000, 10, 94500, 2018, 2018);
 
 -- --------------------------------------------------------
 
@@ -869,8 +855,7 @@ CREATE TABLE `rekam_medis` (
 --
 
 INSERT INTO `rekam_medis` (`id_rm`, `res_id`, `tgl`, `rmkeluhan`, `rmpemeriksaan`, `rmpp`, `rmalergiobat`, `rmterapi`, `rmresep`, `rmkesimpulan`, `rmdiagnosa`, `kondisi_pasien`, `u_id`, `created_at`, `updated_at`) VALUES
-(1, 4, '2018-05-15', 'sering mampet ketika malem hari', 'Cek hidung', NULL, 'tidak ada', 'minum air hangat tiap hari', 'resep updated', 'jangan banyak-banyak minum es', 'Hidung mampet', 'DALAM PROSES PENYEMBUHAN', 1, '2018-05-18 16:14:28', '2018-05-18 16:14:28'),
-(2, 1, '2018-05-14', 'sering pusing ketika aktifitas berlebihan', 'cek darah', NULL, 'amoxilin', 'jangan terlalu capek', 'nothing', 'jangan terlalu aktifitas berlebihan', 'kepala pusing', 'SEMBUH', 1, '2018-05-18 16:13:14', '2018-05-18 16:13:14');
+(1, 2, '2018-05-19', 'sering gatal-gatal kalau abis pakai bedak', 'cek kelainan kuliat', NULL, 'axoxilins', 'jangan kena udara dingin', '-', '-', 'Gatal-gatal', 'DALAM PROSES PENYEMBUHAN', 1, '2018-05-19 07:14:38', '2018-05-19 07:14:38');
 
 -- --------------------------------------------------------
 
@@ -897,10 +882,9 @@ CREATE TABLE `reservasi` (
 --
 
 INSERT INTO `reservasi` (`id_res`, `kd_res`, `poli_id`, `pasien_id`, `dokter_id`, `status_res`, `no_urut`, `no_rm`, `u_id`, `created_at`, `updated_at`) VALUES
-(1, '180514001', 2, 2, 6, 'Belum', '001', '0002', 1, '2018-05-14 12:41:52', '2018-05-14 12:41:52'),
-(2, '180514002', 1, 1, 8, 'Belum', '002', '0001', 1, '2018-05-14 12:45:37', '2018-05-14 12:45:37'),
-(3, '180514003', 2, 3, 8, 'Belum', '003', '0003', 1, '2018-05-14 14:06:38', '2018-05-14 14:06:38'),
-(4, '180515004', 2, 4, 8, 'Belum', '004', '0004', 1, '2018-05-15 03:59:50', '2018-05-15 03:59:50');
+(1, '180519001', 1, 2, 6, 'Belum', '001', '0002', 1, '2018-05-19 06:47:28', '2018-05-19 06:47:28'),
+(2, '180519002', 2, 1, 8, 'Sudah', '002', '0001', 1, '2018-05-19 07:14:38', '2018-05-19 07:14:38'),
+(3, '180519003', 1, 4, 6, 'Belum', '003', '0004', 1, '2018-05-19 07:11:22', '2018-05-19 07:11:22');
 
 -- --------------------------------------------------------
 
@@ -1299,7 +1283,7 @@ ALTER TABLE `kota`
 -- AUTO_INCREMENT for table `laravel_logger_activity`
 --
 ALTER TABLE `laravel_logger_activity`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1329,13 +1313,13 @@ ALTER TABLE `pembelian`
 -- AUTO_INCREMENT for table `pemberian_obat`
 --
 ALTER TABLE `pemberian_obat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pemeriksaan`
 --
 ALTER TABLE `pemeriksaan`
-  MODIFY `id_pemeriksaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pemeriksaan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `petugas`
@@ -1353,13 +1337,13 @@ ALTER TABLE `poli`
 -- AUTO_INCREMENT for table `rekam_medis`
 --
 ALTER TABLE `rekam_medis`
-  MODIFY `id_rm` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_rm` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `reservasi`
 --
 ALTER TABLE `reservasi`
-  MODIFY `id_res` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_res` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `roles`
