@@ -1,9 +1,9 @@
 @extends('template')
 @section('main')
-<h2>Data Pendaftaran Pasien</h2>
-<h5>Menu ini untuk melakukan pendaftaran pasien pada poli-poli yang bersangkutan</h5><br/>
+<h2>Data Reservasi Pasien</h2>
+<h5>Menu ini untuk melakukan reservasi pasien pada poli-poli yang bersangkutan</h5><br/>
 <a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('medis.reservasi.create')}}">
-	<i class="entypo-user-add"></i>Tambah Pendaftaran
+	<i class="entypo-user-add"></i>Tambah Reservasi
 </a>
 <br/>
 <br/>
@@ -38,7 +38,7 @@
 					<th>Nama Dokter</th>
 					<th>Poli</th>
 					<th>No Urut</th>
-					{{-- <th>Status</th> --}}
+					<th>Status</th>
 					<th width="8%">Aksi</th>
 				</tr>
 			</thead>
@@ -53,13 +53,7 @@
 					<th>{{$reservas->dokter->nama}}</th>
 					<th>{{$reservas->poli->nama_poli}}</th>
 					<th>{{$reservas->no_urut}}</th>
-					{{-- <th>
-						@if($pemeriksaan->reservasi->)
-						Sudah
-						@else
-						Belum
-						@endif
-					</th> --}}
+					<th>{{$reservas->status_res}}</th>
 					<th>
 						<div align="center">
 							<form action="#" method="post">

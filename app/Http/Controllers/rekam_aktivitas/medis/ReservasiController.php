@@ -9,14 +9,14 @@ use App\Pasien;
 use App\Petugas;
 use App\Poli;
 use App\Category;
-use App\Pemeriksaan;
+use App\RekamMedis as Rekam;
 use Auth;
 
 class ReservasiController extends Controller
 {
 	public function index() {
-		$reservasi = Reservasi::get();
-		$pemeriksaan = Pemeriksaan::get();
+		$reservasi = Reservasi::all();
+		$rekam = Rekam::all();
 		return view('rekam_aktivitas.medis.reservasi.index', get_defined_vars());
 	}
 

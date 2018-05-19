@@ -1,12 +1,12 @@
 @extends('template')
 @section('main')
-<h2>Tambah Pendaftaran Pasien</h2>
+<h2>Tambah Reservasi Pasien</h2>
 <ol class="breadcrumb bc-3">
 	<li>
-		<a href="{{ route('medis.reservasi.index') }}"><i class="entypo-home"> Daftar Pendaftaran</i></a>
+		<a href="{{ route('medis.reservasi.index') }}"><i class="entypo-home"> Daftar Reservasi</i></a>
 	</li>
 	<li class="active">
-		<strong>Tambah Pendaftaran Pasien</strong>
+		<strong>Tambah Reservasi Pasien</strong>
 	</li>
 </ol>
 @if (count($errors) > 0)

@@ -35,7 +35,7 @@
 					<th>Nama Pasien</th>
 					<th>Nama Dokter</th>
 					<th>Poli</th>
-					<th width="20%">Aksi</th>
+					<th width="10%">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -49,10 +49,10 @@
 					<td>{{$rekam_medis->reservasi->poli->nama_poli}}</td>
 					<td>
 						<div align="center">
-							<a href="{{route('rekam_medis.edit', ['id'=>$rekam_medis->id_rm])}}" class="btn btn-sm btn-blue btn-icon icon-left">
+							{{-- <a href="{{route('rekam_medis.edit', ['id'=>$rekam_medis->id_rm])}}" class="btn btn-sm btn-blue btn-icon icon-left">
 								<i class="entypo-pencil"></i>
 								Ubah
-							</a>
+							</a> --}}
 							<a href="{{route('rekam_medis.show', ['id'=>$rekam_medis->id_rm])}}" class="btn btn-sm btn-info btn-icon icon-left">
 								<i class="entypo-eye"></i>
 								Lihat

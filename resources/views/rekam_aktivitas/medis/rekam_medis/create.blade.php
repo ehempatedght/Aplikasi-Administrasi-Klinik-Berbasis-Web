@@ -163,7 +163,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Pilih Pasien</h4>
+					<h4 class="modal-title">Pencarian Data Reservasi Pasien</h4>
 				</div>
 				<div class="modal-body">
 					<table class="table table-bordered datatable" id="table-1">

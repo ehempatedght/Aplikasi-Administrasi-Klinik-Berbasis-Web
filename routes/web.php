@@ -77,7 +77,7 @@ Route::group(['middleware'=> ['web','auth']], function() {
 				Route::post('/update/{id}', ['as'=>'masterdata.pasien.kategori.update','uses'=>'masterdata\KategoripasienController@doUpdate']);
 				Route::post('/delete/{id}', ['as'=>'masterdata.pasien.kategori.delete','uses'=>'masterdata\KategoripasienController@doDelete']);
 			});
-
+			
 			//Pasien
 			Route::group(['prefix'=>'datapasien'], function() {
 				Route::get('/', ['as'=>'masterdata.pasien.datapasien.index','uses'=>'masterdata\PasienController@getIndex']);

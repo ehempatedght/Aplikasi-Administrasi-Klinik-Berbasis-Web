@@ -46,7 +46,7 @@
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama Pasien</label>
 						<input type="hidden" name="pasien_id" id="pasien_id" value="{{$pemberian->pasien_id}}">
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="pasien" name="pasien" placeholder="nama pasien" value="{{$pemberian->pasien->nama_pasien}}" required readonly/>
+							<input type="text" class="form-control" id="pasien" name="pasien" placeholder="nama pasien" value="{{$pemberian->pasien->reservasi->pasien->nama_pasien}}" required readonly/>
 						</div>
 						<a class="btn btn-white" href="javascript:;" onclick="jQuery('#modal-5').modal('show', {backdrop: 'static'}); ">	
 	                       	<i class="entypo-search" ></i>        
@@ -128,7 +128,7 @@
 								<td>{{$pasien->reservasi->pasien->kategoripasien->nama_kategori}}</td>
 								<td>{{$pasien->reservasi->pasien->nama_pasien}}</td>
 								<td align="center">
-									<button data-id="{{$pasien->id_pemeriksaan}}" data-name="{{$pasien->reservasi->pasien->nama_pasien}}" data-nopend="{{$pasien->reservasi->no_rm}}" class="btn btn-green btn-sm btn-icon icon-left addPas">
+									<button data-id="{{$pasien->id_rm}}" data-name="{{$pasien->reservasi->pasien->nama_pasien}}" data-nopend="{{$pasien->reservasi->no_rm}}" class="btn btn-green btn-sm btn-icon icon-left addPas">
 										<i class="entypo-check"></i>
 										Pilih
 									</button>

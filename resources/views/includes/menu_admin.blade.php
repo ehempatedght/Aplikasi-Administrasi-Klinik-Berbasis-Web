@@ -172,7 +172,7 @@
 					<ul>
 						<li>
 							<a href="{{route('medis.reservasi.index')}}">
-								<span class="title">Pendaftaran</span>
+								<span class="title">Reservasi</span>
 							</a>
 						</li>
 						<li>

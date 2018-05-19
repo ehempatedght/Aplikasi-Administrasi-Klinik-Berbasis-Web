@@ -15,7 +15,7 @@ class Reservasi extends Model
     protected $hidden = [
     	'created_at','updated_at'
     ];
-
+    
     public function poli() {
     	return $this->belongsTo('App\Poli','poli_id');
     }
@@ -29,6 +29,6 @@ class Reservasi extends Model
     }
 
     public function pemeriksaan() {
-        return $this->hasMany('App\Pemeriksaan','reservasi_id','id_res');
+        return $this->hasMany('App\RekamMedis','res_id','id_res');
     }
 }

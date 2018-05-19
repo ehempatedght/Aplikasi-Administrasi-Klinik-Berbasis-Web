@@ -128,7 +128,7 @@
 								<td>{{$pasien->reservasi->pasien->kategoripasien->nama_kategori}}</td>
 								<td>{{$pasien->reservasi->pasien->nama_pasien}}</td>
 								<td align="center">
-									<button data-id="{{$pasien->id_pemeriksaan}}" data-name="{{$pasien->reservasi->pasien->nama_pasien}}" data-nopend="{{$pasien->reservasi->no_rm}}" class="btn btn-green btn-sm btn-icon icon-left addPas">
+									<button data-id="{{$pasien->id_rm}}" data-name="{{$pasien->reservasi->pasien->nama_pasien}}" data-nopend="{{$pasien->reservasi->no_rm}}" class="btn btn-green btn-sm btn-icon icon-left addPas">
 										<i class="entypo-check"></i>
 										Pilih
 									</button>

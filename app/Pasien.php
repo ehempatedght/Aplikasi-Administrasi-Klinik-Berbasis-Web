@@ -38,7 +38,7 @@ class Pasien extends Model
     public function pemberianObat() {
         return $this->hasMany('App\Pemberianobat');
     }
-
+    
     public function reservasi() {
         return $this->hasMany('App\Reservasi');
     }

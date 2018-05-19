@@ -19,7 +19,7 @@ class RekamMedisController extends Controller
     	$reservasi = Reservasi::all();
     	return view('rekam_aktivitas.medis.rekam_medis.create')->withReservasi($reservasi);
     }
-
+    
     public function save(Request $req) {
     	$this->validateWith(array(
     		'res_id' => 'required|integer',
@@ -42,6 +42,11 @@ class RekamMedisController extends Controller
     		'u_id' => Auth::user()->id
     	]);
 
+        if ($data['res_id'] != null) {
+            Reservasi::find($data['res_id'])->update([
+                'status_res' => 'Sudah',
+            ]);
+        }
     	return redirect()->route('rekam_medis.index')->with('message','Rekam medis berhasil dibuat');
     }
 

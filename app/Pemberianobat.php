@@ -13,11 +13,11 @@ class Pemberianobat extends Model
     protected $hidden = [
     	'created_at','updated_at'
     ];
-    
-    public function pasien() {
-    	return $this->belongsTo('App\Pemeriksaan','pasien_id');
-    }
 
+    public function pasien() {
+    	return $this->belongsTo('App\RekamMedis','pasien_id');
+    }
+    
    	public function obat() {
    		return $this->belongsTo('App\Jenisobatdetail','obat_id');
    	}

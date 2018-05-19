@@ -21,7 +21,7 @@ class Jenisobatdetail extends Model
     public function pembeli() {
         return $this->hasMany('App\Pembelian');
     }
-
+                            
     public function vendor() {
         return $this->hasMany('App\Vendorobat');
     }
