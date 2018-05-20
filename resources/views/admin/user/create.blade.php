@@ -44,7 +44,7 @@
 					{{ csrf_field() }}
 
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Username</label>
+						<label for="field-1" class="col-sm-2 control-label" style="text-align:left;">&emsp;Username</label>
 						
 						<div class="col-sm-5">
 							<input type="text" class="form-control" id="username" name="username" placeholder="username" data-validate="required" data-message-required="Wajib diisi." value="{{ old('username') }}"/>
@@ -53,7 +53,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label"style="text-align:left;">&emsp;Nama Depan</label>
+						<label for="field-1" class="col-sm-2 control-label"style="text-align:left;">&emsp;Nama Depan</label>
 						
 						<div class="col-sm-5">
 							<input type="text" class="form-control" id="field-1" name="first_name" placeholder="first name" required>
@@ -61,7 +61,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label"style="text-align:left;">&emsp;Nama Belakang</label>
+						<label for="field-1" class="col-sm-2 control-label"style="text-align:left;">&emsp;Nama Belakang</label>
 						
 						<div class="col-sm-5">
 							<input type="text" class="form-control" id="field-1" name="last_name" placeholder="last name" required>
@@ -69,7 +69,7 @@
 					</div>
 
 					{{-- <div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label"style="text-align:left;">&emsp;Email</label>
+						<label for="field-1" class="col-sm-2 control-label"style="text-align:left;">&emsp;Email</label>
 						
 						<div class="col-sm-5">
 							<input type="text" class="form-control" id="field-1" name="email" placeholder="email" onkeyup="this.value = this.value.toLowerCase()" required>
@@ -77,7 +77,7 @@
 					</div> --}}
 
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label"style="text-align:left;">&emsp;Kata Sandi</label>
+						<label for="field-1" class="col-sm-2 control-label"style="text-align:left;">&emsp;Kata Sandi</label>
 						
 						<div class="col-sm-5">
 							<input type="password" class="form-control" id="password" name="password">
@@ -85,7 +85,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Konfirmasi Kata Sandi</label>
+						<label for="field-1" class="col-sm-2 control-label" style="text-align:left;">&emsp;Konfirmasi Kata Sandi</label>
 						
 						<div class="col-sm-5">
 							<input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
@@ -93,7 +93,7 @@
 						<div style="color:red;padding-top: 8px;" id="not_match"></div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label" style="text-align:left;">&emsp;Peran:
+						<label class="col-sm-2 control-label" style="text-align:left;">&emsp;Peran:
 							<br />
 							@if (session('status'))
 							<p style="color:red;">
@@ -163,17 +163,27 @@
 						</div>
 
 						<div class="col-sm-2">
-							<label class="control-label"><strong>Pelaporan:</strong></label>
+							<label class="control-label"><strong>Akunting:</strong></label>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" class="check" name="role[lapmedis]" @if(is_array(old('role')) && array_key_exists("lapmedis", old('role'))) checked @endif>
+									<input type="checkbox" class="check" name="role[akunting]" @if(is_array(old('role')) && array_key_exists("akunting", old('role'))) checked @endif>
+									Akunting
+								</label>
+							</div>
+						</div>
+
+						<div class="col-sm-2">
+							<label class="control-label"><strong>Laporan:</strong></label>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" class="check" name="role[lpmedis]" @if(is_array(old('role')) && array_key_exists("lpmedis", old('role'))) checked @endif>
 									Medis
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" class="check" name="role[lapakuntansi]" @if(is_array(old('role')) && array_key_exists("lapakuntansi", old('role'))) checked @endif>
-									Akuntansi
+									<input type="checkbox" class="check" name="role[lpakunting]" @if(is_array(old('role')) && array_key_exists("lpakunting", old('role'))) checked @endif>
+									Akunting
 								</label>
 							</div>
 						</div>
@@ -196,7 +206,7 @@
 					</div>
 
 					<div class="form-group">
-							<label class="col-sm-3 control-label" style="text-align:left; font-size:13px;">&emsp;Upload Photo:
+							<label class="col-sm-2 control-label" style="text-align:left; font-size:13px;">&emsp;Upload Photo:
 								@if (session('error_upload'))
 									<br />
 									<p style="color:red;">

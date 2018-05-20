@@ -22,7 +22,7 @@ Route::group(['middleware'=> ['web','auth']], function() {
 			Route::get('/create', ['as'=>'pengaturan.user.data.create','uses'=>'admin\UserController@create']);
 			Route::post('/save', ['as'=>'pengaturan.user.data.simpan','uses'=>'admin\UserController@simpan']);
 			Route::get('/edit/{id}', ['as'=>'pengaturan.user.data.edit','uses'=>'admin\UserController@edit']);
-			Route::put('/update/{id}', ['as'=>'pengaturan.user.data.update','uses'=>'admin\UserController@update']);
+			Route::post('/update/{id}', ['as'=>'pengaturan.user.data.update','uses'=>'admin\UserController@update']);
 			Route::post('/delete/{id}', ['as'=>'pengaturan.user.data.delete', 'uses'=>'admin\UserController@delete']);
 			Route::get('/cekusername/{username}', ['as'=>'pengaturan.user.data.cek', 'uses'=>'admin\UserController@cekUserName']);
 		});
@@ -51,7 +51,7 @@ Route::group(['middleware'=> ['web','auth']], function() {
 				Route::get('/show/{id}', ['as'=>'masterdata.petugasmedis.datapetugasmedis.show','uses'=>'masterdata\PetugasController@getShow']);
 				Route::post('/hapus/{id}',['as'=>'masterdata.petugasmedis.datapetugasmedis.hapus','uses'=>'masterdata\PetugasController@doHapus']);
 			});
-		
+
 			//Jadwal
 			Route::group(['prefix'=>'jadwal'], function() {
 				Route::get('/', ['as'=>'masterdata.petugasmedis.jadwal.index','uses'=>'masterdata\JadwalController@getJadwal']);
@@ -266,6 +266,22 @@ Route::group(['middleware'=> ['web','auth']], function() {
 				Route::post('/delete/{id}', ['uses'=>'rekam_aktivitas\medis\RekamMedisController@delete'])->name('rekam_medis.delete');
 			});
 		});
+	});
+
+	//akunting
+	Route::group(['prefix'=>'akunting'], function() {
+		//data akun
+		Route::group(['prefix'=>'data_akun'], function() {
+			Route::get('/', ['uses'=>'akunting\AkunController@index'])->name('akun.index');
+			Route::post('/save', ['uses'=>'akunting\AkunController@save'])->name('akun.save');
+			Route::post('/update/{id}', ['uses'=>'akunting\AkunController@update'])->name('akun.update');
+			Route::post('/delete/{id}', ['uses'=>'akunting\AkunController@delete'])->name('akun.delete');
+		});
+
+		//transaksi
+		Route::group(['prefix'=>'transaksi'], function() {
+
+		});	
 	});
 });
 

@@ -65,7 +65,29 @@
 		
 				toastr.success("SELAMAT DATANG, <b>{{strtoupper(Auth::user()->first_name)}}</b>", opts);
 			}, 3000);
+
+
+			var donut_chart_ = $("#donut-chart");
+		
+			donut_chart_.parent().show();
+		
+			var donut_chart = Morris.Donut({
+				element: 'donut-chart',
+				data: [
+					{label: "Reservasi Pasien", value: {{\App\Reservasi::all()->count()}}},
+					{label: "Pemeriksaan Pasien", value: {{\App\Pemeriksaan::all()->count()}}},
+					{label: "Rekam Medis Pasien", value: {{\App\RekamMedis::all()->count()}}}
+				],
+				colors: ['#707f9b', '#455064', '#242d3c']
+			});
+		
+			donut_chart_.parent().attr('style', '');
 	});
+
+	function getRandomInt(min, max)
+	{
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
 </script>
 <?php
 	$pengguna = \App\User::all()->count();
@@ -119,6 +141,21 @@
 			<p>jumlah ketersediaan obat klinik.</p>
 		</div>
 		{{-- </a> --}}
+	</div>
+</div>
+<br/>
+<div class="row">
+	<div class="col-sm-12">
+		<div class="panel panel-primary" id="charts_env">
+			<div class="panel-heading">
+				<div class="panel-title">Informasi Data Statistik Pasien</div>
+			</div>
+			<div class="panel-body">
+				<div class="tab-pane" id="pie-chart">
+					<div id="donut-chart" class="morrischart" style="height: 300px;"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 @stop

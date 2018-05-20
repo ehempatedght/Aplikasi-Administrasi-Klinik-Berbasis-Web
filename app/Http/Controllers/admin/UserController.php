@@ -49,8 +49,9 @@ class UserController extends Controller
         (isset($data['role']['peralatan']) ? $peralatan = "1" : $peralatan = "0");
         (isset($data['role']['rekmedis']) ? $rekmedis = "1" : $rekmedis = "0");
         (isset($data['role']['rekkeuangan']) ? $rekkeuangan = "1" : $rekkeuangan = "0");
-        (isset($data['role']['lapmedis']) ? $lapmedis = "1" : $lapmedis = "0");
-        (isset($data['role']['lapakuntansi']) ? $lapakuntansi = "1" : $lapakuntansi = "0");
+        (isset($data['role']['akunting']) ? $akunting = "1" : $akunting = "0");
+        (isset($data['role']['lpmedis']) ? $lpmedis = "1" : $lpmedis = "0");
+        (isset($data['role']['lpakunting']) ? $lpakunting = "1" : $lpakunting = "0");
         (isset($data['role']['setuser']) ? $setuser = "1" : $setuser = "0");
         (isset($data['role']['sethonor']) ? $sethonor = "1" : $sethonor = "0");
 
@@ -82,8 +83,9 @@ class UserController extends Controller
             'peralatan' => $peralatan,
             'rekmedis' => $rekmedis,
             'rekkeuangan' => $rekkeuangan,
-            'lapmedis' => $lapmedis,
-            'lapakuntansi' => $lapakuntansi,
+            'akunting' => $akunting,
+            'lpmedis' => $lpmedis,
+            'lpakunting' => $lpakunting,
             'setuser' => $setuser,
             'sethonor' => $sethonor
     	]);
@@ -126,8 +128,9 @@ class UserController extends Controller
         (isset($data['role']['peralatan']) ? $peralatan = "1" : $peralatan = "0");
         (isset($data['role']['rekmedis']) ? $rekmedis = "1" : $rekmedis = "0");
         (isset($data['role']['rekkeuangan']) ? $rekkeuangan = "1" : $rekkeuangan = "0");
-        (isset($data['role']['lapmedis']) ? $lapmedis = "1" : $lapmedis = "0");
-        (isset($data['role']['lapakuntansi']) ? $lapakuntansi = "1" : $lapakuntansi = "0");
+        (isset($data['role']['akunting']) ? $akunting = "1" : $akunting = "0");
+        (isset($data['role']['lpmedis']) ? $lpmedis = "1" : $lpmedis = "0");
+        (isset($data['role']['lpakunting']) ? $lpakunting = "1" : $lpakunting = "0");
         (isset($data['role']['setuser']) ? $setuser = "1" : $setuser = "0");
         (isset($data['role']['sethonor']) ? $sethonor = "1" : $sethonor = "0");
 
@@ -160,8 +163,9 @@ class UserController extends Controller
                 'peralatan' => $peralatan,
                 'rekmedis' => $rekmedis,
                 'rekkeuangan' => $rekkeuangan,
-                'lapmedis' => $lapmedis,
-                'lapakuntansi' => $lapakuntansi,
+                'akunting' => $akunting,
+                'lpmedis' => $lpmedis,
+                'lpakunting' => $lpakunting,
                 'setuser' => $setuser,
                 'sethonor' => $sethonor
             ]);

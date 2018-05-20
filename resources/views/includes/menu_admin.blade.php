@@ -253,53 +253,87 @@
 			</ul>
 		</li>
 		@endif
-		@if(Auth::user()->lapmedis == '1' || Auth::user()->lapakuntansi == '1')
+		@if(Auth::user()->akunting == '1')
 		<li class="has-sub">
 			<a href="#">
-				<i class="entypo-book"></i>
-				<span class="title">Pelaporan</span>
+				<i class="fa fa-bank" style="margin-left: 5px;"></i>
+				<span class="title">Akunting</span>
 			</a>
 			<ul>
-				@if(Auth::user()->lapmedis == '1')
+				<li>
+					<a href="{{route('akun.index')}}">
+						<span class="title">Data Akun</span>
+					</a>
+				</li>
+
 				<li>
 					<a href="#">
-						<i class="fa fa-hospital-o"></i>
+						<span class="title">Transaksi Keuangan</span>
+					</a>
+				</li>
+			</ul>
+		</li>
+		@endif
+		@if(Auth::user()->lpmedis == '1' || Auth::user()->lpakunting == '1')
+		<li class="has-sub">
+			<a href="#">
+				<i class="entypo-doc-text"></i>
+				<span class="title">Laporan</span>
+			</a>
+			<ul>
+				@if(Auth::user()->lpmedis == '1')
+				<li>
+					<a href="#">
 						<span class="title">Medis</span>
 					</a>
 					<ul>
 						<li>
 							<a href="#">
-								<span class="title">Pemeriksaan & Tindakan Medis</span>
+								<span class="title">Laporan Registrasi</span>
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<span class="title">Kinerja Dokter & Staff Administrasi</span>
+								<span class="title">Laporan Reservasi Klinik</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="title">Laporan Pemeriksaan Pasien</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="title">Laporan Rekam Medis</span>
 							</a>
 						</li>
 					</ul>
 				</li>
 				@endif
-				@if(Auth::user()->lapakuntansi == '1')
+				@if(Auth::user()->lpakunting == '1')
 				<li>
 					<a href="#">
-						<i class="fa fa-bank"></i>
-						<span class="title">Akuntansi</span>
+						<span class="title">Akunting</span>
 					</a>
 					<ul>
 						<li>
 							<a href="#">
-								<span class="title">Posisi Keuangan</span>
+								<span class="title">Laporan Berdasarkan Tipe Akun</span>
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<span class="title">Kinerja Keuangan</span>
+								<span class="title">Laporan Detail Per Akun</span>
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<span class="title">Arus Kas</span>
+								<span class="title">Laporan Laba(Rugi)</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="title">Laporan Neraca</span>
 							</a>
 						</li>
 					</ul>

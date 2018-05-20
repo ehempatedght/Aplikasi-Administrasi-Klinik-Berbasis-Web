@@ -42,10 +42,9 @@
 			<div class="panel-body">
 				<form role="form" class="form-horizontal form-groups-bordered validate" enctype="multipart/form-data" action="{{ route('pengaturan.user.data.update', $data->id) }}" method="post">
 					{{ csrf_field() }}
-					{{ method_field('PUT') }}
 
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Username</label>
+						<label for="field-1" class="col-sm-2 control-label" style="text-align:left;">&emsp;Username</label>
 						
 						<div class="col-sm-5">
 							<input type="text" class="form-control" id="username" name="username" placeholder="username" data-validate="required" data-message-required="Wajib diisi." value="{{$data->username}}" onkeyup="this.value = this.value.toLowerCase()" />
@@ -54,7 +53,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label"style="text-align:left;">&emsp;Nama Depan</label>
+						<label for="field-1" class="col-sm-2 control-label"style="text-align:left;">&emsp;Nama Depan</label>
 						
 						<div class="col-sm-5">
 							<input type="text" class="form-control" id="field-1" name="first_name" placeholder="first name" value="{{$data->first_name}}" required>
@@ -62,7 +61,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label"style="text-align:left;">&emsp;Nama Belakang</label>
+						<label for="field-1" class="col-sm-2 control-label"style="text-align:left;">&emsp;Nama Belakang</label>
 						
 						<div class="col-sm-5">
 							<input type="text" class="form-control" id="field-1" name="last_name" placeholder="last name" value="{{$data->last_name}}" required>
@@ -70,7 +69,7 @@
 					</div>
 
 					{{-- <div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label"style="text-align:left;">&emsp;Email</label>
+						<label for="field-1" class="col-sm-2 control-label"style="text-align:left;">&emsp;Email</label>
 						
 						<div class="col-sm-5">
 							<input type="text" class="form-control" id="field-1" name="email" placeholder="email" onkeyup="this.value = this.value.toLowerCase()" value="{{$data->email}}" required>
@@ -79,7 +78,7 @@
 					
 					@if (Auth::user()->admin != '1')
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kata Sandi Lama:
+						<label for="field-1" class="col-sm-2 control-label" style="text-align:left;">&emsp;Kata Sandi Lama:
 							@if (session('error_1'))
 							<br />
 							<p style="color:red;">
@@ -93,7 +92,7 @@
 					</div>
 					@endif
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label"style="text-align:left;">&emsp;Kata Sandi Baru</label>
+						<label for="field-1" class="col-sm-2 control-label"style="text-align:left;">&emsp;Kata Sandi Baru</label>
 						
 						<div class="col-sm-5">
 							<input type="password" class="form-control" id="password" name="password" >
@@ -101,7 +100,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Konfirmasi Kata Sandi</label>
+						<label for="field-1" class="col-sm-2 control-label" style="text-align:left;">&emsp;Konfirmasi Kata Sandi</label>
 						
 						<div class="col-sm-5">
 							<input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
@@ -109,7 +108,7 @@
 						<div style="color:red;padding-top: 8px;" id="not_match"></div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label" style="text-align:left;">&emsp;Peran:
+						<label class="col-sm-2 control-label" style="text-align:left;">&emsp;Peran:
 							<br />
 							@if (session('status'))
 							<p style="color:red;">
@@ -177,19 +176,29 @@
 								</label>
 							</div>
 						</div>
-
+						
 						<div class="col-sm-2">
-							<label class="control-label"><strong>Pelaporan:</strong></label>
+							<label class="control-label"><strong>Akunting:</strong></label>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" class="check" name="role[lapmedis]" @if($data->lapmedis == '1') checked @endif>
+									<input type="checkbox" class="check" name="role[akunting]" @if($data->akunting == '1') checked @endif>
+									Akunting
+								</label>
+							</div>
+						</div>
+						
+						<div class="col-sm-2">
+							<label class="control-label"><strong>Laporan:</strong></label>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" class="check" name="role[lpmedis]" @if($data->lpmedis == '1') checked @endif>
 									Medis
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" class="check" name="role[lapakuntansi]" @if($data->lapakuntansi == '1') checked @endif>
-									Akuntansi
+									<input type="checkbox" class="check" name="role[lpakunting]" @if($data->lpakunting == '1') checked @endif>
+									Akunting
 								</label>
 							</div>
 						</div>
@@ -211,7 +220,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-								<label class="col-sm-3 control-label" style="text-align:left; font-size:13px;">&emsp;Upload Photo:
+								<label class="col-sm-2 control-label" style="text-align:left; font-size:13px;">&emsp;Upload Photo:
 									@if (session('error_upload'))
 										<br />
 										<p style="color:red;">

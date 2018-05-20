@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 19 Mei 2018 pada 09.22
+-- Generation Time: 20 Mei 2018 pada 10.49
 -- Versi Server: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -25,6 +25,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `akun`
+--
+
+CREATE TABLE `akun` (
+  `id_akun` int(3) NOT NULL,
+  `nama_akun` varchar(25) NOT NULL,
+  `tipe_akun` varchar(12) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `akun`
+--
+
+INSERT INTO `akun` (`id_akun`, `nama_akun`, `tipe_akun`, `created_at`, `updated_at`) VALUES
+(1, 'Kas Harian', 'AKTIVA', '2018-05-20 08:04:04', '2018-05-20 08:04:04'),
+(3, 'Modal', 'PASIVA', '2018-05-20 08:04:48', '2018-05-20 08:04:48'),
+(4, 'PLN', 'PENGELUARAN', '2018-05-20 08:05:51', '2018-05-20 08:05:51'),
+(5, 'Pemeriksaan', 'PEMASUKAN', '2018-05-20 08:36:24', '2018-05-20 08:36:24');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `alat_kantor`
 --
 
@@ -37,6 +61,13 @@ CREATE TABLE `alat_kantor` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `alat_kantor`
+--
+
+INSERT INTO `alat_kantor` (`id`, `kd_alat`, `nm_alat`, `jenis_alat`, `jumlah`, `created_at`, `updated_at`) VALUES
+(1, 'K001', 'Panasonic LCD', 'TV LCD', 1, '2018-05-20 08:22:43', '2018-05-20 08:22:43');
 
 -- --------------------------------------------------------
 
@@ -173,7 +204,9 @@ CREATE TABLE `day_petugas` (
 INSERT INTO `day_petugas` (`id`, `day_id`, `petugas_id`, `created_at`, `updated_at`) VALUES
 (1, 1, 7, NULL, NULL),
 (2, 3, 7, NULL, NULL),
-(3, 1, 6, NULL, NULL);
+(3, 1, 6, NULL, NULL),
+(4, 1, 8, NULL, NULL),
+(5, 4, 8, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -579,7 +612,9 @@ INSERT INTO `laravel_logger_activity` (`id`, `description`, `userType`, `userId`
 (162, 'Logged In', 'Registered', 4, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-17 16:31:20', '2018-05-17 16:31:20', NULL),
 (163, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-18 09:53:14', '2018-05-18 09:53:14', NULL),
 (164, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-19 01:59:27', '2018-05-19 01:59:27', NULL),
-(165, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-19 06:27:48', '2018-05-19 06:27:48', NULL);
+(165, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-19 06:27:48', '2018-05-19 06:27:48', NULL),
+(166, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-19 13:45:08', '2018-05-19 13:45:08', NULL),
+(167, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-20 07:27:08', '2018-05-20 07:27:08', NULL);
 
 -- --------------------------------------------------------
 
@@ -760,6 +795,13 @@ CREATE TABLE `pemeriksaan` (
   `updated_at` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `pemeriksaan`
+--
+
+INSERT INTO `pemeriksaan` (`id_pemeriksaan`, `reservasi_id`, `tgl`, `no_faktur`, `nama_pemeriksaan`, `tarif`, `jml`, `total`, `disc`, `subtotal`, `created_at`, `updated_at`) VALUES
+(1, 1, '2018-05-19', '180519001', 'Biaya Poli', 35000, 2, 70000, 50, 35000, 2018, 2018);
+
 -- --------------------------------------------------------
 
 --
@@ -803,7 +845,7 @@ CREATE TABLE `petugas` (
 INSERT INTO `petugas` (`id`, `nama`, `spesialisasi`, `alamat`, `kota`, `no_hp`, `no_telp`, `alamat_email`, `tgl_mulai_praktek`, `img`, `category_id`, `senin1`, `senin2`, `selasa1`, `selasa2`, `rabu1`, `rabu2`, `kamis1`, `kamis2`, `jumat1`, `jumat2`, `sabtu1`, `sabtu2`, `minggu1`, `minggu2`, `created_at`, `updated_at`) VALUES
 (6, 'Dr. Juan Delima', 'Jantung', 'Perum gmm, bekasi, jawa barat', 'bekasi', '(0101) 9929-9299', '(0101) 9929-9299', 'juanvaleriand@gmail.com', '2018-05-12', '4255-step-05-original@2x.jpg', 1, '06:21:00', '15:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-05-12 03:20:36', '2018-05-12 07:51:09'),
 (7, 'Bastian Delima', 'IT Support', 'perum gmm bekasi jawabarat', 'bekasi', '(2122) 1221-2121', '(2121) 2121-2121', 'bastiand@mail.com', '2018-05-12', '9139-1511088192291.jpg', 2, '07:14:00', '19:00:00', NULL, NULL, '08:00:00', '21:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-05-12 04:05:00', '2018-05-12 07:50:11'),
-(8, 'Joventius Delima', 'Kulit', 'perumahan graha mustika media', 'Bekasi', '(1122) 3344-5566', '(1122) 3344-5566', 'joven@mail.com', '2018-05-14', '8324-CIMG0182.JPG', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-05-14 12:44:05', '2018-05-14 12:44:05');
+(8, 'Joventius Delima', 'Kulit', 'perumahan graha mustika media', 'Bekasi', '(1122) 3344-5566', '(1122) 3344-5566', 'joven@mail.com', '2018-05-14', '8324-CIMG0182.JPG', 1, '08:30:00', '20:00:00', NULL, NULL, NULL, NULL, '10:30:00', '19:00:00', NULL, NULL, NULL, NULL, NULL, NULL, '2018-05-14 12:44:05', '2018-05-19 14:23:29');
 
 -- --------------------------------------------------------
 
@@ -855,7 +897,9 @@ CREATE TABLE `rekam_medis` (
 --
 
 INSERT INTO `rekam_medis` (`id_rm`, `res_id`, `tgl`, `rmkeluhan`, `rmpemeriksaan`, `rmpp`, `rmalergiobat`, `rmterapi`, `rmresep`, `rmkesimpulan`, `rmdiagnosa`, `kondisi_pasien`, `u_id`, `created_at`, `updated_at`) VALUES
-(1, 2, '2018-05-19', 'sering gatal-gatal kalau abis pakai bedak', 'cek kelainan kuliat', NULL, 'axoxilins', 'jangan kena udara dingin', '-', '-', 'Gatal-gatal', 'DALAM PROSES PENYEMBUHAN', 1, '2018-05-19 07:14:38', '2018-05-19 07:14:38');
+(1, 2, '2018-05-19', 'sering gatal-gatal kalau abis pakai bedak', 'cek kelainan kuliat', NULL, 'axoxilins', 'jangan kena udara dingin', '-', '-', 'Gatal-gatal', 'DALAM PROSES PENYEMBUHAN', 1, '2018-05-19 07:14:38', '2018-05-19 07:14:38'),
+(2, 1, '2018-05-19', 'sering sesak nafas ketika beraktifitas berlebihan', 'cek jantung', NULL, 'tidak', 'jangan terlalu cape dan harus pakai masker', '-', '-', 'sesak nafas', 'DALAM PROSES PENYEMBUHAN', 1, '2018-05-19 08:57:19', '2018-05-19 08:57:19'),
+(3, 4, '2018-05-19', 'sering gatal-gatal ketika mandi', 'cek kulit dan darah', NULL, 'tidak ada', 'diusahakan mandi air hangat', 'menyusul', 'jangan sering kena udara dingin, seperti AC', 'gatal-gatal', 'DALAM PROSES PENYEMBUHAN', 1, '2018-05-19 14:28:33', '2018-05-19 14:28:33');
 
 -- --------------------------------------------------------
 
@@ -882,9 +926,10 @@ CREATE TABLE `reservasi` (
 --
 
 INSERT INTO `reservasi` (`id_res`, `kd_res`, `poli_id`, `pasien_id`, `dokter_id`, `status_res`, `no_urut`, `no_rm`, `u_id`, `created_at`, `updated_at`) VALUES
-(1, '180519001', 1, 2, 6, 'Belum', '001', '0002', 1, '2018-05-19 06:47:28', '2018-05-19 06:47:28'),
+(1, '180519001', 1, 2, 6, 'Sudah', '001', '0002', 1, '2018-05-19 08:57:19', '2018-05-19 08:57:19'),
 (2, '180519002', 2, 1, 8, 'Sudah', '002', '0001', 1, '2018-05-19 07:14:38', '2018-05-19 07:14:38'),
-(3, '180519003', 1, 4, 6, 'Belum', '003', '0004', 1, '2018-05-19 07:11:22', '2018-05-19 07:11:22');
+(3, '180519003', 1, 4, 6, 'Belum', '003', '0004', 1, '2018-05-19 07:11:22', '2018-05-19 07:11:22'),
+(4, '180519004', 2, 3, 8, 'Sudah', '004', '0003', 1, '2018-05-19 14:28:33', '2018-05-19 14:28:33');
 
 -- --------------------------------------------------------
 
@@ -932,8 +977,9 @@ CREATE TABLE `users` (
   `peralatan` int(1) NOT NULL,
   `rekmedis` int(1) NOT NULL,
   `rekkeuangan` int(1) NOT NULL,
-  `lapmedis` int(1) NOT NULL,
-  `lapakuntansi` int(1) NOT NULL,
+  `akunting` int(1) NOT NULL,
+  `lpmedis` int(1) NOT NULL,
+  `lpakunting` int(1) NOT NULL,
   `setuser` int(1) NOT NULL,
   `sethonor` int(1) NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -945,12 +991,10 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `password`, `img`, `admin`, `petugasmedis`, `vendorobat`, `daftarobat`, `datapoli`, `pasien`, `peralatan`, `rekmedis`, `rekkeuangan`, `lapmedis`, `lapakuntansi`, `setuser`, `sethonor`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'Administrator', 'admin', '$2y$10$QltuGMUkUyg3ZRiQ7oIVj.iIhplXbzeXfSLN8KvsHhLhzeS5UMvtK', '2652-pexels-photo-242359.jpeg', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'P8WhAypUb4ibxvGq9kMpnu0bbK7gIBmh32s7yHzIP7Po4wenArdeHFPI8zR9', '2018-04-23 00:34:08', '2018-05-16 03:40:17'),
-(2, 'bastiandelima', 'Bastian', 'Delima', '$2y$10$MX0FwItwtvesreMfypb9BOmVy7IRtVbZuJhGrI15EDXOv4qifO2Ka', '1517-download.jpg', 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 'a1Wjef3e3G1sTHwmVvPELfb7kZwftDmgcGQuQcGKXzVa42oO7hjwL1EEdD8Y', '2018-04-23 00:41:52', '2018-05-13 00:38:39'),
-(3, 'juanvaleriand', 'Juan Valerian', 'Delima', '$2y$10$VoLJniA5PkKUP6zAcn/5Ou6uOQdUyPUnN/0mQHaRg786LFRwfLE.q', '5887-iconmonstr-github-1-240.png', 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 'FjUJPjHds0Si4VTFtv0lyMiVkC6CZhqnUfwOdbzbqsojyNHDx9DCxtAIAW1B', '2018-05-07 05:23:12', '2018-05-16 03:40:48'),
-(4, 'chelsea', 'Agatha', 'Chealsea', '$2y$10$u2OwdB66ahKKckqheKXsNezYo6grtUCzzyXIQZF27/eSVQA7NqbIe', '504-1511088192291.jpg', 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, NULL, '2018-05-12 08:49:17', '2018-05-17 16:39:01'),
-(5, 'joventius', 'Joventius', 'Delima', '$2y$10$MIBwxW6xry1iHFCWtHB/cub8k5.wI2VxEsKguL/SRNk5e9IuZJQGC', '', 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 'CBEQxkw4joKg9FH6kCdzftIFfn9qV9xGTEZMt8CIBJOeNuclcJP4iuXqx4te', '2018-05-13 02:34:11', '2018-05-13 02:34:11');
+INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `password`, `img`, `admin`, `petugasmedis`, `vendorobat`, `daftarobat`, `datapoli`, `pasien`, `peralatan`, `rekmedis`, `rekkeuangan`, `akunting`, `lpmedis`, `lpakunting`, `setuser`, `sethonor`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'Administrator', 'admin', '$2y$10$QltuGMUkUyg3ZRiQ7oIVj.iIhplXbzeXfSLN8KvsHhLhzeS5UMvtK', '6516-leon-page@2x.jpg', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'P8WhAypUb4ibxvGq9kMpnu0bbK7gIBmh32s7yHzIP7Po4wenArdeHFPI8zR9', '2018-04-23 00:34:08', '2018-05-19 17:33:06'),
+(2, 'bastiandelima', 'Bastian', 'Delima', '$2y$10$MX0FwItwtvesreMfypb9BOmVy7IRtVbZuJhGrI15EDXOv4qifO2Ka', '1517-download.jpg', 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 'a1Wjef3e3G1sTHwmVvPELfb7kZwftDmgcGQuQcGKXzVa42oO7hjwL1EEdD8Y', '2018-04-23 00:41:52', '2018-05-19 17:32:21'),
+(3, 'juanvaleriand', 'Juan Valerian', 'Delima', '$2y$10$VoLJniA5PkKUP6zAcn/5Ou6uOQdUyPUnN/0mQHaRg786LFRwfLE.q', '5887-iconmonstr-github-1-240.png', 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 'FjUJPjHds0Si4VTFtv0lyMiVkC6CZhqnUfwOdbzbqsojyNHDx9DCxtAIAW1B', '2018-05-07 05:23:12', '2018-05-16 03:40:48');
 
 -- --------------------------------------------------------
 
@@ -988,6 +1032,12 @@ INSERT INTO `vendor_obat` (`id`, `nama_vendor`, `alamat`, `no_telp`, `no_hp`, `p
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `akun`
+--
+ALTER TABLE `akun`
+  ADD PRIMARY KEY (`id_akun`);
 
 --
 -- Indexes for table `alat_kantor`
@@ -1184,10 +1234,16 @@ ALTER TABLE `vendor_obat`
 --
 
 --
+-- AUTO_INCREMENT for table `akun`
+--
+ALTER TABLE `akun`
+  MODIFY `id_akun` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `alat_kantor`
 --
 ALTER TABLE `alat_kantor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `alat_medis`
@@ -1223,7 +1279,7 @@ ALTER TABLE `days`
 -- AUTO_INCREMENT for table `day_petugas`
 --
 ALTER TABLE `day_petugas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `donasi_obat`
@@ -1283,7 +1339,7 @@ ALTER TABLE `kota`
 -- AUTO_INCREMENT for table `laravel_logger_activity`
 --
 ALTER TABLE `laravel_logger_activity`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1319,7 +1375,7 @@ ALTER TABLE `pemberian_obat`
 -- AUTO_INCREMENT for table `pemeriksaan`
 --
 ALTER TABLE `pemeriksaan`
-  MODIFY `id_pemeriksaan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pemeriksaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `petugas`
@@ -1337,13 +1393,13 @@ ALTER TABLE `poli`
 -- AUTO_INCREMENT for table `rekam_medis`
 --
 ALTER TABLE `rekam_medis`
-  MODIFY `id_rm` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_rm` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `reservasi`
 --
 ALTER TABLE `reservasi`
-  MODIFY `id_res` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_res` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -1355,7 +1411,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `vendor_obat`
