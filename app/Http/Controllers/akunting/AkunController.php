@@ -4,50 +4,38 @@ namespace App\Http\Controllers\akunting;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Akun;
-
+use App\TipeAkun;
+use App\NamaAkun;
 class AkunController extends Controller
 {
     public function index() {
-    	$akun = Akun::orderBy('id_akun','DESC')->get();
-    	return view('akunting.akun.index')->withAkun($akun);
+    	$akun = NamaAkun::orderBy('id_tipe','ASC')->get();
+    	$tipe = TipeAkun::all();
+    	return view('akunting.akun.index', get_defined_vars());
     }
-
 
     public function save(Request $req) {
-    	$this->validateWith(array(
-    		'nama_akun' => 'required|max:25',
-    		'tipe_akun' => 'required|max:12'
-    	));
-
     	$data = $req->all();
-
-    	Akun::create([
-    		'nama_akun' => $data['nama_akun'],
-    		'tipe_akun' => $data['tipe_akun']
+    	NamaAkun::create([
+    		'id_tipe' => $data['id_tipe'],
+    		'nama_akun' => $data['nama_akun']
     	]);
 
-    	return redirect()->route('akun.index')->with('message','Akun berhasil dibuat');
+    	return redirect()->route('akun.index')->with('message','Akun Berhasil dibuat');
     }
 
-
     public function update(Request $req, $id) {
-    	$this->validateWith(array(
-    		'nama_akun' => 'required|max:25',
-    		'tipe_akun' => 'required|max:12'
-    	));
     	$data = $req->all();
-
-    	Akun::find($id)->update([
-    		'nama_akun' => $data['nama_akun'],
-    		'tipe_akun' => $data['tipe_akun']
+    	NamaAkun::find($id)->update([
+    		'id_tipe' => $data['id_tipe'],
+    		'nama_akun' => $data['nama_akun']
     	]);
 
-    	return redirect()->route('akun.index')->with('message','Akun berhasil diubah');
+    	return redirect()->route('akun.index')->with('message','Akun Berhasil diubah');
     }
 
     public function delete($id) {
-    	Akun::find($id)->delete();
-    	return redirect()->route('akun.index')->with('message','Akun berhasil dihapus');
+    	NamaAkun::find($id)->delete();
+    	return redirect()->route('akun.index')->with('message','Akun Berhasil dihapus');
     }
 }

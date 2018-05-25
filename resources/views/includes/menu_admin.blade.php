@@ -267,7 +267,7 @@
 				</li>
 
 				<li>
-					<a href="#">
+					<a href="{{route('transaksi.index')}}">
 						<span class="title">Transaksi Keuangan</span>
 					</a>
 				</li>

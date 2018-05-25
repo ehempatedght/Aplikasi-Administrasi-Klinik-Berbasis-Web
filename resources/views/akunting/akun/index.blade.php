@@ -54,7 +54,7 @@
 				@foreach($akun as $akun)
 				<tr>
 					<td>{{$no++}}</td>
-					<td>{{$akun->tipe_akun}}</td>
+					<td>{{$akun->tipeAkun->nama_tipe}}</td>
 					<td>{{$akun->nama_akun}}</td>
 					<td>
 						<div align="center">
@@ -94,12 +94,12 @@
 												<div class="form-group">
 													<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tipe Akun</label>
 													<div class="col-sm-5">
-														<select name="tipe_akun" class="form-control" id="kondisi_pasien" required data-placeholder="Pilih tipe akun..." required>
+														<select name="id_tipe" class="form-control" required data-placeholder="Pilih tipe akun..." required>
 															<optgroup label="Pilih Tipe">
-																<option value="AKTIVA">AKTIVA</option>
-																<option value="PASIVA">PASIVA</option>
-																<option value="PEMASUKAN">PEMASUKAN</option>
-																<option value="PENGELUARAN">PENGELUARAN</option>
+																<?php $tipee = \App\TipeAkun::all(); ?>
+																@foreach($tipee as $tipe)
+																	<option value="{{$tipe->id_tipe}}">{{$tipe->nama_tipe}}</option>
+																@endforeach
 															</optgroup>
 														</select>
 													</div>
@@ -136,7 +136,7 @@
 
 
 <?php
-	$akuns = \App\Akun::orderBy('id_akun','DESC')->get();
+	$akuns = \App\NamaAkun::orderBy('id_akun','DESC')->get();
 ?>
 			@foreach($akuns as $akun)
 			<div class="modal fade" id="modal-8{{$akun->id_akun}}">
@@ -158,12 +158,11 @@
 												<div class="form-group">
 													<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tipe Akun</label>
 													<div class="col-sm-5">
-														<select name="tipe_akun" class="form-control" id="tipe_akun" required data-placeholder="Pilih tipe akun..." required>
+														<select name="id_tipe" class="form-control" id="id_tipe" required data-placeholder="Pilih tipe akun..." required>
 															<optgroup label="Pilih Tipe">
-																<option {{old('tipe_akun', $akun->tipe_akun) == "AKTIVA" ? 'selected' : ''}} value="AKTIVA">AKTIVA</option>
-																<option {{old('tipe_akun', $akun->tipe_akun) == "PASIVA" ? 'selected' : ''}} value="PASIVA">PASIVA</option>
-																<option {{old('tipe_akun', $akun->tipe_akun) == "PEMASUKAN" ? 'selected' : ''}} value="PEMASUKAN">PEMASUKAN</option>
-																<option {{old('tipe_akun', $akun->tipe_akun) == "PENGELUARAN" ? 'selected' : ''}} value="PENGELUARAN">PENGELUARAN</option>
+																@foreach($tipee as $tipe)
+																<option value="{{$tipe->id_tipe}}" @if($akun->id_tipe == $tipe->id_tipe) selected @endif>{{$tipe->nama_tipe}}</option>
+																@endforeach
 															</optgroup>
 														</select>
 													</div>

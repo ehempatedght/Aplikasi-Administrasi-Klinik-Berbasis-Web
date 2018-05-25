@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 20 Mei 2018 pada 10.49
+-- Generation Time: 25 Mei 2018 pada 10.07
 -- Versi Server: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -21,30 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `menemani`
 --
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `akun`
---
-
-CREATE TABLE `akun` (
-  `id_akun` int(3) NOT NULL,
-  `nama_akun` varchar(25) NOT NULL,
-  `tipe_akun` varchar(12) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `akun`
---
-
-INSERT INTO `akun` (`id_akun`, `nama_akun`, `tipe_akun`, `created_at`, `updated_at`) VALUES
-(1, 'Kas Harian', 'AKTIVA', '2018-05-20 08:04:04', '2018-05-20 08:04:04'),
-(3, 'Modal', 'PASIVA', '2018-05-20 08:04:48', '2018-05-20 08:04:48'),
-(4, 'PLN', 'PENGELUARAN', '2018-05-20 08:05:51', '2018-05-20 08:05:51'),
-(5, 'Pemeriksaan', 'PEMASUKAN', '2018-05-20 08:36:24', '2018-05-20 08:36:24');
 
 -- --------------------------------------------------------
 
@@ -85,6 +61,13 @@ CREATE TABLE `alat_medis` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `alat_medis`
+--
+
+INSERT INTO `alat_medis` (`id`, `kd_alat`, `nm_alat`, `jenis_alat`, `jumlah`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'al011', 'Suntikan bayi', 'Care 01', 2, 'TEST', '2018-05-23 05:27:38', '2018-05-23 05:27:38');
 
 -- --------------------------------------------------------
 
@@ -614,7 +597,19 @@ INSERT INTO `laravel_logger_activity` (`id`, `description`, `userType`, `userId`
 (164, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-19 01:59:27', '2018-05-19 01:59:27', NULL),
 (165, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-19 06:27:48', '2018-05-19 06:27:48', NULL),
 (166, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-19 13:45:08', '2018-05-19 13:45:08', NULL),
-(167, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-20 07:27:08', '2018-05-20 07:27:08', NULL);
+(167, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-20 07:27:08', '2018-05-20 07:27:08', NULL),
+(168, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-20 12:05:47', '2018-05-20 12:05:47', NULL),
+(169, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-22 11:58:52', '2018-05-22 11:58:52', NULL),
+(170, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-22 15:49:55', '2018-05-22 15:49:55', NULL);
+INSERT INTO `laravel_logger_activity` (`id`, `description`, `userType`, `userId`, `route`, `ipAddress`, `userAgent`, `locale`, `referer`, `methodType`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(171, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-23 04:11:45', '2018-05-23 04:11:45', NULL),
+(172, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-23 04:28:03', '2018-05-23 04:28:03', NULL),
+(173, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-23 06:02:40', '2018-05-23 06:02:40', NULL),
+(174, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-23 11:07:15', '2018-05-23 11:07:15', NULL),
+(175, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-23 13:40:05', '2018-05-23 13:40:05', NULL),
+(176, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-24 11:30:42', '2018-05-24 11:30:42', NULL),
+(177, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-24 11:46:07', '2018-05-24 11:46:07', NULL),
+(178, 'Logged In', 'Registered', 1, 'http://127.0.0.1:8000/login', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'en-US,en;q=0.9', 'http://127.0.0.1:8000/login', 'POST', '2018-05-25 03:03:09', '2018-05-25 03:03:09', NULL);
 
 -- --------------------------------------------------------
 
@@ -651,6 +646,32 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (16, '2018_03_19_204448_create_kecamatan_table', 1),
 (17, '2018_03_19_212237_create_pasien_table', 1),
 (18, '2018_03_19_212631_create_kategoripasien_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `nama_akun`
+--
+
+CREATE TABLE `nama_akun` (
+  `id_akun` int(11) NOT NULL,
+  `id_tipe` int(11) NOT NULL,
+  `nama_akun` varchar(30) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `nama_akun`
+--
+
+INSERT INTO `nama_akun` (`id_akun`, `id_tipe`, `nama_akun`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Kas Harian', '2018-05-23 11:47:35', '2018-05-23 11:47:35'),
+(2, 1, 'Kas bulanan', '2018-05-24 12:04:54', '2018-05-24 12:04:54'),
+(3, 2, 'Modal', '2018-05-24 12:05:25', '2018-05-24 12:05:25'),
+(4, 3, 'Pemeriksaan', '2018-05-24 13:18:26', '2018-05-24 13:18:26'),
+(5, 4, 'PLN', '2018-05-24 13:18:39', '2018-05-24 13:18:39'),
+(7, 4, 'Biaya Operasional', '2018-05-25 07:29:25', '2018-05-25 07:29:25');
 
 -- --------------------------------------------------------
 
@@ -958,6 +979,65 @@ INSERT INTO `roles` (`id`, `name`, `slug`, `level`, `created_at`, `updated_at`) 
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tipe_akun`
+--
+
+CREATE TABLE `tipe_akun` (
+  `id_tipe` int(11) NOT NULL,
+  `nama_tipe` varchar(15) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tipe_akun`
+--
+
+INSERT INTO `tipe_akun` (`id_tipe`, `nama_tipe`, `created_at`, `updated_at`) VALUES
+(1, 'AKTIVA', '2018-04-26 10:52:09', '2018-04-26 10:52:09'),
+(2, 'PASIVA', '2018-04-26 10:52:09', '2018-04-26 10:52:09'),
+(3, 'PEMASUKAN', '2018-04-26 10:52:09', '2018-04-26 10:52:09'),
+(4, 'PENGELUARAN', '2018-04-26 10:52:09', '2018-04-26 10:52:09');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `transaksi`
+--
+
+CREATE TABLE `transaksi` (
+  `id_transaksi` int(3) NOT NULL,
+  `id_akun` int(3) NOT NULL,
+  `tgl` date NOT NULL,
+  `keterangan` text,
+  `pengeluaran` bigint(20) NOT NULL,
+  `pemasukan` bigint(20) NOT NULL,
+  `nominal` bigint(20) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `saldo` bigint(20) NOT NULL,
+  `u_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `transaksi`
+--
+
+INSERT INTO `transaksi` (`id_transaksi`, `id_akun`, `tgl`, `keterangan`, `pengeluaran`, `pemasukan`, `nominal`, `jumlah`, `saldo`, `u_id`, `created_at`, `updated_at`) VALUES
+(1, 1, '2018-05-25', 'KAS HARIAN MASUK 1', 0, 450000, 450000, 1, 450000, 1, '2018-05-25 07:30:25', '2018-05-25 07:30:25'),
+(2, 1, '2018-05-25', 'KAS HARIAN MASUK 2', 0, 50000, 25000, 2, 500000, 1, '2018-05-25 07:31:25', '2018-05-25 07:31:25'),
+(3, 2, '2018-05-26', 'KAS BULANAN MASUK 1', 0, 600000, 600000, 1, 600000, 1, '2018-05-25 07:36:53', '2018-05-25 07:36:53'),
+(4, 2, '2018-05-26', 'KAS BULANAN MASUK 2', 0, 900000, 450000, 2, 1500000, 1, '2018-05-25 07:38:23', '2018-05-25 07:38:23'),
+(5, 1, '2018-05-28', 'KAS HARIAN KELUAR 1', 25000, 0, 25000, 1, 475000, 1, '2018-05-25 07:39:47', '2018-05-25 07:39:47'),
+(6, 7, '2018-05-30', 'BIAYA OPERASIONAL 1', 150000, 0, 150000, 1, -150000, 1, '2018-05-25 07:41:46', '2018-05-25 07:41:46'),
+(7, 5, '2018-05-30', 'BAYAR LISTRIK 1', 200000, 0, 200000, 1, -200000, 1, '2018-05-25 07:42:46', '2018-05-25 07:42:46'),
+(8, 7, '2018-05-30', 'BIAYA OPERASIONAL 2', 240000, 0, 120000, 2, -390000, 1, '2018-05-25 07:44:21', '2018-05-25 07:44:21'),
+(9, 2, '2018-05-30', 'KAS BULANAN KELUAR 1', 700000, 0, 700000, 1, 800000, 1, '2018-05-25 07:47:39', '2018-05-25 07:47:39');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `users`
 --
 
@@ -1032,12 +1112,6 @@ INSERT INTO `vendor_obat` (`id`, `nama_vendor`, `alamat`, `no_telp`, `no_hp`, `p
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `akun`
---
-ALTER TABLE `akun`
-  ADD PRIMARY KEY (`id_akun`);
 
 --
 -- Indexes for table `alat_kantor`
@@ -1150,6 +1224,12 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `nama_akun`
+--
+ALTER TABLE `nama_akun`
+  ADD PRIMARY KEY (`id_akun`);
+
+--
 -- Indexes for table `operasional`
 --
 ALTER TABLE `operasional`
@@ -1217,6 +1297,18 @@ ALTER TABLE `roles`
   ADD UNIQUE KEY `roles_slug_unique` (`slug`);
 
 --
+-- Indexes for table `tipe_akun`
+--
+ALTER TABLE `tipe_akun`
+  ADD PRIMARY KEY (`id_tipe`);
+
+--
+-- Indexes for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  ADD PRIMARY KEY (`id_transaksi`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -1234,12 +1326,6 @@ ALTER TABLE `vendor_obat`
 --
 
 --
--- AUTO_INCREMENT for table `akun`
---
-ALTER TABLE `akun`
-  MODIFY `id_akun` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- AUTO_INCREMENT for table `alat_kantor`
 --
 ALTER TABLE `alat_kantor`
@@ -1249,7 +1335,7 @@ ALTER TABLE `alat_kantor`
 -- AUTO_INCREMENT for table `alat_medis`
 --
 ALTER TABLE `alat_medis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `biaya_pendaftaran`
@@ -1339,13 +1425,19 @@ ALTER TABLE `kota`
 -- AUTO_INCREMENT for table `laravel_logger_activity`
 --
 ALTER TABLE `laravel_logger_activity`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `nama_akun`
+--
+ALTER TABLE `nama_akun`
+  MODIFY `id_akun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `operasional`
@@ -1406,6 +1498,18 @@ ALTER TABLE `reservasi`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tipe_akun`
+--
+ALTER TABLE `tipe_akun`
+  MODIFY `id_tipe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  MODIFY `id_transaksi` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`

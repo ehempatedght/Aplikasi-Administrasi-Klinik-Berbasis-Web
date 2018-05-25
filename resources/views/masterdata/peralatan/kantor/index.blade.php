@@ -144,7 +144,7 @@
 					</div>
 				</div>
 			</div>
-		@endforeach
+			@endforeach
 
 		<div class="modal fade" id="modal-9">
 				<div class="modal-dialog">

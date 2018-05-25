@@ -278,10 +278,14 @@ Route::group(['middleware'=> ['web','auth']], function() {
 			Route::post('/delete/{id}', ['uses'=>'akunting\AkunController@delete'])->name('akun.delete');
 		});
 
+
 		//transaksi
 		Route::group(['prefix'=>'transaksi'], function() {
-
-		});	
+			Route::get('/', ['uses'=>'akunting\TransaksiController@index'])->name('transaksi.index');
+			Route::get('/create', ['uses'=>'akunting\TransaksiController@create'])->name('transaksi.create');
+			Route::post('/save', ['uses'=>'akunting\TransaksiController@save'])->name('transaksi.save');
+			Route::post('/delete/{id}', ['uses'=>'akunting\TransaksiController@delete'])->name('transaksi.delete');
+		});
 	});
 });
 
