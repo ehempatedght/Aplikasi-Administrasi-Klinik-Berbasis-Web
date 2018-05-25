@@ -35,7 +35,12 @@ class AkunController extends Controller
     }
 
     public function delete($id) {
-    	NamaAkun::find($id)->delete();
-    	return redirect()->route('akun.index')->with('message','Akun Berhasil dihapus');
+    	$namaAkun = NamaAkun::find($id);
+        if ($namaAkun->transaksi->count() > 0) {
+            return redirect()->route('akun.index')->with('danger','AKUN TIDAK DAPAT DIHAPUS KARENA MEMPUNYAI TRANSAKSI!!!');
+        } else {
+            $namaAkun->delete();
+            return redirect()->route('akun.index')->with('message','AKUN BERHASIL DIHAPUS!');
+        }   
     }
 }

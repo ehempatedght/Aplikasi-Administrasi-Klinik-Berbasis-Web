@@ -9,6 +9,10 @@
 @if(session('message'))
     <div class="alert alert-success">{{session('message')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
 @endif
+
+@if(session('message2'))
+    <div class="alert alert-info">{{session('message2')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
+@endif
 <div class="row">
 	<div class="col-md-12">
 		<br/>

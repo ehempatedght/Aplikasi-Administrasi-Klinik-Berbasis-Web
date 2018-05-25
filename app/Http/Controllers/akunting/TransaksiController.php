@@ -25,6 +25,11 @@ class TransaksiController extends Controller
 
     public function save(Request $req) {
     	$data = $req->all();
+        $this->validateWith(array(
+            'tgl' => 'required',
+            'id_tipe' => 'required',
+            'id_akun' => 'required'
+        ));
     	$namaAkun = Transaksi::where('id_akun',$data['id_akun'])->orderBy('id_transaksi','DESC')->first();
     	// dd($data, $namaAkun);
     	if (isset($data['pemasukan'])) {
@@ -102,7 +107,14 @@ class TransaksiController extends Controller
     }
 
     public function delete($id) {
-    	Transaksi::find($id)->delete();
-    	return redirect()->route('transaksi.index')->with('message','Transaksi berhasil dihapus!');
+        $id_transaksi = Transaksi::find($id);
+        $transaksi = Transaksi::where('id_akun', $id_transaksi->id_akun)->orderBy('id_transaksi','DESC')->first();
+        // dd($id_transaksi, $transaksi);
+        if ($id_transaksi->id_transaksi == $transaksi->id_transaksi) {
+            $transaksi->delete();
+            return redirect()->route('transaksi.index')->with('message','TRANSAKSI BERHASIL DIHAPUS!!!');
+        } else {
+            return redirect()->route('transaksi.index')->with('message2','MAAF, HANYA TRANSAKSI TERAKHIR DARI TIAP AKUN YANG BISA DIHAPUS!!!');
+        }
     }
 }

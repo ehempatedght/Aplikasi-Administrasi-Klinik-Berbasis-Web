@@ -37,7 +37,7 @@ Route::group(['middleware'=> ['web','auth']], function() {
 			Route::post('/delete/{id}/{petugas_id}', ['uses'=>'pengaturan\ConfhonorController@delete'])->name('pengaturan.honor.delete');
 		});
 	});
-	
+
 	//master data
 	Route::group(['prefix'=>'masterdata'], function () {
 		Route::group(['prefix'=>'petugasmedis'], function() {

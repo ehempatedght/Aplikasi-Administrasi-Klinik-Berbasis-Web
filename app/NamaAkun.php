@@ -14,7 +14,7 @@ class NamaAkun extends Model
     protected $hidden = [
     	'created_at','updated_at'
     ];
-
+    
     public function tipeAkun() {
     	return $this->belongsTo('App\TipeAkun','id_tipe');
     }

@@ -42,7 +42,7 @@
 							<div class="col-md-12">
 								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tipe Akun</label>
 									<div class="col-sm-5">
-										<select name="id_tipe" class="form-control tipe_akun" id="id_tipe" required data-placeholder="Pilih tipe akun...">
+										<select name="id_tipe" class="form-control tipe_akun" id="id_tipe" required data-placeholder="Pilih tipe akun..." required>
 											<optgroup label="Tipe Akun">
 												@foreach($tipeAkun as $tipe)
 												<option value="{{$tipe->id_tipe}}">{{$tipe->nama_tipe}}</option>
@@ -59,7 +59,7 @@
 							<div class="col-md-12">
 								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama Akun</label>
 									<div class="col-sm-5">
-										<select name="id_akun" class="form-control" required data-placeholder="Pilih nama akun..." id="id_akun">
+										<select name="id_akun" class="form-control" required data-placeholder="Pilih nama akun..." id="id_akun" required>
 											<optgroup label="Nama Akun">
 											@foreach($namaAkun as $nAkun)
 											@if($nAkun->id_tipe == '1')
