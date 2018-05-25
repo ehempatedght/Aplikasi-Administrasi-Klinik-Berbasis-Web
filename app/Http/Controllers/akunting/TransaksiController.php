@@ -25,31 +25,23 @@ class TransaksiController extends Controller
 
     public function save(Request $req) {
     	$data = $req->all();
+        if(!isset($data['transaksi'])) return redirect()->back()->withInput()->with('status','Wajib pilih salah satu jenis transaksi!');
         $this->validateWith(array(
             'tgl' => 'required',
             'id_tipe' => 'required',
             'id_akun' => 'required'
         ));
     	$namaAkun = Transaksi::where('id_akun',$data['id_akun'])->orderBy('id_transaksi','DESC')->first();
-    	// dd($data, $namaAkun);
-    	if (isset($data['pemasukan'])) {
+    	if (isset($data['transaksi']['pemasukan'])) {
     		if (empty($namaAkun->id_akun)) {
     			$nominal = str_replace(',', '', $data['nominal']);
     			$jumlah = $data['jumlah'];
     			$saldo = 0 + ($nominal * $jumlah);
     		} else {
     			if($namaAkun->id_akun == $data['id_akun']) {
-	    			if($namaAkun->saldo < 0) {
-	    				$nominal = str_replace(',', '', $data['nominal']);
-	    				$jumlah = $data['jumlah'];
-	    				$saldo = ($namaAkun->saldo) + ($nominal * $jumlah);
-	    			}
-
-	    			if ($namaAkun->saldo > 0) {
-	    				$nominal = str_replace(',', '', $data['nominal']);
-	    				$jumlah = $data['jumlah'];
-	    				$saldo = ($namaAkun->saldo) + ($nominal * $jumlah);
-	    			}
+	    			$nominal = str_replace(',', '', $data['nominal']);
+	    			$jumlah = $data['jumlah'];
+	    			$saldo = ($namaAkun->saldo) + ($nominal * $jumlah);
 	    		}
     		}
 
@@ -69,24 +61,16 @@ class TransaksiController extends Controller
     	}
 
 
-    	if (isset($data['pengeluaran'])) {
+    	if (isset($data['transaksi']['pengeluaran'])) {
     		if (empty($namaAkun->id_akun)) {
     			$nominal = str_replace(',', '', $data['nominal']);
     			$jumlah = $data['jumlah'];
     			$saldo = 0 - ($nominal * $jumlah);
     		} else {
     			if($namaAkun->id_akun == $data['id_akun']) {
-	    			if($namaAkun->saldo < 0) {
-	    				$nominal = str_replace(',', '', $data['nominal']);
-	    				$jumlah = $data['jumlah'];
-	    				$saldo = ($namaAkun->saldo) - ($nominal * $jumlah);
-	    			}
-
-	    			if ($namaAkun->saldo > 0) {
-	    				$nominal = str_replace(',', '', $data['nominal']);
-	    				$jumlah = $data['jumlah'];
-	    				$saldo = ($namaAkun->saldo) - ($nominal * $jumlah);
-	    			}
+	    			$nominal = str_replace(',', '', $data['nominal']);
+	    			$jumlah = $data['jumlah'];
+	    			$saldo = ($namaAkun->saldo) - ($nominal * $jumlah);	
 	    		}
     		}
 
@@ -112,11 +96,10 @@ class TransaksiController extends Controller
         // dd($id_transaksi, $transaksi);
         if ($id_transaksi->id_transaksi == $transaksi->id_transaksi) {
             $transaksi->delete();
-            return redirect()->route('transaksi.index')->with('message','TRANSAKSI BERHASIL DIHAPUS!!!');
+            return redirect()->route('transaksi.index')->with('message','TRANSAKSI BERHASIL DIHAPUS!');
         } else {
-            return redirect()->route('transaksi.index')->with('message2','MAAF, HANYA TRANSAKSI TERAKHIR DARI TIAP AKUN YANG BISA DIHAPUS!!!');
+            return redirect()->route('transaksi.index')->with('message2','MAAF, HANYA TRANSAKSI TERAKHIR DARI TIAP AKUN YANG BISA DIHAPUS!');
         }
 
-        
     }
 }

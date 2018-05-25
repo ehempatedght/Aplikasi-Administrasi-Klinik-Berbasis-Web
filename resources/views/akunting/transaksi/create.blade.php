@@ -76,13 +76,22 @@
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-12">
-								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jenis Transaksi</label>
+								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jenis Transaksi
+									<br />
+									<span class="control-label">
+									@if (session('status'))
+									<p style="color:red;">
+										{{ session('status') }}
+									</p>
+									@endif
+									</span>
+								</label>
 									<div class="col-sm-5">
 										<div class="row">
 											<div class="col-sm-4">
 												<div class="checkbox">
 													<label>
-													<input type="checkbox" id="tm" class="tm" name="pemasukan">Transaksi Masuk
+													<input type="checkbox" id="tm" class="tm" name="transaksi[pemasukan]" @if(is_array(old('transaksi')) && array_key_exists("pemasukan", old('transaksi'))) checked @endif>Transaksi Masuk
 													</label>
 												</div>
 											</div>
@@ -90,7 +99,7 @@
 											<div class="col-sm-4">
 												<div class="checkbox">
 													<label>
-													<input type="checkbox" id="tk" class="tk" name="pengeluaran">Transaksi Keluar
+													<input type="checkbox" id="tk" class="tk" name="transaksi[pengeluaran]" @if(is_array(old('transaksi')) && array_key_exists("pengeluaran", old('transaksi'))) checked @endif>Transaksi Keluar
 													</label>
 												</div>
 											</div>
