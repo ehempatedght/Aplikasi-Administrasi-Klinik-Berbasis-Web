@@ -116,5 +116,7 @@ class TransaksiController extends Controller
         } else {
             return redirect()->route('transaksi.index')->with('message2','MAAF, HANYA TRANSAKSI TERAKHIR DARI TIAP AKUN YANG BISA DIHAPUS!!!');
         }
+
+        
     }
 }
