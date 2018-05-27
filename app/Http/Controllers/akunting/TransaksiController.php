@@ -47,6 +47,7 @@ class TransaksiController extends Controller
 
 			Transaksi::create([
 				'id_akun' => $data['id_akun'],
+                'id_tipe' => $data['id_tipe'],
 				'tgl' => date('Y-m-d', strtotime($data['tgl'])),
 				'keterangan' => $data['keterangan'],
 				'nominal' => str_replace(',', '', $data['nominal']),
@@ -56,6 +57,11 @@ class TransaksiController extends Controller
 				'saldo' => str_replace('', '', $saldo),
 				'u_id' => Auth::user()->id
     		]);
+
+            NamaAkun::find($data['id_akun'])->update([
+                'created_at' => date('Y-m-d', strtotime($data['tgl'])),
+                'updated_at' => date('Y-m-d', strtotime($data['tgl']))
+            ]);
 
     		return redirect()->route('transaksi.index')->with('message','Transaksi berhasil ditambah!');
     	}
@@ -76,6 +82,7 @@ class TransaksiController extends Controller
 
     		Transaksi::create([
 				'id_akun' => $data['id_akun'],
+                'id_tipe' => $data['id_tipe'],
 				'tgl' => date('Y-m-d', strtotime($data['tgl'])),
 				'keterangan' => $data['keterangan'],
 				'nominal' => str_replace(',', '', $data['nominal']),
@@ -85,6 +92,11 @@ class TransaksiController extends Controller
 				'saldo' => str_replace('', '', $saldo),
 				'u_id' => Auth::user()->id
     		]);
+
+            NamaAkun::find($data['id_akun'])->update([
+                'created_at' => date('Y-m-d', strtotime($data['tgl'])),
+                'updated_at' => date('Y-m-d', strtotime($data['tgl']))
+            ]);
 
     		return redirect()->route('transaksi.index')->with('message','Transaksi berhasil ditambah!');
     	}	
@@ -101,5 +113,31 @@ class TransaksiController extends Controller
             return redirect()->route('transaksi.index')->with('message2','MAAF, HANYA TRANSAKSI TERAKHIR DARI TIAP AKUN YANG BISA DIHAPUS!');
         }
 
+    }
+
+    //Laporan Berdasarkan Akun
+    public function berdasarkan_akun() {
+        $tipeAkun = TipeAkun::orderBy('nama_tipe','ASC')->get();
+        return view('akunting.laporan.berdasarkan_tipe_akun.index', get_defined_vars());
+    }
+
+    public function output_berdasarkan_akun($tanggal_awal, $tanggal_akhir, $akun, $tipe) {
+        $tanggal_awal = date('Y-m-d', strtotime($tanggal_awal));
+        $tanggal_akhir = date('Y-m-d', strtotime($tanggal_akhir));
+        if ((date('d', strtotime($tanggal_awal)) == '01' AND date('d', strtotime($tanggal_akhir)) >= '30') AND date('m', strtotime($tanggal_awal)) == date('m', strtotime($tanggal_akhir))) {
+            $bulanan = true;
+        } else {
+            $bulanan = false;
+        }
+        if ($tipe == 'All') {
+            $akun = NamaAkun::get();
+        } else {
+            $akun = NamaAkun::where('id_tipe', $akun)->get();
+        }
+
+        if ($tipe = 'Pdf') {
+            $tampilan_penuh = true;
+            return view('akunting.laporan.berdasarkan_tipe_akun.pdf', get_defined_vars());
+        }
     }
 }

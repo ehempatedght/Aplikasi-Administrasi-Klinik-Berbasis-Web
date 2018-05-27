@@ -317,7 +317,7 @@
 					</a>
 					<ul>
 						<li>
-							<a href="#">
+							<a href="{{route('laporan.tipe_akun')}}">
 								<span class="title">Laporan Berdasarkan Tipe Akun</span>
 							</a>
 						</li>

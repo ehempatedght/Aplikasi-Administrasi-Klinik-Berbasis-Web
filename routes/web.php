@@ -286,6 +286,12 @@ Route::group(['middleware'=> ['web','auth']], function() {
 			Route::post('/save', ['uses'=>'akunting\TransaksiController@save'])->name('transaksi.save');
 			Route::post('/delete/{id}', ['uses'=>'akunting\TransaksiController@delete'])->name('transaksi.delete');
 		});
+
+	});
+
+	Route::group(['prefix'=>'laporan'], function() {
+		Route::get('/akunting/tipe_akun', ['uses'=>'akunting\TransaksiController@berdasarkan_akun'])->name('laporan.tipe_akun');
+		Route::get('/akunting/tipe_akun/{tanggal_awal}/{tanggal_akhir}/{akun}/{tipe}', ['uses'=>'akunting\TransaksiController@output_berdasarkan_akun'])->name('lapran.akun.index');
 	});
 });
 

@@ -1,6 +1,7 @@
 @extends('template')
 @section('main')
-<h2 align="center">Daftar Transaksi Keuangan</h2>
+<h2>Daftar Transaksi Keuangan</h2>
+<h4>Menu ini digunakan untuk melakukan transaksi keuangan.</h4>
 <a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('transaksi.create')}}">
 	<i class="entypo-user-add" ></i>Tambah Transaksi
 </a>
