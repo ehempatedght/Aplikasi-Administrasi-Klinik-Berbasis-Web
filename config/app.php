@@ -162,6 +162,7 @@ return [
         Creativeorange\Gravatar\GravatarServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         jeremykenedy\LaravelRoles\RolesServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -214,7 +215,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Gravatar'     => Creativeorange\Gravatar\Facades\Gravatar::class,
-
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

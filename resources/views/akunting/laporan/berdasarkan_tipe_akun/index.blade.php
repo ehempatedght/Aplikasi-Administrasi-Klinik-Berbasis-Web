@@ -19,6 +19,9 @@
 </div>
 <div class="row">
     <form role="form" class="form-horizontal">
+        @if(session('message'))
+            <div class="alert alert-success">{{session('message')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
+        @endif
         <div class="form-group">
             <label class="col-md-3 control-label">Periode Laporan :</label>
             <div class="col-md-2">
@@ -43,7 +46,6 @@
             <label for="field-1" class="col-sm-3 control-label">Pilih Tipe Akun :</label>
             <div class="col-sm-6">
                 <select class="form-control select2" name="akun" id="akun" required>
-                    {{-- <option value="All">SEMUA AKUN</option> --}}
                     @foreach ($tipeAkun as $row)
                         <option value="{{ $row->id_tipe }}">{{ $row->nama_tipe }}</option>
                     @endforeach

@@ -284,59 +284,45 @@
 				@if(Auth::user()->lpmedis == '1')
 				<li>
 					<a href="#">
-						<span class="title">Medis</span>
+						<span class="title">Laporan Registrasi</span>
 					</a>
-					<ul>
-						<li>
-							<a href="#">
-								<span class="title">Laporan Registrasi</span>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<span class="title">Laporan Reservasi Klinik</span>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<span class="title">Laporan Pemeriksaan Pasien</span>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<span class="title">Laporan Rekam Medis</span>
-							</a>
-						</li>
-					</ul>
+				</li>
+				<li>
+					<a href="#">
+						<span class="title">Laporan Reservasi Klinik</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="title">Laporan Pemeriksaan Pasien</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="title">Laporan Rekam Medis</span>
+					</a>
 				</li>
 				@endif
 				@if(Auth::user()->lpakunting == '1')
 				<li>
-					<a href="#">
-						<span class="title">Akunting</span>
+					<a href="{{route('laporan.tipe_akun')}}">
+						<span class="title">Laporan Berdasarkan Tipe Akun</span>
 					</a>
-					<ul>
-						<li>
-							<a href="{{route('laporan.tipe_akun')}}">
-								<span class="title">Laporan Berdasarkan Tipe Akun</span>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<span class="title">Laporan Detail Per Akun</span>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<span class="title">Laporan Laba(Rugi)</span>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<span class="title">Laporan Neraca</span>
-							</a>
-						</li>
-					</ul>
+				</li>
+				<li>
+					<a href="#">
+						<span class="title">Laporan Detail Per Akun</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="title">Laporan Laba(Rugi)</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="title">Laporan Neraca</span>
+					</a>
 				</li>
 				@endif
 			</ul>

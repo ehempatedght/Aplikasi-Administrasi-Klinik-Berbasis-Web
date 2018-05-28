@@ -8,7 +8,7 @@ use App\NamaAkun;
 use App\TipeAkun;
 use App\Transaksi;
 use Auth;
-
+use Excel;
 class TransaksiController extends Controller
 {
     public function index() {
@@ -58,11 +58,6 @@ class TransaksiController extends Controller
 				'u_id' => Auth::user()->id
     		]);
 
-            NamaAkun::find($data['id_akun'])->update([
-                'created_at' => date('Y-m-d', strtotime($data['tgl'])),
-                'updated_at' => date('Y-m-d', strtotime($data['tgl']))
-            ]);
-
     		return redirect()->route('transaksi.index')->with('message','Transaksi berhasil ditambah!');
     	}
 
@@ -93,11 +88,6 @@ class TransaksiController extends Controller
 				'u_id' => Auth::user()->id
     		]);
 
-            NamaAkun::find($data['id_akun'])->update([
-                'created_at' => date('Y-m-d', strtotime($data['tgl'])),
-                'updated_at' => date('Y-m-d', strtotime($data['tgl']))
-            ]);
-
     		return redirect()->route('transaksi.index')->with('message','Transaksi berhasil ditambah!');
     	}	
     }
@@ -121,7 +111,9 @@ class TransaksiController extends Controller
         return view('akunting.laporan.berdasarkan_tipe_akun.index', get_defined_vars());
     }
 
-    public function output_berdasarkan_akun($tanggal_awal, $tanggal_akhir, $akun, $tipe) {
+    public function output_berdasarkan_akun($tanggal_awal, $tanggal_akhir, $akun, $tipe
+    )
+    {
         $tanggal_awal = date('Y-m-d', strtotime($tanggal_awal));
         $tanggal_akhir = date('Y-m-d', strtotime($tanggal_akhir));
         if ((date('d', strtotime($tanggal_awal)) == '01' AND date('d', strtotime($tanggal_akhir)) >= '30') AND date('m', strtotime($tanggal_awal)) == date('m', strtotime($tanggal_akhir))) {
@@ -129,15 +121,22 @@ class TransaksiController extends Controller
         } else {
             $bulanan = false;
         }
-        if ($tipe == 'All') {
-            $akun = NamaAkun::get();
-        } else {
-            $akun = NamaAkun::where('id_tipe', $akun)->get();
-        }
 
-        if ($tipe = 'Pdf') {
-            $tampilan_penuh = true;
-            return view('akunting.laporan.berdasarkan_tipe_akun.pdf', get_defined_vars());
+        $akun = Transaksi::where('id_tipe', $akun)->whereBetween('tgl', [$tanggal_awal, $tanggal_akhir])->groupBy('id_akun')->get();
+        
+        if (empty($akun->first()->id_tipe)) {
+            return redirect()->back()->with('message','AKUN BELUM MEMPUNYAI LAPORAN ATAU BELUM MEMPUNYAI LAPORAN PADA TANGGAL YANG DIINPUT!');
+        } else {
+            if ($tipe == 'pdf') {
+                $tampilan_penuh = true;
+                return view('akunting.laporan.berdasarkan_tipe_akun.pdf', get_defined_vars());
+            } else {
+                return Excel::create("Laporan Keuangan Tipe Akun".$akun->first()->tipe_akun->nama_tipe." - ".date('d-m-Y', strtotime($tanggal_awal)). "s/d" .date('d-m-Y', strtotime($tanggal_akhir)), function($excel) use ($tanggal_awal, $tanggal_akhir, $bulanan, $akun){
+                    $excel->sheet('Sheet1', function($sheet) use ($tanggal_awal, $tanggal_akhir, $bulanan, $akun) {
+                        $sheet->loadView('akunting.laporan.berdasarkan_tipe_akun.excel', get_defined_vars());
+                    });
+                })->export('xls');
+            }
         }
     }
 }

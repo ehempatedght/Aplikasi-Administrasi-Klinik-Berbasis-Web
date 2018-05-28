@@ -1,5 +1,3 @@
-@extends('template')
-@section('main')
 <?php
 $daftar_bulan = array(
   '01' => 'Januari',
@@ -19,6 +17,9 @@ $daftar_bulan = array(
 $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
 
 ?>
+<!DOCTYPE html>
+<html>
+<body>
 <div class="invoice">
   <div class="row">
     <div class="col-xs-4 invoice-left">
@@ -92,18 +93,7 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
   </table>
 </div>
 <div class="row">&nbsp;</div>
-  <div class="row">&nbsp;</div>
-  <div class="row">&nbsp;</div>
-<div class="invoice">
-  <div class="invoice-right">
-    <a href="{{route('laporan.akun', ['tanggal_awal' => $tanggal_awal, 'tanggal_akhir' => $tanggal_akhir, 'akun' => $akun, 'tipe' => 'excel']) }}" class="btn btn-primary btn-icon icon-left hidden-print">
-      Export Excel
-      <i class="entypo-doc-text"></i>
-    </a>
-    <a href="javascript:window.print();" class="btn btn-blue btn-icon icon-left hidden-print">
-        Cetak
-      <i class="entypo-print"></i>
-    </a>
-  </div>
-  </div>
-@endsection
+<div class="row">&nbsp;</div>
+<div class="row">&nbsp;</div>
+</body>
+</html>

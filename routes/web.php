@@ -291,7 +291,7 @@ Route::group(['middleware'=> ['web','auth']], function() {
 
 	Route::group(['prefix'=>'laporan'], function() {
 		Route::get('/akunting/tipe_akun', ['uses'=>'akunting\TransaksiController@berdasarkan_akun'])->name('laporan.tipe_akun');
-		Route::get('/akunting/tipe_akun/{tanggal_awal}/{tanggal_akhir}/{akun}/{tipe}', ['uses'=>'akunting\TransaksiController@output_berdasarkan_akun'])->name('lapran.akun.index');
+		Route::get('/akunting/tipe_akun/{tanggal_awal}/{tanggal_akhir}/{akun}/{tipe}', ['uses'=>'akunting\TransaksiController@output_berdasarkan_akun'])->name('laporan.akun');
 	});
 });
 
