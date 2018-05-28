@@ -96,7 +96,7 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
   <div class="row">&nbsp;</div>
 <div class="invoice">
   <div class="invoice-right">
-    <a href="{{route('laporan.akun', ['tanggal_awal' => $tanggal_awal, 'tanggal_akhir' => $tanggal_akhir, 'akun' => $akun, 'tipe' => 'excel']) }}" class="btn btn-primary btn-icon icon-left hidden-print">
+    <a href="{{route('laporan.akun', ['tanggal_awal' => $tanggal_awal, 'tanggal_akhir' => $tanggal_akhir, 'akun' => $akun->id_tipe, 'tipe' => 'excel']) }}" class="btn btn-primary btn-icon icon-left hidden-print">
       Export Excel
       <i class="entypo-doc-text"></i>
     </a>
