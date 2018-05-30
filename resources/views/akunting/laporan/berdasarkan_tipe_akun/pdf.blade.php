@@ -59,10 +59,10 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
         <td style="text-align: center; border: 1px solid;" colspan="4">{{$akun->first()->tipe_akun->nama_tipe}}</td>
       </tr>
       <tr>
-        <td style="text-align: center; border: 1px solid;" width="81">No</td>
-        <td style="text-align: center; border: 1px solid;" width="350">Nama Akun</td>
-        <td style="text-align: center; border: 1px solid;" width="105">Masuk</td>
-        <td style="text-align: center; border: 1px solid;" width="105">Keluar</td>
+        <td style="text-align: center; border: 1px solid;" width="2">No</td>
+        <td style="text-align: center; border: 1px solid;" width="100">Nama Akun</td>
+        <td style="text-align: center; border: 1px solid;" width="50">Masuk</td>
+        <td style="text-align: center; border: 1px solid;" width="50">Keluar</td>
       </tr>
       <?php $no=1; ?>
       @foreach($akun as $akun)
@@ -92,16 +92,14 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
   </table>
 </div>
 <div class="row">&nbsp;</div>
-  <div class="row">&nbsp;</div>
-  <div class="row">&nbsp;</div>
 <div class="invoice">
   <div class="invoice-right">
-    <a href="{{route('laporan.akun', ['tanggal_awal' => $tanggal_awal, 'tanggal_akhir' => $tanggal_akhir, 'akun' => $akun->id_tipe, 'tipe' => 'excel']) }}" class="btn btn-primary btn-icon icon-left hidden-print">
+    {{-- <a href="{{route('laporan.akun', ['tanggal_awal' => $tanggal_awal, 'tanggal_akhir' => $tanggal_akhir, 'akun' => $akun->id_tipe, 'tipe' => 'excel']) }}" class="btn btn-primary btn-icon icon-left hidden-print">
       Export Excel
       <i class="entypo-doc-text"></i>
-    </a>
+    </a> --}}
     <a href="javascript:window.print();" class="btn btn-blue btn-icon icon-left hidden-print">
-        Cetak
+        Cetak PDF
       <i class="entypo-print"></i>
     </a>
   </div>

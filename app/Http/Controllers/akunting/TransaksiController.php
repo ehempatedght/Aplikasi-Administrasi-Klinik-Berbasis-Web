@@ -100,7 +100,7 @@ class TransaksiController extends Controller
             $transaksi->delete();
             return redirect()->route('transaksi.index')->with('message','TRANSAKSI BERHASIL DIHAPUS!');
         } else {
-            return redirect()->route('transaksi.index')->with('message2','MAAF, HANYA TRANSAKSI TERAKHIR DARI TIAP AKUN YANG BISA DIHAPUS!');
+            return redirect()->back()->with('message2','MAAF, HANYA TRANSAKSI TERAKHIR DARI TIAP AKUN YANG BISA DIHAPUS!');
         }
 
     }
@@ -112,8 +112,39 @@ class TransaksiController extends Controller
     }
 
     public function output_berdasarkan_akun($tanggal_awal, $tanggal_akhir, $akun, $tipe
-    )
-    {
+    ) {
+        $tanggal_awal = date('Y-m-d', strtotime($tanggal_awal));
+        $tanggal_akhir = date('Y-m-d', strtotime($tanggal_akhir));
+        if ((date('d', strtotime($tanggal_awal)) == '01' AND date('d', strtotime($tanggal_akhir)) >= '30') AND date('m', strtotime($tanggal_awal)) == date('m', strtotime($tanggal_akhir))) {
+            $bulanan = true;
+        } else $bulanan = false;
+
+        $akun = Transaksi::where('id_tipe', $akun)->whereBetween('tgl', [$tanggal_awal, $tanggal_akhir])->groupBy('id_akun')->get();
+        
+        if (empty($akun->first()->id_tipe)) {
+            return redirect()->back()->with('message','AKUN BELUM MEMPUNYAI LAPORAN ATAU TIDAK ADA LAPORAN PADA TANGGAL YANG DIINPUT!');
+        } else {
+            if ($tipe == 'pdf') {
+                $tampilan_penuh = true;
+                return view('akunting.laporan.berdasarkan_tipe_akun.pdf', get_defined_vars());
+            } else {
+                return Excel::create("Laporan Keuangan Tipe Akun ".$akun->first()->tipe_akun->nama_tipe." - ".date('d-m-Y', strtotime($tanggal_awal)). " s/d " .date('d-m-Y', strtotime($tanggal_akhir)), function($excel) use ($tanggal_awal, $tanggal_akhir, $bulanan, $akun){
+                    $excel->sheet('Sheet1', function($sheet) use ($tanggal_awal, $tanggal_akhir, $bulanan, $akun) {
+                        $sheet->loadView('akunting.laporan.berdasarkan_tipe_akun.excel', get_defined_vars());
+                    });
+                })->export('xls');
+            }
+        }
+    }
+
+    //LAPORAN DETAIL AKUN
+    public function detail_akun() {
+        $tipeAkun = TipeAkun::orderBy('nama_tipe','ASC')->get();
+        $namaAkun = NamaAkun::orderBy('nama_akun', 'ASC')->get();
+        return view('akunting.laporan.detail_akun.index', get_defined_vars());
+    }
+
+    public function output_detail_akun($tanggal_awal, $tanggal_akhir, $tipe_akun, $nama_akun, $tipe) {
         $tanggal_awal = date('Y-m-d', strtotime($tanggal_awal));
         $tanggal_akhir = date('Y-m-d', strtotime($tanggal_akhir));
         if ((date('d', strtotime($tanggal_awal)) == '01' AND date('d', strtotime($tanggal_akhir)) >= '30') AND date('m', strtotime($tanggal_awal)) == date('m', strtotime($tanggal_akhir))) {
@@ -122,21 +153,32 @@ class TransaksiController extends Controller
             $bulanan = false;
         }
 
-        $akun = Transaksi::where('id_tipe', $akun)->whereBetween('tgl', [$tanggal_awal, $tanggal_akhir])->groupBy('id_akun')->get();
-        
-        if (empty($akun->first()->id_tipe)) {
-            return redirect()->back()->with('message','AKUN BELUM MEMPUNYAI LAPORAN ATAU BELUM MEMPUNYAI LAPORAN PADA TANGGAL YANG DIINPUT!');
+        if ($tipe_akun == 'all' && $nama_akun == 'all') {
+            $akun = NamaAkun::get();
+            $transaksi = Transaksi::whereBetween('tgl', [$tanggal_awal, $tanggal_akhir])->get();
+        } elseif ($tipe_akun != null && $nama_akun == 'all') {
+            $akun = NamaAkun::where('id_tipe', $tipe_akun)->get();
+            $transaksi = Transaksi::where('id_tipe', $tipe_akun)->whereBetween('tgl', [$tanggal_awal, $tanggal_akhir])->get();
+        } elseif ($tipe_akun == 'all' && $nama_akun != null) {
+            $akun = NamaAkun::where('id_akun', $nama_akun)->get();
+            $transaksi = Transaksi::where('id_akun', $nama_akun)->whereBetween('tgl', [$tanggal_awal, $tanggal_akhir])->get();
         } else {
-            if ($tipe == 'pdf') {
-                $tampilan_penuh = true;
-                return view('akunting.laporan.berdasarkan_tipe_akun.pdf', get_defined_vars());
-            } else {
-                return Excel::create("Laporan Keuangan Tipe Akun".$akun->first()->tipe_akun->nama_tipe." - ".date('d-m-Y', strtotime($tanggal_awal)). "s/d" .date('d-m-Y', strtotime($tanggal_akhir)), function($excel) use ($tanggal_awal, $tanggal_akhir, $bulanan, $akun){
-                    $excel->sheet('Sheet1', function($sheet) use ($tanggal_awal, $tanggal_akhir, $bulanan, $akun) {
-                        $sheet->loadView('akunting.laporan.berdasarkan_tipe_akun.excel', get_defined_vars());
+            $akun = NamaAkun::where('id_akun', $nama_akun)->where('id_tipe', $tipe_akun)->get();
+            $transaksi = Transaksi::where('id_tipe', $tipe_akun)->where('id_akun', $nama_akun)->whereBetween('tgl', [$tanggal_awal, $tanggal_akhir])->get();
+        }
+
+        if (empty($transaksi->first()->id_tipe)) {
+            return redirect()->back()->with('message','AKUN BELUM MEMPUNYAI LAPORAN ATAU TIDAK ADA LAPORAN PADA TANGGAL YANG DIINPUT!');
+        }
+        if ($tipe == 'pdf') {
+            $tampilan_penuh = true;
+            return view('akunting.laporan.detail_akun.pdf', get_defined_vars());
+        } else {
+            return Excel::create("Laporan Detail Keuangan Tipe Akun ".$transaksi->first()->tipe_akun->nama_tipe." - ".date('d-m-Y', strtotime($tanggal_awal)). " s/d " .date('d-m-Y', strtotime($tanggal_akhir)), function($excel) use ($tanggal_awal, $tanggal_akhir, $tipe_akun, $nama_akun, $bulanan){
+                    $excel->sheet('Sheet1', function($sheet) use ($tanggal_awal, $tanggal_akhir, $tipe_akun, $nama_akun, $bulanan) {
+                        $sheet->loadView('akunting.laporan.detail_akun.excel', get_defined_vars());
                     });
                 })->export('xls');
-            }
         }
     }
 }

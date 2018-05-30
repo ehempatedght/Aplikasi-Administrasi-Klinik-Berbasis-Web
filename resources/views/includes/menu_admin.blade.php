@@ -310,7 +310,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="{{route('laporan.detail_akun')}}">
 						<span class="title">Laporan Detail Per Akun</span>
 					</a>
 				</li>

@@ -22,4 +22,5 @@ class TipeAkun extends Model
     public function transaksi_() {
         return $this->hasMany('App\Transaksi','id_tipe');
     }
+    
 }

@@ -60,10 +60,10 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
         <td style="text-align: center; border: 1px solid;" colspan="4">{{$akun->first()->tipe_akun->nama_tipe}}</td>
       </tr>
       <tr>
-        <td style="text-align: center; border: 1px solid;" width="81">No</td>
-        <td style="text-align: center; border: 1px solid;" width="350">Nama Akun</td>
-        <td style="text-align: center; border: 1px solid;" width="105">Masuk</td>
-        <td style="text-align: center; border: 1px solid;" width="105">Keluar</td>
+        <td style="text-align: center; border: 1px solid;" width="2">No</td>
+        <td style="text-align: center; border: 1px solid;" width="100">Nama Akun</td>
+        <td style="text-align: center; border: 1px solid;" width="50">Masuk</td>
+        <td style="text-align: center; border: 1px solid;" width="50">Keluar</td>
       </tr>
       <?php $no=1; ?>
       @foreach($akun as $akun)

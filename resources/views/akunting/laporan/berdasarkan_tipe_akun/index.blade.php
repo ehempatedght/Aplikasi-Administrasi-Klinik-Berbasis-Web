@@ -16,12 +16,14 @@
     <h2 align="center">Laporan Keuangan Berdasarkan Tipe Akun</h2>
     <br />
     <br />
+@if(session('message'))
+<div class="col-sm-12" align="center">
+    <div class="alert alert-success">{{session('message')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
+</div>
+        @endif
 </div>
 <div class="row">
     <form role="form" class="form-horizontal">
-        @if(session('message'))
-            <div class="alert alert-success">{{session('message')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
-        @endif
         <div class="form-group">
             <label class="col-md-3 control-label">Periode Laporan :</label>
             <div class="col-md-2">
