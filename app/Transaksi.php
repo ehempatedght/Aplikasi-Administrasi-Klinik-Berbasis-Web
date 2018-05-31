@@ -57,4 +57,23 @@ class Transaksi extends Model
         return $totalKeluar;
     }
 
+    // laba(rugi) - pemasukan
+    public function total_keseluruhan($bulan, $tahun) {
+        return Transaksi::where('id_tipe', '3')->where('id_akun', $this->id_akun)->whereMonth('tgl', '=', $bulan)->whereYear('tgl','=',$tahun)->get()->sum('pemasukan'); 
+    }
+
+    // laba(rugi) - pemasukan
+    public function total_keseluruhan1($bulan, $tahun) {
+        return Transaksi::where('id_tipe', '3')->whereMonth('tgl', '=', $bulan)->whereYear('tgl','=',$tahun)->get()->sum('pemasukan');
+    }
+
+    // laba(rugi) - pengeluaran
+    public function total_keseluruhan2($bulan, $tahun) {
+        return Transaksi::where('id_tipe', '4')->where('id_akun', $this->id_akun)->whereMonth('tgl', '=', $bulan)->whereYear('tgl','=',$tahun)->get()->sum('pengeluaran'); 
+    }
+
+    //laba(rugi) - pengeluaran
+    public function total_keseluruhan3($bulan, $tahun) {
+        return Transaksi::where('id_tipe', '4')->whereMonth('tgl', '=', $bulan)->whereYear('tgl','=',$tahun)->get()->sum('pengeluaran');
+    }
 }

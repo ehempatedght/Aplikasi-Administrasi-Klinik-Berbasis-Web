@@ -18,7 +18,7 @@
     <br />
 @if(session('message'))
 <div class="col-sm-12" align="center">
-    <div class="alert alert-success">{{session('message')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
+    <div class="alert alert-info">{{session('message')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
 </div>
         @endif
 </div>

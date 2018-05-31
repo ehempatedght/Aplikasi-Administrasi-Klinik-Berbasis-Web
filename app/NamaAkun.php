@@ -41,4 +41,5 @@ class NamaAkun extends Model
             return Transaksi::where('id_akun', $nama_akun)->where('id_tipe', $tipe_akun)->whereBetween('tgl', [$tanggal_awal, $tanggal_akhir])->orderBy('id_transaksi','ASC')->get();
         }
     }
+
 }

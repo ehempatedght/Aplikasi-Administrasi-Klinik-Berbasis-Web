@@ -181,4 +181,29 @@ class TransaksiController extends Controller
                 })->export('xls');
         }
     }
+
+    //LAPORAN LABA/RUGI
+    public function laba_rugi() {
+        return view('akunting.laporan.laba_rugi.index', get_defined_vars());
+    }
+
+    public function output_laba_rugi($bulan, $tahun, $tipe) {
+        $cetak_bulan = $bulan;
+        $bulan = date('m', strtotime($bulan));
+        // dd($bulan);
+        $tahun = date('Y', strtotime($tahun));
+        $pemasukan = NamaAkun::where('id_tipe', '3')->first();
+        $pengeluaran = NamaAkun::where('id_tipe', '4')->first();
+        $pemasukan_ = Transaksi::where('id_tipe', '3')->whereMonth('tgl','=',$bulan)->whereYear('tgl','=',$tahun)->groupBy('id_akun')->get();
+        // dd($pemasukan_);
+        $pengeluaran_ = Transaksi::where('id_tipe', '4')->whereMonth('tgl','=',$bulan)->whereYear('tgl','=',$tahun)->groupBy('id_akun')->get();
+        // dd($pengeluaran_);
+        if (empty($pemasukan_->first()->id_tipe) && empty($pengeluaran_->first()->id_tipe)) {
+            return redirect()->back()->with('message','TIDAK ADA LAPORAN PADA PERIODE YANG DIPILIH!');
+        }
+        if ($tipe == 'pdf') {
+            $tampilan_penuh = true;
+            return view('akunting.laporan.laba_rugi.pdf', get_defined_vars());
+        }
+    }
 }

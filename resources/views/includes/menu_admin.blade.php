@@ -315,7 +315,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="{{route('laporan.laba')}}">
 						<span class="title">Laporan Laba(Rugi)</span>
 					</a>
 				</li>
