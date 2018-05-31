@@ -91,8 +91,8 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($cetak_bulan))];
       </table>
       <table style="width: 100%; border-collapse: collapse;">
         <tr>
-          <th style="border: 1px solid;">Nama Akun</th>
-          <th style="border: 1px solid;">Nominal</th>
+          <th style="border: 1px solid;"><center>Nama Akun</center></th>
+          <th style="border: 1px solid;"><center>Nominal</center></th>
         </tr>
         @foreach($pengeluaran_ as $keluar)
         <?php
