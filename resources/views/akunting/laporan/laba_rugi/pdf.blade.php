@@ -16,24 +16,27 @@ $daftar_bulan = array(
   '12' => 'Desember',
 );
 
-$bulan_cetak = $daftar_bulan[date('m', strtotime($cetak_bulan))];
+$bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
+
 ?>
 <div class="invoice">
   <div class="row">
-
-    <div class="col-sm-6 invoice-left">
-      <span></span>
-    </div>
-    <div class="col-sm-6 invoice-right">
-      <span></span>
+    <div class="col-xs-4 invoice-left">
+      <span>
+        Rumah Sehat | Menemani <br />
+      </span>
     </div>
   </div>
   <table style="width: 100%; border-collapse: collapse;">
       <hr style="border-top: 1px solid; " />
       <center>
-      <h4>LAPORAN LABA(RUGI)</h4>
-      <span>
-        PERIODE BULAN {{ strtoupper($bulan_cetak) }} {{ $tahun }}
+        <span>
+        LAPORAN LABA(RUGI)<br />
+        @if ($bulanan == true)
+        BULAN: {{ $bulan_cetak }} {{ date('Y', strtotime($tanggal_awal)) }}
+        @else
+        PERIODE: {{ date('d-M-Y', strtotime($tanggal_awal)) }} s/d {{ date('d-M-Y', strtotime($tanggal_akhir)) }}
+        @endif
       </span>
       <br/>
     </center>
@@ -53,8 +56,9 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($cetak_bulan))];
   <div class="row">
     <div class="col-sm-6">
       <table style="width: 100%; border-collapse: collapse;">
+        <?php $total_tipe_pemasukan = 0;?>
         @foreach($pemasukan_ as $msk)
-        <?php $total_tipe_pemasukan = $msk->total_keseluruhan1($bulan, $tahun); ?>
+        <?php $total_tipe_pemasukan = $msk->total_keseluruhan1($tanggal_awal, $tanggal_akhir); ?>
         @endforeach
         <tr>
           <th width="25%">{{$pemasukan->tipeAkun->nama_tipe}}</th>
@@ -68,7 +72,7 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($cetak_bulan))];
         </tr>
         @foreach($pemasukan_ as $masuk)
         <?php
-          $total1 = $masuk->total_keseluruhan($bulan, $tahun);
+          $total1 = $masuk->total_keseluruhan($tanggal_awal, $tanggal_akhir);
         ?>
         <tr>
           <td style="border: 1px solid;">{{$masuk->akun->nama_akun}}</td>
@@ -79,9 +83,10 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($cetak_bulan))];
     </div>
     <div class="col-sm-6">
       <table style="width: 100%; border-collapse: collapse;">
+        <?php $total_tipe_pengeluaran = 0; ?>
         @foreach($pengeluaran_ as $pgl)
           <?php
-            $total_tipe_pengeluaran = $pgl->total_keseluruhan3($bulan, $tahun); 
+            $total_tipe_pengeluaran = $pgl->total_keseluruhan3($tanggal_awal, $tanggal_akhir); 
           ?>
         @endforeach
         <tr>
@@ -96,7 +101,7 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($cetak_bulan))];
         </tr>
         @foreach($pengeluaran_ as $keluar)
         <?php
-          $total2 = $keluar->total_keseluruhan2($bulan, $tahun);
+          $total2 = $keluar->total_keseluruhan2($tanggal_awal, $tanggal_akhir);
         ?>
         <tr>
           <td style="border: 1px solid;">{{$keluar->akun->nama_akun}}</td>

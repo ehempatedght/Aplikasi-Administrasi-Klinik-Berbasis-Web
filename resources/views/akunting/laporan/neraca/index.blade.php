@@ -6,9 +6,9 @@
 }
 </style>
 <div class="row">
-    <h2 align="center">Laporan Laba(Rugi)</h2>
-    <br />
-    <br />
+    <h2 align="center">Laporan Neraca</h2>
+    <br/>
+    <br/>
 </div>
 <div>
     <form role="form" class="form-horizontal" action="">
@@ -58,7 +58,7 @@ $(document).ready(function() {
         var tanggal_awal = $('#tanggal_awal').val();
         var tanggal_akhir = $('#tanggal_akhir').val();
         
-        window.location.href = home_url + '/laporan/akunting/laba_rugi/' + tanggal_awal + '/' + tanggal_akhir + '/pdf';
+        window.location.href = home_url + '/laporan/akunting/neraca/' + tanggal_awal + '/' + tanggal_akhir + '/pdf';
     });
 });
 </script>

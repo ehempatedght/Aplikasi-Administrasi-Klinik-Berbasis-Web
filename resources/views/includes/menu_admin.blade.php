@@ -320,7 +320,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="{{route('laporan.neraca')}}">
 						<span class="title">Laporan Neraca</span>
 					</a>
 				</li>

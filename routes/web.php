@@ -299,8 +299,10 @@ Route::group(['middleware'=> ['web','auth']], function() {
 		Route::get('/akunting/detail_akun/{tanggal_awal}/{tanggal_akhir}/{tipe_akun}/{nama_akun}/{tipe}', ['uses'=>'akunting\TransaksiController@output_detail_akun'])->name('laporan.akun.detail');
 		//laporan laba(rugi)
 		Route::get('/akunting/laba_rugi', ['uses'=>'akunting\TransaksiController@laba_rugi'])->name('laporan.laba');
-		Route::get('/akunting/laba_rugi/{bulan}/{tahun}/{tipe}', ['uses'=>'akunting\TransaksiController@output_laba_rugi'])->name('output.laba');
+		Route::get('/akunting/laba_rugi/{tanggal_awal}/{tanggal_akhir}/{tipe}', ['uses'=>'akunting\TransaksiController@output_laba_rugi'])->name('output.laba');
 		//laporan neraca
+		Route::get('/akunting/neraca', ['uses'=>'akunting\TransaksiController@neraca'])->name('laporan.neraca');
+		Route::get('/akunting/neraca/{tanggal_awal}/{tanggal_akhir}/{tipe}', ['uses'=>'akunting\TransaksiController@output_neraca'])->name('output.neraca');
 	});
 });
 
