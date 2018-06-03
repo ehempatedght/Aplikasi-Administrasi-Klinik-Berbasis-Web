@@ -142,6 +142,19 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
           </table>
           <br>
           <br>
+          <br>
+          <p>
+            Jakarta, {{date('d M Y')}}<br/>
+                Penangung Jawab&nbsp;&nbsp;
+          </p>
+          <br>
+          <br>
+          <br>
+          <p>
+            <b>&nbsp;{{Auth::user()->first_name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+          </p>
+          <br>
+          <br>
           <a href="javascript:window.print();" class="btn btn-blue btn-icon icon-left hidden-print">
             Cetak PDF
           <i class="entypo-print"></i>

@@ -39,6 +39,19 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tanggal</label>
+						
+						<div class="col-sm-5">
+							<div class="input-group">
+								<input type="text" class="form-control datepicker" data-format="yyyy-mm-dd" name="created_at" value="{{date('Y-m-d', strtotime($pasien->created_at))}}" placeholder="tanggal registrasi" readonly>
+								
+								<div class="input-group-addon">
+									<a href="#"><i class="entypo-calendar"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama Pasien</label>
 						<div class="col-sm-5">
 							<input type="text" class="form-control" name="nama_pasien" placeholder="nama pasien" value="{{$pasien->nama_pasien}}" required readonly="">
@@ -85,6 +98,11 @@
 					</div>
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tanggal Lahir</label>
+						<?php 
+							$birthdate = new Datetime($pasien->TanggalLahir);
+							$today = new Datetime('today');
+							$umur = $today->diff($birthdate)->y;
+						?>
 						<div class="col-sm-5">
 							<div class="input-group">
 								<input type="text" class="form-control datepicker" name="TanggalLahir" data-format="dd MM yyyy" placeholder="tanggal lahir" value="{{date("d M Y", strtotime($pasien->TanggalLahir)) }}" readonly="">
@@ -93,6 +111,10 @@
 									<a href="#"><i class="entypo-calendar"></i></a>
 								</div>
 							</div>
+						</div>
+						<label for="field-1" class="col-xs-1 control-label">Umur</label>
+						<div class="col-sm-2">
+							<input type="text" value="{{$umur}} Tahun" class="form-control" id="umur" disabled>
 						</div>
 					</div>
 					<div class="form-group">

@@ -188,4 +188,35 @@ class PasienController extends Controller
     		return redirect()->route('masterdata.pasien.datapasien.index', $pasien->id)->with('message','Pasien '.$pasien->nama_pasien.' berhasil dihapus!');
     	}
     }
+
+    #---------------------------- Laporan Registrasi -----------------------------#
+    public function index_report() {
+        $kategori = Kategoripasien::all();
+        return view('masterdata.pasien.laporan_index', get_defined_vars());
+    }
+
+    public function output_report($tanggal_awal, $tanggal_akhir, $id_kategori, $tipe) {
+        $tanggal_awal = date('Y-m-d', strtotime($tanggal_awal));
+        $tanggal_akhir = date('Y-m-d', strtotime($tanggal_akhir));
+        if ((date('d', strtotime($tanggal_awal)) == '01' AND date('d', strtotime($tanggal_akhir)) >= '30') AND date('m', strtotime($tanggal_awal)) == date('m', strtotime($tanggal_akhir))) {
+            $bulanan = true;
+        } else {
+            $bulanan = false;
+        }
+        $patient = Pasien::get();
+        if ($id_kategori == 'all') {
+            $pasien = Pasien::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir])->get();
+        } else {
+            $pasien = Pasien::where('kategoripasien_id', $id_kategori)->whereBetween('created_at', [$tanggal_awal, $tanggal_akhir])->get();
+        }
+        if (empty($pasien->first()->kategoripasien_id)) {
+            return redirect()->back()->with('message','TIDAK ADA LAPORAN PADA PERIODE YANG DIINPUT ATAU PADA KATEGORI YANG DIPILIH');
+        }
+        if ($tipe == 'pdf') {
+            $tampilan_penuh = true;
+            return view('masterdata.pasien.pdf', get_defined_vars());
+        }
+    }
+
+    #---------------------------- END REPORT ----------------------------------#
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kategoripasien extends Model
 {
     protected $table = 'kategoripasien';
-
+    
     protected $fillable = [
     	'nama_kategori'
     ];

@@ -25,6 +25,19 @@
 				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('medis.reservasi.save') }}" method="post">
 					{{ csrf_field() }}
 					<div class="form-group">
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tanggal</label>
+						
+						<div class="col-sm-5">
+							<div class="input-group">
+								<input type="text" class="form-control datepicker" data-format="yyyy-mm-dd" name="created_at" placeholder="tanggal reservasi">
+								
+								<div class="input-group-addon">
+									<a href="#"><i class="entypo-calendar"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;No. Reservasi</label>
 						<div class="col-sm-5">
 							<input type="text" class="form-control" name="kd_res" placeholder="" value="{{$noRes}}" readonly>

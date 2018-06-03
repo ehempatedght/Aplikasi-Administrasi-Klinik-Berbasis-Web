@@ -39,6 +39,19 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tanggal</label>
+						
+						<div class="col-sm-5">
+							<div class="input-group">
+								<input type="text" class="form-control datepicker" data-format="yyyy-mm-dd" name="created_at" value="{{date('Y-m-d', strtotime($pasien->created_at))}}" placeholder="tanggal registrasi">
+								
+								<div class="input-group-addon">
+									<a href="#"><i class="entypo-calendar"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama Pasien</label>
 						<div class="col-sm-5">
 							<input type="text" class="form-control" name="nama_pasien" placeholder="nama pasien" value="{{$pasien->nama_pasien}}" required>
@@ -85,14 +98,19 @@
 					</div>
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tanggal Lahir</label>
+						
 						<div class="col-sm-5">
 							<div class="input-group">
-								<input type="text" class="form-control datepicker" name="TanggalLahir" data-format="dd MM yyyy" placeholder="tanggal lahir" value="{{date("d M Y", strtotime($pasien->TanggalLahir)) }}">
+								<input type="text" class="form-control datepicker" name="TanggalLahir" id="datepicker" data-format="dd MM yyyy" placeholder="tanggal lahir" value="{{date("d M Y", strtotime($pasien->TanggalLahir)) }}">
 										
 								<div class="input-group-addon">
 									<a href="#"><i class="entypo-calendar"></i></a>
 								</div>
 							</div>
+						</div>
+						<label for="field-1" class="col-xs-1 control-label">Umur</label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" id="umur" disabled>
 						</div>
 					</div>
 					<div class="form-group">
@@ -107,7 +125,7 @@
 							<div class="col-md-12">
 								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kota</label>
 								<div class="col-sm-5">
-									<select name="id_kota" class="selectboxit">
+									<select name="id_kota" class="select2">
 										<option selected="selected" disabled value="Pilih">Pilih Kota</option>
 											@foreach ($kotas as $kota)
 												<option value="{{$kota->id}}" @if($pasien->kota_id == $kota->id) selected @endif>{{$kota->nama_kota}}</option>
@@ -128,7 +146,7 @@
 							<div class="col-md-12">
 								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kecamatan</label>
 								<div class="col-sm-5">
-									<select name="id_kec" class="selectboxit">
+									<select name="id_kec" class="select2">
 										<option selected="selected" disabled value="Pilih">Pilih Kecamatan</option>
 											@foreach ($kecamatans as $kecamatan)
 												<option value="{{$kecamatan->id}}" @if($pasien->kec_id == $kecamatan->id) selected @endif>{{$kecamatan->nama_kecamatan.' | '.$kecamatan->kota->nama_kota}}</option>
@@ -149,7 +167,7 @@
 							<div class="col-md-12">
 								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kelurahan</label>
 								<div class="col-sm-5">
-									<select name="id_kel" class="selectboxit">
+									<select name="id_kel" class="select2">
 										<option selected="selected" disabled value="Pilih">Pilih Kelurahan</option>
 											@foreach ($kelurahans as $kelurahan)
 												<option value="{{$kelurahan->id}}" @if($pasien->kel_id == $kelurahan->id) selected @endif>{{$kelurahan->nama_kelurahan.' | '.$kelurahan->kecamatan->nama_kecamatan}}</option>
@@ -229,10 +247,25 @@
 		</div>
 	</div>
 </div>
+
 <script>
 	$('.numberValidation').keyup(function () {
             this.value = this.value.replace(/[^0-9\.]/g,'');
-        });
+    });
+
+    $(function() {
+        $( "#datepicker" ).datepicker();
+    });
+ 
+    window.onload=function(){
+        $('#datepicker').on('change', function() {
+            var dob = new Date(this.value);
+            var today = new Date();
+            var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000))+" Tahun";
+            $('#umur').val(age);
+         });
+    }
+
 	$(document).ready(function() {
 		$('input').on('keydown', function(event) {
 		        if (this.selectionStart == 0 && event.keyCode >= 65 && event.keyCode <= 90 && !(event.shiftKey) && !(event.ctrlKey) && !(event.metaKey) && !(event.altKey)) {

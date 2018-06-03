@@ -283,12 +283,12 @@
 			<ul>
 				@if(Auth::user()->lpmedis == '1')
 				<li>
-					<a href="#">
+					<a href="{{route('laporan.registrasi')}}">
 						<span class="title">Laporan Registrasi</span>
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="{{route('laporan.reservasi')}}">
 						<span class="title">Laporan Reservasi Klinik</span>
 					</a>
 				</li>

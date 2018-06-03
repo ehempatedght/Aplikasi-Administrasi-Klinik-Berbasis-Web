@@ -148,4 +148,40 @@ class ReservasiController extends Controller
 
 		return $hasil;
 	}
+
+	#-------------------------------- LAPORAN RESERVASI -----------------------#
+	public function report_reservasi() {
+		$dokter = Petugas::where('category_id', '1')->get();
+		$poli = Poli::orderBy('nama_poli','ASC')->get();
+		return view('rekam_aktivitas.medis.reservasi.index_report', get_defined_vars());
+	}
+
+	public function output_report_reservasi($tanggal_awal, $tanggal_akhir, $poli, $dokter, $tipe) {
+		$tanggal_awal = date('Y-m-d', strtotime($tanggal_awal));
+		$tanggal_akhir = date('Y-m-d', strtotime($tanggal_akhir));
+		if ((date('d', strtotime($tanggal_awal)) == '01' AND date('d', strtotime($tanggal_akhir)) >= '30') AND date('m', strtotime($tanggal_awal)) == date('m', strtotime($tanggal_akhir))) {
+            $bulanan = true;
+        } else {
+            $bulanan = false;
+        }
+        
+        if ($poli == 'all' && $dokter == 'all') {
+        	$reservasi = Reservasi::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir])->get();
+        } elseif ($poli != null && $dokter == 'all') {
+        	$reservasi = Reservasi::where('poli_id', $poli)->whereBetween('created_at', [$tanggal_awal, $tanggal_akhir])->get();
+        } elseif($poli == 'all' && $dokter != null) {
+        	$reservasi = Reservasi::where('dokter_id', $dokter)->whereBetween('created_at', [$tanggal_awal, $tanggal_akhir])->get();
+        } else {
+        	$reservasi = Reservasi::where('poli_id', $poli)->where('dokter_id', $dokter)->whereBetween('created_at', [$tanggal_awal, $tanggal_akhir])->get();
+        }
+
+        if (empty($reservasi->first()->poli_id) && empty($reservasi->first()->dokter_id)) {
+        	return redirect()->back()->with('message','TIDAK ADA LAPORAN PADA PERIODE YANG DIINPUT ATAU PADA POLI DAN DOKTER YANG DIPILIH');
+        }
+
+        if ($tipe == 'pdf') {
+        	$tampilan_penuh = true;
+        	return view('rekam_aktivitas.medis.reservasi.pdf', get_defined_vars());
+        }
+	} 
 }

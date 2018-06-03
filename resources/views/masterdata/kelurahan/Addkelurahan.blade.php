@@ -90,7 +90,7 @@
 									<select name="kec_id" class="selectboxit">
 										<option selected="selected" disabled value="Pilih">Pilih Kecamatan</option>
 											@foreach ($kecamatans as $kecamatan)
-												<option value="{{$kecamatan->id}}">{{ $kecamatan->nama_kecamatan.' | '.$kecamatan->kota->nama_kota}}</option>
+												<option value="{{$kecamatan->id}}">{{ $kecamatan->nama_kecamatan.' - '.$kecamatan->kota->nama_kota}}</option>
 											@endforeach
 									</select>
 								</div>
@@ -216,7 +216,7 @@
 									@foreach($kecamatans as $kecamatan)
 									<tr>
 										<td><?php echo $no++; ?></td>
-										<td><?php echo $kecamatan->nama_kecamatan.' | '.$kecamatan->kota->nama_kota; ?></td>
+										<td><?php echo $kecamatan->nama_kecamatan.' - '.$kecamatan->kota->nama_kota; ?></td>
 										{{-- <td>
 											<div align="center">
 												<form action="{{ route('kelurahan.deletekec', ['id'=> $kecamatan->id]) }}" method="post">

@@ -161,47 +161,6 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="modal fade" id="modal-5">
-		<div class="modal-dialog" style="width: 800px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Pilih Pasien</h4>
-				</div>
-				<div class="modal-body">
-					<table class="table table-bordered datatable" id="table-1">
-						<thead>
- 							<tr>
-								<th>No</th>
-								<th>No. RM</th>
-								<th>Kategori</th>
-								<th>Nama Pasien</th>
-								<th>Aksi</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php $no=1; ?>
-							@foreach($reservasi as $reservasi)
-							<tr>
-								<td>{{$no++}}</td>
-								<td>{{$reservasi->no_rm}}</td>
-								<td>{{$reservasi->pasien->kategoripasien->nama_kategori}}</td>
-								<td>{{$reservasi->pasien->nama_pasien}}</td>
-								<td align="center">
-									<button data-id="{{$reservasi->id_res}}" data-name="{{$reservasi->pasien->nama_pasien}}" data-jk="{{$reservasi->pasien->jenis_kelamin}}" data-nopend="{{$reservasi->no_rm}}" data-jnsp="{{$reservasi->pasien->kategoripasien->nama_kategori}}" data-tgl="{{date('d M Y', strtotime($reservasi->created_at)) }}" data-nors="{{$reservasi->kd_res}}" data-poli="{{$reservasi->poli->nama_poli}}" data-dokter="{{$reservasi->dokter->nama}}" data-tarif="{{$reservasi->pasien->biayaPendaftaran[0]->jumlah}}" class="btn btn-green btn-sm btn-icon icon-left addPas">
-										<i class="entypo-check"></i>
-										Pilih
-									</button>
-								</td>
-							</tr>
-							@endforeach
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
 </div>
 <script type="text/javascript">
 

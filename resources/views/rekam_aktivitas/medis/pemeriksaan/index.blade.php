@@ -10,6 +10,9 @@
 @if(session('message'))
     <div class="alert alert-success">{{session('message')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
 @endif
+@if(session('message2'))
+    <div class="alert alert-info">{{session('message2')}}<a href="{{route('penerimaan.biaya.create')}}"> KLIK DISINI</a> UNTUK MELAKUKAN BIAYA PENDAFTARAN!<button class="close" data-dismiss="alert" type="button">×</button></div>
+@endif
 <div class="row">
 	<div class="col-md-12">
 		<br/>
@@ -37,7 +40,7 @@
 					<th>Nama Pasien</th>
 					<th>Nama Pemeriksaan</th>
 					<th>Nama Dokter</th>
-					<th width="20%">Aksi</th>
+					<th width="10%">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -57,10 +60,10 @@
 								<i class="entypo-eye"></i>
 								Detail
 							</a>
-							<a href="#" class="btn btn-sm btn-info btn-icon icon-left">
+							{{-- <a href="#" class="btn btn-sm btn-info btn-icon icon-left">
 								<i class="entypo-print"></i>
 								Cetak
-							</a>
+							</a> --}}
 						</div>
 					</td>
 				</tr>

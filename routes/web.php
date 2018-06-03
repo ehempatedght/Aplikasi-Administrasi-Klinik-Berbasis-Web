@@ -288,8 +288,20 @@ Route::group(['middleware'=> ['web','auth']], function() {
 		});
 
 	});
+// ----------------------------------- REPORTS --------------------------------------------//
 
-	//REPORTS KEUANGAN
+	// REPORT MEDIS
+	Route::group(['prefix'=>'laporan'], function() {
+		//laporan registrasi
+		Route::get('/pasien/registrasi', ['uses'=>'masterdata\PasienController@index_report'])->name('laporan.registrasi');
+		Route::get('/pasien/registrasi/{tanggal_awal}/{tanggal_akhir}/{id_kategori}/{tipe}', ['uses'=>'masterdata\PasienController@output_report'])->name('output.report');
+		//laporan reservasi
+		Route::get('/pasien/reservasi', ['uses'=>'rekam_aktivitas\medis\ReservasiController@report_reservasi'])->name('laporan.reservasi');
+		Route::get('/pasien/reservasi/{tanggal_awal}/{tanggal_akhir}/{poli}/{dokter}/{tipe}',['uses'=>'rekam_aktivitas\medis\ReservasiController@output_report_reservasi'])->name('output_report.reservasi');
+	});
+
+
+	//REPORT KEUANGAN
 	Route::group(['prefix'=>'laporan'], function() {
 		//lapoan berdasarkan tipe akun
 		Route::get('/akunting/tipe_akun', ['uses'=>'akunting\TransaksiController@berdasarkan_akun'])->name('laporan.tipe_akun');
