@@ -48,14 +48,14 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
       <table style="width: 100%; border-collapse: collapse;">
         <thead>
           <tr style="border-top: 1px solid; border-bottom: 1px solid">
-            <th style="text-align: center;">No</th>
-            <th>Tanggal</th>
-            <th>No RM</th>
-            <th>Nama Pasien</th>
-            <th>Tgl Lahir</th>
-            <th>Alamat</th>
-            <th>Kelurahan</th>
-            <th>Kategori</th>
+            <th style="text-align: center;"><b>No</b></th>
+            <th><b>Tanggal</b></th>
+            <th><b>No RM</b></th>
+            <th><b>Nama Pasien</b></th>
+            <th><b>Tgl Lahir</b></th>
+            <th><b>Alamat</b></th>
+            <th><b>Kelurahan</b></th>
+            <th><b>Kategori</b></th>
           </tr>
         </thead>
         <?php $no=1; ?>

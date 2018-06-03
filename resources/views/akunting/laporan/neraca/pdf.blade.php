@@ -52,8 +52,8 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
       <br/>
       <table style="width: 100%; border-collapse: collapse;">
         <tr>
-          <th style="border-bottom: 1px solid; border-bottom-style: dashed;">Nama Akun</th>
-          <th style="border-bottom: 1px solid; border-bottom-style: dashed; text-align: right;">Nominal</th>
+          <th style="border-bottom: 1px solid; border-bottom-style: dashed;"><b>Nama Akun</b></th>
+          <th style="border-bottom: 1px solid; border-bottom-style: dashed; text-align: right;"><b>Nominal</b></th>
         </tr>
         <?php
           $jumlahkan_nominal_aktiva = 0;
@@ -82,8 +82,8 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
       <br/>
       <table style="width: 100%; border-collapse: collapse;">
         <tr>
-          <th style="border-bottom: 1px solid; border-bottom-style: dashed;">Nama Akun</th>
-          <th style="border-bottom: 1px solid; border-bottom-style: dashed; text-align: right;">Nominal</th>
+          <th style="border-bottom: 1px solid; border-bottom-style: dashed;"><b>Nama Akun</b></th>
+          <th style="border-bottom: 1px solid; border-bottom-style: dashed; text-align: right;"><b>Nominal</b></th>
         </tr>
         <?php 
         $jumlahkan_nominal_pasiva = 0; 

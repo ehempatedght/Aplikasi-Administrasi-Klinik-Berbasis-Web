@@ -9,7 +9,7 @@ class Pemeriksaan extends Model
     protected $table = 'pemeriksaan';
     protected $primaryKey = 'id_pemeriksaan';
     protected $fillable = [
-        'tgl','no_faktur','reservasi_id','nama_pemeriksaan','tarif','jml','total','disc','subtotal'
+        'tgl','no_faktur','reservasi_id','nama_pemeriksaan','tarif','jml','total','disc','subtotal','u_id'
     ];
 
     protected $hidden = [
@@ -18,5 +18,9 @@ class Pemeriksaan extends Model
 
     public function reservasi() {
         return $this->belongsTo('App\Reservasi','reservasi_id');
+    }
+
+    public function user() {
+        return $this->belongsTo('App\User', 'u_id');
     }
 }

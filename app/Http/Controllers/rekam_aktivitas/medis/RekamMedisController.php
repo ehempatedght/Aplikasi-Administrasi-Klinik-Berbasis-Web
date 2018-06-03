@@ -90,5 +90,16 @@ class RekamMedisController extends Controller
     public function delete($id) {
     	Rekam::find($id)->delete();
     	return redirect()->route('rekam_medis.index')->with('message','Rekam medis berhasil dihapus!');
+    }
+
+    #-------------------------------------REPORT-----------------------------------------#
+    public function report_index() {
+        $rekam = Rekam::all();
+        return view('rekam_aktivitas.medis.rekam_medis.index_report')->withRekam($rekam);
+    }
+
+    public function output_report($id) {
+        $rekam = Rekam::find($id);
+        return view('rekam_aktivitas.medis.rekam_medis.pdf', get_defined_vars());
     }	
 }

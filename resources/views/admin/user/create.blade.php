@@ -183,7 +183,7 @@
 							<div class="checkbox">
 								<label>
 									<input type="checkbox" class="check" name="role[lpakunting]" @if(is_array(old('role')) && array_key_exists("lpakunting", old('role'))) checked @endif>
-									Akunting
+									Keuangan
 								</label>
 							</div>
 						</div>

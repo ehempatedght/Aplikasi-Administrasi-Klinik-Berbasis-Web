@@ -293,12 +293,12 @@
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="{{route('laporan.pemeriksaan')}}">
 						<span class="title">Laporan Pemeriksaan Pasien</span>
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="{{route('laporan.rekam_medis')}}">
 						<span class="title">Laporan Rekam Medis</span>
 					</a>
 				</li>

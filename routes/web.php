@@ -298,8 +298,13 @@ Route::group(['middleware'=> ['web','auth']], function() {
 		//laporan reservasi
 		Route::get('/pasien/reservasi', ['uses'=>'rekam_aktivitas\medis\ReservasiController@report_reservasi'])->name('laporan.reservasi');
 		Route::get('/pasien/reservasi/{tanggal_awal}/{tanggal_akhir}/{poli}/{dokter}/{tipe}',['uses'=>'rekam_aktivitas\medis\ReservasiController@output_report_reservasi'])->name('output_report.reservasi');
+		//laporan pemeriksaan
+		Route::get('/pasien/pemeriksaan', ['uses'=>'rekam_aktivitas\medis\PemeriksaanController@index_laporan'])->name('laporan.pemeriksaan');
+		Route::get('/pasien/pemeriksaan/{tanggal_awal}/{tanggal_akhir}/{u_id}/{tipe}', ['uses'=>'rekam_aktivitas\medis\PemeriksaanController@output_report'])->name('output.laporan.pemeriksaan');
+		//laporan rekam medis
+		Route::get('/pasien/rekam_medis', ['uses'=>'rekam_aktivitas\medis\RekamMedisController@report_index'])->name('laporan.rekam_medis');
+		Route::get('/pasien/rekam_medis/{id}', ['uses'=>'rekam_aktivitas\medis\RekamMedisController@output_report'])->name('output_report.rekam_medis');
 	});
-
 
 	//REPORT KEUANGAN
 	Route::group(['prefix'=>'laporan'], function() {

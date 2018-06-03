@@ -31,7 +31,7 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
       <hr style="border-top: 1px solid; " />
       <center>
         <span>
-        LAPORAN RESERVASI PASIEN<br />
+        LAPORAN PEMERIKSAAN PASIEN<br />
         @if ($bulanan == true)
         BULAN: {{ $bulan_cetak }} {{ date('Y', strtotime($tanggal_awal)) }}
         @else
@@ -49,39 +49,40 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
         <thead>
           <tr style="border-top: 1px solid; border-bottom: 1px solid">
             <th><b>No</b></th>
-            <th><b>Tanggal Reservasi</b></th>
+            <th><b>Tanggal</b></th>
+            <th><b>No Faktur</b></th>
             <th><b>No RM</b></th>
             <th><b>Nama Pasien</b></th>
-            <th><b>Umur</b></th>
-            <th><b>Jenis Pasien</b></th>
+            <th><b>Poli</b></th>
             <th><b>Nama Dokter</b></th>
-            <th><b>Nama Poli</b></th>
+            <th><b>Total</b></th>
+            <th><b>User</b></th>
           </tr>
         </thead>
-        <?php $no=1; ?>
+        <?php 
+          $no=1;
+          $total = 0; 
+        ?>
         <tbody>
-          @foreach($reservasi as $reservas)
-          <?php
-            $birthdate = new Datetime($reservas->pasien->TanggalLahir);
-            $today = new Datetime('today');
-            $umur = $today->diff($birthdate)->y;
-          ?>
+          @foreach($pemeriksaan as $checkkup)
           <tr style="border-bottom: 1px solid;">
             <td>{{$no++}}</td>
-            <td>{{date('d/m/Y', strtotime($reservas->created_at))}}</td>
-            <td>{{$reservas->no_rm}}</td>
-            <td>{{$reservas->pasien->nama_pasien}}</td>
-            <td>{{$umur}} Tahun</td>
-            <td>{{$reservas->pasien->kategoripasien->nama_kategori}}</td>
-            <td>{{$reservas->dokter->nama}}</td>
-            <td>{{$reservas->poli->nama_poli}}</td>
+            <td>{{date('d/m/Y', strtotime($checkkup->tgl))}}</td>
+            <td>{{$checkkup->no_faktur}}</td>
+            <td>{{$checkkup->reservasi->no_rm}}</td>
+            <td>{{$checkkup->reservasi->pasien->nama_pasien}}</td>
+            <td>{{$checkkup->reservasi->poli->nama_poli}}</td>
+            <td>{{$checkkup->reservasi->dokter->nama}}</td>
+            <td class="numbers">{{$checkkup->subtotal}}</td>
+            <td>{{$checkkup->user->first_name}}</td>
           </tr>
+          <?php $total += $checkkup->subtotal; ?>
           @endforeach
         </tbody>
       </table>
-      <table style="width: 100%; border-collapse: collapse; margin-top: 6px;">
+      <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
         <tr>
-          <td style="border-bottom: 1px solid; border-top: 1px solid; text-align: center;">Total {{$reservasi->count()}} Data</td>
+          <td style="border-bottom: 1px solid; border-top: 1px solid; text-align: right;"> Total: Rp. &nbsp;&nbsp;&nbsp;{{number_format($total, 0, ',', ',')}}&nbsp;&nbsp;&nbsp;</td>
         </tr>
         </table>
       <div class="invoice">

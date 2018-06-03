@@ -15,7 +15,7 @@ class RekamMedis extends Model
     protected $hidden = [
     	'created_at','updated_at'
     ];
-
+    
     public function reservasi() {
     	return $this->belongsTo('App\Reservasi','res_id');
     }

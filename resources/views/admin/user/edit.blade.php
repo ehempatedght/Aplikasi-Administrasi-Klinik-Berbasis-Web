@@ -198,7 +198,7 @@
 							<div class="checkbox">
 								<label>
 									<input type="checkbox" class="check" name="role[lpakunting]" @if($data->lpakunting == '1') checked @endif>
-									Akunting
+									Keuangan
 								</label>
 							</div>
 						</div>

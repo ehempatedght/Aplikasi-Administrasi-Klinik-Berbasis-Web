@@ -55,7 +55,7 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
   <table style="width: 100%; border-collapse: collapse;">
     <tr>
         <td style="text-align: left; border: 1px solid;" colspan="5">
-        Tipe Akun: @if($tipe_akun == 'all' && $nama_akun == 'all')Semua @else {{$akun->first()->tipeAkun->nama_tipe}} @endif
+        Tipe Akun: <b>@if($tipe_akun == 'all' && $nama_akun == 'all')Semua @else {{$akun->first()->tipeAkun->nama_tipe}} @endif</b>
         </td>
     </tr>
   </table>
@@ -65,14 +65,14 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
   <table style="width: 100%; border-collapse: collapse;">
     <tbody>
       <tr>
-        <td style="text-align: left; border: 1px solid;" colspan="5">Nama Akun: {{$account_name->akun->nama_akun}}</td>
+        <td style="text-align: left; border: 1px solid;" colspan="5">Nama Akun: <b>{{$account_name->akun->nama_akun}}</b></td>
       </tr>
       <tr>
-        <td style="text-align: center; border: 1px solid;" width="20">No</td>
-        <td style="text-align: center; border: 1px solid;" width="50">Tanggal</td>
-        <td style="text-align: center; border: 1px solid;" width="350">Keterangan</td>
-        <td style="text-align: center; border: 1px solid;" width="105">Masuk</td>
-        <td style="text-align: center; border: 1px solid;" width="105">Keluar</td>
+        <td style="text-align: center; border: 1px solid;" width="20"><b>No</b></td>
+        <td style="text-align: center; border: 1px solid;" width="50"><b>Tanggal</b></td>
+        <td style="text-align: center; border: 1px solid;" width="350"><b>Keterangan</b></td>
+        <td style="text-align: center; border: 1px solid;" width="105"><b>Masuk</b></td>
+        <td style="text-align: center; border: 1px solid;" width="105"><b>Keluar</b></td>
       </tr>
       <?php $no=1; 
         $total_pemasukan = 0;

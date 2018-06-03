@@ -65,23 +65,44 @@
 		
 				toastr.success("SELAMAT DATANG, <b>{{strtoupper(Auth::user()->first_name)}}</b>", opts);
 			}, 3000);
-
-
-			var donut_chart_ = $("#donut-chart");
-		
-			donut_chart_.parent().show();
-		
-			var donut_chart = Morris.Donut({
-				element: 'donut-chart',
+			<?php
+				$transaksi_masuk = \App\Transaksi::where('pemasukan','!=','0')->count();
+				$transaksi_keluar = \App\Transaksi::where('pengeluaran','!=','0')->count();
+			?>
+			Morris.Donut({
+				element: 'chart5',
 				data: [
-					{label: "Reservasi Pasien", value: {{\App\Reservasi::all()->count()}}},
-					{label: "Pemeriksaan Pasien", value: {{\App\Pemeriksaan::all()->count()}}},
-					{label: "Rekam Medis Pasien", value: {{\App\RekamMedis::all()->count()}}}
+					{label: "Transaksi Keluar", value:{{$transaksi_keluar}}, formatted: ' {{$transaksi_keluar}} %'},
+					{label: "Transaksi Masuk", value: {{$transaksi_masuk}}, formatted: ' {{$transaksi_masuk}} %'},
 				],
-				colors: ['#707f9b', '#455064', '#242d3c']
+				formatter: function (x, data) { return data.formatted},
+				colors: ['#455064','#707f9b']
 			});
-		
-			donut_chart_.parent().attr('style', '');
+
+			// Donut Colors
+			Morris.Donut({
+				element: 'chart6',
+				data: [
+					{label: "Reservasi", value: {{\App\Reservasi::all()->count()}}, formatted: ' {{\App\Reservasi::all()->count()}} Data'},
+					{label: "Pemeriksaan", value: {{\App\Pemeriksaan::all()->count()}}, formatted: ' {{\App\Pemeriksaan::all()->count()}} Data'},
+					{label: "Rekam Medis", value: {{\App\RekamMedis::all()->count()}}, formatted: ' {{\App\RekamMedis::all()->count()}} Data'},
+					{label: "Pemberian Obat", value: {{\App\Pemberianobat::all()->count()}}, formatted: ' {{\App\Pemberianobat::all()->count()}} Data'},
+				],
+				labelColor: '#303641',
+				formatter: function (x, data) { return data.formatted},
+				colors: ['#f26c4f', '#00a651', '#00bff3', '#0072bc']
+			});
+			
+			// Donut Formatting
+			Morris.Donut({
+				element: 'chart7',
+				data: [
+					{value: {{\App\Pasien::where('jenis_kelamin','Perempuan')->count()}}, label: 'Perempuan', formatted: '{{\App\Pasien::where('jenis_kelamin','Perempuan')->count()}} %' },
+					{value: {{\App\Pasien::where('jenis_kelamin','Laki-laki')->count()}}, label: 'Laki-Laki', formatted: '{{\App\Pasien::where('jenis_kelamin','Laki-laki')->count()}} %' }
+				],
+				formatter: function (x, data) { return data.formatted; },
+				colors: ['#b92527', '#d13c3e']
+			});
 	});
 
 	function getRandomInt(min, max)
@@ -146,16 +167,27 @@
 <br/>
 <div class="row">
 	<div class="col-sm-12">
-		<div class="panel panel-primary" id="charts_env">
-			<div class="panel-heading">
-				<div class="panel-title">Informasi Data Statistik Pasien</div>
-			</div>
-			<div class="panel-body">
-				<div class="tab-pane" id="pie-chart">
-					<div id="donut-chart" class="morrischart" style="height: 300px;"></div>
-				</div>
-			</div>
-		</div>
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+					<td width="33%">
+						<strong>Jenis Kelamin Pasien</strong>
+						<br />
+						<div id="chart7" style="height: 250px"></div>
+					</td>
+					<td width="33%">
+						<strong>Perekaman Aktivitas - Medis</strong>
+						<br />
+						<div id="chart6" style="height: 250px"></div>
+						</td>
+					<td width="33%">
+						<strong>Akunting - Transaksi Keuangan</strong>
+						<br />
+						<div id="chart5" style="height: 250px"></div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
 @stop

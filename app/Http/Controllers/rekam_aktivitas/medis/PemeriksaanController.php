@@ -8,10 +8,10 @@ use App\Reservasi;
 use App\Pemeriksaan;
 use App\Pasien;
 use App\Biayapendaftaran;
-
-class PemeriksaanController extends Controller
+use Auth;
+use App\User;
+class PemeriksaanController extends Controller 
 {
-
     public function index() {
     	$pemeriksaan = Pemeriksaan::all();
     	return view('rekam_aktivitas.medis.pemeriksaan.index')->withPemeriksaan($pemeriksaan);
@@ -54,7 +54,8 @@ class PemeriksaanController extends Controller
     		'jml' => $data['jml'],
     		'total' => str_replace(',', '', $data['total']),
     		'disc' => $data['disc'],
-    		'subtotal' => str_replace(',', '', $data['subtotal'])
+    		'subtotal' => str_replace(',', '', $data['subtotal']),
+            'u_id' => Auth::user()->id,
     	]);
     	return redirect()->route('medis.pemeriksaan.index')->with('message','Pemeriksaan berhasil ditambah');
     }
@@ -66,7 +67,7 @@ class PemeriksaanController extends Controller
     }
 
     public function no_faktur() {
-    	$panjang = 3;
+    	$panjang = 4;
     	$id_pem = Pemeriksaan::whereRaw('id_pemeriksaan = (select max(id_pemeriksaan) from pemeriksaan)')->first();
 
     	if (empty($id_pem)) {
@@ -87,4 +88,33 @@ class PemeriksaanController extends Controller
     	return $hasil;
     }
 
+    #-----------------------LAPORAN PEMERIKSAAN-----------------------#
+    public function index_laporan() {
+        $user = User::get();
+        return view('rekam_aktivitas.medis.pemeriksaan.report_index', get_defined_vars());
+    }
+
+    public function output_report($tanggal_awal, $tanggal_akhir, $u_id, $tipe) {
+        $tanggal_awal = date('Y-m-d', strtotime($tanggal_awal));
+        $tanggal_akhir = date('Y-m-d', strtotime($tanggal_akhir));
+        if ((date('d', strtotime($tanggal_awal)) == '01' AND date('d', strtotime($tanggal_akhir)) >= '30') AND date('m', strtotime($tanggal_awal)) == date('m', strtotime($tanggal_akhir))) {
+            $bulanan = true;
+        } else {
+            $bulanan = false;
+        }
+
+        if ($u_id == 'all') {
+            $pemeriksaan = Pemeriksaan::whereBetween('tgl', [$tanggal_awal, $tanggal_akhir])->get();
+            // dd($pemeriksaan);
+        } else {
+            $pemeriksaan = Pemeriksaan::where('u_id', $u_id)->whereBetween('tgl', [$tanggal_awal, $tanggal_akhir])->get();
+        }
+        if (empty($pemeriksaan->first()->u_id)) {
+            return redirect()->back()->with('message','BELUM ADA LAPORAN PADA PERIODE YANG DIINPUT ATAU PADA USER YANG DIPILIH!');
+        }
+        if ($tipe == 'pdf') {
+            $tampilan_penuh = true;
+            return view('rekam_aktivitas.medis.pemeriksaan.pdf', get_defined_vars());
+        }
+    }
 }

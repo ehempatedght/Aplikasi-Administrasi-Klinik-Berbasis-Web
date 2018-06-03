@@ -67,8 +67,8 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
       </table>
       <table style="width: 100%; border-collapse: collapse;">
         <tr>
-          <th style="border: 1px solid;"><center>Nama Akun</center></th>
-          <th style="border: 1px solid;"><center>Nominal</center></th>
+          <th style="border: 1px solid;"><center><b>Nama Akun</b></center></th>
+          <th style="border: 1px solid;"><center><b>Nominal</b></center></th>
         </tr>
         @foreach($pemasukan_ as $masuk)
         <?php
@@ -96,8 +96,8 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
       </table>
       <table style="width: 100%; border-collapse: collapse;">
         <tr>
-          <th style="border: 1px solid;"><center>Nama Akun</center></th>
-          <th style="border: 1px solid;"><center>Nominal</center></th>
+          <th style="border: 1px solid;"><center><b>Nama Akun</b></center></th>
+          <th style="border: 1px solid;"><center><b>Nominal</b></center></th>
         </tr>
         @foreach($pengeluaran_ as $keluar)
         <?php
