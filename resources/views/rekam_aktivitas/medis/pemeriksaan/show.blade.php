@@ -245,31 +245,6 @@
 				}
 		});
 
-		$('.datatable').on('click','.addPas', function(e){
-			var nama = $(this).data('name');
-			var id = $(this).data('id');
-			var nopend = $(this).data('nopend');
-			var j_kelamin = $(this).data('jk');
-			var j_pasien = $(this).data('jnsp');
-			var tgl = $(this).data('tgl');
-			var nors = $(this).data('nors');
-			var poli = $(this).data('poli');
-			var dokter = $(this).data('dokter');
-			var tarif = $(this).data('tarif');
-			$("#reservasi_id").val(id);
-			$("#no_rm").val(nopend);
-			$("#pasien").val(nama);
-			$("#kelamin").val(j_kelamin);
-			$("#jenis_pasien").val(j_pasien);
-			$("#tgl_reservasi").val(tgl);
-			$("#no_reservasi").val(nors);
-			$("#poli").val(poli);
-			$("#dokter").val(dokter);
-			$("#tarif").val(tarif);
-			$("#subtotal").val(tarif);
-			$("#total").val(tarif);
-			$("#modal-5").modal('hide');
-		});
 	});
 </script>
 @endsection

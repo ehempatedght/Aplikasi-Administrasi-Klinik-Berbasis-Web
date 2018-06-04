@@ -19,13 +19,6 @@ class PemeriksaanController extends Controller
 
     public function create() {
     	$reservasi = Reservasi::orderBy('id_res','DESC')->get();
-        $pasien = Pasien::get();
-        $biaya = Biayapendaftaran::get();
-        $count_pasien = $pasien->count();
-        $count_biaya = $biaya->count();
-        if ($count_pasien != $count_biaya) {
-            return redirect()->back()->with('message2','BELUM BISA MELAKUKAN PEMERIKSAAN, KARENA ADA PASIEN YANG BELUM MELAKUKAN BIAYA PENDAFTARAN!.');
-        }
         $noFaktur = $this->no_faktur();
         return view('rekam_aktivitas.medis.pemeriksaan.create', get_defined_vars());
          

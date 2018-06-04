@@ -215,11 +215,11 @@
 										<span class="title">Donasi Obat</span>
 									</a>
 								</li>
-								<li>
+								{{-- <li>
 									<a href="{{route('penerimaan.biaya.index')}}">
 										<span class="title">Biaya Pendaftaran</span>
 									</a>
-								</li>
+								</li> --}}
 							</ul>
 						</li>
 					</ul>
