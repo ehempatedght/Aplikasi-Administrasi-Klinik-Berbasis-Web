@@ -92,6 +92,7 @@ class RekamMedisController extends Controller
     	return redirect()->route('rekam_medis.index')->with('message','Rekam medis berhasil dihapus!');
     }
 
+
     #-------------------------------------REPORT-----------------------------------------#
     public function report_index() {
         $rekam = Rekam::all();
@@ -101,5 +102,6 @@ class RekamMedisController extends Controller
     public function output_report($id) {
         $rekam = Rekam::find($id);
         return view('rekam_aktivitas.medis.rekam_medis.pdf', get_defined_vars());
-    }	
+    }
+    #-------------------------------------------------------------------------------------#	
 }

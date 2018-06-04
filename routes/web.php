@@ -13,7 +13,6 @@
 
 Auth::routes();
 Route::get('/', 'HomeController@index');
-
 Route::group(['middleware'=> ['web','auth']], function() {
 	Route::group(['prefix'=>'pengaturan'], function () {
 		//pengaturan pengguna
@@ -234,6 +233,8 @@ Route::group(['middleware'=> ['web','auth']], function() {
 				Route::post('/delete/{id}', ['uses'=>'rekam_aktivitas\medis\ReservasiController@delete'])->name('medis.reservasi.delete');
 				//search spesialisasi
 				Route::get('/search_spesialisasi/{id}', ['as'=>'search.spesialisasi','uses'=>'rekam_aktivitas\medis\ReservasiController@search_spesialisasi']);
+				//cetak kartu
+				Route::get('/cetak/{id}', ['as'=>'print.card', 'uses'=>'rekam_aktivitas\medis\ReservasiController@print_card']);
 			});
 
 			//pemeriksaan

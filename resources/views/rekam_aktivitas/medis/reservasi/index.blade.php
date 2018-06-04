@@ -66,7 +66,7 @@
 						<div align="center">
 							<form action="#" method="post">
 									{{ csrf_field() }}
-									<a href="#" class="btn btn-sm btn-info btn-icon icon-left">
+									<a href="{{route('print.card', ['id'=>$reservas->id_res])}}" class="btn btn-sm btn-info btn-icon icon-left">
 										<i class="entypo-print"></i>
 										Cetak
 									</a>

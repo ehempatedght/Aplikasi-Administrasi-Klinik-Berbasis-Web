@@ -11,6 +11,7 @@ use App\Poli;
 use App\Category;
 use App\RekamMedis as Rekam;
 use Auth;
+use Fpdf;
 
 class ReservasiController extends Controller
 {
@@ -148,8 +149,15 @@ class ReservasiController extends Controller
 
 		return $hasil;
 	}
+	#-------------------------------------CETAK KARTU------------------------------------#
+    public function print_card($id) {
+        $reservasi = Reservasi::find($id);
+        return view('rekam_aktivitas.medis.reservasi.cetak_kartu', get_defined_vars());
+    }
 
-	#-------------------------------- LAPORAN RESERVASI -----------------------#
+    #------------------------------------------------------------------------------------#
+
+	#-------------------------------- LAPORAN RESERVASI ---------------------------------#
 	public function report_reservasi() {
 		$dokter = Petugas::where('category_id', '1')->get();
 		$poli = Poli::orderBy('nama_poli','ASC')->get();
