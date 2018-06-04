@@ -6,7 +6,7 @@
 		<a href="{{ route('pengeluaran.pembelian.index') }}"><i class="entypo-home"> Daftar Pembelian</i></a>
 	</li>
 	<li class="active">
-		<strong>Tambah Pembelian</strong>
+		<strong>Ubah Pembelian</strong>
 	</li>
 </ol>
 @if (count($errors) > 0)
@@ -174,7 +174,7 @@
 								<td>{{strtoupper($jenis->nama_obat)}}</td>
 								<td>{{$jenis->satuan}}</td>
 								<td>{{$jenis->stok}}</td>
-								<td>{{$jenis->harga}}</td>
+								<td>{{number_format($jenis->harga, 0, ',', ',')}}</td>
 								<td align="center">
 									<button data-id="{{$jenis->id}}" data-name="{{$jenis->nama_obat}}" data-harga="{{$jenis->harga}}" data-stok="{{$jenis->stok}}" class="btn btn-green btn-sm btn-icon icon-left addObt">
 										<i class="entypo-check"></i>

@@ -174,7 +174,7 @@
 								<td>{{strtoupper($jenis->nama_obat)}}</td>
 								<td>{{$jenis->satuan}}</td>
 								<td>{{$jenis->stok}}</td>
-								<td class="numbers">{{$jenis->harga}}</td>
+								<td>{{number_format($jenis->harga, 0, ',', ',')}}</td>
 								<td align="center">
 									<button data-id="{{$jenis->id}}" data-name="{{$jenis->nama_obat}}" data-harga="{{$jenis->harga}}" data-stok="{{$jenis->stok}}" class="btn btn-green btn-sm btn-icon icon-left addObt">
 										<i class="entypo-check"></i>

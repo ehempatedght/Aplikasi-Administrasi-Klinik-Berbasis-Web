@@ -17,7 +17,7 @@ class PembelianController extends Controller
     public function create() {
     	$vendor = Vendorobat::groupBy('nama_vendor')->get();
     	$jenis = DB::table('jenis_obat_detail')->get();
-    	return view('rekam_aktivitas.keuangan.pengeluaran.pembelian.create', get_defined_vars(), get_object_vars($this));
+    	return view('rekam_aktivitas.keuangan.pengeluaran.pembelian.create', get_defined_vars());
     }
 
     public function save(Request $request) {
