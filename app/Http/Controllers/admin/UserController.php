@@ -187,9 +187,11 @@ class UserController extends Controller
     
     public function delete($id) {
         $user = User::find($id);
-
-        if ($user->delete()) {
-            return redirect()->route('pengaturan.user.data.index')->with('message','Pengguna '.$user->username.' berhasil dihapus');
+        if ($user->admin == '1') {
+            return redirect()->back()->with('message2','PENGGUNA '.strtoupper($user->username).' TIDAK BISA DIHAPUS!. KARENA STATUSNYA SEBAGAI ADMIN!');
+        } else {
+            $user->delete();
+            return redirect()->route('pengaturan.user.data.index')->with('message','PENGGUNA '.strtoupper($user->username).' BERHASIL DIHAPUS!');
         }
     }
     
