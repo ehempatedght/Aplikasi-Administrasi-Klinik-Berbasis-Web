@@ -202,7 +202,7 @@
 					<ul>
 						<li>
 							<a href="#">
-								<span class="title">Penerimaan</span>
+								<span class="title">Pemasukan</span>
 							</a>
 							<ul>
 								<li>

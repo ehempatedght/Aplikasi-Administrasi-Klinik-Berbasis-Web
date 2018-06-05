@@ -26,7 +26,7 @@ class PasienController extends Controller
         $no_rekamMedis = $this->no_rekamMedis();
     	return view('masterdata.pasien.Addpasien', get_defined_vars());
     }
-
+    
     public function doInsert(Request $request) {
     	$this->validate($request, array(
     		'nama_pasien' => 'required|min:3|max:191',
