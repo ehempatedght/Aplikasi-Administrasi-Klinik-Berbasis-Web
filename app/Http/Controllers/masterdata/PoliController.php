@@ -25,7 +25,7 @@ class PoliController extends Controller
 		$data = $request->all();
 		$poli = Poli::create($data);
 		if ($poli) {
-			return redirect()->route('masterdata.poli.index')->with('message','Poli '.$poli->nama_poli.' berhasil ditambah');
+			return redirect()->route('masterdata.poli.index')->with('message',''.$poli->nama_poli.' berhasil ditambah');
 		}
 	}
 
