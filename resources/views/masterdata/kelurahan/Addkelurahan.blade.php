@@ -1,6 +1,15 @@
 @extends('template')
 
 @section('main')
+<style>
+.select2-container .select2-choice {
+    display: block!important;
+    height: 30px!important;
+    white-space: nowrap!important;
+    line-height: 26px!important;
+    width: 100%!important;
+}
+</style>
 <h2>Tambah Data Kelurahan</h2>
 <br/>
 
@@ -66,11 +75,13 @@
 							<div class="col-md-12">
 								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kota</label>
 								<div class="col-sm-4">
-									<select name="id_kota" class="selectboxit">
-										<option selected="selected" disabled value="Pilih">Pilih Kota</option>
+									<select name="id_kota" class="select2" required data-placeholder="Pilih Kota...">
+										<option></option>
+										<optgroup label="Pilih Kota">
 											@foreach ($kotas as $kota)
 												<option value="{{$kota->id}}">{{$kota->nama_kota}}</option>
 											@endforeach
+										</optgroup>
 									</select>
 								</div>
 								<div class="col-sm-3">
@@ -87,11 +98,13 @@
 							<div class="col-md-12">
 								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kecamatan</label>
 								<div class="col-sm-4">
-									<select name="kec_id" class="selectboxit">
-										<option selected="selected" disabled value="Pilih">Pilih Kecamatan</option>
+									<select name="kec_id" class="select2" required data-placeholder="Pilih Kecamatan...">
+										<option></option>
+										<optgroup label="Pilih Kecamatan">
 											@foreach ($kecamatans as $kecamatan)
 												<option value="{{$kecamatan->id}}">{{ $kecamatan->nama_kecamatan.' - '.$kecamatan->kota->nama_kota}}</option>
 											@endforeach
+										</optgroup>
 									</select>
 								</div>
 								<div class="col-sm-3">

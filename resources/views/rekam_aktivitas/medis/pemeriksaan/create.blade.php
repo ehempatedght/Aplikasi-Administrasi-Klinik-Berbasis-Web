@@ -118,7 +118,7 @@
 						</div>
 					</div>
 					
-					<div class="form-group">
+					{{-- <div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jumlah</label>
 						<div class="row">
 							<div class="col-sm-1">
@@ -129,7 +129,7 @@
 								<input type="text" class="form-control numbers" id="total" name="total" value="0" required readonly />
 							</div>
 						</div>
-					</div>
+					</div> --}}
 					
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Diskon</label>
@@ -137,19 +137,19 @@
 							<div class="col-sm-1">
 								<input type="text" class="form-control" id="disc" name="disc" value="0" required/>
 							</div>
-							<label for="field-1" class="col-sm-1 control-label">%</label>
+							<label for="field-1" class="col-sm-1 control-label" style="margin-left: -4.9%;">%</label>
 							<div class="col-xs-3">
-								<input type="text" class="form-control numbers" id="disc_result" name="disc_result" value="0" required readonly />
+								<input type="text" style="width: 116.9%;" class="form-control numbers" id="disc_result" name="subtotal" value="0" required readonly />
 							</div>
 						</div>
 					</div>
 					
-					<div class="form-group">
+					{{-- <div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;SubTotal</label>
 							<div class="col-sm-5">
 								<input type="text" class="form-control numbers" id="subtotal" name="subtotal" value="0" required readonly />
 							</div>
-					</div>
+					</div> --}}
 
 					<div class="form-group center-block full-right" style="margin-left: 15px;">
 						<button type="submit" class="btn btn-green btn-icon icon-left col-left">
@@ -245,10 +245,8 @@
 			var total = parseFloat($("#total").val());
 			var disc = parseInt($("#disc").val());
 			var subtotal = parseFloat($("#subtotal").val());
-			var hasil_diskon = parseFloat((tarif*(disc/100)));
+			var hasil_diskon = parseFloat((tarif - ((disc/100) * tarif)));
 			$("#disc_result").val(hasil_diskon);
-			$("#subtotal").val(subtotal - (tarif*(disc/100)));
-
 			if ($(this).val().trim().length===0) {
 			 	$("#subtotal").val(total);
 			} 

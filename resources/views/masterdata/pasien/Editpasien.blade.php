@@ -1,6 +1,15 @@
 @extends('template')
 
 @section('main')
+<style>
+.select2-container .select2-choice {
+    display: block!important;
+    height: 30px!important;
+    white-space: nowrap!important;
+    line-height: 26px!important;
+    width: 100%!important;
+}
+</style>
 <h2>Ubah Data Pasien {{$pasien->nama_pasien}}</h2>
 <br/>
 @if(count($errors) > 0) 

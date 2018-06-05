@@ -31,8 +31,6 @@ class PemeriksaanController extends Controller
     		'reservasi_id' => 'required|integer',
     		'nama_pemeriksaan' => 'required|max:25',
     		'tarif' => 'required',
-    		'jml' => 'required',
-    		'total' => 'required',
     		'disc' => 'required',
     		'subtotal' => 'required'
     	));
@@ -44,8 +42,6 @@ class PemeriksaanController extends Controller
     		'reservasi_id' => $data['reservasi_id'],
     		'nama_pemeriksaan' => $data['nama_pemeriksaan'],
     		'tarif' => str_replace(',', '', $data['tarif']),
-    		'jml' => $data['jml'],
-    		'total' => str_replace(',', '', $data['total']),
     		'disc' => $data['disc'],
     		'subtotal' => str_replace(',', '', $data['subtotal']),
             'u_id' => Auth::user()->id,

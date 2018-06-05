@@ -9,7 +9,7 @@ class Pemeriksaan extends Model
     protected $table = 'pemeriksaan';
     protected $primaryKey = 'id_pemeriksaan';
     protected $fillable = [
-        'tgl','no_faktur','reservasi_id','nama_pemeriksaan','tarif','jml','total','disc','subtotal','u_id'
+        'tgl','no_faktur','reservasi_id','nama_pemeriksaan','tarif','disc','subtotal','u_id'
     ];
 
     protected $hidden = [

@@ -1,6 +1,15 @@
 @extends('template')
 
 @section('main')
+<style>
+.select2-container .select2-choice {
+    display: block!important;
+    height: 30px!important;
+    white-space: nowrap!important;
+    line-height: 26px!important;
+    width: 100%!important;
+}
+</style>
 <h2>Edit Data Kelurahan {{$kelurahan->nama_kelurahan}}</h2>
 <br/>
 @if(count($errors) > 0) 
@@ -64,11 +73,13 @@
 							<div class="col-md-12">
 								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kota</label>
 								<div class="col-sm-5">
-									<select name="id_kota" class="selectboxit">
-										<option selected="selected" disabled value="Pilih">Pilih Kota</option>
+									<select name="id_kota" class="select2" required data-placeholder="Pilih Kota...">
+										<option></option>
+										<optgroup label="Pilih Kota">	
 											@foreach ($kotas as $kota)
 												<option value="{{$kota->id}}" @if($kelurahan->kecamatan->kota_id == $kota->id) selected @endif>{{$kota->nama_kota}}</option>
 											@endforeach
+										</optgroup>
 									</select>
 								</div>
 								{{-- <div class="col-sm-3">
@@ -85,11 +96,13 @@
 							<div class="col-md-12">
 								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kecamatan</label>
 								<div class="col-sm-5">
-									<select name="kec_id" class="selectboxit">
-										<option selected="selected" disabled value="Pilih">Pilih Kecamatan</option>
+									<select name="kec_id" class="select2" required data-placeholder="Pilih Kecamatan...">
+										<option></option>
+										<optgroup label="Pilih Kecamatan">
 											@foreach ($kecamatans as $kecamatan)
 												<option value="{{$kecamatan->id}}" @if($kelurahan->kec_id == $kecamatan->id) selected @endif>{{$kecamatan->nama_kecamatan.' | '.$kecamatan->kota->nama_kota}}</option>
 											@endforeach
+										</optgroup>
 									</select>
 								</div>
 								{{-- <div class="col-sm-3">
