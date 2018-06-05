@@ -107,6 +107,7 @@
 						</div>
 						<div style="color:red;padding-top: 8px;" id="not_match"></div>
 					</div>
+					@if(Auth::user()->admin == '1')
 					<div class="form-group">
 						<label class="col-sm-2 control-label" style="text-align:left;">&emsp;Peran:
 							<br />
@@ -219,6 +220,7 @@
 							</div>
 						</div>
 					</div>
+					@endif
 					<div class="form-group">
 								<label class="col-sm-2 control-label" style="text-align:left; font-size:13px;">&emsp;Upload Photo:
 									@if (session('error_upload'))
