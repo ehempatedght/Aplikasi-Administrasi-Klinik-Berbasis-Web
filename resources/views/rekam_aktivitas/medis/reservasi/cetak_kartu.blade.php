@@ -1,66 +1,19 @@
-@extends('template')
-@section('main')
-<div class="invoice">
-  <div class="row">
-  	<div class="col-md-12">
-  		<br/><br/><br/><br/><br/><br/><br/>
-  		
-	  		<div class="col-sm-3"></div>
-	  			<div class="col-sm-6">
-	  				<hr style="border-bottom: 1px solid;">
-	  				<h3><center>Klinik - Menemani</center></h3>
-	  				<hr style="border-bottom: 1px solid;">
-		  				<div class="form-group">
-	            			<label for="field-1" class="col-sm-4 control-label" style="text-align:left;">&emsp;No Reservasi</label>
-				              <div class="col-sm-5">
-				                <p type="text">: {{$reservasi->kd_res}}</p>
-				              </div>
-	          			</div><br/>
-	          			<div class="form-group">
-	            			<label for="field-1" class="col-sm-4 control-label" style="text-align:left;">&emsp;No RM</label>
-				              <div class="col-sm-5">
-				                <p type="text">: {{$reservasi->no_rm}}</p>
-				              </div>
-	          			</div><br/>
-	          			<div class="form-group">
-	            			<label for="field-1" class="col-sm-4 control-label" style="text-align:left;">&emsp;Nama Pasien</label>
-				              <div class="col-sm-5">
-				                <p type="text">: {{$reservasi->pasien->nama_pasien}}</p>
-				              </div>
-	          			</div><br/>
-	          			<div class="form-group">
-	            			<label for="field-1" class="col-sm-4 control-label" style="text-align:left;">&emsp;Nama Poli</label>
-				              <div class="col-sm-5">
-				                <p type="text">: {{$reservasi->poli->nama_poli}}</p>
-				              </div>
-	          			</div><br/>
-	          			<div class="form-group">
-	            			<label for="field-1" class="col-sm-4 control-label" style="text-align:left;">&emsp;Nama Dokter</label>
-				              <div class="col-sm-5">
-				                <p type="text">: {{$reservasi->dokter->nama}}</p>
-				              </div>
-	          			</div><br/>
-	          			<div class="form-group">
-	            			<label for="field-1" class="col-sm-4 control-label" style="text-align:left;">&emsp;No Urut</label>
-				              <div class="col-sm-5">
-				                <p>: <b>{{$reservasi->no_urut}}</b></p>
-				              </div>
-	          			</div><br/>
-	          			<hr style="border-bottom: 1px solid;">
-	          			<br/>
-	          			<div class="invoice">
-	          				<div class="invoice-right">
-	          					<p>Petugas: {{Auth::user()->first_name}}</p>
-	          					<a href="javascript:window.print();" class="btn btn-blue btn-icon icon-left hidden-print">
-            Cetak PDF
-          <i class="entypo-print"></i>
-          </a>
-	          				</div>
-	          			</div>
-	  			</div>
-	  		<div class="col-sm-3"></div>
-  		
-  	</div>
-  </div>
-</div>
-@endsection
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>{{$reservasi->no_urut}} - {{$reservasi->pasien->nama_pasien}}</title>
+</head>
+<body style="margin-top: -22%;">
+	<center><p style="font-family: Delicious;">Rumah Sehat | Menemani</p></center>
+	<center><hr style="border-bottom: 1px solid; margin-top: -4%;"></center>
+	<label for="field-1" class="col-sm-2 control-label" style="text-align:left;"><b style="margin-right: 7.4%;">No Reservasi</b>: {{$reservasi->kd_res}}</label><br/>
+	<label for="field-1" class="col-sm-2 control-label" style="text-align:left;"><b style="margin-right: 20.1%;">No RM</b>: {{$reservasi->no_rm}}</label><br/>
+	<label for="field-1" class="col-sm-2 control-label" style="text-align:left;"><b style="margin-right: 7.4%;">Nama Pasien</b>: {{$reservasi->pasien->nama_pasien}}</label><br/>
+	<label for="field-1" class="col-sm-2 control-label" style="text-align:left;"><b style="margin-right: 13%;">Nama Poli</b>: {{$reservasi->poli->nama_poli}}</label><br/>
+	<label for="field-1" class="col-sm-2 control-label" style="text-align:left;"><b style="margin-right: 6.1%;">Nama Dokter</b>: {{$reservasi->dokter->nama}}</label><br/>
+	<label for="field-1" class="col-sm-2 control-label" style="text-align:left;"><b style="margin-right: 18%;">No Urut</b>: {{$reservasi->no_urut}}</label>
+	<center><hr style="border-bottom: 1px solid; margin-top: 2%;"></center>
+	<p style="float: right; margin-top: 10%;">Petugas: {{Auth::user()->first_name}}</p>
+</body>
+</html>

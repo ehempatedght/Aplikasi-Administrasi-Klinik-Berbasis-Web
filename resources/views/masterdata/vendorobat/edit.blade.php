@@ -1,12 +1,12 @@
 @extends('template')
 @section('main')
-<h2>Tambah Obat</h2>
+<h2>Ubah Vendor Obat</h2>
 <ol class="breadcrumb bc-3">
 	<li>
 		<a href="{{ route('masterdata.vendorobat.index') }}"><i class="entypo-home"> Daftar Vendor Obar</i></a>
 	</li>
 	<li class="active">
-		<strong>Tambah Vendor Obat</strong>
+		<strong>Ubah Vendor Obat</strong>
 	</li>
 </ol>
 @if (count($errors) > 0)
@@ -66,7 +66,8 @@
 							<textarea name="deskripsi" class="form-control">{{$vendor[0]->deskripsi}}</textarea>
 						</div>
 					</div>
-					<hr>
+					<br>
+					<div id="tambah_list">
 					<?php $i = 0; ?>
 					@foreach($vendor as $data)
 					<?php $i++; ?>
@@ -92,8 +93,20 @@
 								<textarea id="catatan_<?= $i; ?>" name="catatan[]" class="form-control">{{$data->catatan}}</textarea>
 							</div>
 						</div>
+						@if($i >= 2)
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-5">
+								<button type="button" class="btn btn-red btn-icon icon-left hapus" data-id="<?= $i; ?>"> Hapus
+									<i class="entypo-cancel"></i>
+								</button>
+							</div>
+						</div>
+						@else
+	                  	&nbsp;
+						@endif
 					</div>
 					@endforeach
+					</div>
 					<div id="tambah_list"></div>
 					<div class="form-group">
 						<label for="field-ta" class="col-sm-3 control-label"></label>

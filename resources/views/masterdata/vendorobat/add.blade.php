@@ -1,6 +1,6 @@
 @extends('template')
 @section('main')
-<h2>Tambah Obat</h2>
+<h2>Tambah Vendor Obat</h2>
 <ol class="breadcrumb bc-3">
 	<li>
 		<a href="{{ route('masterdata.vendorobat.index') }}"><i class="entypo-home"> Daftar Vendor Obar</i></a>

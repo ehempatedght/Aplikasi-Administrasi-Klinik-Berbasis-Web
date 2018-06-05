@@ -1,6 +1,6 @@
 @extends('template')
 @section('main')
-<h2>Daftar Obat</h2>
+<h2>Daftar Vendor Obat</h2>
 <h5>Menu ini digunakan untuk melihat dan menambahkan vendor obat</h5><br/>
 <a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('masterdata.vendorobat.create')}}">
 	<i class="entypo-plus"></i>Tambah Vendor

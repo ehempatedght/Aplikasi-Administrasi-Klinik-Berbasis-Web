@@ -18,7 +18,7 @@
     			<div class="alert alert-success">{{session('message')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
 			@endif
 			@if(session('danger'))
-    			<div class="alert alert-danger">{{session('danger')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
+    			<div class="alert alert-info">{{session('danger')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
 			@endif
 			@if (count($errors) > 0)
 				<div class="alert alert-danger">

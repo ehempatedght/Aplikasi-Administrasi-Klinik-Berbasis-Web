@@ -33,7 +33,7 @@
 		<table class="table table-bordered datatable" id="table-1">
 			<thead>
 				<tr>
-					<th data-hide="phone">No</th>
+					<th width="1%">No</th>
 					<th>Kategori</th>
 					<th>Nama</th>
 					<th>Spesialisasi</th>

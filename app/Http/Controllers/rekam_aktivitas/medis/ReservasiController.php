@@ -11,7 +11,7 @@ use App\Poli;
 use App\Category;
 use App\RekamMedis as Rekam;
 use Auth;
-use Fpdf;
+use PDF;
 
 class ReservasiController extends Controller
 {
@@ -152,7 +152,9 @@ class ReservasiController extends Controller
 	#-------------------------------------CETAK KARTU------------------------------------#
     public function print_card($id) {
         $reservasi = Reservasi::find($id);
-        return view('rekam_aktivitas.medis.reservasi.cetak_kartu', get_defined_vars());
+        $pdf = PDF::loadView('rekam_aktivitas.medis.reservasi.cetak_kartu', get_defined_vars());
+        $pdf->setPaper('a7', 'landscape');
+        return $pdf->download($reservasi->no_urut.'-'.$reservasi->pasien->nama_pasien.'.pdf');
     }
 
     #------------------------------------------------------------------------------------#

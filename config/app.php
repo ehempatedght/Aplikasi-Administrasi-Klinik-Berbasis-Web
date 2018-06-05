@@ -164,6 +164,7 @@ return [
         jeremykenedy\LaravelRoles\RolesServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Codedge\Fpdf\FpdfServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -218,6 +219,7 @@ return [
         'Gravatar'     => Creativeorange\Gravatar\Facades\Gravatar::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Fpdf' => Codedge\Fpdf\Facades\Fpdf::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];
