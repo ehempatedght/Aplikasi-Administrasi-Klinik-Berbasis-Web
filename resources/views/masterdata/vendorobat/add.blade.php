@@ -33,7 +33,7 @@
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Alamat</label>
 						<div class="col-sm-5">
-							<textarea name="alamat" class="form-control"></textarea>
+							<textarea name="alamat" class="form-control" placeholder="alamat vendor"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
@@ -63,7 +63,7 @@
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Deskripsi</label>
 						<div class="col-sm-5">
-							<textarea name="deskripsi" class="form-control"></textarea>
+							<textarea name="deskripsi" class="form-control" placeholder="deskripsi"></textarea>
 						</div>
 					</div>
 					<br>
@@ -86,7 +86,7 @@
 						<div class="form-group">
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Catatan</label>
 							<div class="col-sm-5">
-								<textarea id="catatan_1" name="catatan[]" class="form-control"></textarea>
+								<textarea id="catatan_1" placeholder="catatan..." name="catatan[]" class="form-control"></textarea>
 							</div>
 						</div>
 					</div>
@@ -145,7 +145,7 @@
 					'<div class="form-group">' +
 					'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Catatan</label>' +
 					'<div class="col-sm-5">' +
-					'<textarea name="catatan[]" class="form-control" id="catatan_'+loop+'"></textarea>' +
+					'<textarea placeholder="catatan..." name="catatan[]" class="form-control" id="catatan_'+loop+'"></textarea>' +
 					'</div>' +
 					'</div>' +
 					'<div class="form-group">' +

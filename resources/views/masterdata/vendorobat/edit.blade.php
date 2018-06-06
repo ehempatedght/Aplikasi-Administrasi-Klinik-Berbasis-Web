@@ -33,7 +33,7 @@
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Alamat</label>
 						<div class="col-sm-5">
-							<textarea name="alamat" class="form-control">{{$vendor[0]->alamat}}</textarea>
+							<textarea name="alamat" class="form-control" placeholder="alamat vendor">{{$vendor[0]->alamat}}</textarea>
 						</div>
 					</div>
 					<div class="form-group">
@@ -63,7 +63,7 @@
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Deskripsi</label>
 						<div class="col-sm-5">
-							<textarea name="deskripsi" class="form-control">{{$vendor[0]->deskripsi}}</textarea>
+							<textarea name="deskripsi" class="form-control" placeholder="deskripsi">{{$vendor[0]->deskripsi}}</textarea>
 						</div>
 					</div>
 					<br>
@@ -90,7 +90,7 @@
 						<div class="form-group">
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Catatan</label>
 							<div class="col-sm-5">
-								<textarea id="catatan_<?= $i; ?>" name="catatan[]" class="form-control">{{$data->catatan}}</textarea>
+								<textarea placeholder="catatan..." id="catatan_<?= $i; ?>" name="catatan[]" class="form-control">{{$data->catatan}}</textarea>
 							</div>
 						</div>
 						@if($i >= 2)
@@ -161,7 +161,7 @@
 					'<div class="form-group">' +
 					'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Catatan</label>' +
 					'<div class="col-sm-5">' +
-					'<textarea name="catatan[]" class="form-control" id="catatan_'+loop+'"></textarea>' +
+					'<textarea placeholder="catatan..." name="catatan[]" class="form-control" id="catatan_'+loop+'"></textarea>' +
 					'</div>' +
 					'</div>' +
 					'<div class="form-group">' +

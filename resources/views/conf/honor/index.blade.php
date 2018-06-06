@@ -49,7 +49,7 @@
 					<th class="numbers">{{$conf->honor}}</th>
 					<th>
 						<div align="center">
-							<form action="{{route('pengaturan.honor.delete',['id' => $conf->id, 'petugas_id' => $conf->petugas_id])}}" method="post">
+							<form action="" method="post">
 									{{ csrf_field() }}
 									<a href="{{route('pengaturan.honor.edit', $conf->id)}}" class="btn btn-sm btn-green btn-icon icon-left">
 										<i class="entypo-pencil"></i>
@@ -59,10 +59,10 @@
 										<i class="entypo-eye"></i>
 										Lihat
 									</a> --}}
-									<button type="submit" class="btn btn-sm btn-danger btn-icon icon-left" onclick="return confirm('ANDA YAKIN AKAN MENGHAPUS PENGATURAN HONOR INI?')">
-                    					<i class="entypo-trash"> </i>
-                    					Hapus
-                  					</button>
+									<a href="javascript:;" onclick="jQuery('#modal-7{{$conf->id}}').modal('show', {backdrop: 'static'});" class="btn btn-sm btn-danger btn-icon icon-left">
+								<i class="entypo-trash"></i>
+								Hapus
+							</a>
 							</form>
 						</div>
 					</th>
@@ -71,5 +71,40 @@
 			</tbody>
 		</table>
 	</div>
+	<?php $conf = \App\Confhonor::all(); ?>
+	@foreach($conf as $conf)
+			<div class="modal fade" id="modal-7{{$conf->id}}">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title">Hapus Pengaturan Honor</h4>
+						</div>
+						
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12">
+									<form action="{{route('pengaturan.honor.delete',['id' => $conf->id, 'petugas_id' => $conf->petugas_id])}}" method="post">
+										@csrf
+										<div class="row">
+											<div class="col-md-12">
+												<center><h4>Anda Yakin Akan Menghapus Pengaturan Honor {{$conf->petugas->nama}}!</h4></center>
+											</div>
+										</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+							<button type="submit" name="simpan" id="simpan" class="btn btn-danger btn-icon icon-left col-left">
+							<i class="entypo-trash"></i>
+							Ya</button>
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			@endforeach
 </div>
 @endsection

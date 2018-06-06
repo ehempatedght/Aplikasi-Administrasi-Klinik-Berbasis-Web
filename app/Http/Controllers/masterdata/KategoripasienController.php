@@ -40,8 +40,11 @@ class KategoripasienController extends Controller
 
     public function doDelete($id) {
     	$kategori = Kategoripasien::find($id);
-    	if ($kategori->delete()) {
-    		return redirect()->route('masterdata.pasien.kategori.index')->with('message','Kategori '.$kategori->nama_kategori.' berhasil dihapus!');	
-    	}
+        if ($kategori->pasien->count() > 0) {
+            return redirect()->back()->with('message2','KATEGORI '.strtoupper($kategori->nama_kategori).' TIDAK DAPAT DIHAPUS KARENA BERHUBUNGAN DENGAN DATA PASIEN!');
+        } else {
+            $kategori->delete();
+            return redirect()->route('masterdata.pasien.kategori.index')->with('message','KATEGORI '.$kategori->nama_kategori.' BERHASIL DIHAPUS!');
+        }
     }
 }

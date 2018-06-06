@@ -43,12 +43,12 @@
 			<table class="table table-bordered datatable" id="table-1">
 				<thead>
 					<tr>
-						<th>No</th>
+						<th width="1%">No</th>
 						<th>Kode Alat</th>
 						<th>Nama Alat</th>
 						<th>Jenis Alat</th>
 						<th>Jumlah</th>
-						<th width="25%">Aksi</th>
+						<th width="18%">Aksi</th>
 					</tr>
 				</thead>
 				<tbody>

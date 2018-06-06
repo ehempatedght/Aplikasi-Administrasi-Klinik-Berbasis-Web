@@ -41,7 +41,7 @@
 					@foreach($operasional as $operasional)
 					<?php $i++; ?>
 					<div id="ket_<?= $i; ?>">
-						<hr>
+						<br/>
 						<div class="form-group">
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jumlah</label>
 							

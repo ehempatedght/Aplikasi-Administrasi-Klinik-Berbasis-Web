@@ -8,8 +8,6 @@ use App\Poli;
 class PoliController extends Controller
 {
 	public function getPoli() {
-		ini_set('memory_limit', '-1'); // Supaya memorynya unlimited
-      	ini_set('max_execution_time', 1800); // Supaya execution time jadi 30 menit
 		$polis = Poli::orderBy('id','DESC')->get();
 		return view('masterdata.poli.poli')->withPolis($polis);
 	}
@@ -46,12 +44,12 @@ class PoliController extends Controller
 	}
 
 	public function doDelete($id) {
-		ini_set('memory_limit', '-1'); // Supaya memorynya unlimited
-      	ini_set('max_execution_time', 1800); // Supaya execution time jadi 30 menit
-
 		$poli = Poli::find($id);
-		if ($poli->delete()) {
-			return redirect()->route('masterdata.poli.index')->with('message',''.$poli->nama_poli.' berhasil dihapus');
+		if ($poli->reservasi->count() > 0) {
+			return redirect()->back()->with('message2',''.$poli->nama_poli.' TIDAK DAPAT HAPUS KARENA SEDANG DIGUNAKAN RESERVASI!');
+		} else {
+			$poli->delete();
+			return redirect()->route('masterdata.poli.index')->with('message',''.$poli->nama_poli.' BERHASIL DIHAPUS!');
 		}
 
 	}

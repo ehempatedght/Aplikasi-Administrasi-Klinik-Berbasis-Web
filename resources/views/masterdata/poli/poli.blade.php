@@ -17,6 +17,9 @@
 			@if(session('message'))
     			<div class="alert alert-success">{{session('message')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
 			@endif
+			@if(session('message2'))
+    			<div class="alert alert-info">{{session('message2')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
+			@endif
 			@if (count($errors) > 0)
 				<div class="alert alert-danger">
 					<ul>
@@ -43,7 +46,7 @@
 			<table class="table table-bordered datatable" id="table-1">
 				<thead>
 					<tr>
-						<th data-hide="phone">No</th>
+						<th width="1%">No</th>
 						<th>Nama Poli</th>
 						<th width="25%">Aksi</th>
 					</tr>
@@ -64,10 +67,10 @@
 									</a>
 
 
-									<button type="submit" class="btn btn-sm btn-danger btn-icon icon-left" onclick="return confirm('ANDA YAKIN AKAN MENGHAPUS POLI INI?')">
-					                    <i class="entypo-cancel"> </i>
-					                    Hapus
-                  					</button>
+									<a href="javascript:;" onclick="jQuery('#modal-7{{$poli->id}}').modal('show', {backdrop: 'static'});" class="btn btn-sm btn-danger btn-icon icon-left">
+								<i class="entypo-trash"></i>
+								Hapus
+							</a>
 								</form>
 							</div> 
 							{{-- {!! Form::open(['method'=>'DELETE','route'=>['petugas.destroy', $petugas->id]]) !!}
@@ -148,6 +151,41 @@
 							<button type="submit" name="simpan" id="simpan" class="btn btn-green btn-icon icon-left col-left">
 							<i class="entypo-check"></i>
 							Ubah</button>
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			@endforeach
+
+			@foreach($polis as $poli)
+			<div class="modal fade" id="modal-7{{$poli->id}}">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title">Hapus Poli</h4>
+						</div>
+						
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12">
+									<form action="{{route('masterdata.poli.hapus', ['id'=> $poli->id ]) }}" method="post">
+										@csrf
+										<div class="row">
+											<div class="col-md-12">
+												<center><h4>Anda Yakin Akan Menghapus {{$poli->nama_poli}}!</h4></center>
+											</div>
+										</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+							<button type="submit" name="simpan" id="simpan" class="btn btn-danger btn-icon icon-left col-left">
+							<i class="entypo-trash"></i>
+							Ya</button>
 						</div>
 						</form>
 					</div>

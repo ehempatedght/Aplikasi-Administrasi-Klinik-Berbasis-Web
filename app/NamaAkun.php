@@ -18,7 +18,7 @@ class NamaAkun extends Model
     public function tipeAkun() {
     	return $this->belongsTo('App\TipeAkun','id_tipe');
     }
-
+    
     public function transaksi() {
         return $this->hasMany('App\Transaksi','id_akun','id_akun');
     }

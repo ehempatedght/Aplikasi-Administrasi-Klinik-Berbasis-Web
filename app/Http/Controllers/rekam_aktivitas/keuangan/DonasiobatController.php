@@ -53,7 +53,12 @@ class DonasiobatController extends Controller
     }
 
     public function delete($id) {
-    	Donasiobat::find($id)->delete();
-    	return redirect()->route('perekaman_aktivitas.keuangan.penerimaan.donasi_obat.index')->with('message','Donatur berhasil dihapus!');
+        $donasi_obat = Donasiobat::find($id);
+    	if ($donasi_obat->jenis_obat_detail->count() > 0) {
+            return redirect()->back()->with('message2', 'DONATUR '.$donasi_obat->nama_donatur.' TIDAK BISA DIHAPUS KARENA BERHUBUNGAN DENGAN DATA LAIN!');
+        } else {
+            $donasi_obat->delete();
+            return redirect()->route('perekaman_aktivitas.keuangan.penerimaan.donasi_obat.index')->with('message','DONATUR BERHASIL DIHAPUS!');
+        }
     }
 }

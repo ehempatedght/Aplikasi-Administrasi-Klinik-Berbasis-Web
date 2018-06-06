@@ -43,12 +43,12 @@
 			<table class="table table-bordered datatable" id="table-1">
 				<thead>
 					<tr>
-						<th>No</th>
+						<th width="1%">No</th>
 						<th>Kode Alat</th>
 						<th>Nama Alat</th>
 						<th>Jenis Alat</th>
 						<th>Jumlah</th>
-						<th width="25%">Aksi</th>
+						<th width="16%">Aksi</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -137,9 +137,7 @@
 												<div class="form-group">
 													<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Deskripsi</label>
 													<div class="col-sm-5">
-														<textarea class="form-control" name="description" rows="4">
-															{{$alat_medis->description}}
-														</textarea>
+														<textarea type="textarea" class="form-control" name="description">{{$alat_medis->description}}</textarea>
 													</div>
 												</div>
 											</div>
@@ -222,7 +220,7 @@
 												<div class="form-group">
 													<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Deskripsi</label>
 													<div class="col-sm-5">
-														<textarea class="form-control" name="description" required>
+														<textarea type="textarea" class="form-control" name="description" required>
 														</textarea>
 													</div>
 												</div>

@@ -1,6 +1,15 @@
 @extends('template')
 
 @section('main')
+<style>
+.select2-container .select2-choice {
+    display: block!important;
+    height: 30px!important;
+    white-space: nowrap!important;
+    line-height: 26px!important;
+    width: 100%!important;
+}
+</style>
 <h2>Tambah Petugas Medis</h2>
 <br/>
 @if(count($errors) > 0)
@@ -51,11 +60,13 @@
 						
 						<div class="col-sm-5">
 							
-							<select name="category_id" class="select2">
-								<option selected="selected" disabled value="Pilih">Pilih Kategori</option>
+							<select name="category_id" class="select2" required data-placeholder="Pilih Kategori...">
+								<option></option>
+								<optgroup label="Pilih Kategori">
 									@foreach ($categories as $kategori)
 										<option value="{{$kategori->id}}">{{$kategori->nama_kategori}}</option>
 									@endforeach
+								</optgroup>
 							</select>
 						</div>
 					</div>

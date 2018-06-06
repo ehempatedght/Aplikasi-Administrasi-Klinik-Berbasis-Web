@@ -111,8 +111,15 @@ class JenisobatController extends Controller
 	}
 
 	public function doDelete($id) {
-		Jenisobatdetail::find($id)->delete();
-		return redirect()->route('masterdata.daftarobat.index')->with('message','Obat berhasil dihapus!');
+		$jenis = Jenisobatdetail::find($id);
+		//$test = $jenis->vendor->count() > 0;
+		//dd($test);
+		if ($jenis->vendor->count() > 0) {
+			return redirect()->back()->with('message2','OBAT '.$jenis->nama_obat.' TIDAK DAPAT DIHAPUS KARENA BERHUBUNGAN DENGAN DATA LAIN!');
+		} else {
+			$jenis->delete();
+			return redirect()->route('masterdata.daftarobat.index')->with('message','OBAT BERHASIL DIHAPUS!');
+		}
 	}
 	//Using JSON
 	public function addJenis(Request $request) {

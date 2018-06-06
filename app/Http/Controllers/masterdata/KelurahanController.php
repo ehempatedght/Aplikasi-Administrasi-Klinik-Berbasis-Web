@@ -88,7 +88,13 @@ class KelurahanController extends Controller
 
 	public function doDelete($id) {
 		$kelurahan = Kelurahan::find($id);
-		$kelurahan->delete();
-		return redirect()->route('masterdata.pasien.kelurahan.create', $kelurahan->id)->with('message','Kelurahan '.$kelurahan->nama_kelurahan.' berhasil dihapus!');
+		//$test = $kelurahan->pasien->count() > 0;
+		//dd($test);
+		if($kelurahan->pasien->count() > 0) {
+			return redirect()->back()->with('message2', 'KELURAHAN '.$kelurahan->nama_kelurahan.' TIDAK DAPAT DIHAPUS KARENA BERHUBUNGAN DENGAN DATA PASIEN!');
+		} else {
+			$kelurahan->delete();
+			return redirect()->route('masterdata.pasien.kelurahan.index')->with('message','KELURAHAN '.$kelurahan->nama_kelurahan.' BERHASIL DIHAPUS!');
+		}
 	}
 }

@@ -11,7 +11,7 @@
     <div class="alert alert-success">{{session('message')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
 @endif
 @if(session('message2'))
-    <div class="alert alert-danger">{{session('message2')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
+    <div class="alert alert-info">{{session('message2')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
 @endif
 <div class="row">
 	<div class="col-md-12">
@@ -33,9 +33,9 @@
 		<table class="table table-bordered datatable" id="table-1">
 			<thead>
 				<tr>
-					<th data-hide="phone">No</th>
-					<th>Nama Kategori</th>
-					<th>Aksi</th>
+					<th width="1%">No</th>
+					<th >Nama Kategori</th>
+					<th width="25%">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -135,13 +135,13 @@
 		@endforeach
 
 		@foreach($kategories as $kategori)
-			<div class="modal fade" id="modal-8{{$kategori->id}}">
+		<div class="modal fade" id="modal-8{{$kategori->id}}">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							<h4 class="modal-title">Anda Yakin Akan Mengapus Kategori {{$kategori->nama_kategori}} ?</h4>
+							<h4 class="modal-title">Hapus Kategori Pasien</h4>
 						</div>
 						
 						<div class="modal-body">
@@ -149,17 +149,21 @@
 								<div class="col-md-12">
 									<form action="{{route('masterdata.pasien.kategori.delete', ['id' => $kategori->id]) }}" method="post">
 										@csrf
-										<div class="form-group">
-											<button type="submit" name="simpan" id="simpan" class="btn btn-danger btn-block">
-											<i class="entypo-trash"></i>
-											</button>
+										<div class="row">
+											<div class="col-md-12">
+												<center><h4>Anda Yakin Akan Menghapus Kategori {{$kategori->nama_kategori}}!</h4></center>
+											</div>
 										</div>
-									</form>
 								</div>
 							</div>
 						</div>
 						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+							<button type="submit" name="simpan" id="simpan" class="btn btn-danger btn-icon icon-left col-left">
+							<i class="entypo-trash"></i>
+							Ya</button>
 						</div>
+						</form>
 					</div>
 				</div>
 			</div>

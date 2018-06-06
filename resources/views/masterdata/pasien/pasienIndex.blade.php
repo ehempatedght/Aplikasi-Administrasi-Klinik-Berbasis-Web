@@ -83,25 +83,29 @@
 						
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							<h4 class="modal-title">Anda Yakin Akan Menghapus Pasien {{$pasien->nama_pasien}} ?</h4>
+							<h4 class="modal-title">Hapus Pasien</h4>
 						</div>
 						
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12">
 									<form action="{{route('masterdata.pasien.datapasien.hapus', ['id' => $pasien->id])}}" method="post">
-								        {{ csrf_field() }}
-										<div class="form-group">
-											<button type="submit" name="simpan" id="simpan" class="btn btn-danger btn-block">
-											<i class="entypo-trash"></i>
-											</button>
+										@csrf
+										<div class="row">
+											<div class="col-md-12">
+												<center><h4>Anda Yakin Akan Menghapus Nama Pasien {{$pasien->nama_pasien}}!</h4></center>
+											</div>
 										</div>
-									</form>
 								</div>
 							</div>
 						</div>
 						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+							<button type="submit" name="simpan" id="simpan" class="btn btn-danger btn-icon icon-left col-left">
+							<i class="entypo-trash"></i>
+							Ya</button>
 						</div>
+						</form>
 					</div>
 				</div>
 			</div>
