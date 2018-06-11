@@ -149,9 +149,12 @@ class PetugasController extends Controller
 	public function doHapus($id) {
 		$petugas = Petugas::find($id);
 		$petugas->days()->detach();
-		if ($petugas->delete()) {
-			return redirect()->route('masterdata.petugasmedis.datapetugasmedis.index')->with('message2','Petugas medis '.strtoupper($petugas->nama).' berhasil dihapus!');
+		if ($petugas->reservasi->count() > 0) {
+			return redirect()->back()->with('message2','PETUGAS MEDIS '.strtoupper($petugas->nama).' TIDAK BISA DIHAPUS KARENA BERHUBUNGAN DENGAN DATA LAIN!');
+		} else {
+			if ($petugas->delete()) {
+				return redirect()->route('masterdata.petugasmedis.datapetugasmedis.index')->with('message2','PETUGAS MEDIS '.strtoupper($petugas->nama).' BERHASIL DIHAPUS!');
+			}
 		}
-
 	}
 }

@@ -1,12 +1,10 @@
 @extends('template')
 @section('main')
 <h2>Data Pasien</h2>
-<h5>Menu ini digunakan untuk registrasi pasien</h5><br/>
-<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('masterdata.pasien.datapasien.create') }}">
+<h5>Menu ini digunakan untuk melihat daftar pasien</h5><br/>
+{{-- <a class="btn btn-blue btn-sm btn-icon icon-left" href="{{ route('masterdata.pasien.datapasien.create') }}">
 	<i class="entypo-user-add"></i>Registrasi Pasien
-</a>
-<br/>
-<br/>
+</a> --}}
 @if(session('message'))
     <div class="alert alert-success">{{session('message')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
 @endif

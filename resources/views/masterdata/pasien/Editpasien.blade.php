@@ -117,9 +117,14 @@
 								</div>
 							</div>
 						</div>
+						<?php 
+							$birthdate = new Datetime($pasien->TanggalLahir);
+							$today = new Datetime('today');
+							$umur = $today->diff($birthdate)->y;
+						?>
 						<label for="field-1" class="col-xs-1 control-label">Umur</label>
 						<div class="col-sm-2">
-							<input type="text" class="form-control" id="umur" disabled>
+							<input type="text" placeholder="{{$umur}} Tahun" class="form-control" id="umur" disabled>
 						</div>
 					</div>
 					<div class="form-group">

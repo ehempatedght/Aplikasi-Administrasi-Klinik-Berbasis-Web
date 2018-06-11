@@ -33,12 +33,12 @@
 		<table class="table table-bordered datatable" id="table-1">
 			<thead>
 				<tr>
-					<th data-hide="phone">No</th>
+					<th width="1%">No</th>
 					<th>Nama Donatur</th>
 					<th>CP</th>
 					<th>No.HP</th>
 					<th>Jenis Obat</th>
-					<th width="24%">Aksi</th>
+					<th width="28%">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>

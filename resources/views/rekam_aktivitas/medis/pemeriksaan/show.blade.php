@@ -119,37 +119,18 @@
 					</div>
 					
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jumlah</label>
-						<div class="row">
-							<div class="col-sm-1">
-								<input type="text" class="form-control" id="jml" name="jml" value="{{$pemeriksaan->jml}}" required readonly />
-							</div>
-							<label for="field-1" class="col-sm-1 control-label">Total</label>
-							<div class="col-xs-3">
-								<input type="text" class="form-control numbers" id="total" name="total" value="{{$pemeriksaan->tarif*$pemeriksaan->jml}}" required readonly />
-							</div>
-						</div>
-					</div>
-					
-					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Diskon</label>
 						<div class="row">
 							<div class="col-sm-1">
 								<input type="text" class="form-control" id="disc" name="disc" value="{{$pemeriksaan->disc}}" required readonly />
 							</div>
-							<label for="field-1" class="col-sm-1 control-label">%</label>
+							<label for="field-1" class="col-sm-1 control-label" style="margin-left: -4.9%;">%</label>
 							<div class="col-xs-3">
-								<input type="text" class="form-control numbers" id="disc_result" name="disc_result" value="{{$pemeriksaan->tarif*($pemeriksaan->disc/100)}}" required readonly />
+								<input type="text" style="width: 116.9%;" class="form-control numbers" id="disc_result" name="disc_result" value="{{$pemeriksaan->subtotal}}" required readonly />
 							</div>
 						</div>
 					</div>
 					
-					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;SubTotal</label>
-							<div class="col-sm-5">
-								<input type="text" class="form-control numbers" id="subtotal" name="subtotal" value="{{$pemeriksaan->subtotal}}" required readonly />
-							</div>
-					</div>
 
 					<div class="form-group center-block full-right" style="margin-left: 15px;">
 						<a href="{{ route('medis.pemeriksaan.index') }}" class="btn btn-red btn-icon icon-left">

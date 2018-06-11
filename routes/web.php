@@ -12,7 +12,7 @@
 */
 
 Auth::routes();
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('index');
 Route::group(['middleware'=> ['web','auth']], function() {
 	Route::group(['prefix'=>'pengaturan'], function () {
 		//pengaturan pengguna
@@ -132,11 +132,6 @@ Route::group(['middleware'=> ['web','auth']], function() {
 		 	Route::post('/insert', ['as'=>'masterdata.daftarobat.insert','uses'=>'masterdata\JenisobatController@doInsert']);
 		 	Route::post('/delete/{id}', ['as'=>'masterdata.daftarobat.delete','uses'=>'masterdata\JenisobatController@doDelete']);
 		 	Route::post('/update/{id}', ['as'=>'masterdata.daftarobat.update','uses'=>'masterdata\JenisobatController@doUpdate']);
-		 	Route::get('/createJenis', ['as'=>'masterdata.daftarobat.jenis','uses'=>'masterdata\JenisobatController@createJenis']);
-		 	//pake json
-		 	// Route::post('/addjenis', 'masterdata\JenisobatController@addJenis');
-		 	// Route::post('/updatejenis','masterdata\JenisobatController@updateJenis');
-		 	// Route::post('/deletejenis','masterdata\JenisobatController@hapusJenis');
 		 	//search kd obat
 		 	Route::get('/cari_kode/{id}', ['as'=>'masterdata.daftarobat.cari_kode','uses'=>'masterdata\JenisobatController@KdObat']);
 		});
@@ -307,7 +302,7 @@ Route::group(['middleware'=> ['web','auth']], function() {
 		Route::get('/pasien/rekam_medis/{id}', ['uses'=>'rekam_aktivitas\medis\RekamMedisController@output_report'])->name('output_report.rekam_medis');
 	});
 
-	//REPORT KEUANGAN
+	//REPORTS KEUANGAN
 	Route::group(['prefix'=>'laporan'], function() {
 		//lapoan berdasarkan tipe akun
 		Route::get('/akunting/tipe_akun', ['uses'=>'akunting\TransaksiController@berdasarkan_akun'])->name('laporan.tipe_akun');

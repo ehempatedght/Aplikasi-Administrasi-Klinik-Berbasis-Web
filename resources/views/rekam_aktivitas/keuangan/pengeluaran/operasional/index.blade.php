@@ -30,10 +30,10 @@
 		<table class="table table-bordered datatable" id="table-1">
 			<thead>
 				<tr>
-					<th width="5%">No</th>
+					<th width="1%">No</th>
 					<th>Tanggal</th>
 					<th>Total (Rp)</th>
-					<th width="24%">Aksi</th>
+					<th width="28%">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
