@@ -75,7 +75,6 @@ class PasienController extends Controller
     		'kontak' => $kontak,
     		'pekerjaan' => $pekerjaan,
     		'status_pernikahan' => $status_pernikahan,
-    		'no_kk' => $no_kk,
     		'namaIbuKandung' => $IbuKandung,
     		'namaAyahKandung' => $AyahKandung,
     		'TanggalLahir' => $tgl_lahir
