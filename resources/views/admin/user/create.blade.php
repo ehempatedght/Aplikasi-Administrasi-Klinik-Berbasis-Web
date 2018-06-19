@@ -56,7 +56,7 @@
 						<label for="field-1" class="col-sm-2 control-label"style="text-align:left;">&emsp;Nama Depan</label>
 						
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="field-1" name="first_name" placeholder="first name" required>
+							<input type="text" class="form-control" id="field-1" name="first_name" placeholder="first name" data-validate="required" data-message-required="Wajib diisi." >
 						</div>
 					</div>
 
@@ -64,7 +64,7 @@
 						<label for="field-1" class="col-sm-2 control-label"style="text-align:left;">&emsp;Nama Belakang</label>
 						
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="field-1" name="last_name" placeholder="last name" required>
+							<input type="text" class="form-control" id="field-1" name="last_name" placeholder="last name" data-validate="required" data-message-required="Wajib diisi." >
 						</div>
 					</div>
 
@@ -80,7 +80,7 @@
 						<label for="field-1" class="col-sm-2 control-label"style="text-align:left;">&emsp;Kata Sandi</label>
 						
 						<div class="col-sm-5">
-							<input type="password" class="form-control" id="password" name="password">
+							<input type="password" class="form-control" id="password" name="password" data-validate="required" data-message-required="Wajib diisi." >
 						</div>
 					</div>
 
