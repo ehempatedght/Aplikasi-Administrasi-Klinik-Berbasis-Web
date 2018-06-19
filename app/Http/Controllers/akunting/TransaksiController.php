@@ -102,7 +102,6 @@ class TransaksiController extends Controller
         } else {
             return redirect()->back()->with('message2','MAAF, HANYA TRANSAKSI TERAKHIR DARI TIAP AKUN YANG BISA DIHAPUS!');
         }
-
     }
 
     //Laporan Berdasarkan Akun

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pasien extends Model
 {
     protected $table = 'pasien';
+    protected $primaryKey = 'id';
     protected $fillable = [
     	'no_rm','nama_pasien','kategoripasien_id','golongan_darah','jenis_kelamin','alamat','kota_id','kec_id','kel_id','kontak','pekerjaan','status_pernikahan','no_kk','namaIbuKandung','namaAyahKandung','TanggalLahir'
     ];
@@ -34,8 +35,8 @@ class Pasien extends Model
     public function pemberianObat() {
         return $this->hasMany('App\Pemberianobat');
     }
-    
+
     public function reservasi() {
-        return $this->hasMany('App\Reservasi');
+        return $this->hasMany('App\Reservasi','pasien_id','id');
     }
 }

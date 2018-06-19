@@ -184,9 +184,12 @@ class PasienController extends Controller
 
     public function hapus($id) {
     	$pasien = Pasien::find($id);
-    	if ($pasien->delete()) {
-    		return redirect()->route('masterdata.pasien.datapasien.index', $pasien->id)->with('message','Pasien '.$pasien->nama_pasien.' berhasil dihapus!');
-    	}
+        if ($pasien->reservasi->count() > 0) {
+            return redirect()->back()->with('message2','PASIEN '.strtoupper($pasien->nama_pasien).' TIDAK DAPAT DIHAPUS KARENA BERHUBUNGAN DENGAN DATA LAIN!');
+        }  else {
+            $pasien->delete();
+            return redirect()->route('masterdata.pasien.datapasien.index', $pasien->id)->with('message','PASIEN '.strtoupper($pasien->nama_pasien).' BERHASIL DIHAPUS!');
+        }
     }
 
     #---------------------------- Laporan Registrasi -----------------------------#
