@@ -116,7 +116,6 @@ class PasienController extends Controller
     		'id_kec' => 'required|integer',
     		'id_kel' => 'required|integer',
     		'status_pernikahan' => 'required',
-    		'no_kk' => 'required',
     		'namaIbuKandung' => 'required|min:3|max:191',
     		'namaAyahKandung' => 'required|min:3|max:191',
     		'TanggalLahir' => 'required|date'

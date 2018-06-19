@@ -244,7 +244,7 @@
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;No. KK</label>
 						<div class="col-sm-5">
-							<input type="text" class="form-control numberValidation" name="no_kk" placeholder="nomor kartu keluarga" required>
+							<input type="text" class="form-control numberValidation" name="no_kk" placeholder="nomor kartu keluarga">
 						</div>
 					</div>
 
