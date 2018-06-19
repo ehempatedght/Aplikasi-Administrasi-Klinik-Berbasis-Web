@@ -20,4 +20,12 @@ class Controller extends BaseController
     		exit();
     	}
     }
+
+    public function log($keterangan) {
+    	Log::create([
+    		'keterangan' => $keterangan,
+    		'tgl' => date('Y-m-d'),
+    		'u_id' => Auth::user()->id
+    	]);
+    }
 }
