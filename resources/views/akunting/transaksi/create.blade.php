@@ -730,6 +730,11 @@
 			$("#tgl_pemeriksaan").val(null);
 			$("#p_total").val(null);
 			$("#jml_donasi").val(null);
+			$("#id_pemeriksaan").val(null);
+			$("#id_donasi").val(null);
+			$("#id_honor").val(null);
+			$("#id_pembelian").val(null);
+			$("#id_operasional").val(null);
 		});
 
 		$("#id_tipe").change(function() {
@@ -764,6 +769,11 @@
 			$("#tgl_pemeriksaan").val(null);
 			$("#p_total").val(null);
 			$("#jml_donasi").val(null);
+			$("#id_pemeriksaan").val(null);
+			$("#id_donasi").val(null);
+			$("#id_honor").val(null);
+			$("#id_pembelian").val(null);
+			$("#id_operasional").val(null);
 		});
 
 		$('.table-1').DataTable({

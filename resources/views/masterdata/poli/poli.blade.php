@@ -55,7 +55,7 @@
 					<?php $no=1; ?>
 					@foreach($polis as $poli)
 					<tr>
-						<td><?php echo $no++; ?></td>
+						<td><center><?php echo $no++; ?></center></td>
 						<td>{{$poli->nama_poli}}</td>
 						<td>
 							<div align="center">

@@ -42,7 +42,7 @@
 				<?php $no=1; ?>
 				@foreach($pasiens as $pasien)
 				<tr>
-					<th>{{$no++}}</th>
+					<th><center>{{$no++}}</center></th>
 					<th>
 						<center>
 							<span class="label label-primary">{{strtoupper($pasien->kategoripasien->nama_kategori)}}</span>
