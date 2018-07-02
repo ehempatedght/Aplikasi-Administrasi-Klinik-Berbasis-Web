@@ -1,5 +1,13 @@
 @extends('template')
 @section('main')
+<style>
+.select2-container .select2-choice {
+    display: block!important;
+    height: 30px!important;
+    white-space: nowrap!important;
+    line-height: 26px!important;
+}
+</style>
 <h2>Lihat Pemeriksaan Pasien</h2>
 <ol class="breadcrumb bc-3">
 	<li>
@@ -105,28 +113,82 @@
 					</div>
 					
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama Pemeriksaan</label>
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kategori</label>
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="pemeriksaan" name="nama_pemeriksaan" placeholder="nama pemeriksaan" value="{{$pemeriksaan->nama_pemeriksaan}}" required readonly />
+							<select class="form-control select2 kpemeriksaan" name="id_kpemeriksaan" id="id_kpemeriksaan" required data-placeholder="Pilih Kategori..." disabled>
+								<option></option>
+								<optgroup label="Pilih Kategori">
+                    			@foreach ($k_pemeriksaan as $row)
+                        			<option value="{{ $row->id_kategori }}" @if($pemeriksaan->id_kpemeriksaan == $row->id_kategori) selected @endif>{{ $row->nama_kategori }}</option>
+                    			@endforeach
+                    			</optgroup>
+                			</select>
 						</div>
 					</div>
-					
+
+					<div class="form-group">
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Pemeriksaan</label>
+						<div class="col-sm-5">
+							<select class="form-control select2 kpemeriksaan" name="id_kpemeriksaan" id="id_kpemeriksaan" required data-placeholder="Pilih Kategori..." disabled>
+								<option></option>
+								<optgroup label="Pilih Kategori">
+                    			@foreach ($d_pemeriksaan as $row)
+                        			<option value="{{ $row->id_dpemeriksaan }}" @if($pemeriksaan->id_dpemeriksaan == $row->id_dpemeriksaan) selected @endif>{{ $row->nama_pemeriksaan }}</option>
+                    			@endforeach
+                    			</optgroup>
+                			</select>
+						</div>
+					</div>
+
+					<div id="id_dpemeriksaan"></div>
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tarif</label>
+						
 						<div class="col-sm-5">
-							<input type="text" class="form-control numbers" id="tarif" name="tarif" value="{{$pemeriksaan->tarif}}" required readonly/>
+							<input type="text" required="required" class="form-control numbers tarif" id="tarif" name="tarif" placeholder="Rp. 0,00" value="{{$pemeriksaan->tarif}}" onkeyup="kalkulasi_tarif()" readonly="" />
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Diskon</label>
 						<div class="row">
-							<div class="col-sm-1">
-								<input type="text" class="form-control" id="disc" name="disc" value="{{$pemeriksaan->disc}}" required readonly />
+							<div class="col-md-1">
+								<input type="text" required="required" class="form-control" id="diskon_persen" placeholder="0%" name="disc" value="{{$pemeriksaan->disc}}" min="1" max="3" readonly="" />
 							</div>
-							<label for="field-1" class="col-sm-1 control-label" style="margin-left: -4.9%;">%</label>
-							<div class="col-xs-3">
-								<input type="text" style="width: 116.9%;" class="form-control numbers" id="disc_result" name="disc_result" value="{{$pemeriksaan->subtotal}}" required readonly />
+							<div class="col-md-4">
+								<input type="text" required="required numbers" class="form-control numbers" id="diskon" name="disc_result" placeholder="Rp. 0,00" value="{{$pemeriksaan->disc_result}}" readonly="" style="width: 96%;" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Total</label>
+						
+						<div class="col-sm-5">
+							<input type="text" required="required" class="form-control numbers total" id="total" name="total" placeholder="Rp. 0,00" value="{{$pemeriksaan->total}}" readonly/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jasa Dokter</label>
+						<div class="row">
+							<div class="col-md-1">
+								<input type="text" required="required" class="form-control" id="jasa_dokter_persen" placeholder="0%" name="disc_dokter" value="{{$pemeriksaan->disc_dokter}}" readonly="" />
+							</div>
+							<div class="col-md-4">
+								<input type="text" required="required numbers" class="form-control numbers" id="jasa_dokter_utama" name="disc_dokter_result" placeholder="Rp. 0,00" value="{{$pemeriksaan->disc_dokter_result}}" readonly="" style="width: 96%;"/>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Klinik</label>
+						<div class="row">
+							<div class="col-md-1">
+								<input type="text" required="required" class="form-control numbers" id="klinik_persen" placeholder="0%" name="disc_klinik" readonly="" value="{{$pemeriksaan->disc_klinik}}">
+							</div>
+							<div class="col-md-4">
+								<input type="text" required="required numbers" class="form-control numbers" id="klinik" name="disc_klinik_result" placeholder="Rp. 0,00" value="{{$pemeriksaan->disc_klinik_result}}" readonly="" style="width: 96%;" />
 							</div>
 						</div>
 					</div>

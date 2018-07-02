@@ -30,21 +30,21 @@
 		<table class="table table-bordered datatable" id="table-1">
 			<thead>
 				<tr>
-					<th data-hide="phone">No</th>
+					<th width="1%">No</th>
 					<th>Tanggal</th>
 					<th>Kategori</th>
 					<th>Nama</th>
 					<th>Honor/Jam</th>
 					<th>Jumlah Jam</th>
 					<th>Total</th>
-					<th width="24%">Aksi</th>
+					<th width="20%">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php $no=1; ?>
 				@foreach($honor as $honor)
 				<tr>
-					<th>{{$no++}}</th>
+					<th><center>{{$no++}}</center></th>
 					<th>{{ date('d M Y', strtotime($honor->tgl)) }}</th>
 					<th>{{$honor->confhonor->petugas->category->nama_kategori}}</th>
 					<th>{{$honor->confhonor->petugas->nama}}</th>

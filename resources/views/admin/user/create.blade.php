@@ -106,7 +106,7 @@
 							<label class="control-label"><strong>Master Data:</strong></label>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox"  id="admin" name="role[admin]" @if(is_array(old('role')) && array_key_exists("admin", old('role'))) checked @endif> Admin
+									<input type="checkbox"  id="admin" name="role[admin]" @if(is_array(old('role')) && array_key_exists("admin", old('role'))) checked @endif> Check All
 								</label>
 							</div>
 							<div class="checkbox">
@@ -152,7 +152,7 @@
 							<div class="checkbox">
 								<label>
 									<input type="checkbox" class="check" name="role[rekmedis]" @if(is_array(old('role')) && array_key_exists("rekmedis", old('role'))) checked @endif>
-									Medis
+									Transaksi Klinik
 								</label>
 							</div>
 							<div class="checkbox">
@@ -178,7 +178,7 @@
 							<div class="checkbox">
 								<label>
 									<input type="checkbox" class="check" name="role[lpmedis]" @if(is_array(old('role')) && array_key_exists("lpmedis", old('role'))) checked @endif>
-									Medis
+									Transaksi Klinik
 								</label>
 							</div>
 							<div class="checkbox">

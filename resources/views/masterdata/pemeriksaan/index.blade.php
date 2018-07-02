@@ -43,36 +43,31 @@
 			<table class="table table-bordered datatable" id="table-1">
 				<thead>
 					<tr>
-						<th data-hide="phone">No</th>
+						<th width="1%">No</th>
 						<th>Kategori</th>
 						<th>Nama Pemeriksaan</th>
-						<th width="25%">Aksi</th>
+						<th width="10%">Aksi</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php $no=1; ?>
-					@foreach($pemeriksaans as $pemeriksaan)
+					@foreach($data_pemeriksaan as $row)
 					<tr>
-						<td><?php echo $no++; ?></td>
-						<td>{{$pemeriksaan->kategoripemeriksaan->nama_kategori_pemeriksaan}}</td>
-						<td>{{$pemeriksaan->nama_pemeriksaan}}</td>
+						<td><center><?php echo $no++; ?></center></td>
+						<td>{{$row->kategori_pemeriksaan->nama_kategori}}</td>
+						<td>{{$row->nama_pemeriksaan}}</td>
 						<td>
 							<div align="center">
 								<form action="#" method="post">
-									{{-- {{ csrf_field() }} --}}
-									<a href="#" class="btn btn-sm btn-green btn-icon icon-left">
+									<a href="{{route('pemeriksaan.edit', $row->id_dpemeriksaan)}}" class="btn btn-sm btn-info btn-icon icon-left">
 										<i class="entypo-pencil"></i>
 										Ubah
 									</a>
-									<button type="submit" class="btn btn-sm btn-danger btn-icon icon-left" onclick="return confirm('ANDA YAKIN AKAN MENGHAPUS POLI INI?')">
-					                    <i class="entypo-cancel"> </i>
+									{{-- <button type="submit" class="btn btn-sm btn-danger btn-icon icon-left"> <i class="entypo-trash"></i>
 					                    Hapus
-                  					</button>
+                  					</button> --}}
 								</form>
 							</div> 
-							{{-- {!! Form::open(['method'=>'DELETE','route'=>['petugas.destroy', $petugas->id]]) !!}
-								{{ Form::button('<i class="entypo-pencil"></i> Hapus',['type'=>'submit', 'class'=>'btn btn-danger btn-sm btn-icon icon-left'])}}
-							{!! Form::close() !!} --}}
 						</td>
 					</tr>
 					@endforeach

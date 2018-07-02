@@ -49,7 +49,7 @@
 		</li>
 		
 		@if(Auth::user()->admin == '1' || Auth::user()->petugasmedis == '1' || Auth::user()->vendorobat == '1' || Auth::user()->daftarobat == '1' ||Auth::user()->datapoli == '1' || Auth::user()->pasien == '1' || Auth::user()->peralatan == '1')
-		<li class="{{set_active(['masterdata.petugasmedis.datapetugasmedis.index','masterdata.petugasmedis.jadwal.index','masterdata.vendorobat.index','masterdata.daftarobat.index','masterdata.poli.index','masterdata.pasien.kategori.index','masterdata.pasien.kelurahan.index','masterdata.pasien.datapasien.index','masterdata.pasien.datapasien.create','masterdata.peralatan.medis.index','masterdata.peralatan.kantor.index','masterdata.petugasmedis.datapetugasmedis.create','masterdata.petugasmedis.datapetugasmedis.ubah','masterdata.petugasmedis.jadwal.petugas','masterdata.petugasmedis.jadwal.atur','masterdata.petugasmedis.datapetugasmedis.show','masterdata.vendorobat.create','masterdata.vendorobat.edit','masterdata.daftarobat.create','masterdata.daftarobat.edit','masterdata.pasien.kelurahan.create','masterdata.pasien.kelurahan.edit','masterdata.pasien.datapasien.ubah','masterdata.pasien.datapasien.lihat'])}} {{set_opened(['masterdata.petugasmedis.datapetugasmedis.index','masterdata.petugasmedis.jadwal.index','masterdata.vendorobat.index','masterdata.daftarobat.index','masterdata.poli.index','masterdata.pasien.kategori.index','masterdata.pasien.kelurahan.index','masterdata.pasien.datapasien.index','masterdata.pasien.datapasien.create','masterdata.peralatan.medis.index','masterdata.peralatan.kantor.index','masterdata.petugasmedis.datapetugasmedis.create','masterdata.petugasmedis.datapetugasmedis.ubah','masterdata.petugasmedis.jadwal.petugas','masterdata.petugasmedis.jadwal.atur','masterdata.petugasmedis.datapetugasmedis.show','masterdata.vendorobat.create','masterdata.vendorobat.edit','masterdata.daftarobat.create','masterdata.daftarobat.edit','masterdata.pasien.kelurahan.create','masterdata.pasien.kelurahan.edit','masterdata.pasien.datapasien.ubah','masterdata.pasien.datapasien.lihat'])}} has-sub">
+		<li class="{{set_active(['masterdata.petugasmedis.datapetugasmedis.index','masterdata.petugasmedis.jadwal.index','masterdata.vendorobat.index','masterdata.daftarobat.index','masterdata.poli.index','masterdata.pasien.kategori.index','masterdata.pasien.kelurahan.index','masterdata.pasien.datapasien.index','masterdata.pasien.datapasien.create','masterdata.peralatan.medis.index','masterdata.peralatan.kantor.index','masterdata.petugasmedis.datapetugasmedis.create','masterdata.petugasmedis.datapetugasmedis.ubah','masterdata.petugasmedis.jadwal.petugas','masterdata.petugasmedis.jadwal.atur','masterdata.petugasmedis.datapetugasmedis.show','masterdata.vendorobat.create','masterdata.vendorobat.edit','masterdata.daftarobat.create','masterdata.daftarobat.edit','masterdata.pasien.kelurahan.create','masterdata.pasien.kelurahan.edit','masterdata.pasien.datapasien.ubah','masterdata.pasien.datapasien.lihat','pemeriksaan.index','pemeriksaan.create','pemeriksaan.edit'])}} {{set_opened(['masterdata.petugasmedis.datapetugasmedis.index','masterdata.petugasmedis.jadwal.index','masterdata.vendorobat.index','masterdata.daftarobat.index','masterdata.poli.index','masterdata.pasien.kategori.index','masterdata.pasien.kelurahan.index','masterdata.pasien.datapasien.index','masterdata.pasien.datapasien.create','masterdata.peralatan.medis.index','masterdata.peralatan.kantor.index','masterdata.petugasmedis.datapetugasmedis.create','masterdata.petugasmedis.datapetugasmedis.ubah','masterdata.petugasmedis.jadwal.petugas','masterdata.petugasmedis.jadwal.atur','masterdata.petugasmedis.datapetugasmedis.show','masterdata.vendorobat.create','masterdata.vendorobat.edit','masterdata.daftarobat.create','masterdata.daftarobat.edit','masterdata.pasien.kelurahan.create','masterdata.pasien.kelurahan.edit','masterdata.pasien.datapasien.ubah','masterdata.pasien.datapasien.lihat','pemeriksaan.index','pemeriksaan.create','pemeriksaan.edit'])}} has-sub">
 			<a href="#">
 				<i class="entypo-layout"></i>
 				<span class="title">Master Data</span>
@@ -98,6 +98,11 @@
 					</a>
 				</li>
 				@endif
+				<li class="{{set_active(['pemeriksaan.index','pemeriksaan.create','pemeriksaan.edit'])}}">
+					<a href="{{route('pemeriksaan.index')}}">
+						<span class="title">Data Pemeriksaan</span>
+					</a>
+				</li>
 				@if(Auth::user()->datapoli == '1')
 				<li class="{{set_active('masterdata.poli.index')}}">
 					<a href="{{route('masterdata.poli.index')}}">
@@ -167,7 +172,7 @@
 				<li class="{{set_active(['medis.reservasi.index','medis.pemeriksaan.index','rekam_medis.index','medis.pemberian.index','medis.reservasi.create','medis.pemeriksaan.create','medis.pemeriksaan.show','rekam_medis.create','rekam_medis.show','medis.pemberian.create','medis.pemberian.edit','perekaman_aktivitas.keuangan.penerimaan.donasi_obat.create'])}} {{set_opened(['medis.reservasi.index','medis.pemeriksaan.index','rekam_medis.index','medis.pemberian.index','medis.reservasi.create','medis.pemeriksaan.create','medis.pemeriksaan.show','rekam_medis.create','rekam_medis.show','medis.pemberian.create','medis.pemberian.edit'])}} has-sub">
 					<a href="#">
 						<i class="fa fa-medkit"></i>
-						<span class="title">Medis</span>
+						<span class="title">Transaksi Klinik</span>
 					</a>
 					<ul>
 						<li class="{{set_active(['medis.reservasi.index','medis.reservasi.create'])}}">
@@ -202,7 +207,7 @@
 					<ul>
 						<li class="{{set_active(['perekaman_aktivitas.keuangan.penerimaan.donasi_uang.index','perekaman_aktivitas.keuangan.penerimaan.donasi_uang.create','perekaman_aktivitas.keuangan.penerimaan.donasi_uang.edit','perekaman_aktivitas.keuangan.penerimaan.donasi_uang.show','perekaman_aktivitas.keuangan.penerimaan.donasi_obat.index','perekaman_aktivitas.keuangan.penerimaan.donasi_obat.create','perekaman_aktivitas.keuangan.penerimaan.donasi_obat.edit','perekaman_aktivitas.keuangan.penerimaan.donasi_obat.show'])}} {{set_opened(['perekaman_aktivitas.keuangan.penerimaan.donasi_uang.index','perekaman_aktivitas.keuangan.penerimaan.donasi_uang.create','perekaman_aktivitas.keuangan.penerimaan.donasi_uang.edit','perekaman_aktivitas.keuangan.penerimaan.donasi_uang.show','perekaman_aktivitas.keuangan.penerimaan.donasi_obat.index','perekaman_aktivitas.keuangan.penerimaan.donasi_obat.create','perekaman_aktivitas.keuangan.penerimaan.donasi_obat.edit','perekaman_aktivitas.keuangan.penerimaan.donasi_obat.show'])}} has-sub">
 							<a href="#">
-								<span class="title">Pemasukan</span>
+								<span class="title">Penerimaan</span>
 							</a>
 							<ul>
 								<li class="{{set_active(['perekaman_aktivitas.keuangan.penerimaan.donasi_uang.index','perekaman_aktivitas.keuangan.penerimaan.donasi_uang.create','perekaman_aktivitas.keuangan.penerimaan.donasi_uang.edit','perekaman_aktivitas.keuangan.penerimaan.donasi_uang.show'])}}">

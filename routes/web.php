@@ -67,6 +67,15 @@ Route::group(['middleware'=> ['web','auth']], function() {
 			Route::post('/update/{id}', ['as'=>'masterdata.poli.update','uses'=>'masterdata\PoliController@doUpdate']);
 			Route::post('/hapus/{id}',['as'=>'masterdata.poli.hapus','uses'=>'masterdata\PoliController@doDelete']);
 		});
+
+		//data pemeriksaan
+		Route::group(['prefix'=>'data_pemeriksaan'], function () {
+			Route::get('/', ['uses'=>'masterdata\DataPemeriksaanController@index'])->name('pemeriksaan.index');
+			Route::get('/create', ['uses'=>'masterdata\DataPemeriksaanController@create'])->name('pemeriksaan.create');
+			Route::post('/save', ['uses'=>'masterdata\DataPemeriksaanController@save'])->name('pemeriksaan.save');
+			Route::get('/edit/{id}', ['uses'=>'masterdata\DataPemeriksaanController@edit'])->name('pemeriksaan.edit');
+			Route::post('/update/{id}', ['uses'=>'masterdata\DataPemeriksaanController@update'])->name('pemeriksaan.update');
+		});
 		
 		Route::group(['prefix'=>'pasien'], function() {
 			//Kategori Pasien
@@ -238,6 +247,8 @@ Route::group(['middleware'=> ['web','auth']], function() {
 				Route::get('/create', ['uses'=>'rekam_aktivitas\medis\PemeriksaanController@create'])->name('medis.pemeriksaan.create');
 				Route::post('/save', ['uses'=>'rekam_aktivitas\medis\PemeriksaanController@save'])->name('medis.pemeriksaan.save');
 				Route::get('/show/{id}', ['uses'=>'rekam_aktivitas\medis\PemeriksaanController@show'])->name('medis.pemeriksaan.show');
+				//PEMBAYARAN
+				Route::post('/bayar/{id}', ['uses'=>'rekam_aktivitas\medis\PemeriksaanController@bayar'])->name('medis.pemeriksaan.bayar');
 			});
 
 			//pemberian

@@ -30,19 +30,19 @@
 		<table class="table table-bordered datatable" id="table-1">
 			<thead>
 				<tr>
-					<th width="5%">No</th>
+					<th width="1%">No</th>
 					<th>Tanggal</th>
 					<th>Vendor</th>
 					<th>Obat</th>
 					<th>Jumlah</th>
-					<th width="24%">Aksi</th>
+					<th width="18%">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php $no=1; ?>
 				@foreach($data as $data)
 				<tr>
-					<th>{{$no++}}</th>
+					<th><center>{{$no++}}</center></th>
 					<th>{{ date('d M Y', strtotime($data->tgl)) }}</th>
 					<th>{{$data->vendor->nama_vendor}}</th>
 					<th>{{$data->jenisobat->nama_obat}}</th>

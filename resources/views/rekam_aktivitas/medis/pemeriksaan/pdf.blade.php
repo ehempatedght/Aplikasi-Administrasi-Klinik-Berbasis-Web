@@ -73,10 +73,10 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
             <td>{{$checkkup->reservasi->pasien->nama_pasien}}</td>
             <td>{{$checkkup->reservasi->poli->nama_poli}}</td>
             <td>{{$checkkup->reservasi->dokter->nama}}</td>
-            <td class="numbers">{{$checkkup->subtotal}}</td>
+            <td class="numbers">{{$checkkup->total}}</td>
             <td>{{$checkkup->user->first_name}}</td>
           </tr>
-          <?php $total += $checkkup->subtotal; ?>
+          <?php $total += $checkkup->total; ?>
           @endforeach
         </tbody>
       </table>

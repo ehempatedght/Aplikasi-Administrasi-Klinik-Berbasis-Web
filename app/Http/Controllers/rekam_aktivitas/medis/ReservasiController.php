@@ -36,7 +36,6 @@ class ReservasiController extends Controller
 			'kd_res' => 'required|max:10',
 			'poli_id' => 'required|integer',
 			'pasien_id' => 'required',
-			'dokter_id' => 'required',
 			'no_urut' => 'required',
 			'no_rm' => 'required'
 		));

@@ -27,7 +27,7 @@ class Reservasi extends Model
     public function dokter() {
     	return $this->belongsTo('App\Petugas','dokter_id');
     }
-
+    
     public function pemeriksaan() {
         return $this->hasMany('App\RekamMedis','res_id','id_res');
     }

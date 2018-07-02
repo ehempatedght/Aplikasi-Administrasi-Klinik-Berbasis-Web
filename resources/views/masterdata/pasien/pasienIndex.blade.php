@@ -58,7 +58,7 @@
 										<i class="entypo-pencil"></i>
 										Ubah
 									</a>
-									<a href="{{route('masterdata.pasien.datapasien.lihat', $pasien->id)}}" class="btn btn-sm btn-green btn-icon icon-left">
+									<a href="{{route('masterdata.pasien.datapasien.lihat', $pasien->id)}}" class="btn btn-sm btn-blue btn-icon icon-left">
 										<i class="entypo-eye"></i>
 										Lihat
 									</a>

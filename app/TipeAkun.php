@@ -16,7 +16,7 @@ class TipeAkun extends Model
     ];
 
     public function namaAkun() {
-    	return $this->hasMany('App\NamaAkun','id_tipe');
+    	return $this->hasMany('App\NamaAkun','id_tipe','id_tipe');
     }
 
     public function transaksi_() {

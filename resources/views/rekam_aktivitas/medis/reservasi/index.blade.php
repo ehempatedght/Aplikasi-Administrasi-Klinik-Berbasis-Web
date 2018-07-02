@@ -50,7 +50,11 @@
 					<th>{{$reservas->pasien->nama_pasien}}</th>
 					<th>{{$reservas->pasien->jenis_kelamin}}</th>
 					<th>{{$reservas->pasien->kategoripasien->nama_kategori}}</th>
+					@if($reservas->dokter_id == '0')
+					<th>-</th>
+					@else
 					<th>{{$reservas->dokter->nama}}</th>
+					@endif
 					<th>{{$reservas->poli->nama_poli}}</th>
 					<th>{{$reservas->no_urut}}</th>
 					<th>

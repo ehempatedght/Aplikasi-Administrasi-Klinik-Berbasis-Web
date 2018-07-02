@@ -121,7 +121,7 @@
 							<label class="control-label"><strong>Master Data:</strong></label>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox"  id="admin" name="role[admin]" @if($data->admin == '1') checked @endif> Admin
+									<input type="checkbox"  id="admin" name="role[admin]" @if($data->admin == '1') checked @endif> Check All
 								</label>
 							</div>
 							<div class="checkbox">
@@ -167,7 +167,7 @@
 							<div class="checkbox">
 								<label>
 									<input type="checkbox" class="check" name="role[rekmedis]" @if($data->rekmedis == '1') checked @endif>
-									Medis
+									Transaksi Klinik
 								</label>
 							</div>
 							<div class="checkbox">
@@ -193,7 +193,7 @@
 							<div class="checkbox">
 								<label>
 									<input type="checkbox" class="check" name="role[lpmedis]" @if($data->lpmedis == '1') checked @endif>
-									Medis
+									Transaksi Klinik
 								</label>
 							</div>
 							<div class="checkbox">

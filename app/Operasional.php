@@ -8,7 +8,7 @@ class Operasional extends Model
 {
     protected $table = 'operasional';
     protected $fillable = [
-    	'tgl','keterangan','jumlah','total'
+    	'tgl','keterangan','jumlah','total','status_akunting'
     ];
     protected $hidden = [
     	'created_at','updated_at'

@@ -10,40 +10,45 @@ use App\Pasien;
 use App\Biayapendaftaran;
 use Auth;
 use App\User;
+use App\Kategoripemeriksaan;
+use App\DataPemeriksaan;
+use App\Pasien as Data;
 class PemeriksaanController extends Controller 
 {
     public function index() {
     	$pemeriksaan = Pemeriksaan::all();
-    	return view('rekam_aktivitas.medis.pemeriksaan.index')->withPemeriksaan($pemeriksaan);
+        $tampilan_penuh = true;
+    	return view('rekam_aktivitas.medis.pemeriksaan.index', get_defined_vars());
     }
 
     public function create() {
     	$reservasi = Reservasi::orderBy('id_res','DESC')->get();
+        $pasien = Data::orderBy('id','ASC')->get();
+        $k_pemeriksaan = Kategoripemeriksaan::get();
+        $d_pemeriksaan = DataPemeriksaan::get();
         $noFaktur = $this->no_faktur();
         return view('rekam_aktivitas.medis.pemeriksaan.create', get_defined_vars());
          
     }
 
     public function save(Request $req) {
-    	$this->validateWith(array(
-    		'tgl' => 'required',
-    		'no_faktur' => 'required',
-    		'reservasi_id' => 'required|integer',
-    		'nama_pemeriksaan' => 'required|max:25',
-    		'tarif' => 'required',
-    		'disc' => 'required',
-    		'subtotal' => 'required'
-    	));
-
     	$data = $req->all();
+        //dd($data);
     	Pemeriksaan::create([
     		'tgl' => date('Y-m-d', strtotime($data['tgl'])),
     		'no_faktur' => $data['no_faktur'],
+            'id_kpemeriksaan' => $data['id_kpemeriksaan'],
+            'id_dpemeriksaan' => $data['id_dpemeriksaan'],
     		'reservasi_id' => $data['reservasi_id'],
-    		'nama_pemeriksaan' => $data['nama_pemeriksaan'],
     		'tarif' => str_replace(',', '', $data['tarif']),
     		'disc' => $data['disc'],
-    		'subtotal' => str_replace(',', '', $data['subtotal']),
+            'disc_result' => str_replace(',', '', $data['disc_result']),
+            'disc_dokter' => $data['disc_dokter'],
+            'disc_dokter_result' => str_replace(',', '', $data['disc_dokter_result']),
+            'disc_klinik' => $data['disc_klinik'],
+            'disc_klinik_result' => str_replace(',', '', $data['disc_klinik_result']),
+    		'total' => str_replace(',', '', $data['total']),
+            'bayar' => 0,
             'u_id' => Auth::user()->id,
     	]);
     	return redirect()->route('medis.pemeriksaan.index')->with('message','Pemeriksaan berhasil ditambah');
@@ -51,8 +56,19 @@ class PemeriksaanController extends Controller
 
     public function show($id) {
     	 $reservasi = Reservasi::all();
+         $k_pemeriksaan = Kategoripemeriksaan::get();
+         $d_pemeriksaan = DataPemeriksaan::get();
     	 $pemeriksaan = Pemeriksaan::find($id);
     	 return view('rekam_aktivitas.medis.pemeriksaan.show', get_defined_vars());
+    }
+
+    public function bayar(Request $req, $id) {
+        $data = $req->all();
+        Pemeriksaan::find($id)->update([
+            'status_bayar' => str_replace(',','', $data['status_bayar']),
+        ]);
+
+        return redirect()->back()->with('message2','PEMBAYARAN SUKSES!');
     }
 
     public function no_faktur() {

@@ -46,7 +46,7 @@
 		<table class="table table-bordered datatable" id="table-1">
 			<thead>
 				<tr>
-					<th width="3%">No</th>
+					<th width="1%">No</th>
 					<th>Tipe</th>
 					<th>Nama Akun</th>
 					<th width="20%">Aksi</th>
@@ -56,7 +56,7 @@
 				<?php $no=1; ?>
 				@foreach($akun as $akun)
 				<tr>
-					<td>{{$no++}}</td>
+					<td><center>{{$no++}}</center></td>
 					<td>{{$akun->tipeAkun->nama_tipe}}</td>
 					<td>{{$akun->nama_akun}}</td>
 					<td>

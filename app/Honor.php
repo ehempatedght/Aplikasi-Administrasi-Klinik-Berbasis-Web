@@ -8,7 +8,7 @@ class Honor extends Model
 {
     protected $table = 'honor';
     protected $fillable = [
-    	'tgl','category_id','petugas_id','confhonor_id','jam','total'
+    	'tgl','category_id','petugas_id','confhonor_id','jam','total','status_akunting'
     ];
     protected $hidden = [
     	'created_at','updated_at'

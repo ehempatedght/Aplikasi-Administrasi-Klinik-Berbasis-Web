@@ -41,7 +41,7 @@ class RekamMedisController extends Controller
     		'kondisi_pasien' => $data['kondisi_pasien'],
     		'u_id' => Auth::user()->id
     	]);
-
+        
         if ($data['res_id'] != null) {
             Reservasi::find($data['res_id'])->update([
                 'status_res' => 'Sudah',

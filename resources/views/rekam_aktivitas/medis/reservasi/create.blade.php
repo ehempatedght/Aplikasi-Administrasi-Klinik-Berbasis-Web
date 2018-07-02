@@ -1,5 +1,13 @@
 @extends('template')
 @section('main')
+<style>
+.select2-container .select2-choice {
+    display: block!important;
+    height: 30px!important;
+    white-space: nowrap!important;
+    line-height: 26px!important;
+}
+</style>
 <h2>Tambah Reservasi Pasien</h2>
 <ol class="breadcrumb bc-3">
 	<li>
@@ -144,7 +152,7 @@
 					<table class="table table-bordered datatable" id="table-1">
 						<thead>
  							<tr>
-								<th>No</th>
+								<th width="1%">No</th>
 								<th>No. RM</th>
 								<th>Kategori</th>
 								<th>Nama Pasien</th>
@@ -155,7 +163,7 @@
 							<?php $no=1; ?>
 							@foreach($pasien as $pasien)
 							<tr>
-								<td>{{$no++}}</td>
+								<td><center>{{$no++}}</center></td>
 								<td>{{$pasien->no_rm}}</td>
 								<td>{{$pasien->kategoripasien->nama_kategori}}</td>
 								<td>{{$pasien->nama_pasien}}</td>
@@ -185,7 +193,7 @@
 					<table class="table table-bordered datatable" id="table-1">
 						<thead>
  							<tr>
-								<th>No</th>
+								<th width="1%">No</th>
 								<th>Nama Dokter</th>
 								<th>Spesialisasi</th>
 								<th>Aksi</th>
@@ -195,7 +203,7 @@
 							<?php $no=1; ?>
 							@foreach($dokter as $dokter)
 							<tr>
-								<td>{{$no++}}</td>
+								<td><center>{{$no++}}</center></td>
 								<td>{{$dokter->nama}}</td>
 								<td>{{$dokter->spesialisasi}}</td>
 								<td align="center">

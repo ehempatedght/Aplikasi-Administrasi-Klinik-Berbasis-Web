@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kategoripemeriksaan extends Model
 {
-    protected $table = 'category_pemeriksaan';
-    protected $fillable = ['nama_kategori_pemeriksaan'];
+    protected $table = 'kategori_pemeriksaan';
+    protected $primaryKey = 'id_kategori'; 
+    protected $fillable = ['nama_kategori'];
+    protected $hidden = ['created_at','updated_at'];
 
-    public function pemeriksaan() {
-    	return $this->hasMany('App\Pemeriksaan','id_kategori_pemeriksaan');
+    public function data_pemeriksaan() {
+    	return $this->hasMany('App\DataPemeriksaan','id_kategori', 'id_kategori');
     }
 }

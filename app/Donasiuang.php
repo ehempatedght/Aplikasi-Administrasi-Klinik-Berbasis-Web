@@ -8,7 +8,7 @@ class Donasiuang extends Model
 {
     protected $table = 'donasi_uang';
     protected $fillable = [
-    	'nama_donatur','cp','hp','jml_donasi','keterangan'
+    	'nama_donatur','cp','hp','jml_donasi','keterangan','status_akunting'
     ];
     protected $hidden = [
     	'created_at','updated_at'

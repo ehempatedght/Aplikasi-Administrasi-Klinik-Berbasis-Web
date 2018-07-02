@@ -103,7 +103,7 @@ class UserController extends Controller
         $data = User::where('id', $id)->first();
         return view('admin.user.edit', get_defined_vars());
     }
-
+    
     public function update(Request $request, $id) {
         $data = $request->all();
 

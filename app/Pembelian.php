@@ -8,7 +8,7 @@ class Pembelian extends Model
 {
     protected $table = 'pembelian';
     protected $fillable = [
-    	'tgl','vendor_id','obat_id','jumlah','harga','total'
+    	'tgl','vendor_id','obat_id','jumlah','harga','total','status_akunting'
     ];
     protected $hidden = [
     	'created_at','updated_at'

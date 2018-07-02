@@ -1,5 +1,13 @@
 @extends('template')
 @section('main')
+<style>
+.select2-container .select2-choice {
+    display: block!important;
+    height: 30px!important;
+    white-space: nowrap!important;
+    line-height: 26px!important;
+}
+</style>
 <h2>Tambah Pemeriksaan Pasien</h2>
 <ol class="breadcrumb bc-3">
 	<li>
@@ -22,7 +30,7 @@
 	<div class="col-md-12">
 		<div class="panel panel-primary" data-collapsed="0">
 			<div class="panel-body">
-				<form role="form" class="form-horizontal form-groups-bordered" action="{{ route('medis.pemeriksaan.save') }}" method="post">
+				<form role="form" class="form-horizontal" action="{{ route('medis.pemeriksaan.save') }}" method="post">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tanggal</label>
@@ -89,7 +97,7 @@
 							<input type="text" class="form-control" id="no_reservasi" name="no_reservasi" placeholder="nomor reservasi" value="{{ old('no_reservasi') }}" required readonly/>
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Poli</label>
 						<div class="col-sm-5">
@@ -103,47 +111,73 @@
 							<input type="text" class="form-control" id="dokter" name="dokter" placeholder="nama dokter" value="{{ old('dokter') }}" required readonly />
 						</div>
 					</div>
-					
+
 					<div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama Pemeriksaan</label>
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kategori</label>
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="pemeriksaan" name="nama_pemeriksaan" placeholder="nama pemeriksaan" value="{{ old('nama_pemeriksaan') }}" required/>
+							<select class="form-control select2 kpemeriksaan" name="id_kpemeriksaan" id="id_kpemeriksaan" required data-placeholder="Pilih Kategori...">
+								<option></option>
+								<optgroup label="Pilih Kategori">
+                    			@foreach ($k_pemeriksaan as $row)
+                        			<option value="{{ $row->id_kategori }}">{{ $row->nama_kategori }}</option>
+                    			@endforeach
+                    			</optgroup>
+                			</select>
 						</div>
 					</div>
-					
+					<div id="id_dpemeriksaan"></div>
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tarif</label>
+						
 						<div class="col-sm-5">
-							<input type="text" class="form-control numbers" id="tarif" name="tarif" value="0" required/>
+							<input type="text" required="required" class="form-control numbers tarif" id="tarif" name="tarif" placeholder="Rp. 0,00" value="0" onkeyup="kalkulasi_tarif()" />
 						</div>
 					</div>
-					
-					{{-- <div class="form-group">
-						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jumlah</label>
-						<div class="row">
-							<div class="col-sm-1">
-								<input type="text" class="form-control" id="jml" name="jml" value="1" required/>
-							</div>
-							<label for="field-1" class="col-sm-1 control-label">Total</label>
-							<div class="col-xs-3">
-								<input type="text" class="form-control numbers" id="total" name="total" value="0" required readonly />
-							</div>
-						</div>
-					</div> --}}
-					
+
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Diskon</label>
 						<div class="row">
-							<div class="col-sm-1">
-								<input type="text" class="form-control" id="disc" name="disc" value="0" required/>
+							<div class="col-md-1">
+								<input type="text" required="required" class="form-control" id="diskon_persen" placeholder="0%" name="disc" value="0" min="1" max="3" />
 							</div>
-							<label for="field-1" class="col-sm-1 control-label" style="margin-left: -4.9%;">%</label>
-							<div class="col-xs-3">
-								<input type="text" style="width: 116.9%;" class="form-control numbers" id="disc_result" name="subtotal" value="0" required readonly />
+							<div class="col-md-4">
+								<input type="text" required="required numbers" class="form-control numbers" id="diskon" name="disc_result" placeholder="Rp. 0,00" value="0" readonly="" style="width: 96%;" />
 							</div>
 						</div>
 					</div>
-					
+
+					<div class="form-group">
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Total</label>
+						
+						<div class="col-sm-5">
+							<input type="text" required="required" class="form-control numbers total" id="total" name="total" placeholder="Rp. 0,00" value="0" readonly/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jasa Dokter</label>
+						<div class="row">
+							<div class="col-md-1">
+								<input type="text" required="required" class="form-control" id="jasa_dokter_persen" placeholder="0%" name="disc_dokter" value="0"/>
+							</div>
+							<div class="col-md-4">
+								<input type="text" required="required numbers" class="form-control numbers" id="jasa_dokter_utama" name="disc_dokter_result" placeholder="Rp. 0,00" value="0" readonly="" style="width: 96%;"/>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Klinik</label>
+						<div class="row">
+							<div class="col-md-1">
+								<input type="text" required="required" class="form-control numbers" id="klinik_persen" placeholder="0%" name="disc_klinik" readonly="">
+							</div>
+							<div class="col-md-4">
+								<input type="text" required="required numbers" class="form-control numbers" id="klinik" name="disc_klinik_result" placeholder="Rp. 0,00" value="0" readonly="" style="width: 96%;" />
+							</div>
+						</div>
+					</div>
+
 					{{-- <div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;SubTotal</label>
 							<div class="col-sm-5">
@@ -210,73 +244,98 @@
 <script type="text/javascript">
 
 	$(document).ready(function () {
-
-		// $("#dokter_id").change(function(){
-		// 	var nama = $(this).find('option:selected').text();
-		// 	var id = $(this).val();
-		// 	$.get(home_url + '/perekaman_aktivitas/medis/pendaftaran/search_spesialisasi/' + id, function(data) {
-		// 		$('#spesialisasi').val(data);
-		// 	});
-		// });
-
-		$("#jml").keyup(function() {
-			var tarif = $("#tarif").val();
-			var jml = $("#jml").val();
-			var hasil = tarif * jml;
-			$("#total").val(hasil);
-			$("#subtotal").val(hasil);
+		$(".numbers").number(true,0);
+		$("#klinik_persen").val(100);
+		$('#id_kpemeriksaan').change(function() {
+			var id_kd = $(this).val();
+			var html = '';
+			$("#id_dpemeriksaan").empty();
+			if (id_kd == "1") {
+				html += 
+				'<div class="form-group">'+
+				'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Pemeriksaan</label>'+
+				'<div class="col-sm-5">'+
+				'<select class="form-control dpemeriksaan" name="id_dpemeriksaan" id="id_pemeriksaan" required data-placeholder="Pilih Pemeriksaan...">'+
+				'<option></option>'+
+				'<optgroup label="Pilih Pemeriksaan">'+
+                @foreach ($d_pemeriksaan as $row)
+                @if($row->id_kategori == '1')
+                '<option value="{{ $row->id_dpemeriksaan }}">{{ $row->nama_pemeriksaan }}</option>'+
+                @endif
+                @endforeach
+                '</optgroup>'+
+                '</select>'+
+				'</div>'+
+				'</div>';
+				$("#id_dpemeriksaan").append(html);
+				$("#id_pemeriksaan").select2();
+				
+			} else if(id_kd == "2") {
+				html += 
+				'<div class="form-group">'+
+				'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Pemeriksaan</label>'+
+				'<div class="col-sm-5">'+
+				'<select class="form-control dpemeriksaan" name="id_dpemeriksaan" id="id_pemeriksaan" required data-placeholder="Pilih Pemeriksaan...">'+
+				'<option></option>'+
+				'<optgroup label="Pilih Pemeriksaan">'+
+                @foreach ($d_pemeriksaan as $row)
+                @if($row->id_kategori == '2')
+                '<option value="{{ $row->id_dpemeriksaan }}">{{ $row->nama_pemeriksaan }}</option>'+
+                @endif
+                @endforeach
+                '</optgroup>'+
+                '</select>'+
+				'</div>'+
+				'</div>';
+				$("#id_dpemeriksaan").append(html);
+				$("#id_pemeriksaan").select2();
+			} else if(id_kd == "3") {
+				html += 
+				'<div class="form-group">'+
+				'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Pemeriksaan</label>'+
+				'<div class="col-sm-5">'+
+				'<select class="form-control dpemeriksaan" name="id_dpemeriksaan" id="id_pemeriksaan" required data-placeholder="Pilih Pemeriksaan...">'+
+				'<option></option>'+
+				'<optgroup label="Pilih Pemeriksaan">'+
+                @foreach ($d_pemeriksaan as $row)
+                @if($row->id_kategori == '3')
+                '<option value="{{ $row->id_dpemeriksaan }}">{{ $row->nama_pemeriksaan }}</option>'+
+                @endif
+                @endforeach
+                '</optgroup>'+
+                '</select>'+
+				'</div>'+
+				'</div>';
+				$("#id_dpemeriksaan").append(html);
+				$("#id_pemeriksaan").select2();
+			} else {
+				html += 
+				'<div class="form-group">'+
+				'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Pemeriksaan</label>'+
+				'<div class="col-sm-5">'+
+				'<select class="form-control dpemeriksaan" name="id_dpemeriksaan" id="id_pemeriksaan" required data-placeholder="Pilih Pemeriksaan...">'+
+				'<option></option>'+
+				'<optgroup label="Pilih Pemeriksaan">'+
+                @foreach ($d_pemeriksaan as $row)
+                @if($row->id_kategori == '4')
+                '<option value="{{ $row->id_dpemeriksaan }}">{{ $row->nama_pemeriksaan }}</option>'+
+                @endif
+                @endforeach
+                '</optgroup>'+
+                '</select>'+
+				'</div>'+
+				'</div>';
+				$("#id_dpemeriksaan").append(html);
+				$("#id_pemeriksaan").select2();
+			}
 		});
+			// $.get(home_url + '/perekaman_aktivitas/medis/pemeriksaan/get_data/' + id_kd, function(data){
+			// 	$.each(data, function(index, value) {
+   //              $('#tarif').append($("<option></option>").attr("value", value.tarif).text(value.tarif));
+   //              });
+			// });
 
-		$("#tarif").keyup(function() {
-			var tarif = 0;
-			var jml = $("#jml").val();
-			$("#tarif").each(function() {
-				var num = parseFloat(this.value.replace(/,/g, ''));
-				if (!isNaN(num)) {
-					tarif += num;
-				}
-
-				$("#total, #subtotal").val(tarif * jml);
-			});
-		});
-
-		$("#disc").keyup(function() {
-			var tarif = parseFloat($("#tarif").val());
-			var total = parseFloat($("#total").val());
-			var disc = parseInt($("#disc").val());
-			var subtotal = parseFloat($("#subtotal").val());
-			var hasil_diskon = parseFloat((tarif - ((disc/100) * tarif)));
-			$("#disc_result").val(hasil_diskon);
-			if ($(this).val().trim().length===0) {
-			 	$("#subtotal").val(total);
-			} 
-		});
-
-		$('#disc').keyup(function(e) {
-                var num = $(this).val();
-                if (e.which!=8) {
-                    num = sortNumber(num);
-                   if(isNaN(num)||num<0 ||num>100) {
-                       alert("Tidak boleh melebihi 100% !");
-                       $(this).val(sortNumber(num.substr(0,num.length-1)));
-                   }
-                else
-                    $(this).val(sortNumber(num));
-                }
-                else {
-                    if(num < 2)
-                        $(this).val("");
-                    else
-                        $(this).val(sortNumber(num.substr(0,num.length-1)));
-                }
-            });
-            function sortNumber(n){
-                var newNumber="";
-                for(var i = 0; i<n.length; i++)
-                    if(n[i] != "%")
-                        newNumber += n[i];
-                return newNumber;
-            }
+		
 
 		$('.datatable').DataTable({
 	      "oLanguage": {
@@ -313,5 +372,96 @@
 			$("#modal-5").modal('hide');
 		});
 	});
+
+$("#diskon_persen").keyup(function () {
+		var tarif = parseFloat($("#tarif").val());
+		var diskon = parseFloat($("#diskon_persen").val());
+		var total = tarif-((diskon/100)*tarif);
+		var sisa = tarif-total;
+		$("#total").val(total);
+		$("#klinik").val(total);
+		$("#diskon").val(sisa);
+		if ($(this).val().trim().length===0) {
+			$("#total").val(tarif);
+		}
+		if ($(this).val().trim().length===0) {
+			$("#klinik").val(tarif);
+		}
+	});
+
+	$("#jasa_dokter_persen").each(function () {
+		$(this).keyup(function () {
+			var total = parseFloat($("#total").val());
+			var klinik = total;
+			var jasa_dokter_persen = parseFloat($("#jasa_dokter_persen").val());
+			var klinik_persen = 100;
+			var sisa_klinik_persen =  klinik_persen - jasa_dokter_persen;
+			var diskon = klinik - ((jasa_dokter_persen/100)*klinik);
+			var sisa = klinik - diskon;
+			if (!isNaN(sisa_klinik_persen)) {
+				klinik_persen -= jasa_dokter_persen;
+			}
+			$("#jasa_dokter_utama").val(sisa);
+			$("#klinik").val(diskon);
+			$("#klinik_persen").val(klinik_persen);
+			// $("#klinik_persen").val(sisa_klinik_persen);
+			 if ($("#jasa_dokter_persen").val() == 100) {
+			 	$("#jasa_dokter_utama").val(klinik);
+			 } 
+			 if ($(this).val().trim().length===0) {
+			 	$("#klinik_persen").val(100);
+			 } 
+
+			 if ($(this).val().trim().length===0) {
+			 	$("#klinik").val(total);
+			 } 
+		});
+	});
+
+	function kalkulasi_tarif() {
+		// var tarif = 0;
+		var tarif = parseFloat($("#tarif").val());
+		var jasa_dokter_persen = parseFloat($("#jasa_dokter_persen").val());
+		var klinik_persen = parseFloat($("#klinik_persen").val());
+		var diskon_persen = parseFloat($("#diskon_persen").val());
+		var result1 = parseFloat((tarif - (jasa_dokter_persen/100) * tarif));
+		var result2 = parseFloat((tarif - (klinik_persen/100) * tarif));
+		var result3 = parseFloat((tarif - (diskon_persen/100) * tarif));
+		var sisa_diskon = tarif - result3;
+		var sisa_diskon2 = tarif - result1;
+		var klinik = parseFloat($("#klinik").val());
+		$(".tarif").each(function () {
+			$("#klinik, #total").val(tarif);
+			$("#total, #klinik").val(result3);
+			$("#diskon").val(sisa_diskon);
+			$("#jasa_dokter_utama").val(sisa_diskon2);
+		});
+	}
+
+	$('#diskon_persen, #jasa_dokter_persen').keyup(function(e) {
+                var num = $(this).val();
+                if (e.which!=8) {
+                    num = sortNumber(num);
+                   if(isNaN(num)||num<0 ||num>100) {
+                       alert("Tidak boleh melebihi 100% !");
+                       $(this).val(sortNumber(num.substr(0,num.length-1)));
+                   }
+                else
+                    $(this).val(sortNumber(num));
+                }
+                else {
+                    if(num < 2)
+                        $(this).val("");
+                    else
+                        $(this).val(sortNumber(num.substr(0,num.length-1)));
+                }
+            });
+            function sortNumber(n){
+                var newNumber="";
+                for(var i = 0; i<n.length; i++)
+                    if(n[i] != "%")
+                        newNumber += n[i];
+                return newNumber;
+            }
 </script>
 @endsection
