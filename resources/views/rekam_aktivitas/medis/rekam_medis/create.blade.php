@@ -169,7 +169,7 @@
 					<table class="table table-bordered datatable" id="table-1">
 						<thead>
  							<tr>
-								<th>No</th>
+								<th width="1%">No</th>
 								<th>No. RM</th>
 								<th>Kategori</th>
 								<th>Nama Pasien</th>
@@ -180,7 +180,7 @@
 							<?php $no=1; ?>
 							@foreach($reservasi as $reservasi)
 							<tr>
-								<td>{{$no++}}</td>
+								<td><center>{{$no++}}</center></td>
 								<td>{{$reservasi->no_rm}}</td>
 								<td>{{$reservasi->pasien->kategoripasien->nama_kategori}}</td>
 								<td>{{$reservasi->pasien->nama_pasien}}</td>

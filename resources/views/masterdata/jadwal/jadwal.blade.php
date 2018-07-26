@@ -133,7 +133,7 @@
 								<h4 class="modal-title" id="myModalLabel"><strong>{{strtoupper($days[0]->days)}}</strong></h4>
 								<thead>
 									<tr>
-										<th width="2%">No</th>
+										<th width="1%">No</th>
 										<th>Kategori</th>
 										<th>Nama</th>
 										<th>Jam Mulai</th>
@@ -145,7 +145,7 @@
 									<?php $no=1; ?>
 									@foreach($days[0]->petugas as $petugas)
 									<tr>
-										<td>{{$no++}}</td>
+										<td><center>{{$no++}}</center></td>
 										<td><center><span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span></center></td>
 										<td>{{$petugas->nama}}</td>
 										<td>{{$petugas->senin1}}</td>
@@ -159,7 +159,7 @@
 								<h4 class="modal-title" id="myModalLabel"><strong>{{strtoupper($days[1]->days)}}</strong></h4>
 								<thead>
 									<tr>
-										<th width="2%">No</th>
+										<th width="1%">No</th>
 										<th>Kategori</th>
 										<th>Nama</th>
 										<th>Jam Mulai</th>
@@ -171,7 +171,7 @@
 									<?php $no=1; ?>
 									@foreach($days[1]->petugas as $petugas)
 									<tr>
-										<td>{{$no++}}</td>
+										<td><center>{{$no++}}</center></td>
 										<td><center><span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span></center></td>
 										<td>{{$petugas->nama}}</td>
 										<td>{{$petugas->selasa1}}</td>
@@ -186,7 +186,7 @@
 								<h4 class="modal-title" id="myModalLabel"><strong>{{strtoupper($days[2]->days)}}</strong></h4>
 								<thead>
 									<tr>
-										<th width="2%">No</th>
+										<th width="1%">No</th>
 										<th>Kategori</th>
 										<th>Nama</th>
 										<th>Jam Mulai</th>
@@ -198,7 +198,7 @@
 									<?php $no=1; ?>
 									@foreach($days[2]->petugas as $petugas)
 									<tr>
-										<td>{{$no++}}</td>
+										<td><center>{{$no++}}</center></td>
 										<td><center><span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span></center></td>
 										<td>{{$petugas->nama}}</td>
 										<td>{{$petugas->rabu1}}</td>
@@ -212,7 +212,7 @@
 							<h4 class="modal-title" id="myModalLabel"><strong>{{strtoupper($days[3]->days)}}</strong></h4>
 							<thead>
 								<tr>
-									<th width="2%">No</th>
+									<th width="1%">No</th>
 									<th>Kategori</th>
 									<th>Nama</th>
 									<th>Jam Mulai</th>
@@ -224,7 +224,7 @@
 								<?php $no=1; ?>
 								@foreach($days[3]->petugas as $petugas)
 								<tr>
-									<td>{{$no++}}</td>
+									<td><center>{{$no++}}</center></td>
 									<td><center><span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span></center></td>
 									<td>{{$petugas->nama}}</td>
 									<td>{{$petugas->kamis1}}</td>
@@ -238,7 +238,7 @@
 						<h4 class="modal-title" id="myModalLabel"><strong>{{strtoupper($days[4]->days)}}</strong></h4>
 						<thead>
 							<tr>
-								<th width="2%">No</th>
+								<th width="1%">No</th>
 								<th>Kategori</th>
 								<th>Nama</th>
 								<th>Jam Mulai</th>
@@ -250,7 +250,7 @@
 							<?php $no=1; ?>
 							@foreach($days[4]->petugas as $petugas)
 							<tr>
-								<td>{{$no++}}</td>
+								<td><center>{{$no++}}</center></td>
 								<td><center><span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span></center></td>
 								<td>{{$petugas->nama}}</td>
 								<td>{{$petugas->jumat1}}</td>
@@ -264,7 +264,7 @@
 						<h4 class="modal-title" id="myModalLabel"><strong>{{strtoupper($days[5]->days)}}</strong></h4>
 						<thead>
 							<tr>
-								<th width="2%">No</th>
+								<th width="1%">No</th>
 								<th>Kategori</th>
 								<th>Nama</th>
 								<th>Jam Mulai</th>
@@ -276,7 +276,7 @@
 							<?php $no=1; ?>
 							@foreach($days[5]->petugas as $petugas)
 							<tr>
-								<td>{{$no++}}</td>
+								<td><center>{{$no++}}</center></td>
 								<td><center><span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span></center></td>
 								<td>{{$petugas->nama}}</td>
 								<td>{{$petugas->sabtu1}}</td>
@@ -290,7 +290,7 @@
 						<h4 class="modal-title" id="myModalLabel"><strong>{{strtoupper($days[6]->days)}}</strong></h4>
 						<thead>
 							<tr>
-								<th width="2%">No</th>
+								<th width="1%">No</th>
 								<th>Kategori</th>
 								<th>Nama</th>
 								<th>Jam Mulai</th>
@@ -302,7 +302,7 @@
 							<?php $no=1; ?>
 							@foreach($days[6]->petugas as $petugas)
 							<tr>
-								<td>{{$no++}}</td>
+								<td><center>{{$no++}}</center></td>
 								<td><center><span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span></center></td>
 								<td>{{$petugas->nama}}</td>
 								<td>{{$petugas->minggu1}}</td>

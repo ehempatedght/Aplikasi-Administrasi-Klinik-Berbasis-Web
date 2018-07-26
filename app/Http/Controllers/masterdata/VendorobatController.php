@@ -66,39 +66,36 @@ class VendorobatController extends Controller
     }
 
     public function doUpdate(Request $request, $nama_vendor) {
-        $vendor = Vendorobat::where('nama_vendor', $nama_vendor)->delete();
+            $first_id = Vendorobat::where('nama_vendor', $nama_vendor)->first();
+            $vendor = Vendorobat::where('nama_vendor', $nama_vendor)->delete();
+            $this->validate($request, array(
+                'nama_vendor' => 'required|max:25',
+                'alamat' => 'required',
+                'no_telp' => 'required',
+                'pic' => 'required|max:25',
+                'no_hp' => 'required',
+                'email' => 'required',
+                'deskripsi' => 'required',
+                'catatan' => 'required'
+            ));
 
-        $this->validate($request, array(
-            'nama_vendor' => 'required|max:25',
-            'alamat' => 'required',
-            'no_telp' => 'required',
-            'pic' => 'required|max:25',
-            'no_hp' => 'required',
-            'email' => 'required',
-            'deskripsi' => 'required',
-            'catatan' => 'required'
-        ));
+            for ($i=0; $i < count($request->obat_id); $i++) {
+                $input = Vendorobat::create([
+                    'id' => $first_id->id,
+                    'nama_vendor' => $request->nama_vendor,
+                    'alamat' => $request->alamat,
+                    'no_telp' => $request->no_telp,
+                    'pic' => $request->pic,
+                    'no_hp' => $request->no_hp,
+                    'email' => $request->email,
+                    'deskripsi' => $request->deskripsi,
+                    'obat_id' => $request->obat_id[$i],
+                    'catatan' => $request->catatan[$i]
+                ]); 
+            }
 
-        for ($i=0; $i < count($request->obat_id); $i++) {
-            $input = Vendorobat::create([
-                'nama_vendor' => $request->nama_vendor,
-                'alamat' => $request->alamat,
-                'no_telp' => $request->no_telp,
-                'pic' => $request->pic,
-                'no_hp' => $request->no_hp,
-                'email' => $request->email,
-                'deskripsi' => $request->deskripsi,
-                'obat_id' => $request->obat_id[$i],
-                'catatan' => $request->catatan[$i]
-            ]); 
+            return redirect()->route('masterdata.vendorobat.index')->with('message','Vendor berhasil diupdate!');
         }
-        
-        return redirect()->route('masterdata.vendorobat.index')->with('message','Vendor berhasil diupdate!');
-    }
-
-    public function getShow($id) {
-
-    }
 
     public function doDelete($nama_vendor) {
         Vendorobat::where('nama_vendor', $nama_vendor)->delete();

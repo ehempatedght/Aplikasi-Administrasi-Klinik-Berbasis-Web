@@ -94,7 +94,7 @@
 					<table class="table table-bordered datatable" id="table-1">
 						<thead>
  							<tr>
-								<th>No</th>
+								<th width="1%">No</th>
 								<th>Kategori</th>
 								<th>Nama Petugas</th>
 								<th>Aksi</th>
@@ -104,7 +104,7 @@
 							<?php $no=1; ?>
 							@foreach($category as $petugas)
 							<tr>
-								<td>{{$no++}}</td>
+								<td><center>{{$no++}}</center></td>
 								<td>{{$petugas->category->nama_kategori}}</td>
 								<td>{{$petugas->nama}}</td>
 								<td align="center">

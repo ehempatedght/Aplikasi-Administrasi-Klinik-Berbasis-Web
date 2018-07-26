@@ -52,7 +52,7 @@
 	                       	<i class="entypo-search" ></i>        
 						</a> 
 					</div>
-						
+					
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jenis Obat</label>
 						<input type="hidden" name="jenis_id" id="jenis_id">
@@ -112,7 +112,7 @@
 					<table class="table table-bordered datatable" id="table-1">
 						<thead>
  							<tr>
-								<th>No</th>
+								<th width="1%">No</th>
 								<th>No.Pendaftaran</th>
 								<th>Kategori</th>
 								<th>Nama Pasien</th>
@@ -123,7 +123,7 @@
 							<?php $no=1; ?>
 							@foreach($pasien as $pasien)
 							<tr>
-								<td>{{$no++}}</td>
+								<td><center>{{$no++}}</center></td>
 								<td>{{$pasien->reservasi->no_rm}}</td>
 								<td>{{$pasien->reservasi->pasien->kategoripasien->nama_kategori}}</td>
 								<td>{{$pasien->reservasi->pasien->nama_pasien}}</td>
@@ -153,7 +153,7 @@
 					<table class="table table-bordered datatable2" id="table-2">
 						<thead>
  							<tr>
-								<th>No</th>
+								<th width="1%">No</th>
 								<th>Jenis Obat</th>
 								<th>Nama Obat</th>
 								<th>Aksi</th>
@@ -163,7 +163,7 @@
 							<?php $no=1; ?>
 							@foreach($jenis as $jenis)
 							<tr>
-								<td>{{$no++}}</td>
+								<td><center>{{$no++}}</center></td>
 								<td>{{$jenis->jenis_obat->jns_obt}}</td>
 								<td>{{$jenis->nama_obat}}</td>
 								<td align="center">

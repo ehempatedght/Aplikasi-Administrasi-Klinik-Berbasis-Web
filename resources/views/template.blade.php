@@ -29,7 +29,7 @@
 	<link rel="stylesheet" href="{{asset('css/neon-forms.css') }}">
 	<link rel="stylesheet" href="{{asset('css/custom.css') }}">
 	<link rel="stylesheet" href="{{asset('js/selectboxit/jquery.selectBoxIt.css') }}">
-	<link rel="stylesheet" href="{{asset('css/skins/green.css') }}">
+	<link rel="stylesheet" href="{{asset('css/skins/facebook.css') }}">
 	<link rel="stylesheet" href="{{asset('css/font-icons/font-awesome/css/font-awesome.min.css ') }}">
 	<link rel="stylesheet" href="{{asset('css/timepicker.css') }}">
 	<link rel="stylesheet" href="{{asset('js/datatables/datatables.css') }}">

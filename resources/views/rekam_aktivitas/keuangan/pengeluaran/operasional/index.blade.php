@@ -40,7 +40,7 @@
 				<?php $no=1; ?>
 				@foreach($operasional as $operasional)
 				<tr>
-					<th>{{$no++}}</th>
+					<th><center>{{$no++}}</center></th>
 					<th>{{ date('d M Y', strtotime($operasional->tgl)) }}</th>
 					<th class="numbers">{{$operasional->total}}</th>
 					<th>

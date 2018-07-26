@@ -33,9 +33,9 @@ var content = $('<div class="timepicker">\
 					<div class="cell-4"><a class="icon-up js-plus-minute"></a></div>\
 				</div>\
 				<div class="text">\
-					<div class="cell-4"><a class="js-hour-show" title="选择时"></a></div>\
+					<div class="cell-4"><a class="js-hour-show" title="HOURS"></a></div>\
 					<div class="cell-2">:</div>\
-					<div class="cell-4"><a class="js-minute-show" title="选择分"></a></div>\
+					<div class="cell-4"><a class="js-minute-show" title="MINUTES"></a></div>\
 				</div>\
 				<div class="handle">\
 					<div class="cell-4"><a class="icon-down js-minus-houer"></a></div>\
@@ -121,7 +121,7 @@ timepicker.bindEvent = function () {
 		thisTimePicker.update();
 		thisTimePicker.choseMinute.hide();
 		thisTimePicker.choseAll.show();
-		thisTimePicker.title.text('请选择');
+		thisTimePicker.title.text('MINUTES');
 	
 	// 选择小时
 	}).on('click','.js-hour-cell',function () {
@@ -129,7 +129,7 @@ timepicker.bindEvent = function () {
 		thisTimePicker.update();
 		thisTimePicker.choseHour.hide();
 		thisTimePicker.choseAll.show();
-		thisTimePicker.title.text('请选择');
+		thisTimePicker.title.text('HOURS');
 	// 阻止冒泡
 	}).on('click',function(e) {
 		e.stopPropagation();
@@ -139,14 +139,14 @@ timepicker.bindEvent = function () {
 	thisTimePicker.hourShow.on('click',function() {
 		thisTimePicker.choseAll.hide();
 		thisTimePicker.choseHour.show();
-		thisTimePicker.title.text('请选择小时');
+		thisTimePicker.title.text('HOURS');
 	});
 
 	// 切换到选择分钟
 	thisTimePicker.minuteShow.on('click',function() {
 		thisTimePicker.choseAll.hide();
 		thisTimePicker.choseMinute.show();
-		thisTimePicker.title.text('请选择分钟');
+		thisTimePicker.title.text('MINUTES');
 	});
 };
 

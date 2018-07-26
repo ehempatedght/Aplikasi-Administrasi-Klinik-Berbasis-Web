@@ -1,6 +1,7 @@
 <?php
 namespace App;
 use Illuminate\Database\Eloquent\Model;
+
 class NamaAkun extends Model
 {
     protected $table = 'nama_akun';

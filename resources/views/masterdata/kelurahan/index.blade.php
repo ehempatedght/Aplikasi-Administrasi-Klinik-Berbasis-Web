@@ -44,7 +44,7 @@
 				<?php $no=1; ?>
 				@foreach($kelurahans as $kelurahan)
 				<tr>
-					<td>{{$no++}}</td>
+					<td><center>{{$no++}}</center></td>
 					<td>{{$kelurahan->nama_kelurahan}}</td>
 					<td>{{$kelurahan->kecamatan->nama_kecamatan}}</td>
 					<td>{{$kelurahan->kecamatan->kota->nama_kota}}</td>

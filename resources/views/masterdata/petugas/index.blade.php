@@ -44,7 +44,7 @@
 				<?php $no=1; ?>
 				@foreach($petugass as $petugas)
 				<tr>
-					<td>{{$no++}}</td>
+					<td><center>{{$no++}}</center></td>
 					<td>
 						<center>
 							<span class="label label-primary">{{strtoupper($petugas->category->nama_kategori)}}</span>

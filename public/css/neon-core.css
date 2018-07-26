@@ -8857,7 +8857,7 @@ blockquote.blockquote-danger small strong {
 .dataTables_wrapper > div label {
   margin-bottom: 0;
   font-weight: normal;
-  color: #949494;
+  color: #393e46;
 }
 .dataTables_wrapper > div.dataTables_length,
 .dataTables_wrapper > div.dataTables_filter,
@@ -11959,7 +11959,7 @@ body.page-fade-only-init > .page-container {
   color: #ec5956;
 }
 .search-results-env .search-results > .search-result .link:hover {
-  text-decoration: none;
+  text-decoration: underline;
 }
 .search-results-env .search-results > .search-result:last-child {
   padding-bottom: 0;

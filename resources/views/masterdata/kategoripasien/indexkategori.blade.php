@@ -42,7 +42,7 @@
 				<?php $no = 1; ?>
 				@foreach($kategories as $kategori)
 				<tr>
-					<td>{{$no++}}</td>
+					<td><center>{{$no++}}</center></td>
 					<td>{{$kategori->nama_kategori}}</td>
 					<td>
 						<div align="center">

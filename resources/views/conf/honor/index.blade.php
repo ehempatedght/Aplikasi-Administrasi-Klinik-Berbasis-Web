@@ -10,6 +10,9 @@
 @if(session('message'))
     <div class="alert alert-success">{{session('message')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
 @endif
+@if(session('message2'))
+    <div class="alert alert-info">{{session('message2')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
+@endif
 <div class="row">
 	<div class="col-md-12">
 		<br/>
@@ -30,7 +33,7 @@
 		<table class="table table-bordered datatable" id="table-1">
 			<thead>
 				<tr>
-					<th width="5%">No</th>
+					<th width="1%">No</th>
 					<th>Tanggal</th>
 					<th>Kategori</th>
 					<th>Nama</th>
@@ -42,7 +45,7 @@
 				<?php $no=1; ?>
 				@foreach($conf as $conf)
 				<tr>
-					<th>{{$no++}}</th>
+					<th><center>{{$no++}}</center></th>
 					<th>{{ date('d M Y', strtotime($conf->tgl)) }}</th>
 					<th>{{$conf->petugas->category->nama_kategori}}</th>
 					<th>{{$conf->petugas->nama}}</th>
@@ -71,8 +74,8 @@
 			</tbody>
 		</table>
 	</div>
-	<?php $conf = \App\Confhonor::all(); ?>
-	@foreach($conf as $conf)
+	<?php $confs = \App\Confhonor::all(); ?>
+	@foreach($confs as $conf)
 			<div class="modal fade" id="modal-7{{$conf->id}}">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -85,7 +88,7 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12">
-									<form action="{{route('pengaturan.honor.delete',['id' => $conf->id, 'petugas_id' => $conf->petugas_id])}}" method="post">
+									<form action="{{ route('pengaturan.honor.delete', ['id' => $conf->id]) }}" method="post">
 										@csrf
 										<div class="row">
 											<div class="col-md-12">

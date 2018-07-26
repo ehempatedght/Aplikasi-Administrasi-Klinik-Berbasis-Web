@@ -96,13 +96,13 @@ $jenis_obats = \App\Donasiobat::all();
 						<div class="form-group">
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Harga</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control numbers" name="harga[1]" placeholder="harga" required value="0">
+								<input type="text" class="form-control numbers harga" id="harga_1" name="harga[1]" placeholder="harga" required value="0" onkeyup="hitung_total()">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Stok</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control numberValidation" name="stok[1]" placeholder="stok" required>
+								<input type="text" class="form-control numberValidation stok" id="stok_1" name="stok[1]" placeholder="stok" required value="1">
 							</div>
 						</div>
 					</div>
@@ -117,6 +117,12 @@ $jenis_obats = \App\Donasiobat::all();
 							</button>
 						</div>
 					</div>
+					{{-- <div class="form-group">
+						<label for="field-ta" class="col-sm-3 control-label" style="text-align:left;">&emsp;Total</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control numbers total" id="total" placeholder="total" required value="0">
+						</div>
+					</div> --}}
 					<div class="form-group center-block full-right" style="margin-left: 15px;">
 						<button type="submit" class="btn btn-green btn-icon icon-left col-left">
 						Simpan
@@ -145,6 +151,24 @@ $jenis_obats = \App\Donasiobat::all();
             this.value = this.value.replace(/[^0-9\.]/g,'');
     });
 
+	function hitung_total() {
+        var total = 0;
+        var stok = $(".stok").val();
+        $(".harga").each(function() {
+            var num = parseFloat(this.value.replace(/,/g, ''));
+            if(!isNaN(num)){
+                total += num;
+            }
+            $("#total").val(total * stok);
+        });
+    }
+
+    $("#stok_1").keyup(function() {
+		var harga = parseFloat($("#harga_1").val());
+		var stok = parseInt($("#stok_1").val());
+		parseFloat($("#total").val(harga * stok));
+	});
+
 	$(document).ready(function() {
 
 		$('#id_1').change(function() {
@@ -153,7 +177,7 @@ $jenis_obats = \App\Donasiobat::all();
 				$('#kd_jenis_1').val(data);
 			});
 		});
-
+	
 
 		$('#tambah_obat').click(function(e) {
 			e.preventDefault();
@@ -226,13 +250,13 @@ $jenis_obats = \App\Donasiobat::all();
 			'<div class="form-group">' +
 			'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Harga</label>' +
 			'<div class="col-sm-5">' +
-			'<input type="text" class="form-control harga"  name="harga['+loop+']" placeholder="harga" required value="0">' +
+			'<input type="text" class="form-control harga" id="harga_'+loop+'" name="harga['+loop+']" placeholder="harga" required onkeyup="hitung_total()" value="0">' +
 			'</div>' +
 			'</div>' +
 			'<div class="form-group">' +
 			'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Stok</label>' +
 			'<div class="col-sm-5">' +
-			'<input type="text" class="form-control" name="stok['+loop+']" placeholder="stok" required>' +
+			'<input type="text" class="form-control stok" id="stok_'+loop+'" name="stok['+loop+']" required value="1">' +
 			'</div>' +
 			'</div>' +
 			'<div class="form-group">' +
@@ -247,6 +271,12 @@ $jenis_obats = \App\Donasiobat::all();
 			$('#id_'+loop).select2();
 			$('#satuan_'+loop).select2();
 			$('.numbers').number(true);
+
+			$("#stok_"+loop).keyup(function() {
+				var harga = parseFloat($("#harga_"+loop).val());
+				var stok = parseInt($("#stok_"+loop).val());
+				parseFloat($("#total").val(harga * stok));
+			});
 
 			$('#id_'+loop).change(function() {
 				var id = $(this).val();

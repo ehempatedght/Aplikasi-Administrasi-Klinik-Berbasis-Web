@@ -55,7 +55,7 @@
 					<?php $no=1; ?>
 					@foreach($peralatanmediks as $alat_medis)
 					<tr>
-						<td>{{$no++}}</td>
+						<td><center>{{$no++}}</center></td>
 						<td>{{$alat_medis->kd_alat}}</td>
 						<td>{{$alat_medis->nm_alat}}</td>
 						<td>{{$alat_medis->jenis_alat}}</td>

@@ -33,7 +33,7 @@ Route::group(['middleware'=> ['web','auth']], function() {
 			Route::post('/save', ['as'=>'pengaturan.honor.save','uses'=>'pengaturan\ConfhonorController@save']);
 			Route::get('/edit/{id}', ['uses'=>'pengaturan\ConfhonorController@edit'])->name('pengaturan.honor.edit');
 			Route::post('/update/{id}', ['uses'=>'pengaturan\ConfhonorController@update'])->name('pengaturan.honor.update');
-			Route::post('/delete/{id}/{petugas_id}', ['uses'=>'pengaturan\ConfhonorController@delete'])->name('pengaturan.honor.delete');
+			Route::post('/delete/{id}', ['uses'=>'pengaturan\ConfhonorController@doDelete'])->name('pengaturan.honor.delete');
 		});
 	});
 
@@ -226,7 +226,7 @@ Route::group(['middleware'=> ['web','auth']], function() {
 
 		//medis
 		Route::group(['prefix'=>'medis'], function() {
-			//pendaftaran
+			//reservasi
 			Route::group(['prefix'=>'pendaftaran'], function () {
 				Route::get('/', ['uses'=>'rekam_aktivitas\medis\ReservasiController@index'])->name('medis.reservasi.index');
 				Route::get('/create', ['uses'=>'rekam_aktivitas\medis\ReservasiController@create'])->name('medis.reservasi.create');
@@ -237,6 +237,7 @@ Route::group(['middleware'=> ['web','auth']], function() {
 				Route::post('/delete/{id}', ['uses'=>'rekam_aktivitas\medis\ReservasiController@delete'])->name('medis.reservasi.delete');
 				//search spesialisasi
 				Route::get('/search_spesialisasi/{id}', ['as'=>'search.spesialisasi','uses'=>'rekam_aktivitas\medis\ReservasiController@search_spesialisasi']);
+				Route::post('/cancel/{id}', ['uses'=>'rekam_aktivitas\medis\ReservasiController@doCancel'])->name('reservasi.cancel');
 				//cetak kartu
 				Route::get('/cetak/{id}', ['as'=>'print.card', 'uses'=>'rekam_aktivitas\medis\ReservasiController@print_card']);
 			});
@@ -285,7 +286,6 @@ Route::group(['middleware'=> ['web','auth']], function() {
 			Route::post('/delete/{id}', ['uses'=>'akunting\AkunController@delete'])->name('akun.delete');
 		});
 
-
 		//transaksi
 		Route::group(['prefix'=>'transaksi'], function() {
 			Route::get('/', ['uses'=>'akunting\TransaksiController@index'])->name('transaksi.index');
@@ -313,7 +313,7 @@ Route::group(['middleware'=> ['web','auth']], function() {
 		Route::get('/pasien/rekam_medis/{id}', ['uses'=>'rekam_aktivitas\medis\RekamMedisController@output_report'])->name('output_report.rekam_medis');
 	});
 
-	//REPORTS KEUANGAN
+	//LAPORAN KEUANGAN 
 	Route::group(['prefix'=>'laporan'], function() {
 		//lapoan berdasarkan tipe akun
 		Route::get('/akunting/tipe_akun', ['uses'=>'akunting\TransaksiController@berdasarkan_akun'])->name('laporan.tipe_akun');

@@ -23,7 +23,6 @@ class JenisobatController extends Controller
 	}
 
 	public function createJenis() {
-		// $kdjenis = $this->KdJenisObat();
 		$jenisobat =Jenisobat::get();
 		return view('masterdata.obat.create_jenis')->withJenisobat($jenisobat);
 	}
@@ -36,17 +35,6 @@ class JenisobatController extends Controller
 		 	'harga'=>'required',
 		 ));
 
-		// $nama_obat = Input::get('nama_obat');
-		// foreach ($nama_obat as $obat_detail) {
-		// 	Jenisobatdetail::create([
-		// 		'jenis_obat_id' => $data['jenis_obat_id'],
-		// 		'nama_obat' => $data['nama_obat'],
-		// 		'satuan' => $data['satuan'],
-		// 		'deskripsi' => $data['deskripsi'],
-		// 		'harga' => $data['harga'],
-		// 		'stok' => $data['stok']
-		// 	]);
-		// }
 
 		 foreach ($data['jenis_obat_id'] as $key => $value) {
 		 	Jenisobatdetail::create([
@@ -59,26 +47,7 @@ class JenisobatController extends Controller
  	 			'stok'=>$data['stok'][$key]
 			]);
 		  }
-
-		// if (!empty($data['jenis_obat_id'])) {
-		// 	foreach ($data['jenis_obat_id'] as $key => $value) {
-		// 		if ($data['jenis_obat_id'][$key] != "") {
-		// 			$simpan_data2 = [
-		// 				'jenis_obat_id'=>$data['jenis_obat_id'][$key],
-		// 				'nama_obat'=>$data['nama_obat'][$key],
-		// 				'satuan'=>$data['satuan'][$key],
-		// 				'deskripsi'=>$data['deskripsi'][$key],
-		// 				'harga'=>$data['harga'][$key],
-		// 				'stok'=>$data['stok'][$key],
-		// 			];
-
-		// 			$simpan_jenis = Jenisobatdetail::create($simpan_data2);
-		// 		}
-		// 	}
-		// }
-
 		return redirect()->route('masterdata.daftarobat.index')->with('message','Obat berhasil dibuat!');
-
 	}
 
 	public function getEdit($id) {
@@ -120,37 +89,6 @@ class JenisobatController extends Controller
 			$jenis->delete();
 			return redirect()->route('masterdata.daftarobat.index')->with('message','OBAT BERHASIL DIHAPUS!');
 		}
-	}
-	//Using JSON
-	public function addJenis(Request $request) {
-		$rules = array(
-                'name' => 'required',
-        );
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->fails()) {
-            return Response::json(array(
-
-                    'errors' => $validator->getMessageBag()->toArray(),
-            ));
-        } else {
-            $data = new Jenisobat();
-            $data->name = $request->name;
-            $data->save();
-
-            return response()->json($data);
-        }
-	}
-
-	public function updateJenis(Request $request) {
-		$data = Jenisobat::find($request->id);
-		$data->name = $request->name;
-		$data->save();
-		return response()->json($data);
-	}
-
-	public function hapusJenis(Request $req) {
-		Jenisobat::find($req->id)->delete();
-		return response()->json();
 	}
 
 	public function KdObat($id) {

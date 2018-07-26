@@ -56,9 +56,13 @@ class ConfhonorController extends Controller
     	return redirect()->route('pengaturan.honor.index')->with('message','Pengaturan honor berhasil diubah');
     }
 
-    public function delete($id, $petugas_id) {
-    	Confhonor::where('id', $id)->delete();
-        Honor::where('petugas_id', $petugas_id)->delete();
-    	return redirect()->route('pengaturan.honor.index')->with('message','Pengaturan honor berhasil dihapus');
+    public function doDelete($id) {
+    	$conf = Confhonor::find($id);
+        if ($conf->honors->count() > 0) {
+            return redirect()->back()->with('message2','DATA INI TIDAK DAPAT DIHAPUS KARENA BERHUBUNGAN DENGAN DATA LAIN!');
+        } else {
+            $conf->delete();
+            return redirect()->route('pengaturan.honor.index')->with('message','PENGATURAN HONOR '.$conf->petugas->nama.' BERHASIL DIHAPUS!');
+        }
     }
 }

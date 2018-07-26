@@ -153,7 +153,7 @@
 								<table class="table table-bordered datatable" id="table-1">
 									<thead>
 										<tr>
-											<th width="2%">No</th>
+											<th width="1%">No</th>
 											<th>Kota</th>
 											{{-- <th>Aksi</th> --}}
 										</tr>
@@ -162,7 +162,7 @@
 										<?php $no=1; ?>
 										@foreach($kotas as $kota)
 										<tr>
-											<td>{{$no++}}</td>
+											<td><center>{{$no++}}</center></td>
 											<td>{{$kota->nama_kota}}</td>
 											{{-- <td>
 												<div align="center">
@@ -219,7 +219,7 @@
 							<table class="table table-bordered datatable" id="table-2">
 								<thead>
 									<tr>
-										<th width="2%">No</th>
+										<th width="1%">No</th>
 										<th>Kecamatan</th>
 										{{-- <th>Aksi</th> --}}
 									</tr>
@@ -228,7 +228,7 @@
 									<?php $no=1; ?>
 									@foreach($kecamatans as $kecamatan)
 									<tr>
-										<td><?php echo $no++; ?></td>
+										<td><center><?php echo $no++; ?></center></td>
 										<td><?php echo $kecamatan->nama_kecamatan.' - '.$kecamatan->kota->nama_kota; ?></td>
 										{{-- <td>
 											<div align="center">

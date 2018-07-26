@@ -117,14 +117,20 @@
 							</div>
 							<div class="checkbox">
 								<label>
+									<input type="checkbox" class="check" name="role[daftarobat]" @if(is_array(old('role')) && array_key_exists("daftarobat", old('role'))) checked @endif>
+									Daftar Obat
+								</label>
+							</div>
+							<div class="checkbox">
+								<label>
 									<input type="checkbox" class="check" name="role[vendorobat]" @if(is_array(old('role')) && array_key_exists("vendorobat", old('role'))) checked @endif>
 									Vendor Obat
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" class="check" name="role[daftarobat]" @if(is_array(old('role')) && array_key_exists("daftarobat", old('role'))) checked @endif>
-									Daftar Obat
+									<input type="checkbox" class="check" name="role[datapemeriksaan]" @if(is_array(old('role')) && array_key_exists("datapemeriksaan", old('role'))) checked @endif>
+									Data Pemeriksaan
 								</label>
 							</div>
 							<div class="checkbox">

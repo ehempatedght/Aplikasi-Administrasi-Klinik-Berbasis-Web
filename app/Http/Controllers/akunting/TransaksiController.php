@@ -192,8 +192,8 @@ class TransaksiController extends Controller
             $tampilan_penuh = true;
             return view('akunting.laporan.detail_akun.pdf', get_defined_vars());
         } else {
-            return Excel::create("Laporan Detail Keuangan Tipe Akun ".$transaksi->first()->tipe_akun->nama_tipe." - ".date('d-m-Y', strtotime($tanggal_awal)). " s/d " .date('d-m-Y', strtotime($tanggal_akhir)), function($excel) use ($tanggal_awal, $tanggal_akhir, $tipe_akun, $nama_akun, $bulanan){
-                    $excel->sheet('Sheet1', function($sheet) use ($tanggal_awal, $tanggal_akhir, $tipe_akun, $nama_akun, $bulanan) {
+            return Excel::create('Laporan Detail Keuangan Per Akun - '.date('d-m-Y', strtotime($tanggal_awal)). " s/d " .date('d-m-Y', strtotime($tanggal_akhir)), function($excel) use ($tanggal_awal, $tanggal_akhir, $tipe_akun, $nama_akun, $akun, $bulanan){
+                    $excel->sheet('Sheet1', function($sheet) use ($tanggal_awal, $tanggal_akhir, $tipe_akun, $nama_akun, $akun, $bulanan) {
                         $sheet->loadView('akunting.laporan.detail_akun.excel', get_defined_vars());
                     });
                 })->export('xls');

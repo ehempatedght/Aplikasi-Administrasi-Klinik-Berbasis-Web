@@ -30,7 +30,7 @@
 		<table class="table table-bordered datatable" id="table-1">
 			<thead>
 				<tr>
-					<th width="3%">No</th>
+					<th width="1%">No</th>
 					<th>Tanggal</th>
 					<th>Nama Pasien</th>
 					<th>Nama Dokter</th>
@@ -42,7 +42,7 @@
 				<?php $no=1; ?>
 				@foreach($rekam as $rekam_medis)
 				<tr>
-					<td>{{$no++}}</td>
+					<td><center>{{$no++}}</center></td>
 					<td>{{date('d M Y', strtotime($rekam_medis->tgl))}}</td>
 					<td>{{$rekam_medis->reservasi->pasien->nama_pasien}}</td>
 					<td>{{$rekam_medis->reservasi->dokter->nama}}</td>
@@ -55,7 +55,7 @@
 							</a> --}}
 							<a href="{{route('rekam_medis.show', ['id'=>$rekam_medis->id_rm])}}" class="btn btn-sm btn-info btn-icon icon-left">
 								<i class="entypo-eye"></i>
-								Lihat
+								Detail
 							</a>
 						</div>
 					</td>

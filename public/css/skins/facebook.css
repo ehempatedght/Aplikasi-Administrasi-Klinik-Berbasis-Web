@@ -158,10 +158,10 @@ body.login-page .login-form .form-group .btn-login:hover {
   background: #3b5998;
 }
 body .login-container .login-header {
-  background-color: #ffffff;
+  background-color: #3b5998;
 }
 body .login-container .login-header.login-caret:after {
-  border-top-color: #ffffff;
+  border-top-color: #3b5998;
 }
 body.login-page.logging-in .login-progressbar {
   background: #5476bd;

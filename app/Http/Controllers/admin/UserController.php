@@ -44,6 +44,7 @@ class UserController extends Controller
         (isset($data['role']['petugasmedis']) ? $petugasmedis = "1" : $petugasmedis = "0");
         (isset($data['role']['vendorobat']) ? $vendorobat = "1" : $vendorobat = "0");
         (isset($data['role']['daftarobat']) ? $daftarobat = "1" : $daftarobat = "0");
+        (isset($data['role']['datapemeriksaan']) ? $datapemeriksaan = "1" : $datapemeriksaan = "0");
         (isset($data['role']['datapoli']) ? $datapoli = "1" : $datapoli = "0");
         (isset($data['role']['pasien']) ? $pasien = "1" : $pasien = "0");
         (isset($data['role']['peralatan']) ? $peralatan = "1" : $peralatan = "0");
@@ -79,6 +80,7 @@ class UserController extends Controller
             'vendorobat' => $vendorobat,
             'daftarobat' => $daftarobat,
             'datapoli' => $datapoli,
+            'datapemeriksaan' => $datapemeriksaan,
             'pasien' => $pasien,
             'peralatan' => $peralatan,
             'rekmedis' => $rekmedis,
@@ -123,6 +125,7 @@ class UserController extends Controller
         (isset($data['role']['petugasmedis']) ? $petugasmedis = "1" : $petugasmedis = "0");
         (isset($data['role']['vendorobat']) ? $vendorobat = "1" : $vendorobat = "0");
         (isset($data['role']['daftarobat']) ? $daftarobat = "1" : $daftarobat = "0");
+        (isset($data['role']['datapemeriksaan']) ? $datapemeriksaan = "1" : $datapemeriksaan = "0");
         (isset($data['role']['datapoli']) ? $datapoli = "1" : $datapoli = "0");
         (isset($data['role']['pasien']) ? $pasien = "1" : $pasien = "0");
         (isset($data['role']['peralatan']) ? $peralatan = "1" : $peralatan = "0");
@@ -159,6 +162,7 @@ class UserController extends Controller
                 'vendorobat' => $vendorobat,
                 'daftarobat' => $daftarobat,
                 'datapoli' => $datapoli,
+                'datapemeriksaan' => $datapemeriksaan,
                 'pasien' => $pasien,
                 'peralatan' => $peralatan,
                 'rekmedis' => $rekmedis,

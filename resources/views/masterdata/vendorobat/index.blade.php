@@ -41,7 +41,7 @@
 				<?php $no=1; ?>
 				@foreach($vendorobat as $row)
 				<tr>
-					<td>{{$no++}}</td>
+					<td><center>{{$no++}}</center></td>
 					<td>{{$row->nama_vendor}}</td>
 					<td>{{$row->alamat}}</td>
 					<td>{{$row->pic}}</td>

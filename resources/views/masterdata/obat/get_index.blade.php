@@ -33,7 +33,8 @@
 		<table class="table table-bordered datatable" id="table-1">
 			<thead>
 				<tr>
-					<th width="3%">No</th>
+					<th width="1%">No</th>
+					<th>Jenis</th>
 					<th>Nama Obat</th>
 					<th>Stok</th>
 					<th width="200px">Aksi</th>
@@ -43,7 +44,8 @@
 				<?php $no=1; ?>
 				@foreach($jenis_obat as $row)
 				<tr>
-					<td>{{$row->id}}</td>
+					<td><center>{{$no++}}</center></td>
+					<td>{{$row->jenis_obat->jns_obt}}</td>
 					<td>{{$row->nama_obat}}</td>
 					<td>{{$row->stok}}</td>
 					<td>

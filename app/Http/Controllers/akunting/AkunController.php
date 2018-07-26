@@ -38,7 +38,7 @@ class AkunController extends Controller
     	$namaAkun = NamaAkun::find($id);
         if ($namaAkun->transaksi->count() > 0) {
             return redirect()->back()->with('danger','AKUN '.strtoupper($namaAkun->nama_akun).' TIDAK DAPAT DIHAPUS KARENA MEMPUNYAI TRANSAKSI!');
-        } elseif ($namaAkun->id_akun == '4' or $namaAkun->id_akun == '8' or $namaAkun->id_akun == '9' or $namaAkun->id_akun == '10' or $namaAkun->id_akun == '11') {
+        } elseif ($namaAkun->id_akun == '4' or $namaAkun->id_akun == '8' or $namaAkun->id_akun == '9' or $namaAkun->id_akun == '11') {
             return redirect()->back()->with('danger','AKUN INI TIDAK DAPAT DIHAPUS KARENA BERHUBUNGAN DENGAN DATA '.strtoupper($namaAkun->nama_akun).'!');
         } else {
             $namaAkun->delete();

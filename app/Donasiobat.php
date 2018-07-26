@@ -14,7 +14,7 @@ class Donasiobat extends Model
     protected $hidden = [
     	'created_at','updated_at'
     ];
-
+    
     public function jenis_obat_detail() {
     	return $this->hasMany('App\Jenisobatdetail','jenis_obat_id','id');
     }

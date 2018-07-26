@@ -1,21 +1,15 @@
 <?php
-
 namespace App\Http\Controllers\masterdata;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Poli;
 class PoliController extends Controller
 {
+	
 	public function getPoli() {
 		$polis = Poli::orderBy('id','DESC')->get();
 		return view('masterdata.poli.poli')->withPolis($polis);
 	}
-
-	// public function getCreate() {
-	// 	return view('masterdata.poli.create');
-	// }
-
 	public function doInsert(Request $request) {
 		$this->validate($request, array(
 			'nama_poli'=>'required'
@@ -26,12 +20,6 @@ class PoliController extends Controller
 			return redirect()->route('masterdata.poli.index')->with('message',''.$poli->nama_poli.' berhasil ditambah');
 		}
 	}
-
-	// public function doEdit($id) {
-	// 	$poli = Poli::find($id);
-	// 	return view('masterdata.poli.ubah', compact('poli'));
-	// }
-	
 	public function doUpdate(Request $request, $id) {
 		$this->validate($request, array(
 			'nama_poli'=>'required'
@@ -42,7 +30,6 @@ class PoliController extends Controller
 			return redirect()->route('masterdata.poli.index')->with('message','Poli berhasil diubah');
 		}
 	}
-
 	public function doDelete($id) {
 		$poli = Poli::find($id);
 		if ($poli->reservasi->count() > 0) {

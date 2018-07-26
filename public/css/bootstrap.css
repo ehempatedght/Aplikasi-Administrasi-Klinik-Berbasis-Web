@@ -1074,7 +1074,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
   line-height: 1.42857143;
-  color: #000;
+  color: #393e46;
   background-color: #fff;
 }
 input,
@@ -1327,7 +1327,7 @@ mark,
   color: #999999;
 }
 .text-primary {
-  color: #949494;
+  color: #393e46;
 }
 a.text-primary:hover,
 a.text-primary:focus {
@@ -4999,7 +4999,7 @@ a.thumbnail.active {
 }
 .thumbnail .caption {
   padding: 9px;
-  color: #949494;
+  color: #393e46;
 }
 .alert {
   padding: 15px;

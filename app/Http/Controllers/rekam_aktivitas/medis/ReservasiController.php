@@ -98,6 +98,13 @@ class ReservasiController extends Controller
 		return view('rekam_aktivitas.medis.reservasi.edit', get_defined_vars());		
 	}
 
+	public function doCancel($id) {
+		Reservasi::find($id)->update([
+			'status_res' => 'Batal'
+		]);
+		return redirect()->route('medis.reservasi.index')->with('message','Reservasi berhasil dibatalkan!');
+	}
+
 	public function delete($id) {
 		Reservasi::find($id)->delete();
 		return redirect()->route('medis.reservasi.index')->with('message','Reservasi berhasil dihapus');

@@ -211,7 +211,7 @@
 					<table class="table table-bordered datatable" id="table-1">
 						<thead>
  							<tr>
-								<th>No</th>
+								<th width="1%">No</th>
 								<th>No. RM</th>
 								<th>Kategori</th>
 								<th>Nama Pasien</th>
@@ -222,7 +222,7 @@
 							<?php $no=1; ?>
 							@foreach($reservasi as $reservasi)
 							<tr>
-								<td>{{$no++}}</td>
+								<td><center>{{$no++}}</center></td>
 								<td>{{$reservasi->no_rm}}</td>
 								<td>{{$reservasi->pasien->kategoripasien->nama_kategori}}</td>
 								<td>{{$reservasi->pasien->nama_pasien}}</td>
@@ -273,7 +273,7 @@
 			} else if(id_kd == "2") {
 				html += 
 				'<div class="form-group">'+
-				'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Pemeriksaan</label>'+
+				'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tindakan</label>'+
 				'<div class="col-sm-5">'+
 				'<select class="form-control dpemeriksaan" name="id_dpemeriksaan" id="id_pemeriksaan" required data-placeholder="Pilih Pemeriksaan...">'+
 				'<option></option>'+
@@ -311,11 +311,11 @@
 			} else {
 				html += 
 				'<div class="form-group">'+
-				'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Pemeriksaan</label>'+
+				'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tindakan</label>'+
 				'<div class="col-sm-5">'+
-				'<select class="form-control dpemeriksaan" name="id_dpemeriksaan" id="id_pemeriksaan" required data-placeholder="Pilih Pemeriksaan...">'+
+				'<select class="form-control dpemeriksaan" name="id_dpemeriksaan" id="id_pemeriksaan" required data-placeholder="Pilih Tindakan...">'+
 				'<option></option>'+
-				'<optgroup label="Pilih Pemeriksaan">'+
+				'<optgroup label="Pilih Tindakan">'+
                 @foreach ($d_pemeriksaan as $row)
                 @if($row->id_kategori == '4')
                 '<option value="{{ $row->id_dpemeriksaan }}">{{ $row->nama_pemeriksaan }}</option>'+

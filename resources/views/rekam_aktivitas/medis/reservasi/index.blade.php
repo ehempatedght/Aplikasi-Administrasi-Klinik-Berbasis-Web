@@ -39,7 +39,7 @@
 					<th>Poli</th>
 					<th>No Urut</th>
 					<th>Status</th>
-					<th width="8%">Aksi</th>
+					<th width="20%">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -50,11 +50,7 @@
 					<th>{{$reservas->pasien->nama_pasien}}</th>
 					<th>{{$reservas->pasien->jenis_kelamin}}</th>
 					<th>{{$reservas->pasien->kategoripasien->nama_kategori}}</th>
-					@if($reservas->dokter_id == '0')
-					<th>-</th>
-					@else
 					<th>{{$reservas->dokter->nama}}</th>
-					@endif
 					<th>{{$reservas->poli->nama_poli}}</th>
 					<th>{{$reservas->no_urut}}</th>
 					<th>
@@ -74,6 +70,12 @@
 										<i class="entypo-print"></i>
 										Cetak
 									</a>
+									@if($reservas->status_res == 'Batal')
+									<a href="javascript:;" onclick="jQuery('#modal-7{{$reservas->id_res}}').modal('show', {backdrop: 'static'});" class="btn btn-sm btn-danger btn-icon icon-left">
+									<i class="entypo-trash"></i>
+									Hapus
+									</a>
+									@endif
 									{{-- <a href="{{route('pengeluaran.pembelian.show', $reservasi->id)}}" class="btn btn-sm btn-info btn-icon icon-left">
 										<i class="entypo-eye"></i>
 										Lihat

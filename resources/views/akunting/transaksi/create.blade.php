@@ -1,6 +1,10 @@
 @extends('template')
 @section('main')
 <style>
+.col-sm-1 {
+    width: 45px;
+}
+
 .select2-container .select2-choice {
     display: block!important;
     height: 30px!important;
@@ -50,8 +54,8 @@
 							<div class="col-md-12">
 								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Tipe Akun</label>
 									<div class="col-sm-5">
-										<select name="id_tipe" class="form-control tipe_akun" id="id_tipe" required data-placeholder="Pilih tipe akun..." required>
-											<option>PILIH TIPE AKUN</option>
+										<select name="id_tipe" class="form-control select2 tipe_akun" id="id_tipe" required data-placeholder="Pilih tipe akun..." required>
+											<option></option>
 											@foreach($tipeAkun as $tipe)
 											<option value="{{$tipe->id_tipe}}">{{$tipe->nama_tipe}}</option>
 											@endforeach
@@ -66,12 +70,10 @@
 							<div class="col-md-12">
 								<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama Akun</label>
 									<div class="col-sm-5">
-										<select name="id_akun" class="form-control" required data-placeholder="Pilih nama akun..." id="id_akun" required>
-											<option value="0">PILIH NAMA AKUN</option>
+										<select name="id_akun" class="form-control select2" required data-placeholder="Pilih nama akun..." id="id_akun" required>
+											<option></option>
 											@foreach($namaAkun as $nAkun)
-											@if($nAkun->id_tipe == '1')
 											<option value="{{$nAkun->id_akun}}">{{$nAkun->nama_akun}}</option>
-											@endif
 											@endforeach
 										</select>
 									</div>
@@ -353,7 +355,7 @@
 								<?php $data1 = \App\Pemeriksaan::get(); ?>
 								<table class="table table-bordered datatable table-1">
 									<thead>
-										<th>No</th>
+										<th width="1%">No</th>
 										<th>No Faktur</th>
 										<th>Tanggal Pemeriksaan</th>
 										<th>Pemeriksaan/Tindakan</th>
@@ -419,7 +421,6 @@
 								<?php $data2 = \App\Donasiuang::get(); ?>
 								<table class="table table-bordered datatable table-1">
 									<thead>
-										<th>No</th>
 										<th>Nama Donatur</th>
 										<th>Contact Person</th>
 										<th>No.HP</th>
@@ -428,11 +429,9 @@
 										<th>Aksi</th>
 									</thead>
 									<tbody>
-										<?php $no = 1; ?>
 										@foreach($data2 as $data2)
 										@if($data2->status_akunting == '1')
 										<tr class="gradeU" hidden>
-											<td><center>{{$no++}}</center></td>
 											<td>{{$data2->nama_donatur}}</td>
 											<td>{{$data2->cp}}</td>
 											<td>{{$data2->hp}}</td>
@@ -444,7 +443,6 @@
 										</tr>
 										@else
 										<tr class="gradeU">
-											<td><center>{{$no++}}</center></td>
 											<td>{{$data2->nama_donatur}}</td>
 											<td>{{$data2->cp}}</td>
 											<td>{{$data2->hp}}</td>
@@ -475,7 +473,6 @@
 								<?php $data3 = \App\Honor::get(); ?>
 								<table class="table table-bordered datatable table-1">
 									<thead>
-										<th width="1%">No</th>
 										<th>Kategori</th>
 										<th>Nama</th>
 										<th>Honor/Jam</th>
@@ -642,60 +639,53 @@
 	</div>
 </div>
 <script type="text/javascript">
-	$(document).on('change', '.tipe_akun', function() {
-		if($(this).val() == "2") {
-			$('#id_akun').empty();
-			$("#id_akun").append($("<option></option>").attr("value","PILIH NAMA AKUN").text("PILIH NAMA AKUN"));
-			@foreach($namaAkun as $nAkun)
-			@if($nAkun->id_tipe == '2')
-			$('#id_akun').append($("<option></option>").attr("value","{{$nAkun->id_akun}}").text("{{$nAkun->nama_akun}}"));
-			@endif
-			@endforeach
-			$('#tm').prop("disabled", false);
-			$('#tm').prop("checked", false);
-			$('#tk').prop("disabled", false);
-			$('#tk').prop("checked", false);
-		} else if($(this).val() == "3") {
-			$('#id_akun').empty();
-			$("#id_akun").append($("<option></option>").attr("value","PILIH NAMA AKUN").text("PILIH NAMA AKUN"));
-			@foreach($namaAkun as $nAkun)
-			@if($nAkun->id_tipe == '3')
-			$('#id_akun').append($("<option></option>").attr("value","{{$nAkun->id_akun}}").text("{{$nAkun->nama_akun}}"));
-			@endif
-			@endforeach
-			$('.tm').prop('checked', true);
-			$('.tm').prop('disabled', false);
-			$('.tk').prop('disabled', true);
-			$('.tk').prop('checked', false);
-		} else if($(this).val() == "4") {
-			$('#id_akun').empty();
-			$("#id_akun").append($("<option></option>").attr("value","PILIH NAMA AKUN").text("PILIH NAMA AKUN"));
-			@foreach($namaAkun as $nAkun)
-			@if($nAkun->id_tipe == '4')
-			$('#id_akun').append($("<option></option>").attr("value","{{$nAkun->id_akun}}").text("{{$nAkun->nama_akun}}"));
-			@endif
-			@endforeach
-			$('.tk').prop('checked', true);
-			$('.tk').prop('disabled', false);
-			$('.tm').prop('disabled', true);
-			$('.tm').prop('checked', false);
-		} else {
-			$('#id_akun').empty();
-			$("#id_akun").append($("<option></option>").attr("value","PILIH NAMA AKUN").text("PILIH NAMA AKUN"));
-			@foreach($namaAkun as $nAkun)
-			@if($nAkun->id_tipe == '1')
-			$('#id_akun').append($("<option></option>").attr("value","{{$nAkun->id_akun}}").text("{{$nAkun->nama_akun}}"));
-			@endif
-			@endforeach
-			$('#tm').prop("disabled", false);
-			$('#tm').prop("checked", false);
-			$('#tk').prop("disabled", false);
-			$('#tk').prop("checked", false);
-		}
-
-	});
-
 	$(document).ready(function () {
+		$(document).on('change', '.tipe_akun', function() {
+			if($(this).val() == "1") {
+				$('#id_akun').empty();
+				$("#id_akun").append($("<option></option>"));
+				$("#id_akun").select2();
+				@foreach($namaAkun as $nAkun)
+				@if($nAkun->id_tipe == '1')
+				$('#id_akun').append($("<option></option>").attr("value","{{$nAkun->id_akun}}").text("{{$nAkun->nama_akun}}"));
+				@endif
+				@endforeach
+			} else if($(this).val() == "2") {
+				$('#id_akun').empty();
+				$("#id_akun").append($("<option></option>"));
+				$("#id_akun").select2();
+				@foreach($namaAkun as $nAkun)
+				@if($nAkun->id_tipe == '2')
+				$('#id_akun').append($("<option></option>").attr("value","{{$nAkun->id_akun}}").text("{{$nAkun->nama_akun}}"));
+				@endif
+				@endforeach
+			} else if($(this).val() == "3") {
+				$('#id_akun').empty();
+				$("#id_akun").append($("<option></option>"));
+				$("#id_akun").select2();
+				@foreach($namaAkun as $nAkun)
+				@if($nAkun->id_tipe == '3')
+				$('#id_akun').append($("<option></option>").attr("value","{{$nAkun->id_akun}}").text("{{$nAkun->nama_akun}}"));
+				@endif
+				@endforeach
+				$('.tm').prop("checked", true);
+				$('.tk').prop("checked", false);
+			} else {
+				$('#id_akun').empty();
+				$("#id_akun").append($("<option></option>"));
+				$("#id_akun").select2();
+				@foreach($namaAkun as $nAkun)
+				@if($nAkun->id_tipe == '4')
+				$('#id_akun').append($("<option></option>").attr("value","{{$nAkun->id_akun}}").text("{{$nAkun->nama_akun}}"));
+				@endif
+				@endforeach
+				$('.tm').prop("checked", false);
+				$('.tk').prop("checked", true);
+			}
+
+		});
+
+
 		$("#id_akun").change(function() {
 			var id = $(this).val();
 			$('[class^="wajib_"]').removeAttr('required');
@@ -848,18 +838,14 @@
 		});
 
 		$(".tm").click(function(e){
-			if(e.target.checked){
-				$('.tk').prop("disabled", true);
-			} else {
-				$('.tk').prop("disabled", false);
+			if(e.target.checked) {
+				$('.tk').prop("checked", false);
 			}
 		});
 
 		$(".tk").click(function(e){
 			if(e.target.checked){
-				$('.tm').prop("disabled", true);
-			} else {
-				$('.tm').prop("disabled", false);
+				$('.tm').prop("checked", false);
 			}
 		});
 

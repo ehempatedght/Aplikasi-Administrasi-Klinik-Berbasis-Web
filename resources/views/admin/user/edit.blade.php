@@ -132,14 +132,20 @@
 							</div>
 							<div class="checkbox">
 								<label>
+									<input type="checkbox" class="check" name="role[daftarobat]" @if($data->daftarobat == '1') checked @endif>
+									Daftar Obat
+								</label>
+							</div>
+							<div class="checkbox">
+								<label>
 									<input type="checkbox" class="check" name="role[vendorobat]" @if($data->vendorobat == '1') checked @endif>
 									Vendor Obat
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" class="check" name="role[daftarobat]" @if($data->daftarobat == '1') checked @endif>
-									Daftar Obat
+									<input type="checkbox" class="check" name="role[datapemeriksaan]" @if($data->datapemeriksaan == '1') checked @endif>
+									Data Pemeriksaan
 								</label>
 							</div>
 							<div class="checkbox">

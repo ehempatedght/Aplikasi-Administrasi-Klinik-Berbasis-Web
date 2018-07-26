@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Confhonor extends Model
 {
     protected $table = 'conf_honor';
+    protected $primaryKey = 'id';
     protected $fillable = [
     	'tgl','petugas_id','honor'
     ];
@@ -16,5 +17,9 @@ class Confhonor extends Model
 
     public function petugas() {
     	return $this->belongsTo('App\Petugas','petugas_id');
+    }
+
+    public function honors() {
+        return $this->hasMany('App\Honor','confhonor_id','id');
     }
 }

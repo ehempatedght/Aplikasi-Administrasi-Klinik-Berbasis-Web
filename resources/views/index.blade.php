@@ -176,7 +176,7 @@
 						<div id="chart7" style="height: 250px"></div>
 					</td>
 					<td width="33%">
-						<strong>Perekaman Aktivitas - Medis</strong>
+						<strong>Perekaman Aktivitas - Transaksi Klinik</strong>
 						<br />
 						<div id="chart6" style="height: 250px"></div>
 						</td>

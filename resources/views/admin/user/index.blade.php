@@ -43,7 +43,7 @@
 			<?php $no=1; ?>
 			@foreach($users as $user)
 			<tr>
-				<td>{{$no++}}</td>
+				<td><center>{{$no++}}</center></td>
 				<td>{{$user->username}}</td>
 				<td>{{$user->first_name}}</td>
 				<td>{{$user->last_name}}</td>
@@ -52,7 +52,7 @@
 						<form action="" method="POST">
 								{{ csrf_field() }}
 							<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('pengaturan.user.data.edit', $user->id)}}">
-								<i class="entypo-eye" ></i>Edit
+								<i class="entypo-eye" ></i>Ubah
 							</a>
 							
 							<a href="javascript:;" onclick="jQuery('#modal-7{{$user->id}}').modal('show', {backdrop: 'static'});" class="btn btn-sm btn-danger btn-icon icon-left">

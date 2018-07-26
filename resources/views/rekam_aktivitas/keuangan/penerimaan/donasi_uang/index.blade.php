@@ -41,7 +41,7 @@
 				<?php $no=1; ?>
 				@foreach($donasi_uang as $donasi_uang)
 				<tr>
-					<th>{{$no++}}</th>
+					<th><center>{{$no++}}</center></th>
 					<th>{{$donasi_uang->nama_donatur}}</th>
 					<th>{{$donasi_uang->cp}}</th>
 					<th>{{$donasi_uang->hp}}</th>

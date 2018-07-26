@@ -84,13 +84,6 @@
 						<span class="title">Staff Administrasi</span>
 					</a>
 				</li> --}}
-				@if(Auth::user()->vendorobat == '1')
-				<li class="{{set_active(['masterdata.vendorobat.index','masterdata.vendorobat.create','masterdata.vendorobat.edit'])}}">
-					<a href="{{route('masterdata.vendorobat.index')}}">
-						<span class="title">Vendor Obat</span>
-					</a>
-				</li>
-				@endif
 				@if(Auth::user()->daftarobat == '1')
 				<li class="{{set_active(['masterdata.daftarobat.index','masterdata.daftarobat.create','masterdata.daftarobat.edit'])}}">
 					<a href="{{route('masterdata.daftarobat.index')}}">
@@ -98,11 +91,20 @@
 					</a>
 				</li>
 				@endif
+				@if(Auth::user()->vendorobat == '1')
+				<li class="{{set_active(['masterdata.vendorobat.index','masterdata.vendorobat.create','masterdata.vendorobat.edit'])}}">
+					<a href="{{route('masterdata.vendorobat.index')}}">
+						<span class="title">Vendor Obat</span>
+					</a>
+				</li>
+				@endif
+				@if(Auth::user()->datapemeriksaan == '1')
 				<li class="{{set_active(['pemeriksaan.index','pemeriksaan.create','pemeriksaan.edit'])}}">
 					<a href="{{route('pemeriksaan.index')}}">
 						<span class="title">Data Pemeriksaan</span>
 					</a>
 				</li>
+				@endif
 				@if(Auth::user()->datapoli == '1')
 				<li class="{{set_active('masterdata.poli.index')}}">
 					<a href="{{route('masterdata.poli.index')}}">
@@ -175,16 +177,20 @@
 						<span class="title">Transaksi Klinik</span>
 					</a>
 					<ul>
+						@if(Auth::user()->admin == '1')
 						<li class="{{set_active(['medis.reservasi.index','medis.reservasi.create'])}}">
 							<a href="{{route('medis.reservasi.index')}}">
 								<span class="title">Reservasi</span>
 							</a>
 						</li>
+						@endif
+						@if(Auth::user()->admin == '1')
 						<li class="{{set_active(['medis.pemeriksaan.index','medis.pemeriksaan.create','medis.pemeriksaan.show'])}}">
 							<a href="{{route('medis.pemeriksaan.index')}}">
 								<span class="title">Pemeriksaan</span>
 							</a>
 						</li>
+						@endif
 						<li class="{{set_active(['rekam_medis.index','rekam_medis.create','rekam_medis.show'])}}">
 							<a href="{{route('rekam_medis.index')}}">
 								<span class="title">Rekam Medis</span>
@@ -240,11 +246,11 @@
 										<span class="title">Honor</span>
 									</a>
 								</li>
-								<li class="{{set_active(['pengeluaran.pembelian.index','pengeluaran.pembelian.create','pengeluaran.pembelian.edit'])}}">
+								{{-- <li class="{{set_active(['pengeluaran.pembelian.index','pengeluaran.pembelian.create','pengeluaran.pembelian.edit'])}}">
 									<a href="{{route('pengeluaran.pembelian.index')}}">
 										<span class="title">Pembelian Obat</span>
 									</a>
-								</li>
+								</li> --}}
 								<li class="{{set_active(['pengeluaran.operasional.index','pengeluaran.operasional.create','pengeluaran.operasional.edit','pengeluaran.operasional.show'])}}">
 									<a href="{{route('pengeluaran.operasional.index')}}">
 										<span class="title">Operasional</span>

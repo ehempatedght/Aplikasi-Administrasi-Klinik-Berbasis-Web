@@ -28,7 +28,7 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
     </div>
     <div class="col-xs-4" align="center">
       <span>
-        LAPORAN KEUANGAN PER AKUN<br />
+        LAPORAN KEUANGAN DETAIL PER AKUN<br />
         @if ($bulanan == true)
         BULAN: {{ $bulan_cetak }} {{ date('Y', strtotime($tanggal_awal)) }}
         @else
@@ -127,10 +127,10 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
           </p>
           <br>
           <br>
-    {{-- <a href="{{route('laporan.akun.detail', ['tanggal_awal' => $tanggal_awal, '$tanggal_akhir' => $tanggal_akhir, 'tipe_akun' => $tipe_akun, 'nama_akun' => $nama_akun, 'tipe' => 'excel'])}}" class="btn btn-primary btn-icon icon-left hidden-print">
+    <a href="{{route('laporan.akun.detail', ['tanggal_awal' => $tanggal_awal, '$tanggal_akhir' => $tanggal_akhir, 'tipe_akun' => $tipe_akun, 'nama_akun' => $nama_akun, 'tipe' => 'excel'])}}" class="btn btn-primary btn-icon icon-left hidden-print">
       Export Excel
       <i class="entypo-doc-text"></i>
-    </a> --}}
+    </a>
     <a href="javascript:window.print();" class="btn btn-blue btn-icon icon-left hidden-print">
         Cetak PDF
       <i class="entypo-print"></i>

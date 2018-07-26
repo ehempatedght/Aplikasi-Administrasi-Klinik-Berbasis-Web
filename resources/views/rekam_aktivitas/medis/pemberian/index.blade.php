@@ -3,7 +3,7 @@
 <h2>Data Pemberian Obat</h2>
 <h5>Menu ini digunakan untuk menambahkan pemberian obat</h5><br/>
 <a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('medis.pemberian.create')}}">
-	<i class="entypo-user-add"></i>Tambah Pemberian
+	<i class="entypo-user-add"></i>Tambah Pemberian Obat
 </a>
 <br/>
 <br/>
@@ -30,7 +30,7 @@
 		<table class="table table-bordered datatable" id="table-1">
 			<thead>
 				<tr>
-					<th width="5%">No</th>
+					<th width="1%">No</th>
 					<th>Tanggal</th>
 					<th>No.Pendaftaran</th>
 					<th>Nama Pasien</th>
@@ -43,7 +43,7 @@
 				<?php $no=1; ?>
 				@foreach($pemberian as $pemberian)
 				<tr>
-					<th>{{$no++}}</th>
+					<th><center>{{$no++}}</center></th>
 					<th>{{ date('d M Y', strtotime($pemberian->tgl)) }}</th>
 					<th>{{$pemberian->no_pend}}</th>
 					<th>{{$pemberian->pasien->reservasi->pasien->nama_pasien}}</th>
@@ -62,9 +62,9 @@
 										Lihat
 									</a> --}}
 									<a href="javascript:;" onclick="jQuery('#modal-7{{$pemberian->id}}').modal('show', {backdrop: 'static'});" class="btn btn-sm btn-danger btn-icon icon-left">
-								<i class="entypo-trash"></i>
-								Hapus
-							</a>
+									<i class="entypo-trash"></i>
+									Hapus
+									</a>
 							</form>
 						</div>
 					</th>
