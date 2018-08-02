@@ -473,6 +473,7 @@
 								<?php $data3 = \App\Honor::get(); ?>
 								<table class="table table-bordered datatable table-1">
 									<thead>
+										<th width="1%">No</th>
 										<th>Kategori</th>
 										<th>Nama</th>
 										<th>Honor/Jam</th>

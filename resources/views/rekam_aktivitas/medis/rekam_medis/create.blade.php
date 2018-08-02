@@ -179,6 +179,20 @@
 						<tbody>
 							<?php $no=1; ?>
 							@foreach($reservasi as $reservasi)
+							@if($reservasi->status_res == 'Batal')
+							<tr hidden>
+								<td><center>{{$no++}}</center></td>
+								<td>{{$reservasi->no_rm}}</td>
+								<td>{{$reservasi->pasien->kategoripasien->nama_kategori}}</td>
+								<td>{{$reservasi->pasien->nama_pasien}}</td>
+								<td align="center">
+									<button data-id="{{$reservasi->id_res}}" data-name="{{$reservasi->pasien->nama_pasien}}" data-jk="{{$reservasi->pasien->jenis_kelamin}}" data-nopend="{{$reservasi->no_rm}}" data-jnsp="{{$reservasi->pasien->kategoripasien->nama_kategori}}" data-tgl="{{date('d M Y', strtotime($reservasi->created_at)) }}" data-nors="{{$reservasi->kd_res}}" data-poli="{{$reservasi->poli->nama_poli}}" data-dokter="{{$reservasi->dokter->nama}}" class="btn btn-green btn-sm btn-icon icon-left addPas">
+										<i class="entypo-check"></i>
+										Pilih
+									</button>
+								</td>
+							</tr>
+							@else
 							<tr>
 								<td><center>{{$no++}}</center></td>
 								<td>{{$reservasi->no_rm}}</td>
@@ -191,6 +205,7 @@
 									</button>
 								</td>
 							</tr>
+							@endif
 							@endforeach
 						</tbody>
 					</table>

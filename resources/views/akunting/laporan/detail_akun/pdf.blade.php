@@ -117,7 +117,7 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
     <br>
           <p>
             Jakarta, {{date('d M Y')}}<br/>
-                Penangung Jawab&nbsp;&nbsp;
+                Penanggung Jawab
           </p>
           <br>
           <br>

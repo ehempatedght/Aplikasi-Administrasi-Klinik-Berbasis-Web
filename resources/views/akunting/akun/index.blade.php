@@ -15,10 +15,58 @@
 		<br/>
 		<div class="panel-body">
 			@if(session('message'))
-    			<div class="alert alert-success">{{session('message')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
+    			<script type="text/javascript">
+					jQuery(document).ready(function($)
+					{
+						setTimeout(function()
+						{
+							var opts = {
+								"closeButton": true,
+								"debug": false,
+								"positionClass": rtl() || public_vars.$pageContainer.hasClass('right-sidebar') ? "toast-top-left" : "toast-top-right",
+								"toastClass": "black",
+								"onclick": null,
+								"showDuration": "300",
+								"hideDuration": "1000",
+								"timeOut": "5000",
+								"extendedTimeOut": "1000",
+								"showEasing": "swing",
+								"hideEasing": "linear",
+								"showMethod": "fadeIn",
+								"hideMethod": "fadeOut"
+							};
+					
+							toastr.success("{{session('message')}}", opts);
+						}, 5);
+					});
+    			</script>
 			@endif
 			@if(session('danger'))
-    			<div class="alert alert-info">{{session('danger')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
+    			<script type="text/javascript">
+					jQuery(document).ready(function($)
+					{
+						setTimeout(function()
+						{
+							var opts = {
+								"closeButton": true,
+								"debug": false,
+								"positionClass": rtl() || public_vars.$pageContainer.hasClass('right-sidebar') ? "toast-top-left" : "toast-top-right",
+								"toastClass": "black",
+								"onclick": null,
+								"showDuration": "300",
+								"hideDuration": "1000",
+								"timeOut": "5000",
+								"extendedTimeOut": "1000",
+								"showEasing": "swing",
+								"hideEasing": "linear",
+								"showMethod": "fadeIn",
+								"hideMethod": "fadeOut"
+							};
+					
+							toastr.error("{{session('danger')}}", opts);
+						}, 5);
+					});
+    			</script>
 			@endif
 			@if (count($errors) > 0)
 				<div class="alert alert-danger">

@@ -8,10 +8,58 @@
 <br/>
 <br/>
 @if(session('message'))
-    <div class="alert alert-success">{{session('message')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
+    <script type="text/javascript">
+		jQuery(document).ready(function($)
+		{
+			setTimeout(function()
+			{
+				var opts = {
+					"closeButton": true,
+					"debug": false,
+					"positionClass": rtl() || public_vars.$pageContainer.hasClass('right-sidebar') ? "toast-top-left" : "toast-top-right",
+					"toastClass": "black",
+					"onclick": null,
+					"showDuration": "300",
+					"hideDuration": "1000",
+					"timeOut": "5000",
+					"extendedTimeOut": "1000",
+					"showEasing": "swing",
+					"hideEasing": "linear",
+					"showMethod": "fadeIn",
+					"hideMethod": "fadeOut"
+				};
+		
+				toastr.success("{{session('message')}}", opts);
+			}, 5);
+		});
+    </script>
 @endif
 @if(session('message2'))
-    <div class="alert alert-info">{{session('message2')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
+    <script type="text/javascript">
+		jQuery(document).ready(function($)
+		{
+			setTimeout(function()
+			{
+				var opts = {
+					"closeButton": true,
+					"debug": false,
+					"positionClass": rtl() || public_vars.$pageContainer.hasClass('right-sidebar') ? "toast-top-left" : "toast-top-right",
+					"toastClass": "black",
+					"onclick": null,
+					"showDuration": "300",
+					"hideDuration": "1000",
+					"timeOut": "5000",
+					"extendedTimeOut": "1000",
+					"showEasing": "swing",
+					"hideEasing": "linear",
+					"showMethod": "fadeIn",
+					"hideMethod": "fadeOut"
+				};
+		
+				toastr.error("{{session('message2')}}", opts);
+			}, 5);
+		});
+    </script>
 @endif
 <div class="row">
 	<div class="col-md-12">
@@ -34,8 +82,10 @@
 			<thead>
 				<tr>
 					<th width="1%">No</th>
-					<th>Jenis</th>
+					<th>Jenis Obat</th>
+					<th>Kode Obat</th>
 					<th>Nama Obat</th>
+					<th>Satuan</th>
 					<th>Stok</th>
 					<th width="200px">Aksi</th>
 				</tr>
@@ -46,7 +96,9 @@
 				<tr>
 					<td><center>{{$no++}}</center></td>
 					<td>{{$row->jenis_obat->jns_obt}}</td>
+					<td>{{$row->kd_jenis}}</td>
 					<td>{{$row->nama_obat}}</td>
+					<td>{{$row->satuan}}</td>
 					<td>{{$row->stok}}</td>
 					<td>
 						<div align="center">

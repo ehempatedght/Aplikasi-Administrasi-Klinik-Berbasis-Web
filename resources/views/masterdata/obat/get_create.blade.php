@@ -1,5 +1,17 @@
 @extends('template')
 @section('main')
+<style>
+.col-sm-1 {
+    width: 45px;
+}
+
+.select2-container .select2-choice {
+    display: block!important;
+    height: 30px!important;
+    white-space: nowrap!important;
+    line-height: 26px!important;
+}
+</style>
 <?php
 $jenis_obats = \App\Donasiobat::all();
 ?>
@@ -35,9 +47,9 @@ $jenis_obats = \App\Donasiobat::all();
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-12">
-									<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Pilih Jenis</label>
+									<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jenis Obat</label>
 									<div class="col-sm-5">
-										<select name="jenis_obat_id[1]" class="form-control select2" id="id_1" required data-placeholder="Pilih jenis obat...">
+										<select name="jenis_obat_id" class="form-control select2" id="id_1" required data-placeholder="Pilih jenis obat...">
 											<option></option>
 											<optgroup label="Pilih Jenis Obat">
 												@foreach ($jenis_obats as $jenis_obat)
@@ -52,9 +64,9 @@ $jenis_obats = \App\Donasiobat::all();
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-12">
-									<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kode Jenis</label>
+									<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kode Obat</label>
 									<div class="col-sm-5">
-										<input type="text" class="form-control" name="kd_jenis[1]" placeholder="kode jenis" id="kd_jenis_1" required>
+										<input type="text" class="form-control" name="kd_jenis" placeholder="kode obat" id="kd_jenis_1" required>
 									</div>
 								</div>
 							</div>
@@ -62,7 +74,7 @@ $jenis_obats = \App\Donasiobat::all();
 						<div class="form-group">
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama Obat/Barang</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" name="nama_obat[1]" placeholder="nama obat barang" required>
+								<input type="text" class="form-control" name="nama_obat" placeholder="nama obat barang" required>
 							</div>
 						</div>
 						<div class="form-group">
@@ -70,9 +82,9 @@ $jenis_obats = \App\Donasiobat::all();
 								<div class="col-md-12">
 									<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Satuan</label>
 									<div class="col-sm-5">
-										<select name="satuan[1]" class="form-control select2" data-placeholder="Pilih satuan...">
+										<select name="satuan" class="form-control select2" data-placeholder="Pilih satuan...">
 											<option></option>
-											<?php $satuan = ['kg','mg','box','cap']; ?>
+											<?php $satuan = ['Botol','Dos','Lembar','Pcs','Strip','Tablet']; ?>
 											<optgroup label="Pilih Satuan">
 											@foreach($satuan as $satuan)
 											<option value="{{$satuan}}">{{$satuan}}</option>
@@ -86,9 +98,9 @@ $jenis_obats = \App\Donasiobat::all();
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-12">
-									<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Deskripsi</label>
+									<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kegunaan</label>
 									<div class="col-sm-5">
-										<textarea name="deskripsi[1]" class="form-control" placeholder="deskripsi"></textarea>
+										<textarea name="deskripsi" class="form-control" placeholder="kegunaan"></textarea>
 									</div>
 								</div>
 							</div>
@@ -96,17 +108,24 @@ $jenis_obats = \App\Donasiobat::all();
 						<div class="form-group">
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Harga</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control numbers harga" id="harga_1" name="harga[1]" placeholder="harga" required value="0" onkeyup="hitung_total()">
+								<input type="text" class="form-control numbers harga" id="harga_1" name="harga" placeholder="harga" required value="0">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Stok</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control numberValidation stok" id="stok_1" name="stok[1]" placeholder="stok" required value="1">
+								<input type="text" class="form-control numberValidation stok" id="stok_1" name="stok" placeholder="stok" required value="1">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Total</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control numbers total" id="total" name="total" placeholder="total" required value="0"  readonly>
 							</div>
 						</div>
 					</div>
-					<div id="tambah_list"></div>
+					{{-- <div id="tambah_list"></div>
 					<div class="form-group">
 						<label for="field-ta" class="col-sm-3 control-label"></label>
 
@@ -116,7 +135,7 @@ $jenis_obats = \App\Donasiobat::all();
 							<i class="entypo-plus"></i>
 							</button>
 						</div>
-					</div>
+					</div> --}}
 					{{-- <div class="form-group">
 						<label for="field-ta" class="col-sm-3 control-label" style="text-align:left;">&emsp;Total</label>
 						<div class="col-sm-5">
@@ -145,39 +164,35 @@ $jenis_obats = \App\Donasiobat::all();
 	// 	$.get(home_url + '/daftarobat/cari_kode/' + id, function(data) {
 	// 		$('#kd_jenis').val(data);
 	// 	});
-
-
 	$('.numberValidation').keyup(function () {
             this.value = this.value.replace(/[^0-9\.]/g,'');
     });
-
-	function hitung_total() {
-        var total = 0;
-        var stok = $(".stok").val();
-        $(".harga").each(function() {
-            var num = parseFloat(this.value.replace(/,/g, ''));
-            if(!isNaN(num)){
-                total += num;
-            }
-            $("#total").val(total * stok);
-        });
-    }
-
-    $("#stok_1").keyup(function() {
-		var harga = parseFloat($("#harga_1").val());
-		var stok = parseInt($("#stok_1").val());
-		parseFloat($("#total").val(harga * stok));
-	});
-
 	$(document).ready(function() {
+		// $('#id_1').change(function() {
+		// 	var jumlah = $(this).val();
+		// 	$.get(home_url + '/masterdata/daftarobat/cari_kode/' + jumlah, function(data) {
+		// 		$('#stok_1').val(data);
+		// 	});
+		// });
+		$("#harga_1").keyup(function() {
+			var nominal = 0;
+			var stok = $("#stok_1").val();
+			$("#harga_1").each(function() {
+				var num = parseFloat(this.value.replace(/,/g, ''));
+				if (!isNaN(num)) {
+					nominal += num;
+				}
 
-		$('#id_1').change(function() {
-			var id = $(this).val();
-			$.get(home_url + '/masterdata/daftarobat/cari_kode/' + id, function(data) {
-				$('#kd_jenis_1').val(data);
+				$("#total").val(nominal * stok);
 			});
 		});
-	
+
+		$("#stok_1").keyup(function() {
+			var nominal = $("#harga_1").val();
+			var jumlah = $("#stok_1").val();
+			var hasil = nominal * jumlah;
+			$("#total").val(hasil);
+		});
 
 		$('#tambah_obat').click(function(e) {
 			e.preventDefault();
@@ -187,7 +202,7 @@ $jenis_obats = \App\Donasiobat::all();
 			'<div class="form-group">' +
 			'<div class="row">' +
 			'<div class="col-md-12">' +
-			'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Pilih Jenis</label>'+
+			'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Jenis Obat</label>'+
 			'<div class="col-sm-5">'+
 			'<select name="jenis_obat_id['+loop+']" class="form-control" data-placeholder="Pilih jenis obat..." id="id_'+loop+'">' +
 			'<option></option>' +
@@ -201,18 +216,16 @@ $jenis_obats = \App\Donasiobat::all();
 			'</div>' +
 			'</div>' +
 			'</div>' +
-
 			'<div class="form-group">' +
 			'<div class="row">' +
 			'<div class="col-md-12">' +
 			'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kode Obat</label>' +
 			'<div class="col-sm-5">' +
-			'<input type="text" class="form-control" name="kd_jenis['+loop+']" placeholder="kode jenis" id="kode_jns_'+loop+'" required>' +
+			'<input type="text" class="form-control" name="kd_jenis['+loop+']" placeholder="kode obat" id="kode_jns_'+loop+'" required>' +
 			'</div>' +
 			'</div>' +
 			'</div>' +
 			'</div>' +
-
 			'<div class="form-group">' +
 			'<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Nama Obat/Barang</label>' +
 			'<div class="col-sm-5">' +
@@ -265,29 +278,18 @@ $jenis_obats = \App\Donasiobat::all();
 			'Hapus' +
 			'<i class="entypo-cancel"></i>' +
 			'</button>' +
-
 			'</div>';
 			$('#tambah_list').append(html);
 			$('#id_'+loop).select2();
 			$('#satuan_'+loop).select2();
 			$('.numbers').number(true);
-
 			$("#stok_"+loop).keyup(function() {
 				var harga = parseFloat($("#harga_"+loop).val());
 				var stok = parseInt($("#stok_"+loop).val());
 				parseFloat($("#total").val(harga * stok));
 			});
-
-			$('#id_'+loop).change(function() {
-				var id = $(this).val();
-				$.get(home_url + '/masterdata/daftarobat/cari_kode/' + id, function(data) {
-					$('#kode_jns_'+loop).val(data);
-					loop++;
-				});
-			});
 			
 		});
-
 		$("#tambah_list").on('click','.hapus', function(e){
 			e.preventDefault();
 			var id = $(this).data('id');
@@ -304,21 +306,17 @@ $jenis_obats = \App\Donasiobat::all();
 		           this.setSelectionRange(1,1);
 		        }
 	    });	
-
 		
-
 	    $("#tambah_list").on('input','.harga', function(){
 		    $(".harga").keyup(function(){
 		      hargaLoop();
 		    });
   		});
-
   		$("#tambah_list").on('input','.input', function(){
 		    $(".input").keyup(function(){
 		      Input();
 		    });
   		});
-
 	    function Input() {
 	    	$('input').on('keydown', function(event) {
 		        if (this.selectionStart == 0 && event.keyCode >= 65 && event.keyCode <= 90 && !(event.shiftKey) && !(event.ctrlKey) && !(event.metaKey) && !(event.altKey)) {

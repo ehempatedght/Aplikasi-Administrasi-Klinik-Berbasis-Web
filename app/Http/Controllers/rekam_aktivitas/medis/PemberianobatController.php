@@ -87,7 +87,7 @@ class PemberianobatController extends Controller
     public function delete($id) {
     	$pemberian = Pemberianobat::find($id);
     	if ($pemberian->delete()) {
-    		return redirect()->route('medis.pemberian.index')->with('message','Pemberian berhasil dihapus');
+    		return redirect()->route('medis.pemberian.index')->with('message2','Pemberian berhasil dihapus');
     	}
     }
 }

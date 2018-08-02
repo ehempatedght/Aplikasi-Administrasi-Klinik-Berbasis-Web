@@ -1,5 +1,17 @@
 @extends('template')
 @section('main')
+<style>
+.col-sm-1 {
+    width: 45px;
+}
+
+.select2-container .select2-choice {
+    display: block!important;
+    height: 30px!important;
+    white-space: nowrap!important;
+    line-height: 26px!important;
+}
+</style>
 <?php
 $jenis_obats = \App\Donasiobat::all();
 ?>
@@ -73,10 +85,12 @@ $jenis_obats = \App\Donasiobat::all();
 										<select name="satuan" class="form-control select2" data-placeholder="Pilih satuan...">
 											<option></option>
 											<optgroup label="Pilih Satuan">
-												<option {{old('satuan', $data->satuan)=="kg"? 'selected':''}} value="kg">kg</option>
-												<option {{old('satuan', $data->satuan)=="mg"? 'selected':''}} value="mg">mg</option>
-												<option {{old('satuan', $data->satuan)=="box"? 'selected':''}} value="box">box</option>
-												<option {{old('satuan', $data->satuan)=="cap"? 'selected':''}} value="cap">cap</option>
+												<option {{old('satuan', $data->satuan)=="Botol"? 'selected':''}} value="Botol">Botol</option>
+												<option {{old('satuan', $data->satuan)=="Dos"? 'selected':''}} value="Dos">Dos</option>
+												<option {{old('satuan', $data->satuan)=="Lembar"? 'selected':''}} value="Lembar">Lembar</option>
+												<option {{old('satuan', $data->satuan)=="Pcs"? 'selected':''}} value="Pcs">Pcs</option>
+												<option {{old('satuan', $data->satuan)=="Strip"? 'selected':''}} value="Strip">Strip</option>
+												<option {{old('satuan', $data->satuan)=="Tablet"? 'selected':''}} value="Tablet">Tablet</option>
 											</optgroup>
 										</select>
 									</div>
@@ -86,7 +100,7 @@ $jenis_obats = \App\Donasiobat::all();
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-12">
-									<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Deskripsi</label>
+									<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Kegunaan</label>
 									<div class="col-sm-5">
 										<textarea name="deskripsi" class="form-control" placeholder="deskripsi">{{$data->deskripsi}}</textarea>
 									</div>
@@ -96,13 +110,19 @@ $jenis_obats = \App\Donasiobat::all();
 						<div class="form-group">
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Harga</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control numbers" name="harga" placeholder="harga" required value="{{$data->harga}}">
+								<input type="text" class="form-control numbers" name="harga" placeholder="harga" id="harga_1" required value="{{$data->harga}}">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Stok</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control numberValidation" name="stok" placeholder="stok" required value="{{$data->stok}}">
+								<input type="text" class="form-control numberValidation" id="stok_1" name="stok" placeholder="stok" required value="{{$data->stok}}">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Total</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control numbers" id="total" name="total" placeholder="total" required value="{{$data->total}}">
 							</div>
 						</div>
 					</div>
@@ -146,6 +166,26 @@ $jenis_obats = \App\Donasiobat::all();
 			});
 		});
 		
+		$("#harga_1").keyup(function() {
+			var nominal = 0;
+			var stok = $("#stok_1").val();
+			$("#harga_1").each(function() {
+				var num = parseFloat(this.value.replace(/,/g, ''));
+				if (!isNaN(num)) {
+					nominal += num;
+				}
+
+				$("#total").val(nominal * stok);
+			});
+		});
+
+		$("#stok_1").keyup(function() {
+			var nominal = $("#harga_1").val();
+			var jumlah = $("#stok_1").val();
+			var hasil = nominal * jumlah;
+			$("#total").val(hasil);
+		});
+
 		$(".numbers").number(true,0);
 		$('input').on('keydown', function(event) {
 		        if (this.selectionStart == 0 && event.keyCode >= 65 && event.keyCode <= 90 && !(event.shiftKey) && !(event.ctrlKey) && !(event.metaKey) && !(event.altKey)) {

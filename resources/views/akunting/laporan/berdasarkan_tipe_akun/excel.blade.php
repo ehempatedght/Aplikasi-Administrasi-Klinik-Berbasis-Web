@@ -24,7 +24,6 @@ $daftar_bulan = array(
 );
 
 $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
-
 ?>
   <table style="width: 100%; border-collapse: collapse;">
     <tbody>
@@ -83,7 +82,7 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
       </tr>
       <tr>
         <td colspan="4" style="float: right; text-align: right;">
-          Penangung Jawab
+          Penanggung Jawab
         </td>
       </tr>
       <tr>

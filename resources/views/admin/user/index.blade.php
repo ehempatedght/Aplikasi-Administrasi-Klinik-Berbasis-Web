@@ -7,10 +7,58 @@
 <br/>
 <br/>
 @if(session('message'))
-    <div class="alert alert-success">{{session('message')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
+    <script type="text/javascript">
+					jQuery(document).ready(function($)
+					{
+						setTimeout(function()
+						{
+							var opts = {
+								"closeButton": true,
+								"debug": false,
+								"positionClass": rtl() || public_vars.$pageContainer.hasClass('right-sidebar') ? "toast-top-left" : "toast-top-right",
+								"toastClass": "black",
+								"onclick": null,
+								"showDuration": "300",
+								"hideDuration": "1000",
+								"timeOut": "5000",
+								"extendedTimeOut": "1000",
+								"showEasing": "swing",
+								"hideEasing": "linear",
+								"showMethod": "fadeIn",
+								"hideMethod": "fadeOut"
+							};
+					
+							toastr.success("{{session('message')}}", opts);
+						}, 5);
+					});
+    			</script>
 @endif
 @if(session('message2'))
-    <div class="alert alert-info">{{session('message2')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
+    <script type="text/javascript">
+					jQuery(document).ready(function($)
+					{
+						setTimeout(function()
+						{
+							var opts = {
+								"closeButton": true,
+								"debug": false,
+								"positionClass": rtl() || public_vars.$pageContainer.hasClass('right-sidebar') ? "toast-top-left" : "toast-top-right",
+								"toastClass": "black",
+								"onclick": null,
+								"showDuration": "300",
+								"hideDuration": "1000",
+								"timeOut": "5000",
+								"extendedTimeOut": "1000",
+								"showEasing": "swing",
+								"hideEasing": "linear",
+								"showMethod": "fadeIn",
+								"hideMethod": "fadeOut"
+							};
+					
+							toastr.error("{{session('message2')}}", opts);
+						}, 5);
+					});
+    			</script>
 @endif
 <div class="col-md-12">
 <div class="row">
@@ -52,7 +100,7 @@
 						<form action="" method="POST">
 								{{ csrf_field() }}
 							<a class="btn btn-blue btn-sm btn-icon icon-left" href="{{route('pengaturan.user.data.edit', $user->id)}}">
-								<i class="entypo-eye" ></i>Ubah
+								<i class="entypo-pencil" ></i>Ubah
 							</a>
 							
 							<a href="javascript:;" onclick="jQuery('#modal-7{{$user->id}}').modal('show', {backdrop: 'static'});" class="btn btn-sm btn-danger btn-icon icon-left">

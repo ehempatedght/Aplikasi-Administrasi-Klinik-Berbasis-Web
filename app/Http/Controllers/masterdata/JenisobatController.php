@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\masterdata;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Jenisobat;
@@ -10,32 +8,28 @@ use App\Donasiobat;
 use Validator;
 use Response;
 use Illuminate\Support\Facades\Input;
-
 class JenisobatController extends Controller
 {
 	public function getIndex() {
 		$jenis_obat = Jenisobatdetail::all();
 		return view('masterdata.obat.get_index', compact('jenis_obat'));
 	} 
-
 	public function getCreate() {
 		return view('masterdata.obat.get_create');
 	}
-
 	public function createJenis() {
 		$jenisobat =Jenisobat::get();
 		return view('masterdata.obat.create_jenis')->withJenisobat($jenisobat);
 	}
-
 	public function doInsert(Request $request) {
 		$data = $request->all();
-		 $this->validate($request, array(
+			$this->validate($request, array(
 		 	'nama_obat'=>'required|max:50',
 		 	'satuan'=>'required',
 		 	'harga'=>'required',
+		 	'kd_jenis' => 'required'
 		 ));
-
-
+		/**
 		 foreach ($data['jenis_obat_id'] as $key => $value) {
 		 	Jenisobatdetail::create([
 		 		'jenis_obat_id' => $data['jenis_obat_id'][$key],
@@ -44,18 +38,28 @@ class JenisobatController extends Controller
  	 			'satuan'=>$data['satuan'][$key],
  	 			'deskripsi'=>$data['deskripsi'][$key],
  	 			'harga'=>str_replace(',', '',$data['harga'][$key]),
- 	 			'stok'=>$data['stok'][$key]
+ 	 			'stok'=>$data['stok'][$key],
+ 	 			'total'=>str_replace(',', '',$data['total'][$key])
 			]);
 		  }
-		return redirect()->route('masterdata.daftarobat.index')->with('message','Obat berhasil dibuat!');
+		 **/
+		  Jenisobatdetail::create([
+		 		'jenis_obat_id' => $data['jenis_obat_id'],
+		 		'kd_jenis' => $data['kd_jenis'],
+		 		'nama_obat'=>$data['nama_obat'],
+ 	 			'satuan'=>$data['satuan'],
+ 	 			'deskripsi'=>$data['deskripsi'],
+ 	 			'harga'=>str_replace(',', '',$data['harga']),
+ 	 			'stok'=>$data['stok'],
+ 	 			'total'=>str_replace(',', '',$data['total'])
+			]);
+		return redirect()->route('masterdata.daftarobat.index')->with('message','Obat berhasil ditambah!');
 	}
-
 	public function getEdit($id) {
 		$data = Jenisobatdetail::find($id);
 		$jenisobat = Donasiobat::get();
 		return view('masterdata.obat.get_edit', get_defined_vars());
 	}
-
 	public function doUpdate(Request $request, $id) {
 		$data = $request->all();
 		 $this->validate($request, array(
@@ -63,7 +67,6 @@ class JenisobatController extends Controller
 		 	'satuan'=>'required',
 		 	'harga'=>'required',
 		 ));
-
 		 $update = Jenisobatdetail::find($id);
 		 $update->update([
 		 	'jenis_obat_id' => $data['jenis_obat_id'],
@@ -72,13 +75,11 @@ class JenisobatController extends Controller
  	 		'satuan'=>$data['satuan'],
  	 		'deskripsi'=>$data['deskripsi'],
  	 		'harga'=>str_replace(',', '',$data['harga']),
- 	 		'stok'=>$data['stok']
+ 	 		'stok'=>$data['stok'],
+ 	 		'total'=>str_replace(',', '',$data['total'])
 		 ]);
-
-		 return redirect()->route('masterdata.daftarobat.index')->with('message','Obat berhasil diupdate!');
-
+		 return redirect()->route('masterdata.daftarobat.index')->with('message','Obat berhasil diubah!');
 	}
-
 	public function doDelete($id) {
 		$jenis = Jenisobatdetail::find($id);
 		//$test = $jenis->vendor->count() > 0;
@@ -87,13 +88,11 @@ class JenisobatController extends Controller
 			return redirect()->back()->with('message2','OBAT '.$jenis->nama_obat.' TIDAK DAPAT DIHAPUS KARENA BERHUBUNGAN DENGAN DATA LAIN!');
 		} else {
 			$jenis->delete();
-			return redirect()->route('masterdata.daftarobat.index')->with('message','OBAT BERHASIL DIHAPUS!');
+			return redirect()->route('masterdata.daftarobat.index')->with('message2','OBAT BERHASIL DIHAPUS!');
 		}
 	}
-
-	public function KdObat($id) {
-		$kode = Donasiobat::where('id', $id)->count();
-		return 'JNS00'.$id;
+	public function KdObat($jumlah) {
+		$kode = Donasiobat::where('jumlah', $jumlah)->count();
+		return $jumlah;
 	}
-
 }

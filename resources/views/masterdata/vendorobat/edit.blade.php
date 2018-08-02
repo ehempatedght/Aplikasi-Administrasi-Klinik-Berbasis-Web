@@ -1,5 +1,17 @@
 @extends('template')
 @section('main')
+<style>
+.col-sm-1 {
+    width: 45px;
+}
+
+.select2-container .select2-choice {
+    display: block!important;
+    height: 30px!important;
+    white-space: nowrap!important;
+    line-height: 26px!important;
+}
+</style>
 <h2>Ubah Vendor Obat</h2>
 <ol class="breadcrumb bc-3">
 	<li>
@@ -77,7 +89,7 @@
 								<div class="col-md-12">
 									<label for="field-1" class="col-sm-3 control-label" style="text-align:left;">&emsp;Barang/Obat</label>
 									<div class="col-sm-5">
-										<select name="obat_id[]" class="form-control selectboxit" id="obat_<?= $i; ?>" required>
+										<select name="obat_id[]" class="form-control select2" id="obat_<?= $i; ?>" required>
 											<option selected="selected" disabled value="Pilih">Pilih Obat</option>
 												@foreach ($obats as $_obat)
 													<option value="{{$_obat->id}}" @if($data->obat_id == $_obat->id) selected @endif>{{$_obat->nama_obat}}</option>
@@ -173,7 +185,6 @@
 					'</div>' +
 					'</div>' +
 					'</div>';
-
 					$('#tambah_list').append(html);
 					$('#obat_'+loop).select2();
 					loop++;

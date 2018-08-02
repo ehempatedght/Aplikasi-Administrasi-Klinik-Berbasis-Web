@@ -29,7 +29,7 @@ class DataPemeriksaanController extends Controller
 			'nama_pemeriksaan' => $data['nama_pemeriksaan'],
 		]);
 
-		return redirect()->route('pemeriksaan.index')->with('message','KATEGORI PEMERIKSAAN BERHASIL DITAMBAH!');
+		return redirect()->route('pemeriksaan.index')->with('message','DATA PEMERIKSAAN BERHASIL DITAMBAH!');
 	}
 
 	public function edit($id) {
@@ -41,14 +41,6 @@ class DataPemeriksaanController extends Controller
 	public function update(Request $request, $id) {
 		$this->validateWith(array(
 			'id_kategori' => 'required|integer',
-			'tarif' => 'required',
-			'disc' => 'required',
-			'disc_result' => 'required',
-			'disc_dokter' => 'required',
-			'disc_dokter_result' => 'required',
-			'disc_klinik' => 'required',
-			'disc_klinik_result' => 'required',
-			'total' => 'required'
 		));
 
 		$data = $request->all();
@@ -57,6 +49,6 @@ class DataPemeriksaanController extends Controller
 			'id_kategori' => $data['id_kategori'],
 			'nama_pemeriksaan' => $data['nama_pemeriksaan'],
 		]);
-		return redirect()->route('pemeriksaan.index')->with('message','KATEGORI PEMERIKSAAN BERHASIL DIUBAH!');
+		return redirect()->route('pemeriksaan.index')->with('message','DATA PEMERIKSAAN BERHASIL DIUBAH!');
 	}
 }

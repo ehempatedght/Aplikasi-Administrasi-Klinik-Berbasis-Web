@@ -78,7 +78,6 @@
 				formatter: function (x, data) { return data.formatted},
 				colors: ['#455064','#707f9b']
 			});
-
 			// Donut Colors
 			Morris.Donut({
 				element: 'chart6',
@@ -104,7 +103,6 @@
 				colors: ['#b92527', '#d13c3e']
 			});
 	});
-
 	function getRandomInt(min, max)
 	{
 		return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -128,7 +126,6 @@
 		</div>
 		{{-- </a> --}}
 	</div>
-
 	<div class="col-sm-3 col-xs-6">
 		{{-- <a href="{{route('masterdata.petugasmedis.datapetugasmedis.index')}}"> --}}
 		<div class="tile-stats tile-green">
@@ -139,7 +136,6 @@
 		</div>
 		{{-- </a> --}}
 	</div>
-
 	<div class="clear visible-xs"></div>
 	
 	<div class="col-sm-3 col-xs-6">
@@ -152,7 +148,6 @@
 		</div>
 		{{-- </a> --}}
 	</div>
-
 	<div class="col-sm-3 col-xs-6">
 		{{-- <a href="{{route('masterdata.daftarobat.index')}}"> --}}
 		<div class="tile-stats tile-blue">

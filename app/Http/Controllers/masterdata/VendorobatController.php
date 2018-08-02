@@ -66,7 +66,6 @@ class VendorobatController extends Controller
     }
 
     public function doUpdate(Request $request, $nama_vendor) {
-            $first_id = Vendorobat::where('nama_vendor', $nama_vendor)->first();
             $vendor = Vendorobat::where('nama_vendor', $nama_vendor)->delete();
             $this->validate($request, array(
                 'nama_vendor' => 'required|max:25',
@@ -81,7 +80,6 @@ class VendorobatController extends Controller
 
             for ($i=0; $i < count($request->obat_id); $i++) {
                 $input = Vendorobat::create([
-                    'id' => $first_id->id,
                     'nama_vendor' => $request->nama_vendor,
                     'alamat' => $request->alamat,
                     'no_telp' => $request->no_telp,

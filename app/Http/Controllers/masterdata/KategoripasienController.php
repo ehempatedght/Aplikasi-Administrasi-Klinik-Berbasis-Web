@@ -23,7 +23,7 @@ class KategoripasienController extends Controller
     	]);
 
     	if ($kategori) {
-    		return redirect()->route('masterdata.pasien.kategori.index')->with('message','Kategori '.$kategori->nama_kategori.' berhasil ditambah!');
+    		return redirect()->route('masterdata.pasien.kategori.index')->with('message','KATEGORI '.$kategori->nama_kategori.' BERHASIL DITAMBAH!');
     	}
     }
 
@@ -34,7 +34,7 @@ class KategoripasienController extends Controller
     	$data = $request->all();
     	$kategori = Kategoripasien::find($id);
     	if ($kategori->update($data)) {
-    		return redirect()->route('masterdata.pasien.kategori.index')->with('message','Kategori berhasil diubah!');
+    		return redirect()->route('masterdata.pasien.kategori.index')->with('message','KATEGORI BERHASIL DIUBAH!');
     	}
     }
 
@@ -44,7 +44,7 @@ class KategoripasienController extends Controller
             return redirect()->back()->with('message2','KATEGORI '.strtoupper($kategori->nama_kategori).' TIDAK DAPAT DIHAPUS KARENA BERHUBUNGAN DENGAN DATA PASIEN!');
         } else {
             $kategori->delete();
-            return redirect()->route('masterdata.pasien.kategori.index')->with('message','KATEGORI '.$kategori->nama_kategori.' BERHASIL DIHAPUS!');
+            return redirect()->route('masterdata.pasien.kategori.index')->with('message2','KATEGORI '.strtoupper($kategori->nama_kategori).' BERHASIL DIHAPUS!');
         }
     }
 }

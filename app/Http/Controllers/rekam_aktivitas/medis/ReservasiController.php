@@ -53,7 +53,7 @@ class ReservasiController extends Controller
 			'u_id' => Auth::user()->id
 		]);
 
-		return redirect()->route('medis.reservasi.index')->with('message','Reservasi berhasil dibuat');
+		return redirect()->route('medis.reservasi.index')->with('message','RESERVASI BERHASIL DIBUAT');
 	}
 
 	public function edit($id) {
@@ -87,7 +87,7 @@ class ReservasiController extends Controller
 			'u_id' => Auth::user()->id
 		]);
 
-		return redirect()->route('medis.reservasi.index')->with('message','Reservasi berhasil diubah');
+		return redirect()->route('medis.reservasi.index')->with('message','RESERVASI BERHASIL DIUBAH!');
 	}
 
 	public function show($id) {
@@ -102,19 +102,13 @@ class ReservasiController extends Controller
 		Reservasi::find($id)->update([
 			'status_res' => 'Batal'
 		]);
-		return redirect()->route('medis.reservasi.index')->with('message','Reservasi berhasil dibatalkan!');
+		return redirect()->route('medis.reservasi.index')->with('message2','RESERVASI BERHASIL DIBATALKAN!');
 	}
 
 	public function delete($id) {
 		Reservasi::find($id)->delete();
-		return redirect()->route('medis.reservasi.index')->with('message','Reservasi berhasil dihapus');
+		return redirect()->route('medis.reservasi.index')->with('message2','RESERVASI BERHASIL DIHAPUS!');
 	}
-
-	// public function search_spesialisasi($id) {
-	// 	$spls = Petugas::where('spesialisasi', $id)->count();
-
-	// 	return $id;
-	// }
 
 	public function no_reservasi() {
 		$panjang = 3;

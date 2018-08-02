@@ -131,19 +131,6 @@ class PetugasController extends Controller
         }
      
       	return redirect()->route('masterdata.petugasmedis.datapetugasmedis.index')->with('message','Petugas medis berhasil diubah');
-     
-
-		// $petugas = Petugas::find($id);
-		// if (isset($request->days)) {
-		// 	$petugas->days()->sync($request->days);
-		// } else {
-		// 	$petugas->days()->sync(array());
-		// }
-
-		// if ($petugas->update($data)) {
-		// 	return redirect()->route('petugas.index', $petugas->id)->with('message','Petugas medis berhasil diupdate');
-		// }
-
 	}
 
 	public function doHapus($id) {

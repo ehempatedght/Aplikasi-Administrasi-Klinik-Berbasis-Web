@@ -142,7 +142,7 @@ Route::group(['middleware'=> ['web','auth']], function() {
 		 	Route::post('/delete/{id}', ['as'=>'masterdata.daftarobat.delete','uses'=>'masterdata\JenisobatController@doDelete']);
 		 	Route::post('/update/{id}', ['as'=>'masterdata.daftarobat.update','uses'=>'masterdata\JenisobatController@doUpdate']);
 		 	//search kd obat
-		 	Route::get('/cari_kode/{id}', ['as'=>'masterdata.daftarobat.cari_kode','uses'=>'masterdata\JenisobatController@KdObat']);
+		 	Route::get('/cari_kode/{jumlah}', ['as'=>'masterdata.daftarobat.cari_kode','uses'=>'masterdata\JenisobatController@KdObat']);
 		});
 
 		//vendor

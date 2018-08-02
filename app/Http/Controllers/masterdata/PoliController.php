@@ -17,7 +17,7 @@ class PoliController extends Controller
 		$data = $request->all();
 		$poli = Poli::create($data);
 		if ($poli) {
-			return redirect()->route('masterdata.poli.index')->with('message',''.$poli->nama_poli.' berhasil ditambah');
+			return redirect()->route('masterdata.poli.index')->with('message',''.$poli->nama_poli.' BERHASIL DITAMBAH!');
 		}
 	}
 	public function doUpdate(Request $request, $id) {
@@ -27,13 +27,13 @@ class PoliController extends Controller
 		$poli = Poli::find($id);
 		$data = $request->all();
 		if ($poli->update($data)) {
-			return redirect()->route('masterdata.poli.index')->with('message','Poli berhasil diubah');
+			return redirect()->route('masterdata.poli.index')->with('message','POLI BERHASIL DIUBAH!');
 		}
 	}
 	public function doDelete($id) {
 		$poli = Poli::find($id);
 		if ($poli->reservasi->count() > 0) {
-			return redirect()->back()->with('message2',''.$poli->nama_poli.' TIDAK DAPAT HAPUS KARENA SEDANG DIGUNAKAN RESERVASI!');
+			return redirect()->back()->with('message2',''.$poli->nama_poli.' TIDAK DAPAT HAPUS KARENA BERHUBUNGAN DENGAN DATA LAIN!');
 		} else {
 			$poli->delete();
 			return redirect()->route('masterdata.poli.index')->with('message',''.$poli->nama_poli.' BERHASIL DIHAPUS!');

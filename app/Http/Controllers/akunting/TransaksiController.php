@@ -12,6 +12,7 @@ use App\Pembelian;
 use App\Operasional;
 use Auth;
 use Excel;
+
 class TransaksiController extends Controller
 {
     public function index() {
@@ -150,6 +151,7 @@ class TransaksiController extends Controller
                 $tampilan_penuh = true;
                 return view('akunting.laporan.berdasarkan_tipe_akun.pdf', get_defined_vars());
             } else {
+                
                 return Excel::create("Laporan Keuangan Tipe Akun ".$akun->first()->tipe_akun->nama_tipe." - ".date('d-m-Y', strtotime($tanggal_awal)). " s/d " .date('d-m-Y', strtotime($tanggal_akhir)), function($excel) use ($tanggal_awal, $tanggal_akhir, $bulanan, $akun){
                     $excel->sheet('Sheet1', function($sheet) use ($tanggal_awal, $tanggal_akhir, $bulanan, $akun) {
                         $sheet->loadView('akunting.laporan.berdasarkan_tipe_akun.excel', get_defined_vars());
@@ -164,6 +166,7 @@ class TransaksiController extends Controller
         $namaAkun = NamaAkun::orderBy('nama_akun', 'ASC')->get();
         return view('akunting.laporan.detail_akun.index', get_defined_vars());
     }
+    
     public function output_detail_akun($tanggal_awal, $tanggal_akhir, $tipe_akun, $nama_akun, $tipe) {
         $tanggal_awal = date('Y-m-d', strtotime($tanggal_awal));
         $tanggal_akhir = date('Y-m-d', strtotime($tanggal_akhir));
@@ -192,11 +195,11 @@ class TransaksiController extends Controller
             $tampilan_penuh = true;
             return view('akunting.laporan.detail_akun.pdf', get_defined_vars());
         } else {
-            return Excel::create('Laporan Detail Keuangan Per Akun - '.date('d-m-Y', strtotime($tanggal_awal)). " s/d " .date('d-m-Y', strtotime($tanggal_akhir)), function($excel) use ($tanggal_awal, $tanggal_akhir, $tipe_akun, $nama_akun, $akun, $bulanan){
-                    $excel->sheet('Sheet1', function($sheet) use ($tanggal_awal, $tanggal_akhir, $tipe_akun, $nama_akun, $akun, $bulanan) {
+            return Excel::create("Laporan Detail Keuangan Per Akun - ".date('d-m-Y', strtotime($tanggal_awal))." s/d ".date('d-m-Y', strtotime($tanggal_akhir)), function($excel) use ($tanggal_awal, $tanggal_akhir, $bulanan, $tipe_akun, $nama_akun, $akun){
+                    $excel->sheet('Sheet1', function($sheet) use ($tanggal_awal, $tanggal_akhir, $bulanan, $tipe_akun, $nama_akun, $akun) {
                         $sheet->loadView('akunting.laporan.detail_akun.excel', get_defined_vars());
                     });
-                })->export('xls');
+            })->export('xls');
         }
     }
     //LAPORAN LABA/RUGI
