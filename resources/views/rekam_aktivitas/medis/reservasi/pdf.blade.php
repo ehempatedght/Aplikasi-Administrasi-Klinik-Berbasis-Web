@@ -27,6 +27,20 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
       </span>
     </div>
   </div>
+  <table style="width: 100%; border-collapse: collapse;" hidden>
+    <tr>
+        <td style="text-align: left; border: 1px solid;" colspan="5">
+        Kategori: <b>@if($poli == 'all')Semua @else {{$reservasi->first()->poli->nama_poli}} @endif</b>
+        </td>
+    </tr>
+  </table>
+  <table style="width: 100%; border-collapse: collapse;" hidden>
+    <tr>
+        <td style="text-align: left; border: 1px solid;" colspan="5">
+        Kategori: <b>@if($dokter == 'all')Semua @else {{$reservasi->first()->dokter->nama}} @endif</b>
+        </td>
+    </tr>
+  </table>
   <table style="width: 100%; border-collapse: collapse;">
       <hr style="border-top: 1px solid; " />
       <center>
@@ -81,7 +95,7 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
       </table>
       <table style="width: 100%; border-collapse: collapse; margin-top: 6px;">
         <tr>
-          <td style="border-bottom: 1px solid; border-top: 1px solid; text-align: center;">Total {{$reservasi->count()}} Data</td>
+          <td style="border-bottom: 1px solid; border-top: 1px solid; text-align: center;">Total {{$no - 1}} Data</td>
         </tr>
         </table>
       <div class="invoice">
@@ -99,6 +113,10 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
           </p>
           <br>
           <br>
+          <a href="{{route('output_report.reservasi', ['tanggal_awal' => $tanggal_awal, 'tanggal_akhir' => $tanggal_akhir, 'poli' => $poli, 'dokter' => $dokter, 'tipe' => 'excel']) }}" class="btn btn-green btn-icon icon-left hidden-print">
+            Export Excel
+          <i class="entypo-doc-text"></i>
+          </a>
           <a href="javascript:window.print();" class="btn btn-blue btn-icon icon-left hidden-print">
             Cetak PDF
           <i class="entypo-print"></i>

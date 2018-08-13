@@ -192,6 +192,12 @@ class ReservasiController extends Controller
         if ($tipe == 'pdf') {
         	$tampilan_penuh = true;
         	return view('rekam_aktivitas.medis.reservasi.pdf', get_defined_vars());
+        } else {
+        	return \Excel::create("Laporan Reservasi Pasien - ".date('d-m-Y', strtotime($tanggal_awal))." s/d ".date('d-m-Y', strtotime($tanggal_akhir)), function($excel) use ($tanggal_awal, $tanggal_akhir, $bulanan, $reservasi) {
+        		$excel->sheet('Sheet1', function($sheet) use ($tanggal_awal, $tanggal_akhir, $bulanan, $reservasi) {
+        			$sheet->loadView('rekam_aktivitas.medis.reservasi.excel', get_defined_vars());
+        		});
+        	})->export('xlsx');
         }
 	} 
 }

@@ -42,18 +42,28 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
     </center>
     <hr style="border-bottom: 1px solid; " />
   </table>
+  <br/>
+  <br/>
+  <style>
+    table,td,th{
+      border-collapse :collapse;
+    }
+    th,td{
+      padding: 3px;
+    }
+  </style>
+  
   <div class="row">
     <div class="col-sm-6">
       <table style="width: 100%; border-collapse: collapse;">
         <tr>
-          <th width="25%"><b>{{$aktiva->tipeAkun->nama_tipe}}</b></th>
+          <th width="25%">{{$aktiva->tipeAkun->nama_tipe}}</th>
         </tr>
       </table>
-      <br/>
       <table style="width: 100%; border-collapse: collapse;">
         <tr>
-          <th style="border-bottom: 1px solid; border-bottom-style: dashed;"><b>Nama Akun</b></th>
-          <th style="border-bottom: 1px solid; border-bottom-style: dashed; text-align: right;"><b>Nominal</b></th>
+          <th style="border: 1px solid;"><center><b>Nama Akun</b></center></th>
+          <th style="border: 1px solid;"><center><b>Nominal</b></center></th>
         </tr>
         <?php
           $jumlahkan_nominal_aktiva = 0;
@@ -64,8 +74,8 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
           $total_neraca_aktiva = $akt->total_neraca_aktiva($tanggal_awal, $tanggal_akhir);
         ?>
         <tr>
-          <td>{{$akt->akun->nama_akun}}</td>
-          <td style="text-align: right;">{{number_format($total_neraca_aktiva, 0, ',', ',')}}</td>
+          <td style="border: 1px solid;">{{$akt->akun->nama_akun}}</td>
+          <td style="border: 1px solid; text-align: right;" class="numbers">{{number_format($total_neraca_aktiva, 0, ',', ',')}}</td>
           <?php
             $jumlahkan_nominal_aktiva += $total_neraca_aktiva;
           ?>
@@ -76,14 +86,13 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
     <div class="col-sm-6">
       <table style="width: 100%; border-collapse: collapse;">
         <tr>
-          <th width="25%"><b>{{$pasiva->tipeAkun->nama_tipe}}</b></th>
+          <th width="27%">{{$pasiva->tipeAkun->nama_tipe}}</th>
         </tr>
       </table>
-      <br/>
       <table style="width: 100%; border-collapse: collapse;">
         <tr>
-          <th style="border-bottom: 1px solid; border-bottom-style: dashed;"><b>Nama Akun</b></th>
-          <th style="border-bottom: 1px solid; border-bottom-style: dashed; text-align: right;"><b>Nominal</b></th>
+          <th style="border: 1px solid;"><center><b>Nama Akun</b></center></th>
+          <th style="border: 1px solid;"><center><b>Nominal</b></center></th>
         </tr>
         <?php 
         $jumlahkan_nominal_pasiva = 0; 
@@ -94,55 +103,49 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
           $total_neraca_pasiva = $pas->total_neraca_pasiva($tanggal_awal, $tanggal_akhir); 
         ?>
         <tr>
-          <td>{{$pas->akun->nama_akun}}</td>
-          <td style="text-align: right;">{{number_format($total_neraca_pasiva, 0, ',', ',')}}</td>
+          <td style="border: 1px solid;">{{$pas->akun->nama_akun}}</td>
+          <td style="border: 1px solid; text-align: right;" class="numbers">{{number_format($total_neraca_pasiva, 0, ',', ',')}}</td>
           <?php
             $jumlahkan_nominal_pasiva += $total_neraca_pasiva;
           ?>
         </tr>
         @endforeach
-      </table>
-      <br/>
-    <br/>
+      </table>   
     </div>
     <div class="col-sm-12">
+      <br/>
       <table style="width: 100%; border-collapse: collapse;">
-        <td style="border-top: 1px solid; border-top-style: dashed;"></td>
+        <th style="border-top: 1px solid;"></th>
+      </table>
+      <table style="width: 100%; border-collapse: collapse;">
+        <tr>
+          <td><b>Aktiva<?php for($i=1; $i<=145; $i++) {print ".";}?> : {{number_format($jumlahkan_nominal_aktiva, 0, ',', ',')}}</b></td>
+        </tr>
+        <tr>
+          <td><b>Pasiva<?php for($i=1; $i<=145; $i++) {print ".";}?> : {{number_format($jumlahkan_nominal_pasiva, 0, ',', ',')}}</b>
+          </td>
+        </tr>
+        <?php
+          $selisih = $jumlahkan_nominal_aktiva - $jumlahkan_nominal_pasiva;
+        ?>
+        <tr>
+          <td><?php for($i=1; $i<=157; $i++) {print "&nbsp;";}?>&nbsp;  -------------- <b>-</b></td>
+        </tr>
+        <tr>
+          <td><b>Selisih<?php for($i=1; $i<=145; $i++) {print ".";}?> : {{number_format($selisih, 0, ',', ',')}}</b></td>
+        </tr>
       </table>
       <br/>
-      <br/>
-      <div class="invoice">
-        <div class="invoice-right">
-          <table style="width: 100%; border-collapse: collapse;">
-            <tr>
-              <td><b>Aktiva <?php for($i=1; $i<=50; $i++){print "&nbsp;";} ?>Rp.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{number_format($jumlahkan_nominal_aktiva, 0, ',', ',')}}</b></td>
-            </tr>
-            <tr>
-              <td><b>Pasiva <?php for($i=1; $i<=50; $i++){print "&nbsp;";} ?>Rp.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{number_format($jumlahkan_nominal_pasiva, 0, ',', ',')}}</b></td>
-            </tr>
-            <?php
-            $selisih = $jumlahkan_nominal_aktiva - $jumlahkan_nominal_pasiva;
-            ?>
-          </table>
-          <tr>
-              <?php
-                for ($i=1; $i <=39; $i++) {
-              ?> 
-              <td>-</td>
-              <?php
-            }
-              ?>
-              <b>&nbsp;-</b>
-            </tr>
-          <br/>
-          <table style="width: 100%; border-collapse: collapse;">
-          <tr>
-              <td><b>Selisih <?php for($i=1; $i<=50; $i++){print "&nbsp;";} ?>Rp.&nbsp;&nbsp;&nbsp;&nbsp;{{number_format($selisih, 0, ',', ',')}}</b></td>
-          </tr>
-          </table>
-          <br>
-          <br>
-          <br>
+      <table style="width: 100%; border-collapse: collapse;">
+        <th style="border-top: 1px solid; border-bottom: 1px solid;"><center><b>Selisih : {{number_format($selisih, 0, ',', ',')}}</b></center></th>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="row">&nbsp;</div>
+<div class="invoice">
+  <div class="invoice-right">
+    <br>
           <p>
             Jakarta, {{date('d M Y')}}<br/>
                 Penangung Jawab&nbsp;&nbsp;
@@ -155,13 +158,15 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
           </p>
           <br>
           <br>
-          <a href="javascript:window.print();" class="btn btn-blue btn-icon icon-left hidden-print">
-            Cetak PDF
-          <i class="entypo-print"></i>
-          </a>
-        </div>
-      </div>
-    </div>
+    {{-- <a href="{{route('laporan.akun.detail', ['tanggal_awal' => $tanggal_awal, '$tanggal_akhir' => $tanggal_akhir, 'tipe_akun' => $tipe_akun, 'nama_akun' => $nama_akun, 'tipe' => 'excel'])}}" class="btn btn-primary btn-icon icon-left hidden-print">
+      Export Excel
+      <i class="entypo-doc-text"></i>
+    </a> --}}
+    <a href="javascript:window.print();" class="btn btn-blue btn-icon icon-left hidden-print">
+        Cetak PDF
+      <i class="entypo-print"></i>
+    </a>
   </div>
-</div>
+  </div>
 @endsection
+

@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -201,7 +202,7 @@ Route::group(['middleware'=> ['web','auth']], function() {
 					Route::get('/show/{id}', ['as'=>'pengeluaran.honor.show','uses'=>'rekam_aktivitas\keuangan\HonorController@show']);
 					Route::post('/delete/{id}', ['as'=>'pengeluaran.honor.delete','uses'=>'rekam_aktivitas\keuangan\HonorController@delete']);
 				});
-
+				
 				Route::group(['prefix'=>'operasional'], function() {
 					Route::get('/', ['as'=>'pengeluaran.operasional.index','uses'=>'rekam_aktivitas\keuangan\OperasionalController@index']);
 					Route::get('/create', ['as'=>'pengeluaran.operasional.create','uses'=>'rekam_aktivitas\keuangan\OperasionalController@create']);

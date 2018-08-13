@@ -13,6 +13,7 @@ use App\User;
 use App\Kategoripemeriksaan;
 use App\DataPemeriksaan;
 use App\Pasien as Data;
+use Excel;
 class PemeriksaanController extends Controller 
 {
     public function index() {
@@ -120,6 +121,12 @@ class PemeriksaanController extends Controller
         if ($tipe == 'pdf') {
             $tampilan_penuh = true;
             return view('rekam_aktivitas.medis.pemeriksaan.pdf', get_defined_vars());
+        } else {
+            return Excel::create("Laporan Pemeriksaan Pasien - ".date('d-m-Y', strtotime($tanggal_awal))." s/d ".date('d-m-Y', strtotime($tanggal_akhir)), function($excel) use($tanggal_awal, $tanggal_akhir, $bulanan, $pemeriksaan) {
+                $excel->sheet("Sheet1", function($sheet) use($tanggal_awal, $tanggal_akhir, $bulanan, $pemeriksaan) {
+                    $sheet->loadView('rekam_aktivitas.medis.pemeriksaan.excel', get_defined_vars());
+                });
+            })->export('xlsx');
         }
     }
 }

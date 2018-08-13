@@ -1,17 +1,4 @@
 <html>
-<head>
-  <style>
-
-    td {
-      color: #393e46;
-      border-color: #393e46;
-    }
-    
-    table {
-      border-color: #000;
-    }
-  </style>
-</head>
 <body>
 <?php
 $daftar_bulan = array(
@@ -48,41 +35,39 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
         </td>
       </tr>
     </tbody>
-  </table>
-  <table style="width: 100%; border-collapse: collapse;">
     <tbody>
       <tr>
-          <td style="text-align: left; border: 1px solid;" colspan="5">
-          Tipe Akun: @if($tipe_akun == 'all' && $nama_akun == 'all') Semua @else {{$akun->first()->tipeAkun->nama_tipe}} @endif
+          <td style="text-align: left; border: 1px solid #000;" colspan="5">
+          Tipe Akun: @if($tipe_akun == 'all' && $nama_akun == 'all') <strong>Semua @else {{$akun->first()->tipeAkun->nama_tipe}}</strong> @endif
           </td>
       </tr>
     </tbody>
-  </table>
   @foreach($akun as $akun)
   @foreach($akun->list_nama_akun($tanggal_awal, $tanggal_akhir, $nama_akun) as $account_name)
-  <table border-collapse: collapse;">
     <tbody>
+      <tr><td></td></tr>
       <tr>
-        <td style="text-align: left; border: 1px solid;" colspan="5">Nama Akun: {{$account_name->akun->nama_akun}}</td>
+        <td style="text-align: left; border: 1px solid #000;" colspan="5">Nama Akun: <strong>{{$account_name->akun->nama_akun}}</strong></td>
       </tr>
       <tr>
-        <td style="text-align: center; border: 1px solid; width: 0.58;"><b>No</b></td>
-        <td style="text-align: center; border: 1px solid;" width="15"><b>Tanggal</b></td>
-        <td style="text-align: center; border: 1px solid;" width="50"><b>Keterangan</b></td>
-        <td style="text-align: center; border: 1px solid;" width="20"><b>Masuk</b></td>
-        <td style="text-align: center; border: 1px solid;" width="20"><b>Keluar</b></td>
+        <td style="text-align: center; border: 1px solid #000;" width="5%"><b>No</b></td>
+        <td style="text-align: center; border: 1px solid #000;" width="15"><b>Tanggal</b></td>
+        <td style="text-align: center; border: 1px solid #000;" width="60"><b>Keterangan</b></td>
+        <td style="text-align: center; border: 1px solid #000;" width="20"><b>Masuk</b></td>
+        <td style="text-align: center; border: 1px solid #000;" width="20"><b>Keluar</b></td>
       </tr>
-      <?php $no=1; 
+      <?php 
+        $no=1; 
         $total_pemasukan = 0;
         $total_pengeluaran = 0;
       ?>
       @foreach($akun->list_transaksi($tanggal_awal, $tanggal_akhir, $tipe_akun, $nama_akun) as $trs)
       <tr>
-       <td style="border: 1px solid; text-align:center;">{{$no++}}</td>
-       <td style="border: 1px solid;">{{date('d-M-Y', strtotime($trs->tgl))}}</td>
-       <td style="border: 1px solid;">{{$trs->keterangan}}</td>
-       <td style="border: 1px solid; text-align: right;">{{number_format($trs->pemasukan)}}</td>
-       <td style="border: 1px solid; text-align: right;">{{number_format($trs->pengeluaran)}}</td>
+       <td style="border: 1px solid #000; text-align:center;">{{$no++}}</td>
+       <td style="border: 1px solid #000;">{{date('d-M-Y', strtotime($trs->tgl))}}</td>
+       <td style="border: 1px solid #000;">{{$trs->keterangan}}</td>
+       <td style="border: 1px solid #000; text-align: right;">{{number_format($trs->pemasukan)}}</td>
+       <td style="border: 1px solid #000; text-align: right;">{{number_format($trs->pengeluaran)}}</td>
       </tr>
       <?php
         $total_pemasukan += $trs->pemasukan;
@@ -92,22 +77,22 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
       @endforeach
     </tbody>
     <tr>
-      <td style="border: 1px solid;" colspan="4">Total Pemasukan </td>
-      <td style="border: 1px solid; text-align: right;">{{number_format($total_pemasukan)}}</td>
+      <td style="border: 1px solid #000;" colspan="4">Total Pemasukan </td>
+      <td style="border: 1px solid #000; text-align: right;">{{number_format($total_pemasukan)}}</td>
     </tr>
     <tr>
-      <td style="border: 1px solid;" colspan="4">Total Pengeluaran </td>
-      <td style="border: 1px solid; text-align: right;">{{number_format($total_pengeluaran)}}</td>
+      <td style="border: 1px solid #000;" colspan="4">Total Pengeluaran </td>
+      <td style="border: 1px solid #000; text-align: right;">{{number_format($total_pengeluaran)}}</td>
     </tr>
     <tr>
-      <td style="border: 1px solid;" colspan="4">Saldo Akhir </td>
-      <td style="border: 1px solid; text-align: right;">{{number_format($saldo_akhir, 0, ',', ',')}}</td>
+      <td style="border: 1px solid #000;" colspan="4">Saldo Akhir </td>
+      <td style="border: 1px solid #000; text-align: right;">{{number_format($saldo_akhir, 0, ',', ',')}}</td>
     </tr>
-  </table>
   @endforeach
   @endforeach
-  <table style="width: 100%; border-collapse: collapse;">
     <tbody>
+      <tr><td></td></tr>
+      <br>
       <tr>
         <td colspan="5" style="float: right; text-align: right;">
           Jakarta, {{date('d M Y')}}
@@ -132,7 +117,7 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
       </tr>
       <tr>
         <td colspan="5" style="float: right; text-align: right;">
-          {{Auth::user()->first_name}}
+          <strong>{{Auth::user()->first_name}}</strong>
         </td>
       </tr>
     </tbody>

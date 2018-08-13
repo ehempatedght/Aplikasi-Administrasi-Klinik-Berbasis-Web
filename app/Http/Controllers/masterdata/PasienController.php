@@ -9,6 +9,7 @@ use App\Kota;
 use App\Kelurahan;
 use App\Kecamatan;
 use App\Kategoripasien;
+use Excel;
 
 class PasienController extends Controller
 {
@@ -204,7 +205,6 @@ class PasienController extends Controller
         } else {
             $bulanan = false;
         }
-        $patient = Pasien::get();
         if ($id_kategori == 'all') {
             $pasien = Pasien::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir])->get();
         } else {
@@ -216,6 +216,12 @@ class PasienController extends Controller
         if ($tipe == 'pdf') {
             $tampilan_penuh = true;
             return view('masterdata.pasien.pdf', get_defined_vars());
+        } else {
+            return Excel::create("Laporan Registrasi Pasien - ".date('d-m-Y', strtotime($tanggal_awal))." s/d ".date('d-m-Y', strtotime($tanggal_akhir)), function($excel) use ($tanggal_awal, $tanggal_akhir, $bulanan, $pasien) {
+                $excel->sheet('Sheet1', function($sheet) use($tanggal_awal, $tanggal_akhir, $bulanan, $pasien) {
+                    $sheet->loadView('masterdata.pasien.excel', get_defined_vars());
+                });
+            })->download('xlsx');
         }
     }
 

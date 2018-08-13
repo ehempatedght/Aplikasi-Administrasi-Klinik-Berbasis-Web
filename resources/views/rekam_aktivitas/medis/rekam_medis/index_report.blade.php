@@ -3,7 +3,31 @@
 <h3><center>Laporan Data Rekam Medis Pasien</center></h2>
 <br/>
 @if(session('message'))
-    <div class="alert alert-success">{{session('message')}}<button class="close" data-dismiss="alert" type="button">×</button></div>
+    <script type="text/javascript">
+                    jQuery(document).ready(function($)
+                    {
+                        setTimeout(function()
+                        {
+                            var opts = {
+                                "closeButton": true,
+                                "debug": false,
+                                "positionClass": rtl() || public_vars.$pageContainer.hasClass('right-sidebar') ? "toast-top-left" : "toast-top-right",
+                                "toastClass": "black",
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            };
+                    
+                            toastr.error("{{session('message')}}", opts);
+                        }, 5);
+                    });
+                </script>
 @endif
 <div class="row">
 	<div class="col-md-12">

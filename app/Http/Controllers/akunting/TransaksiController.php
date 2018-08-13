@@ -156,7 +156,7 @@ class TransaksiController extends Controller
                     $excel->sheet('Sheet1', function($sheet) use ($tanggal_awal, $tanggal_akhir, $bulanan, $akun) {
                         $sheet->loadView('akunting.laporan.berdasarkan_tipe_akun.excel', get_defined_vars());
                     });
-                })->export('xls');
+                })->export('xlsx');
             }
         }
     }
@@ -199,7 +199,7 @@ class TransaksiController extends Controller
                     $excel->sheet('Sheet1', function($sheet) use ($tanggal_awal, $tanggal_akhir, $bulanan, $tipe_akun, $nama_akun, $akun) {
                         $sheet->loadView('akunting.laporan.detail_akun.excel', get_defined_vars());
                     });
-            })->export('xls');
+            })->export('xlsx');
         }
     }
     //LAPORAN LABA/RUGI

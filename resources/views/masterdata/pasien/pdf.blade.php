@@ -27,6 +27,13 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
       </span>
     </div>
   </div>
+  <table style="width: 100%; border-collapse: collapse;" hidden>
+    <tr>
+        <td style="text-align: left; border: 1px solid;" colspan="5">
+        Kategori: <b>@if($id_kategori == 'all')Semua @else {{$pasien->first()->kategoripasien->nama_kategori}} @endif</b>
+        </td>
+    </tr>
+  </table>
   <table style="width: 100%; border-collapse: collapse;">
       <hr style="border-top: 1px solid; " />
       <center>
@@ -59,24 +66,24 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
           </tr>
         </thead>
         <?php $no=1; ?>
-        @foreach($pasien as $pas)
+        @foreach($pasien as $pasien)
         <tbody>
           <tr style="border-bottom: 1px solid;">
             <td><center>{{$no++}}</center></td>
-            <td>{{date('d/m/Y', strtotime($pas->created_at))}}</td>
-            <td>{{$pas->no_rm}}</td>
-            <td>{{$pas->nama_pasien}}</td>
-            <td>{{date('d-M-Y', strtotime($pas->TanggalLahir))}}</td>
-            <td>{{$pas->alamat}}</td>
-            <td>{{$pas->kelurahan->nama_kelurahan}}</td>
-            <td>{{$pas->kategoripasien->nama_kategori}}</td>
+            <td>{{date('d/m/Y', strtotime($pasien->created_at))}}</td>
+            <td>{{$pasien->no_rm}}</td>
+            <td>{{$pasien->nama_pasien}}</td>
+            <td>{{date('d-M-Y', strtotime($pasien->TanggalLahir))}}</td>
+            <td>{{$pasien->alamat}}</td>
+            <td>{{$pasien->kelurahan->nama_kelurahan}}</td>
+            <td>{{$pasien->kategoripasien->nama_kategori}}</td>
           </tr>
         </tbody>
         @endforeach
       </table>
       <table style="width: 100%; border-collapse: collapse; margin-top: 6px;">
         <tr>
-          <td style="border-bottom: 1px solid; border-top: 1px solid; text-align: center;">Total {{$pasien->count()}} Data</td>
+          <td style="border-bottom: 1px solid; border-top: 1px solid; text-align: center;">Total {{$no-1}} Data</td>
         </tr>
         </table>
       <div class="invoice">
@@ -94,6 +101,11 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
           </p>
           <br>
           <br>
+          <a href="{{route('output.report', ['tanggal_awal' => $tanggal_awal, 'tanggal_akhir' => $tanggal_akhir, 'id_kategori' => $id_kategori, 'tipe' => 'excel']) }}" class="btn btn-green btn-icon icon-left hidden-print">
+            Export Excel
+          <i class="entypo-doc-text"></i>
+          </a>
+
           <a href="javascript:window.print();" class="btn btn-blue btn-icon icon-left hidden-print">
             Cetak PDF
           <i class="entypo-print"></i>

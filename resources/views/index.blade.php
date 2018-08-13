@@ -112,7 +112,7 @@
 	$pengguna = \App\User::all()->count();
 	$petugas = \App\Petugas::all()->count();
 	$pasien = \App\Pasien::all()->count();
-	$obat = \App\Jenisobatdetail::all()->count();
+	$obat = \App\Jenisobatdetail::get()->sum('stok');
 ?>
 <div class="row">
 	<div class="col-sm-3 col-xs-6">
@@ -153,8 +153,8 @@
 		<div class="tile-stats tile-blue">
 			<div class="icon" style="margin-bottom: 35px;"><i class="fa fa-medkit"></i></div>
 			<div class="num" data-start="0" data-end="{{$obat}}" data-postfix="" data-duration="1500" data-delay="1800">0</div>
-			<h3>Obat</h3>
-			<p>jumlah ketersediaan obat klinik.</p>
+			<h3>Stok Obat</h3>
+			<p>jumlah keseluruhan stok obat klinik.</p>
 		</div>
 		{{-- </a> --}}
 	</div>

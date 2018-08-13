@@ -59,7 +59,7 @@ $bulan_cetak = $daftar_bulan[date('m', strtotime($tanggal_awal))];
         <td style="text-align: center; border: 1px solid;" colspan="4">{{$akun->first()->tipe_akun->nama_tipe}}</td>
       </tr>
       <tr>
-        <td style="text-align: center; border: 1px solid;" width="2"><b>No</b></td>
+        <td style="text-align: center; border: 1px solid;" width="4%"><b>No</b></td>
         <td style="text-align: center; border: 1px solid;" width="100"><b>Nama Akun</b></td>
         <td style="text-align: center; border: 1px solid;" width="50"><b>Masuk</b></td>
         <td style="text-align: center; border: 1px solid;" width="50"><b>Keluar</b></td>
